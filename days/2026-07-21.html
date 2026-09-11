@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-21 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-21</div>
+  <div><span class="lab lab-ok">確認済 7</span><span class="lab lab-warn">要検証 3</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-21</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証が取れたので、突き合わせ結果をまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近の動き — 精査レポート</h1>
+<p>（対象期間：2026年7月14日〜21日。一次情報でWeb確認済み／未確認を明記）</p>
+<h2>1. Claude / Anthropic 本体・プラットフォーム</h2>
+<h3>Claude for Teachers を発表</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://www.anthropic.com/news/claude-for-teachers" rel="noopener">Anthropic公式</a><br>米国の認証済みK-12教員に、プレミアムClaude機能を無料提供（〜2027/6/30登録で1年間無料）。全50州の学習基準連携、教育向けスキル、<strong>Claude Code と Cowork を含む</strong>。3AI全員が一致し、公式＋複数報道で裏取り完了。発表日は<strong>7月14日</strong>。</p>
+<h3>会話途中のシステムメッセージ（mid-conversation system messages）が一般提供に</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a><br>Claude API・Amazon Bedrock・Google Cloud上で、ベータヘッダー不要に（Fable 5 / Mythos 5 / Opus 4.8対象）。プロンプトキャッシュを壊さず途中でsystem指示を注入可能。codexとClaudeが一致、リリースノートで確認。<strong>7月15日頃</strong>。</p>
+<h3>Fable 5 / Mythos 5 の <code>thinking.display</code> デフォルト仕様の明記</h3>
+<p><strong>[要検証]</strong> ／ 出典: <a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a><br>codexのみが主張（デフォルト<code>"omitted"</code>、summary要時は<code>"summarized"</code>指定）。リリースノート由来で内容自体は妥当だが、私の検索では該当箇所の直接引用を確認しきれず。要一次確認。</p>
+<h3>HIPAA セルフサーブ設定の追加</h3>
+<p><strong>[要検証]</strong> ／ 出典: Releasebot（アグリゲータ）<br>Gemini・Claudeが言及するが、いずれも一次情報の裏が取れていない（GeminiはanthropicトップURLのみ、ClaudeはReleasebot明記で未確認扱い）。codexは触れず。<strong>一次情報で未確認。</strong></p>
+<h3>Reflect（利用状況ダッシュボード）／メモリ機能の刷新</h3>
+<p><strong>[要検証（期間外の可能性大）]</strong> ／ 出典: <a href="https://techcrunch.com/2026/07/09/anthropics-new-claude-feature-is-quietly-selling-you-on-ai/" rel="noopener">TechCrunch(7/9)</a><br>Reflect自体は実在するが、TechCrunch報道は<strong>7月9日（約2週間前）</strong>で「直近1週間」外。Geminiが挙げる「メモリが日次サマリー型→カテゴリ別構造化エントリ型へ刷新」は公式出典なし＝<strong>確認できません。</strong></p>
+<hr>
+<h2>2. Claude Code ★重点</h2>
+<p>changelogを一次確認済み。日付・内容とも突き合わせました。</p>
+<h3>v2.1.208（7/14）スクリーンリーダーモード等</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a><br>スクリーンリーダー対応（<code>--ax-screen-reader</code>）、<code>vimInsertModeRemaps</code>、<code>CLAUDE_CODE_PROCESS_WRAPPER</code>、マルチセレクトのマウス対応。codex・Claude一致。</p>
+<h3>v2.1.209（7/14）バックグラウンドセッションの<code>/model</code>ダイアログ修正</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></p>
+<h3>v2.1.211（7/15）<code>--forward-subagent-text</code> 追加</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a><br>サブエージェントのテキスト・思考をstream-json出力に含めるフラグ。</p>
+<h3>v2.1.213（7/17）<code>/fork</code>再設計・<code>/subtask</code>・セッション上限</h3>
+<p><strong>[確認済（Claudeの記載はv2.1.212だが実体は2.1.213）]</strong> ／ 出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a><br><code>/fork</code>が新規バックグラウンドセッションへコピー、<code>/subtask</code>追加、WebSearch上限（既定200）、サブエージェント生成上限（既定200）、2分超MCP呼び出しの自動バックグラウンド化、<code>/resume</code>ピッカー。※Claudeは「v2.1.212」と記載したが、内容は2.1.213。番号は要注意。</p>
+<h3>v2.1.214（7/18）EndConversationツール・権限強化・ハートビート</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a><br><code>EndConversation</code>ツール追加、Bash/PowerShell権限チェック強化（<strong>1万文字超コマンドは常にプロンプト</strong>）、permission bypass修正、長時間ツールの進捗ハートビート、OpenTelemetry属性追加。<br>※Geminiはこれらを「v2.1.199–2.1.209 / EndConversation」と<strong>誤ったバージョン帯</strong>に帰属。機能自体は実在するが番号は誤り。</p>
+<h3>v2.1.215 / 216（7/19）<code>/verify</code>・<code>/code-review</code>の自動実行を停止</h3>
+<p><strong>[確認済]</strong> ／ 出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a><br>Claudeが<code>/verify</code>と<code>/code-review</code>スキルを自動実行しないよう変更（手動呼び出しへ）。codexの主張が正しく裏取れた。</p>
+<h3>Claude Sonnet 5 の統合活用（Gemini）</h3>
+<p><strong>[要検証]</strong><br>Sonnet 5自体は実在モデルだが、「7月に標準選択可能化」を示す固有リリースは確認できず。Claude Codeで選択可能なのは既存事実で、<strong>今週の新規変更ではない。</strong></p>
+<hr>
+<h2>3. Cowork ★重点</h2>
+<h3>Web版・モバイル版（iOS/Android）へ拡張、ベータ</h3>
+<p><strong>[確認済（ただし発表は7月7日＝期間外）]</strong> ／ 出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">Claude公式ブログ</a>、<a href="https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/" rel="noopener">TechCrunch</a><br>デスクトップ限定だったCoworkがclaude.ai／モバイルへ。Maxから開始、Anthropicサーバー上のリモートセッションでオフラインでも継続・スケジュール実行。利用の9割超が非開発業務。<strong>Cowork利用上限倍増は8/5まで。</strong></p>
+<h3>直近1週間のCowork単独の新規公式発表</h3>
+<p><strong>[確認できず]</strong><br>codex・Claudeとも「今週は確認できず」で一致。Geminiの「マルチプラットフォーム対応が順次拡大」は7/7発表の継続を指すもので、新規リリースではない。</p>
+<hr>
+<h2>4. Claude Design ★重点</h2>
+<h3>直近1週間の公式アップデート</h3>
+<p><strong>[確認できず]</strong><br>codex（最終大型更新は<strong>6/17</strong>：design system import / Claude Code sync等）、Claude（提供開始は<strong>4/17</strong>）ともに「直近1週間の新規発表なし」で一致。Geminiの「デザインシステム統合とClaude Code連携のプレビュー提供」は既存機能の説明であり、今週の新規ではない。「Claude Design News July 2026」系記事は<strong>第三者ブログで非公式</strong>。</p>
+<hr>
+<h2>⚠️ Geminiの要注意点（捏造・誤り疑い）</h2>
+<ul><li><strong>Fable 5 のMax/Team Premium標準提供（7/20）</strong>：<strong>[要検証／裏取れず]</strong> 出典がanthropicトップURLのみで具体的裏付けなし。他AIも言及なし。<strong>確認できません。</strong></li><li><strong>「Workflows リサーチプレビュー開始（7/10〜）＋Opus 4.8 fast modeがMaxデフォルト」</strong>：<strong>[棄却]</strong> dynamic workflowsとfast modeは<strong>5月28日のOpus 4.8ローンチ</strong>の機能（<a href="https://www.anthropic.com/news/claude-opus-4-8" rel="noopener">出典</a>、<a href="https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/" rel="noopener">TechCrunch</a>）。7月の新規発表として提示するのは<strong>誤り（日付の付け替え）</strong>。</li><li><strong>EndConversation を v2.1.199–2.1.209 に帰属</strong>：機能は実在するが<strong>バージョンは2.1.214</strong>。番号は誤り。</li></ul>
+<hr>
+<h2>🎯 今日の注目（検証・実装を試す価値）</h2>
+<ol><li><strong>Claude Code v2.1.215/216：<code>/verify</code>・<code>/code-review</code>の自動実行停止</strong></li></ol>
+<p>挙動が変わる破壊的変更。自動レビュー前提のワークフロー／CIを組んでいる場合、<strong>手動呼び出しへの切り替えが必要</strong>。すぐ影響が出るため最優先で確認を。</p>
+<ol><li><strong>v2.1.213：セッション上限（WebSearch 200 / サブエージェント 200）と<code>/fork</code>・<code>/subtask</code>再設計</strong></li></ol>
+<p>大規模エージェント運用に直結。上限に当たると挙動が変わるので、multi-agent/workflowを多用しているなら環境変数（<code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>等）での調整を試す価値あり。</p>
+<ol><li><strong>mid-conversation system messages の一般提供（ベータヘッダー不要）</strong></li></ol>
+<p>長時間エージェントで権限・トークン予算・コンテキストを<strong>キャッシュを壊さず途中更新</strong>できる。API/Bedrock/Vertexで即利用可能、実装検証の価値が高い。</p>
+<hr>
+<p><strong>補足：</strong> 一次確認を優先すべき残課題は「HIPAAセルフサーブ」「Fable 5のプラン提供」「メモリ刷新」の3点。いずれも公式一次情報で裏が取れておらず、現時点では<strong>確認できません</strong>。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

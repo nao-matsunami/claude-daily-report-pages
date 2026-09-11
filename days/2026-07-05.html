@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-05 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-05</div>
+  <div><span class="lab lab-ok">確認済 11</span><span class="lab lab-warn">要検証 6</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-05</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を突き合わせ、一次情報で検証しました。以下にまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近動向 精査レポート（2026-06-28〜07-05）</h1>
+<h2>1. Claude / Anthropic 本体</h2>
+<h3>Claude Sonnet 5 の発表・提供開始（6/30）</h3>
+<p><strong>[確認済]</strong> ミッドティア最新モデル。エージェント性能がSonnet 4.6から大幅向上、Opus 4.8に迫る性能。ネイティブ100万トークン。Free/Proのデフォルト、Max/Team/Enterprise・Claude Code・Platformで利用可。導入価格 $2/$10 per Mtok（8/31まで、以降$3/$15）。3AI一致＋公式で確認。<br>出典: https://www.anthropic.com/news/claude-sonnet-5 ／ https://www.anthropic.com/claude-sonnet-5-system-card</p>
+<h3>Fable 5 / Mythos 5 の輸出規制解除・アクセス復旧（発表6/30・復旧7/1）</h3>
+<p><strong>[確認済]</strong> 6/12の商務省による輸出管理指令（Amazon研究者がFable 5の脆弱性発見を誘発する回避手法を報告したことが発端）を、安全対策合意により撤回。Fable 5はPlatform・Claude.ai・Claude Code・Coworkでグローバル再開。Mythos 5は米政府と協議のうえ承認組織向けに復旧。3AI一致＋公式・報道多数で確認。<br>出典: https://www.anthropic.com/news/redeploying-fable-5 ／ https://www.cnbc.com/2026/06/30/anthropic-says-trump-admin-has-lifted-export-controls-on-claude-fable-5-and-mythos-5.html</p>
+<h3>Fable 5 サイバーセーフガード＆ジェイルブレイク・フレームワーク公開（7/2）</h3>
+<p><strong>[確認済]</strong> 安全分類器がサイバー要求を4カテゴリ（禁止／高リスク二用途／防御的な良性用途 等）に分類。併せて「Cyber Jailbreak Severity (CJS)」フレームワーク案（CJS-1〜4のスコアリング）を公開、HackerOneのバグバウンティも開始。codex・claudeが指摘、公式で確認。<br>出典: https://www.anthropic.com/news/fable-safeguards-jailbreak-framework</p>
+<blockquote>⚠️ <strong>Geminiの誤り</strong>：「Fable 5は危険な要求をOpus 4.8にリダイレクトする分類器を備える」<strong>[棄却]</strong>。実際の仕組みは4カテゴリ分類による遮断であり、Opus 4.8へのリダイレクトという記述は一次情報に存在せず、捏造と判断。</blockquote>
+<h3>Claude Science（研究者向けワークベンチ）ベータ公開（6/30）</h3>
+<p><strong>[確認済]</strong> 新モデルではなく既存のOpus 4.8上で動く環境。監査可能な成果物、3Dタンパク質構造等のネイティブ描画、60以上の科学向けskills/connectors、ローカル/HPC(SSH)/Modalでの計算連携。macOS/Linuxベータ、Pro/Max/Team/Enterprise向け。最大$30,000クレジットのグラント（応募〜7/15）も。3AI一致＋公式で確認。<br>出典: https://www.anthropic.com/news/claude-science-ai-workbench</p>
+<blockquote>注：Geminiの「PubMed含む60以上のデータベース連携」は、公式では「60以上のskills/connectors」。ほぼ整合だが表現に差。</blockquote>
+<h3>Enterprise向け model entitlements（モデル権限）ベータ（7/1リリースノート）</h3>
+<p><strong>[確認済]</strong> 管理者がユーザー/ロールごとに利用可能モデルと effort level 上限を制御可能に。effort上限はカスタムロール単位。codex・claudeが指摘、公式Blog/リリースノートで確認。<br>出典: https://support.claude.com/en/articles/12138966-release-notes ／ https://claude.com/blog/giving-admins-more-visibility-and-control-over-claude-usage-and-spend</p>
+<blockquote>⚠️ <strong>Geminiの数字</strong>：「予算上限75%・90%でアラート」<strong>[要検証]</strong>。spendアラート/analyticsダッシュボードの存在は確認できたが、75%/90%という具体的閾値は一次情報で確認できず。Geminiの数字捏造傾向に該当する疑いあり。</blockquote>
+<hr>
+<h2>2. Claude Code（changelog で確認）</h2>
+<h3>v2.1.200 / 2.1.201（7/3）</h3>
+<p><strong>[確認済]</strong> ①既定パーミッションモード名を「default」→「<strong>Manual</strong>」に変更（CLI/--help/VS Code/JetBrains反映、<code>manual</code>エイリアス受付）。②<code>AskUserQuestion</code>をデフォルトで自動継続しないよう変更（<code>/config</code>でアイドルタイムアウトをopt-in）。③2.1.201でSonnet 5セッションのハーネス用リマインダーにmid-conversation systemロールを使わない変更。3AI一致＋公式changelogで確認。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.197（6/30）— Sonnet 5 が既定モデルに</h3>
+<p><strong>[確認済]</strong> Claude Codeの既定モデルがSonnet 5に。ネイティブ100万トークン、導入価格。3AI一致＋公式。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.198（7/1）— Claude in Chrome が一般提供(GA)ほか</h3>
+<p><strong>[確認済]</strong> サブエージェントのデフォルトバックグラウンド実行、Claude in Chrome GA、<code>/dataviz</code>スキル追加、バックグラウンドエージェントのdraft PR作成など。codex・claude一致。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<blockquote>⚠️ <strong>Geminiの参考情報</strong>：「サブエージェントが最大5レベルまで階層呼び出し」<strong>[要検証]</strong>。codexが挙げる「先頭の連続スラッシュスキルを最大5個読み込む」との混同の可能性。ネスト深度5という記述の一次確認は取れず。</blockquote>
+<hr>
+<h2>3. Cowork</h2>
+<h3>5時間あたり利用上限の倍増キャンペーン終了（7/5）</h3>
+<p><strong>[確認済]</strong> 6/5〜7/5の期間限定でPro/Max/Team・レガシー席課金Enterpriseの5時間枠を倍増。7/5で終了、以降通常水準。Free/従量課金Enterpriseは対象外、週次上限は変更なし。Gemini・claude一致＋公式リリースノート/報道で確認。<br>出典: https://support.claude.com/en/articles/12138966-release-notes ／ https://thenewstack.io/anthropic-claude-cowork-promotion/</p>
+<h3>Fable 5 が Cowork でも利用可能に（7/1）</h3>
+<p><strong>[確認済]</strong> 上記Fable 5復旧に伴う。<br>出典: https://www.anthropic.com/news/redeploying-fable-5</p>
+<blockquote>注：Geminiの「Cowork Desktop changelog v1.15962.2」はcodexが「Cowork自体はNo user-facing changes」と補足。実質的な新機能ではない。</blockquote>
+<hr>
+<h2>4. Claude Design</h2>
+<h3>直近1週間（6/28〜7/5）に Design 単体の新規公式発表：<strong>確認できず</strong></h3>
+<p><strong>[確認済（＝非存在の確認）]</strong> claudeも「単体の新規発表なし」と明記。今週分のDesign関連は、Fable 5復旧による機能復旧・利用枠の共通プール統合（chat/Code/Coworkと共有）に留まる。<br>出典: https://support.claude.com/en/articles/14604416-get-started-with-claude-design</p>
+<h3>「stays on brand」大型アップデート（6/17、<strong>範囲外</strong>）</h3>
+<p><strong>[確認済（ただし範囲外）]</strong> デザインシステムのGitHub/ファイル/アセットからのインポート、Claude Codeとの双方向<code>/design-sync</code>、WYSIWYG編集、PDF/PPTX/Canva等エクスポート、利用枠共通化。claude・codex・Geminiいずれも言及。一次情報で確認できるが、6/17付で今週分ではない。<br>出典: https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</p>
+<blockquote>⚠️ <strong>Geminiの「Claude Design 2.0」という呼称</strong>：<strong>[要検証]</strong>。/design-sync等の中身は確認できるが、公式が「2.0」と呼称した事実は確認できず。通称の可能性。</blockquote>
+<hr>
+<h2>検証しきれなかった/範囲外の項目</h2>
+<ul><li><strong>Sonnet 5 の AWS Bedrock 提供</strong>（Gemini主張）：<strong>[要検証]</strong>。公式では「全プラン＋Claude Code＋Platform」までは確認、Bedrock即時提供は今回の検索では未確認。Fable 5については「AWS/Google Cloud/Foundryで再有効化予定」との記述あり。</li><li><strong>Claude Code の Artifacts/管理コンソールUsage・Valueタブ</strong>（claudeが「未確認」と明記）：一次情報の日付確認できず、本レポートでも<strong>[要検証]</strong>。</li><li><strong>Enterprise向けOkta起点の管理MCPコネクタ</strong>（claudeが範囲外・未確認と明記）：<strong>[要検証]</strong>。</li></ul>
+<hr>
+<h1>🎯 今日の注目（検証・実装を試す価値がある更新）</h1>
+<ol><li><strong>Claude Code のパーミッション「Manual」化 &amp; <code>AskUserQuestion</code> 自動継続停止（v2.1.200/201）</strong> — 既存のCI/自動化スクリプトやエージェント運用が「default」前提だと挙動が変わる可能性が高い。<strong>破壊的変更に近く、今すぐ手元の設定（<code>defaultMode</code>、<code>--permission-mode</code>、<code>askUserQuestion</code>のタイムアウト）を確認する価値が最も高い</strong>。</li></ol>
+<ol><li><strong>Sonnet 5 の導入価格（$2/$10、8/31まで）</strong> — Opus 4.8に迫る性能をこの価格で試せる期間が限定的。エージェント/コーディング用途のコスト最適化を検証するなら、値上げ前の今が実験の好機。</li></ol>
+<ol><li><strong>Claude Science ベータ（Opus 4.8ベース、監査可能成果物）</strong> — 研究・データ分析ワークフローを扱うなら、「新モデルではなく環境」という位置づけと再現性担保の仕組みは実地評価の価値あり。ただしmacOS/Linux・有料プラン限定である点に留意。</li></ol>
+<hr>
+<p><strong>総評</strong>：3AIの骨子（Sonnet 5、Fable/Mythos復旧、Claude Science、Code各版、Cowork倍増終了）はすべて一次情報と整合し[確認済]。codex・claudeは日付・出典が正確で信頼度が高い。<strong>Geminiは骨子は合っているが、「Opus 4.8へのリダイレクト」（明確な誤り）、「75%/90%アラート」「サブエージェント5階層」「Design 2.0」など具体的な数字・固有名で裏の取れない/誤った記述が混じっており</strong>、指示どおり厳しめに棄却・要検証に分類しました。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

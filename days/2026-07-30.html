@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-30 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-30</div>
+  <div><span class="lab lab-ok">確認済 10</span><span class="lab lab-warn">要検証 7</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-30</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<h1>3AI出力の突き合わせ検証レポート</h1>
+<p>対象期間: 2026-07-23 〜 07-30（JST基準）／検証日: 2026-07-30</p>
+<hr>
+<h2>1. Claude Opus 5 リリース</h2>
+<p><strong>[確認済]</strong><br>2026年7月24日発表。モデルID <code>claude-opus-5</code>、$5/$25 per MTok（Opus 4.8と同額）、Claude Max のデフォルト・Pro の最上位。Claude.ai / API / Claude Code / Cowork に即日展開。公式の位置づけは「Fable 5 のフロンティア知能に半額で迫る」であり、ベンチマーク名（Frontier-Bench v0.1 / ARC-AGI 3 / CursorBench 3.2 / OSWorld 2.0 / Zapier AutomationBench）も一次ソースで一致。<br>https://www.anthropic.com/news/claude-opus-5 ／ https://support.claude.com/en/articles/12138966-release-notes</p>
+<p><strong>補足 [棄却]</strong>: Geminiの「前世代と比べて処理効率およびコストパフォーマンスが向上」は誤り。価格は Opus 4.8 と<strong>同額</strong>で、値下げではありません。またGeminiの出典は <code>anthropic.com</code> トップのみで、記事URLを特定できていません。</p>
+<hr>
+<h2>2. Opus 5 の API 破壊的変更（重要）</h2>
+<p><strong>[確認済]</strong><br>codexが挙げた項目はいずれも公式ドキュメント（platform.claude.com／同梱の Anthropic 公式リファレンス）と一致しました。</p>
+<ul><li>thinking がデフォルト有効（Opus 4.8/4.7 は省略時オフ → <strong>逆転</strong>）</li><li><code>thinking: {"type":"disabled"}</code> は effort <code>high</code> 以下のみ許可、<code>xhigh</code>/<code>max</code> で <strong>400</strong></li><li>prompt cache の最小キャッシュ長が 1,024 → <strong>512 tokens</strong></li><li>1M context（デフォルト＝最大）／128K max output</li><li>Fast mode は $10/$50、<strong>Claude API 限定の research preview</strong>（Bedrock / Google Cloud / Foundry 非対応）</li><li>mid-conversation tool changes（beta ヘッダ <code>mid-conversation-tool-changes-2026-07-01</code>）</li><li><code>fallbacks: "default"</code>（beta ヘッダ <code>server-side-fallback-2026-07-01</code>）でカテゴリ別自動フォールバック（cyber → Opus 4.8）</li></ul>
+<p>https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5</p>
+<p><strong>要注意</strong>: <code>max_tokens</code> は thinking + 応答本文の合計上限です。thinking を設定していなかった既存ルートは<strong>応答が途中で切れる</strong>破壊的変更を受けます。codex/Claude いずれも明示していなかった実害ポイントです。</p>
+<hr>
+<h2>3. Claude Code v2.1.219（2026-07-24）★重点</h2>
+<p><strong>[確認済]</strong> — changelog と逐語一致</p>
+<ul><li>Claude Opus 5 を追加、Opus のデフォルトに（1M context、fast mode $10/$50）</li><li><code>sandbox.network.strictAllowlist</code>（許可リスト外ホストをプロンプトなし拒否）</li><li><code>DirectoryAdded</code> フック（<code>/add-dir</code>・SDK <code>register_repo_root</code> で発火）</li><li>headless stream-json init に <code>mcp_server_errors</code></li><li><code>workflowSizeGuideline</code> 設定キー</li><li>stream-json でネストしたサブエージェント（depth-2以降）の転送</li><li><strong>fast mode から Opus 4.7 を削除 → <code>/fast</code> は Opus 5 と Opus 4.8 に適用</strong></li></ul>
+<p>https://code.claude.com/docs/en/changelog</p>
+<p><strong>[要検証]（細目）</strong>: Claude が挙げた「サブエージェントのネスト生成をデフォルト depth 3 まで（従来1）、<code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code> で無効化」「claude-api スキルのデフォルトを Opus 5 に更新」「<code>claude -p</code> の API エラー時の出力欠落修正」は、取得したページで "additional fixes" に畳まれており逐語確認できませんでした（存在は整合的で、否定材料もなし）。</p>
+<p><strong>[要検証]（矛盾）</strong>: 現行セッションの環境情報は「Fast mode は Opus 5/4.8/<strong>4.7</strong> で利用可」と記載しており、changelog の「4.7 削除」と食い違います。changelog（7/24付・一次）を優先すべきですが、Claude Code UI 側の表記が追随していない可能性があり、実機で <code>/fast</code> を確認する価値があります。</p>
+<p><strong>[確認済]</strong> v2.1.220（7/25）は "Bug fixes and reliability improvements" のみ。</p>
+<hr>
+<h2>4. Claude Cowork ★重点</h2>
+<h3>4-1. Opus 5 が Cowork でも利用可能</h3>
+<p><strong>[確認済]</strong> Opus 5 発表に含まれる（Cowork は公式に対象プラットフォームとして明記）。<br>https://www.anthropic.com/news/claude-opus-5</p>
+<h3>4-2. Web / モバイル展開・Microsoft 365 書き込み</h3>
+<p><strong>[棄却（日付）／確認済（内容・ただし期間外）]</strong><br>公式リリースノートの日付は <strong>2026年7月7日</strong>。Geminiの「7月下旬（順次展開）」は誤りで、直近1週間の外です。内容は「web/mobile 提供」「セッションのリモート保存とデバイス間同期」「M365 コネクタのメール・カレンダー・ファイル<strong>書き込み</strong>対応」。<br>https://support.claude.com/en/articles/12138966-release-notes</p>
+<p><strong>[要検証]</strong>: Geminiの「端末を閉じてもバックグラウンドでタスクが継続する『永続セッション』」は、公式表現（remote save + sync）を超えた記述で裏が取れません。</p>
+<h3>4-3. Record a Skill（画面録画→スキル化）</h3>
+<p><strong>[確認済（期間外）]</strong> 2026年7月21日。Claude Desktop の「+」メニューから画面＋音声ナレーションを録画し、再利用可能な Skill に変換。Pro / Max / Team 向け。公式X/LinkedInの投稿があり、多数の独立した二次報道が日付・対象プランで一致。ただし Help Center のリリースノートには<strong>未掲載</strong>です。<br>https://x.com/claudeai/status/2079595988998554047 ／ https://www.searchenginejournal.com/anthropics-claude-can-now-watch-a-video-and-learn-your-job/583053/</p>
+<h3>4-4. Claude for Government Desktop に Code / Cowork をパブリックベータ</h3>
+<p><strong>[棄却（日付）／確認済（内容・期間外）]</strong><br>Geminiは「7月28日」としましたが、一次ソース（claude.com/blog）は <strong>2026年7月7日</strong>。FedRAMP High 環境、パブリックベータ、"tamper-evident"（改ざん検知）監査ログ、部門レベル管理、機微操作の二名承認、上限付き従量購入 — 内容自体は正確です。Geminiは日付を1本ずらしています。<br>https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government</p>
+<hr>
+<h2>5. Claude Design ★重点</h2>
+<p><strong>[確認済（不在の確認）]</strong><br>7月23〜30日に該当する Claude Design 単独の新機能・仕様変更・公式発表は<strong>確認できませんでした</strong>。3AI全てが一致。既知の最新は 2026年4月17日の research preview（Anthropic Labs、Opus 4.7 ベース、Pro/Max/Team/Enterprise）。<br>https://www.anthropic.com/news/claude-design-anthropic-labs</p>
+<p><strong>[確認済]</strong> Opus 5 の自動モデル切替（高リスクなサイバー系リクエストで Opus 4.8 にフォールバック）の適用対象に Claude Design が含まれることは公式Helpで確認。<br>https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5</p>
+<p><strong>[要検証]</strong> Opus 5 リリースに伴う Claude Design のバックエンドモデル更新の有無は<strong>確認できません</strong>。</p>
+<hr>
+<h2>6. MCP 2026-07-28 仕様（期間内・重要）</h2>
+<p><strong>[確認済]</strong> 2026年7月28日、MCP 第5次スペック公開。Gemini・Claude が一致し、一次ソースでも裏付け。</p>
+<ul><li><strong>ステートレスコア</strong>へ移行（双方向ステートフル → リクエスト/レスポンス。各リクエストが自前でプロトコルバージョン・クライアント識別・capabilities を持つため、共有ストレージなしのロードバランサ配下・サーバーレス/エッジで動く）</li><li>認可強化: RFC 9207 issuer 検証、DCR → <strong>CIMD</strong>（Client ID Metadata Documents）</li><li>拡張の正式化: <strong>Tasks</strong>（experimental core から昇格）／<strong>MCP Apps</strong>／<strong>Enterprise Managed Auth</strong></li><li>MRTR（Multi Round-Trip Requests）がサーバー起点リクエストを置換、<code>Mcp-Method</code>/<code>Mcp-Name</code> ヘッダによるルーティング</li><li>Claude側: 埋め込みUI、enterprise-managed auth、開発者向けオブザーバビリティ・ダッシュボード、<strong>MCP Tunnels（research preview／プライベートネットワーク内のMCPサーバーに公開露出なしで接続）</strong>。コネクタディレクトリは950+サーバー。</li></ul>
+<p>https://blog.modelcontextprotocol.io/posts/2026-07-28/ ／ https://claude.com/blog/bringing-mcp-2026-07-28-to-claude</p>
+<p>Geminiの記述は方向性は正しいものの粒度が粗く、出典が <code>releasebot.io</code>（二次）のみでした。</p>
+<hr>
+<h2>7. ボイスモードのモデル選択（2026-07-23・期間内）</h2>
+<p><strong>[確認済]</strong> Haiku固定から Opus / Sonnet / Haiku 選択可へ。直前のテキストチャットのモデルを引き継いで開始、会話中の切替も可。無料=Haiku＋接続アプリ1つ、有料=Opus/Sonnet＋全コネクタ。Gmail / Googleカレンダー / Slack に加え Canva・Notion 対応。Claude のみが報告した項目ですが、TechCrunch＋複数の独立報道で一致しました。<br>https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/</p>
+<p><strong>[要検証]</strong> 対応言語数は報道間で <strong>10 / 11 / 18</strong> と食い違っており、確定できません。</p>
+<hr>
+<h2>8. その他（期間内・製品外）</h2>
+<ul><li><strong>オープンウェイトモデルに関する公式ポジション（7/27）</strong> — <strong>[確認済]</strong>。「Anthropicはオープンウェイトモデルの禁止を主張したことはない」と明言。代替として①対中チップ・製造装置の輸出規制と密輸取締り、②産業規模の蒸留への対処、③オープン/クローズド双方への能力ベース安全性テスト義務化を提案。</li></ul>
+<p>https://www.anthropic.com/news/position-open-weights-models</p>
+<ul><li><strong>Cognizant とのパートナーシップ拡大（7/27）</strong> — <strong>[確認済]</strong>。Claude Partner Network の Global Premier Partner に。3万人超がClaudeトレーニング修了、Flowsource / Neuro AI Engineering / Neuro IT Ops に Claude を組込み。</li></ul>
+<p>https://www.anthropic.com/news/cognizant-anthropic</p>
+<ul><li><strong>ジェイルブレイク深刻度スコアリングの業界共通フレームワーク</strong> — <strong>[要検証]</strong>。Claude が「検索要約に出たが裏取れず」としたもので、本レビューでも一次情報を確認できませんでした。</li><li><strong>Claude Developer Platform: <code>agent-memory-2026-07-22</code> beta（メモリ一覧の安定順序）</strong> — <strong>[要検証]</strong>。二次（Releasebot）由来で、どのAIも報告していませんが期間内の可能性があり、一次確認は未了です。</li></ul>
+<hr>
+<h2>AI別の傾向（今回のサンプル）</h2>
+<table><thead><tr><th></th><th>精度</th><th>主な問題</th></tr></thead><tbody><tr><td><strong>Gemini(agy)</strong></td><td>低〜中</td><td><strong>日付の誤り2件</strong>（Cowork展開=7月下旬→実際7/7、Government=7/28→実際7/7）。出典がドメイン止まりで記事URLを特定しない。「コスパ向上」など未検証の評価語。「永続セッション」の誇張。一方 MCP 7/28 と Opus 5 7/24 は正確</td></tr><tr><td><strong>ChatGPT(codex)</strong></td><td>高</td><td>一次ドキュメントURL付きで API 破壊的変更を最も正確に把握。範囲外項目を自ら「範囲外」と明示。誤りなし</td></tr><tr><td><strong>Claude</strong></td><td>高</td><td>changelog の粒度が最も細かい。未確認箇所を自ら「(未確認)」とラベリング。二次ソース（explainx.ai）依存を明示</td></tr></tbody></table>
+<hr>
+<h1>今日の注目（検証・実装を試す価値がある更新）</h1>
+<h3>1位: Opus 5 の thinking デフォルト有効 × <code>max_tokens</code></h3>
+<p>既存コードで <code>thinking</code> を明示していないルートは、<strong>今日から思考トークンを消費し、<code>max_tokens</code> が thinking＋本文の合算上限になる</strong>ため、応答が途中で切れる実害が出ます。さらに <code>thinking: {"type":"disabled"}</code> × effort <code>xhigh</code>/<code>max</code> は 400。自分のコード/エージェントで <code>max_tokens</code> と effort の組み合わせを棚卸しし、1リクエストずつ実測するのが最優先。cache 最小長 1024→512 も、これまで「短くてキャッシュ不可」と諦めていたプロンプトがコード変更なしで効くようになるため、<code>cache_read_input_tokens</code> を測り直す価値があります。</p>
+<h3>2位: Claude Code の <code>sandbox.network.strictAllowlist</code> と <code>DirectoryAdded</code> フック</h3>
+<p>どちらも<strong>自分の環境で今すぐ試せて、効果が観測可能</strong>な追加です。strictAllowlist はサンドボックス実行時に許可リスト外ホストをプロンプトなしで拒否するため、自動化・CI でのエージェント実行の安全側デフォルトとして即投入できます。<code>DirectoryAdded</code> は <code>/add-dir</code> や SDK の <code>register_repo_root</code> に反応するので、マルチリポ作業時の自動セットアップ（依存インストール、CLAUDE.md 読み込み、lint 設定）をフック化できます。</p>
+<h3>3位: MCP Tunnels（research preview）と Enterprise Managed Auth</h3>
+<p>社内ネットワークのMCPサーバーを<strong>公開露出・ファイアウォール変更・IP許可リストなしで</strong>Claudeに繋げられるのは、これまで「社内APIはMCP化しても届かない」で止まっていた案件を動かす変更です。合わせて、ステートレスコア移行により自作MCPサーバーをサーバーレス/エッジに置けるようになったので、既存サーバーの再デプロイ形態を見直す好機。ただしresearch previewのため、本番投入前に可用性の前提を確認してください。</p>
+<hr>
+<p><strong>確認できなかった項目（憶測で補完していません）</strong>: Claude Design のバックエンドモデル更新の有無／ボイスモードの正確な対応言語数／ジェイルブレイク深刻度フレームワークの一次情報／<code>agent-memory-2026-07-22</code> beta の一次情報／v2.1.219 の一部バグ修正細目（subagent depth 3、claude-api スキル既定変更、<code>claude -p</code> 修正）の逐語確認。</p>
+<p>Sources:</p>
+<ul><li><a href="https://www.anthropic.com/news/claude-opus-5" rel="noopener">Introducing Claude Opus 5 — Anthropic</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude Apps Release Notes — Anthropic Support</a></li><li><a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5" rel="noopener">What's new in Claude Opus 5 — Claude Platform Docs</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code Changelog</a></li><li><a href="https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5" rel="noopener">Why Claude switched models with Opus 5 — Anthropic Support</a></li><li><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" rel="noopener">The 2026-07-28 Specification — MCP Blog</a></li><li><a href="https://claude.com/blog/bringing-mcp-2026-07-28-to-claude" rel="noopener">Bringing MCP 2026-07-28 to Claude</a></li><li><a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" rel="noopener">Bringing Claude Code and Claude Cowork to government</a></li><li><a href="https://www.anthropic.com/news/claude-design-anthropic-labs" rel="noopener">Introducing Claude Design by Anthropic Labs</a></li><li><a href="https://www.anthropic.com/news/position-open-weights-models" rel="noopener">Our position on open-weights models — Anthropic</a></li><li><a href="https://www.anthropic.com/news/cognizant-anthropic" rel="noopener">Expanding our partnership with Cognizant — Anthropic</a></li><li><a href="https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/" rel="noopener">Anthropic updates Claude voice mode with more capable models — TechCrunch</a></li><li><a href="https://www.searchenginejournal.com/anthropics-claude-can-now-watch-a-video-and-learn-your-job/583053/" rel="noopener">Anthropic's Claude Can Now Watch A Video And Learn Your Job — Search Engine Journal</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

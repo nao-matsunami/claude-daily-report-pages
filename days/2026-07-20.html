@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-20 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-20</div>
+  <div><span class="lab lab-ok">確認済 13</span><span class="lab lab-warn">要検証 5</span><span class="lab lab-no">棄却 3</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-20</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証を終えました。一次ソース（code.claude.com Week 29、GitHub CHANGELOG、platform.claude.com リリースノート、support.claude.com、anthropic.com/news）を直接取得して突き合わせています。</p>
+<hr>
+<h1>判定サマリ</h1>
+<p>対象期間：<strong>2026年7月13日〜20日</strong>。3出力の一致度は高いものの、<strong>バージョン番号の割り当てに3者とも誤りがあり</strong>、Gemini 側に固有名の捏造が2件、日付ずれが数件ありました。</p>
+<hr>
+<h2>1. Claude Code</h2>
+<h3>Week 29 ダイジェスト（v2.1.207 → v2.1.212、7/13–17）</h3>
+<p><strong>[確認済]</strong> 公式 What's new を直接確認。目玉は2つ — ①公開 Artifact が閲覧者自身の MCP コネクタを呼び、表示のたびにライブデータ取得・アクション実行できる（公開共有リンク、Team/Enterprise の editor ロール、Claude Tag セッション由来 Artifact も同時追加）②スクリーンリーダーモード。Claude・codex の記述はほぼ全項目が公式と逐語一致でした。<br>出典: https://code.claude.com/docs/en/whats-new/2026-w29</p>
+<h3>スクリーンリーダーモード（v2.1.208）</h3>
+<p><strong>[確認済]</strong> 枠・スピナー・再描画を、VoiceOver/NVDA が順に読める平坦なラベル付きテキストに置換。<code>claude --ax-screen-reader</code> / <code>CLAUDE_AX_SCREEN_READER</code> / <code>axScreenReader</code> の3経路で有効化。3AI とも一致、公式記述とも一致。<br>出典: https://code.claude.com/docs/en/docs/en/accessibility （Week 29 内リンク）</p>
+<h3><code>/fork</code> の挙動変更と <code>/subtask</code> への改称（v2.1.212）</h3>
+<p><strong>[確認済]</strong> <code>/fork</code> は会話を新しいバックグラウンドセッションへコピーし <code>claude agents</code> に独立行を持つ。従来のセッション内サブエージェント起動は <strong><code>/subtask</code></strong> に改称。改称の指摘は Claude のみでしたが公式で確認できました。</p>
+<h3>暴走ループ対策のセッション上限（v2.1.212）</h3>
+<p><strong>[確認済]</strong> WebSearch 呼び出しとサブエージェント生成が各デフォルト200回上限。<code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code> / <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code> で調整。Claude のみが報告、公式で裏取り完了。</p>
+<h3>長時間 MCP ツール呼び出しの自動バックグラウンド化</h3>
+<p><strong>[確認済]</strong> 2分超で自動的にバックグラウンドへ。<code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code> で調整・無効化。</p>
+<h3>auto mode のオプトイン不要化 / その他 Week 29 項目</h3>
+<p><strong>[確認済]</strong> Bedrock・Google Cloud Agent Platform・Microsoft Foundry で <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> 不要（管理者は <code>disableAutoMode</code> で無効化）。あわせて <code>claude auto-mode reset</code>、コーポレートランチャー（<code>CLAUDE_CODE_PROCESS_WRAPPER</code>）、<code>vimInsertModeRemaps</code>、<code>--forward-subagent-text</code>、"Always allow" のリポジトリルート保存、Bedrock/GCAP/Claude Platform on AWS のデフォルト Opus 4.8 化、経過時間カウンタ — すべて公式記載どおり。</p>
+<h3>⚠️ v2.1.213〜216：バージョン割り当てを訂正</h3>
+<p><strong>[確認済（内容）／要検証（日付）]</strong> GitHub CHANGELOG を直接取得したところ、<strong>3AI とも版番号の対応を取り違えています</strong>。正しくは:</p>
+<table><thead><tr><th>項目</th><th>正</th><th>3AI の記述</th></tr></thead><tbody><tr><td><code>/verify</code>・<code>/code-review</code> の自動実行廃止</td><td><strong>v2.1.216</strong></td><td>codex/Claude とも 2.1.215（誤）</td></tr><tr><td><code>EndConversation</code> ツール追加</td><td><strong>v2.1.215</strong></td><td>codex は 2.1.214（誤）、Claude は正</td></tr><tr><td><code>docker</code> daemon リダイレクトフラグの権限プロンプト</td><td><strong>v2.1.214</strong></td><td>Claude は 2.1.215（誤）</td></tr><tr><td>plan モードのファイル変更 Bash 自動実行の修正</td><td><strong>v2.1.212</strong></td><td>Claude は 2.1.214（誤）</td></tr></tbody></table>
+<p>また <strong>CHANGELOG には一切日付が付いていません</strong>。「v2.1.214 は7/18頃、215 は7/19頃」はいずれも Releasebot 由来の三次情報で、<strong>日付は未確認</strong>です。なお v2.1.216 の存在は3AI とも捕捉できていませんでした。<br>出典: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md</p>
+<h3><code>/doctor</code> の自動修復機能拡張 / 内部ブラウザ連携強化</h3>
+<p><strong>[棄却]</strong> Gemini のみの主張。Week 29 ダイジェストにも v2.1.207–216 の CHANGELOG にも該当項目は存在しません。Gemini 自身も出典を「(未確認)」としています。</p>
+<h3>FedRAMP High 認証取得（7/7）</h3>
+<p><strong>[棄却]</strong> Gemini のみの主張。anthropic.com/news の7月投稿一覧に該当なし、Web 検索でも該当情報なし。出典として挙げられた <code>anthropic.com/news</code> は該当記事を含みません。</p>
+<hr>
+<h2>2. Claude Cowork</h2>
+<h3>Web / モバイル展開・リモートセッション（<strong>7月7日</strong> — 指定期間外）</h3>
+<p><strong>[確認済／ただし期間外]</strong> support.claude.com のリリースノートに7月7日付で「Cowork がデスクトップに加え web とモバイルへ拡大、リモートセッション対応」と明記。同日 Microsoft 365 コネクタが email/calendar/file の書き込みに対応。<strong>Gemini はこれを「7月中旬順次適用」として期間内扱いしていますが、公式記載は7月7日です。</strong><br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>定期タスク（Scheduled Tasks）</h3>
+<p><strong>[確認済／期間外・文脈訂正]</strong> 単独の新機能発表としてではなく、Cowork リモートセッションの一部（デバイスがオフラインでも実行）および Claude for Teachers の提供内容として確認できます。「7/7 発表・ロールアウト中」という Gemini の枠付けは概ね妥当ですが独立発表ではありません。</p>
+<h3>Chat と Cowork の統一 UI・サイドバー刷新</h3>
+<p><strong>[要検証]</strong> Gemini のみの主張。公式リリースノート・ニュースいずれにも該当記述なし。「サイドバー構造の刷新」という具体的表現に裏付けが取れません。</p>
+<h3>期間内（7/13–20）の Cowork 公式新機能</h3>
+<p><strong>[確認済]</strong> <strong>該当なし。</strong> codex・Claude の結論と一致し、公式ソースでも確認できました。第三者側の動きとして Varonis Atlas の対応拡張（7/14、Anthropic 発ではない）のみ。</p>
+<hr>
+<h2>3. Claude Design</h2>
+<h3>期間内（7/13–20）の公式発表</h3>
+<p><strong>[確認済]</strong> <strong>該当なし。</strong> 3AI 一致。公式リリースノート上、期間内で Claude Design に触れているのは7/14 の container creation 障害の影響範囲のみです。</p>
+<h3>6月17日頃の大型オーバーホール（期間外）</h3>
+<p><strong>[要検証]</strong> デザインシステムのインポート、Claude Code との双方向 <code>/design-sync</code>、WYSIWYG キャンバス編集は Claude が VentureBeat/TechRepublic を根拠に報告。<strong>Gemini が加えている「Canva 連携」は他2AI になく、一次確認もできていません</strong> — この1点は切り離して扱ってください。</p>
+<hr>
+<h2>4. Claude / Anthropic 全般</h2>
+<h3>Claude for Teachers（7月14日）</h3>
+<p><strong>[確認済]</strong> 公式記事を直接確認。米国の認証済み K-12 教員に premium 機能を無償提供。<strong>Claude Code と Cowork を含むと明記</strong>、州学力基準連動、スケジュールタスク、FERPA 準拠の K-12 データ処理追補契約付き。<br>出典: https://www.anthropic.com/news/claude-for-teachers</p>
+<p><strong>ただし Gemini の「Chan Zuckerberg Initiative との連携」は[棄却]です。</strong> 公式記事に CZI の言及は一切ありません。実際のパートナーは Learning Commons、OpenSciEd、Illustrative Mathematics、American Federation of Teachers、Teach For America、<strong>Gates Foundation</strong>、Detroit Public Schools、Playlab。Gemini は財団名を取り違えています。codex の「Learning Commons コネクタ」は正確でした。</p>
+<h3>Admin API の Claude Enterprise 向けベータ（7月14日）</h3>
+<p><strong>[確認済]</strong> メンバー一覧・メール検索・ロール変更・削除・招待・グループ管理・カスタムロール読み取り。<strong>追加情報</strong>：グループとカスタムロールの要求には <code>anthropic-beta: ce-user-management-2026-07-13</code> ヘッダーが必要、メンバー/招待系は不要。<code>read:org_audit</code> スコープの Admin API キーで全 GET が呼べます。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>会話途中の system メッセージ（7月15日）</h3>
+<p><strong>[確認済]</strong> Claude Fable 5 / Mythos 5 / Opus 4.8 で、Claude API・Amazon Bedrock・Google Cloud から利用可。<strong>ベータヘッダー不要</strong>。Claude が「日付未確認（Releasebot 由来）」としていましたが、<strong>公式ページに7月15日として明記</strong>されています。公式注記に「これは以前の提供状況の記載を訂正するもの」とあります。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>HIPAA 設定のセルフサーブ化（7月14日）</h3>
+<p><strong>[確認済]</strong> Claude Enterprise と Claude Platform(API) の双方で、管理者が契約確認から HIPAA 設定有効化まで一つの流れで完結。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Fable 5 が Max / Team Premium に恒久的に含まれる（7/19発表・<strong>7/20開始</strong>）</h3>
+<p><strong>[要検証]</strong> 利用上限の50%換算で Max / Team Premium に含まれる。Pro / Team Standard は引き続き usage credits 経由で、一時金として $100 クレジット付与。<strong>報道は複数独立して一致していますが、anthropic.com/news の7月投稿一覧にも公式リリースノートにも該当記事が見当たりません。</strong>（一覧の最新は7/14）。本日が適用初日なので、公式ページの更新を待つのが妥当です。<br>出典（いずれも二次）: <a href="https://www.dawn.com/news/2016483" rel="noopener">Dawn</a> / <a href="https://www.aipricing.guru/news/claude-fable-5-max-team-premium-subscription-rollout-july-2026/" rel="noopener">AI Pricing Guru</a> / <a href="https://www.techtimes.com/articles/320905/20260718/claude-fable-5-ends-subscription-limbo-permanent-max-credits-only-pro.htm" rel="noopener">TechTimes</a></p>
+<h3>Fable 5 の usage credits 誤表示の解消（7/17 UTC）</h3>
+<p><strong>[要検証]</strong> codex のみの主張、出典は status.claude.com のステータス履歴。上記の 7/20 プラン変更と整合的ではありますが、本回答では直接確認していません。</p>
+<h3>Ben Bernanke の Long-Term Benefit Trust 就任（<strong>7月9日</strong> — 期間外）</h3>
+<p><strong>[確認済／期間外]</strong> 公式記事あり。Neil Buddy Shah、Richard Fontaine、Mariano-Florentino Cuellar に加わる形。ただし<strong>7月9日で指定期間外</strong>です。<br>出典: https://www.anthropic.com/news/ben-bernanke</p>
+<h3>「Inviting hard questions」（<strong>7月9日</strong> — 期間外）</h3>
+<p><strong>[確認済／期間外]</strong> 実在。「AI に関する最も難しい問いを公募し、取り組みの過程を公開する」趣旨。Gemini の要約（倫理・ガバナンスの意見公募）は概ね妥当ですが、これも期間外です。</p>
+<h3>カナダの AI 研究へ $10M コミット（7月14日）</h3>
+<p><strong>[確認済]</strong> 公式ニュース一覧に7/14付で存在。製品外の発表。</p>
+<h3>「Reflect with Claude」ベータ（7月中旬）</h3>
+<p><strong>[棄却／ただし近い実機能あり]</strong> その名称の機能は確認できません。<strong>ただし7月9日付で「月次リキャップ（利用パターンと活動インサイトの表示）」および「休憩リマインダー・quiet hours」が実在します</strong>（いずれもメモリ有効が前提）。Gemini は実在機能を誤った名前・誤った日付で報告した形です。あわせて<strong>7月10日にメモリ機能が「日次サマリ」から「Claude が会話中に読み書きする個別・分類済みエントリ群」へ再設計</strong>されています — これは3AI とも捕捉できていませんでした。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>claude.ai の container creation 障害（7/14 UTC）</h3>
+<p><strong>[要検証]</strong> codex のみ。document creation、Cowork Remote、Claude Code、Claude Code Remote、Claude Design に影響し 22:16 UTC 解消。ステータスページ履歴由来で、本回答では未確認です。</p>
+<hr>
+<h1>今日の注目</h1>
+<p><strong>1. Artifacts × MCP コネクタのライブデータ連携（Claude Code Week 29）</strong> — 今週唯一の「新しい能力」と言える追加です。公開した Artifact が閲覧者のコネクタで動くため、静的スナップショットだったダッシュボードが共有可能なライブツールになります。公式ドキュメントにプロンプト例まで載っており、今すぐ手を動かして確かめられる状態です。権限モデル（閲覧者が初回コネクタ呼び出し前に承認）の挙動を実際に触って確認する価値が高いと思います。</p>
+<p><strong>2. <code>/verify</code>・<code>/code-review</code> の自動実行廃止（v2.1.216）</strong> — 既存ワークフローを<strong>静かに壊しうる</strong>破壊的変更です。これらが自動で走る前提のフローがあれば、明示呼び出しへ書き換えが必要になります。加えて上で指摘したとおり、3AI とも「v2.1.215」と誤認していた項目なので、自分の環境の実バージョンで挙動を確認してください。</p>
+<p><strong>3. <code>/fork</code> → <code>/subtask</code> の改称とバックグラウンドセッション化（v2.1.212）</strong> — 同じく既存の使い方が変わる箇所です。<code>/fork</code> は別セッションへ分岐する意味に変わり、従来の「セッション内でサブエージェントを起こす」用途は <code>/subtask</code> に移りました。セッション上限（WebSearch・サブエージェント各200回）の追加とあわせ、エージェント多用のワークフローでは実挙動を一度なぞっておくのが安全です。</p>
+<hr>
+<p><strong>確認できなかったもの（憶測で補完していません）</strong>：Fable 5 のプラン変更の一次ソース、v2.1.213〜216 の各リリース日、status.claude.com 由来の2件（7/17 の credits 誤表示解消、7/14 の障害）、Claude Design 6月オーバーホールの詳細内容。</p>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/whats-new/2026-w29" rel="noopener">Claude Code What's new — Week 29</a></li><li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" rel="noopener">Claude Code CHANGELOG</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform リリースノート</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude Apps リリースノート（Help Center）</a></li><li><a href="https://www.anthropic.com/news/claude-for-teachers" rel="noopener">Introducing Claude for Teachers</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic Newsroom</a></li><li><a href="https://www.anthropic.com/news/ben-bernanke" rel="noopener">Ben Bernanke appointed to Anthropic's Long-Term Benefit Trust</a></li><li><a href="https://www.dawn.com/news/2016483" rel="noopener">Dawn — Fable 5 が Max/Team Premium へ</a></li><li><a href="https://www.aipricing.guru/news/claude-fable-5-max-team-premium-subscription-rollout-july-2026/" rel="noopener">AI Pricing Guru — Fable 5 rollout</a></li><li><a href="https://www.techtimes.com/articles/320905/20260718/claude-fable-5-ends-subscription-limbo-permanent-max-credits-only-pro.htm" rel="noopener">TechTimes — Fable 5 permanent for Max</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

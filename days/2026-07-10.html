@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-10 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-10</div>
+  <div><span class="lab lab-ok">確認済 11</span><span class="lab lab-warn">要検証 6</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-10</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を突き合わせ、一次情報で裏取りしました。<strong>結論を先に言うと、事前の想定が外れました。「Gemini が捏造していそう」と疑った項目(J-space、Hidden Marker、Claude for Government)は全て実在し、逆に唯一数字が崩れたのは Claude(自分)が拾ってきた VentureBeat 由来の利用率パーセンテージでした。</strong></p>
+<hr>
+<h2>1. Claude Code / Cowork / Claude Design(重点項目)</h2>
+<h3>Cowork が Web / モバイルに展開</h3>
+<p><strong>[確認済]</strong> 7月7日、デスクトップ専用だった Cowork が Web とモバイルに拡大。Max プランから数週間かけてロールアウトし、リモート実行ベータでセッションとファイルがアカウント側に保存されるため、端末を閉じてもスケジュールタスクが継続します。3AI 全て一致、公式ブログとリリースノートで確認しました。<br>出典: https://claude.com/blog/cowork-web-mobile / https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Cowork の利用上限倍増キャンペーン(8月5日まで)</h3>
+<p><strong>[確認済]</strong> Claude のみが「未確認」として挙げていましたが、公式ブログ本文に "doubled Cowork usage limits through August 5" の記載を確認しました。格上げします。<br>出典: https://claude.com/blog/cowork-web-mobile</p>
+<h3>Cowork の用途内訳「業務プロセス 33.4% / コンテンツ制作 16.4%」</h3>
+<p><strong>[棄却]</strong> 公式ブログが述べているのは「Cowork 利用の 90% 超がソフトウェア開発以外」「business operations と content creation で全体のおよそ半分」という粒度で、小数第一位までの内訳は存在しません。VentureBeat 記事経由の数字で、一次情報と整合しません。この 2 つの数字は使わないでください。<br>出典: https://claude.com/blog/cowork-web-mobile</p>
+<h3>Chat と Cowork のインターフェース統合</h3>
+<p><strong>[確認済]</strong> 7月7日、プロジェクトと artifacts を Chat / Cowork の共通ホームから扱えるように変更。Gemini と codex が一致し、リリースノートにも該当記述があります。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Claude Code / Cowork が Claude for Government Desktop でパブリックベータ</h3>
+<p><strong>[確認済]</strong> 7月7日付の公式ブログを直接取得して確認しました。FedRAMP High 認定環境で提供され、ハッシュチェーン化された監査ログ、部局単位の予算上限、SCIM グループマッピングによるレート制限が付きます。<strong>Gemini のみが挙げた項目ですが、日付・内容とも正確です。</strong> Claude は「発表日を一次ソースで確認できていない」として保留していましたが、確認できました。<br>出典: https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government</p>
+<h3>Claude Code v2.1.200〜2.1.205(7月3日〜8日)</h3>
+<p><strong>[確認済]</strong> 公式 changelog で全バージョンを照合しました。重要な挙動変更は次のとおりです。</p>
+<table><thead><tr><th>版</th><th>日付</th><th>挙動が変わる変更</th></tr></thead><tbody><tr><td>2.1.200</td><td>7/3</td><td><code>AskUserQuestion</code> がデフォルトで自動継続しない。デフォルト権限モード名が CLI / VS Code / JetBrains で "Manual" に統一</td></tr><tr><td>2.1.201</td><td>7/3</td><td>Sonnet 5 セッションで会話途中に system ロールのリマインダーを入れない</td></tr><tr><td>2.1.202</td><td>7/6</td><td><code>/config</code> に Dynamic workflow size(small/medium/large)。<code>/review &lt;pr&gt;</code> が高速な単一パスレビューに戻る</td></tr><tr><td>2.1.203</td><td>7/7</td><td>手動権限モードのグレー ⏸ バッジ。MCP <code>roots/list</code> が追加作業ディレクトリを含む</td></tr><tr><td>2.1.204</td><td>7/8</td><td>headless の <code>SessionStart</code> フック中にフックイベントが流れない不具合(リモートワーカーが実行中に idle 判定で回収されうる)を修正</td></tr><tr><td>2.1.205</td><td>7/8</td><td>auto モードがトランスクリプト改変をブロック。未解決変数への <code>rm -rf</code> 前に確認。<code>/doctor</code> がフル点検化し <code>/checkup</code> はエイリアスに。自動更新のバイナリDLがディスクへストリームしピークメモリ約 400MB 削減</td></tr></tbody></table>
+<p>なお codex は 2.1.202 までしか拾っておらず、2.1.203〜205 が抜けています。誤りではなく網羅性の欠落です。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>VS Code 1.128 のマルチチャット対応</h3>
+<p><strong>[確認済(内容)/ [要検証](日付)]</strong> VS Code 1.128 で Claude エージェントセッション内のマルチチャットがサポートされ、チャットの分岐・並行実行・サブエージェントのトランスクリプトを読み取り専用ピアチャットとして表示できます。Gemini のみの主張でしたが実在します。ただし「7月8日」というリリース日は公式ページで確認していません。<br>出典: https://code.visualstudio.com/updates/v1_128</p>
+<h3>Claude Design</h3>
+<p><strong>[確認済(不在の確認)]</strong> 7月3日〜10日の公式発表・仕様変更は 3AI とも「なし」で一致し、リリースノート上にも該当項目はありません。直近の大型更新は 6月17日(デザインシステムのインポート、<code>/design-sync</code> による Claude Code との双方向連携、利用上限をチャット・Cowork・Claude Code と共有する方式への変更)で、今週の範囲外です。<br>出典: https://support.claude.com/en/articles/12138966-release-notes / https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem</p>
+<p>なお Claude の「初週で 100 万人以上が Claude Design を利用」は個人ブログ由来で一次情報がなく、時期も今週ではないため <strong>[要検証]</strong> のままです。</p>
+<hr>
+<h2>2. Claude / Anthropic 全般</h2>
+<h3>Reflect(月次リカップ)ベータ公開</h3>
+<p><strong>[確認済]</strong> 7月9日、Settings &gt; Reflect で扱ったトピック・最も活動的だった日・ピーク時間帯を可視化する機能がベータ提供開始。休憩リマインダーと quiet hours も追加されました。Free / Pro / Max、Web とデスクトップが対象で、メモリ機能の有効化が条件です。3AI 一致 + リリースノートで確認。Gemini が挙げた「4D AI Fluency Framework(委譲・記述・識別・勤勉)」による分類も報道で裏が取れました。<br>出典: https://support.claude.com/en/articles/12138966-release-notes / https://techcrunch.com/2026/07/09/anthropics-new-claude-feature-is-quietly-selling-you-on-ai/</p>
+<h3>Ben Bernanke 氏が Long-Term Benefit Trust に就任</h3>
+<p><strong>[確認済]</strong> 7月9日。元 FRB 議長で 2022 年ノーベル経済学賞受賞者の Bernanke 氏が、Anthropic の独立監督組織 Long-Term Benefit Trust に加わりました。既存トラスティは Neil Buddy Shah、Richard Fontaine、Mariano-Florentino Cuéllar の 3 名です。公式ニュースと Bloomberg / CNBC で確認。<br>出典: https://www.anthropic.com/news/ben-bernanke / https://www.cnbc.com/2026/07/09/anthropic-fed-chair-bernanke-independent-trust.html</p>
+<h3>デュアルユース知識の「オフスイッチ」研究(AE Studio と共同)</h3>
+<p><strong>[確認済(内容)/ [要検証](日付)]</strong> 手法名は <strong>GRAM(Gradient-Routed Auxiliary Modules)</strong> で、Transformer の各層に追加ニューロンをデュアルユース分野ごとのモジュールとして持たせ、モジュールを削除すればその知識を学習しなかったかのように振る舞わせます。50億パラメータのモデルでサイバーセキュリティ・ウイルス学・核物理・ニッチなプログラミングを対象に検証済み。ただし本番モデルには未適用の予備的研究です。Gemini は 7月8日としていますが報道は 7月9日付が多く、日付は詰め切れていません。Gemini が手法名 GRAM に言及していない点は情報の欠落です。<br>出典: https://www.anthropic.com/research/off-switch-dual-use</p>
+<h3>J-space(Jacobian space)論文</h3>
+<p><strong>[確認済]</strong> 7月6日公開。Jacobian lens(J-lens)で浮かび上がる活性化の疎な部分空間が Global Workspace Theory の「グローバル・ワークスペース」のように振る舞う、という解釈可能性の論文です。<strong>Gemini 単独の主張だったため最も捏造を疑いましたが、実在します。</strong> ただし Gemini の要約は「発見した」と断定的に書きすぎで、原論文はネットワーク中間ブロックにのみ現れ活性化分散の約 10% 以下しか説明しないという限定条件を置いています。この留保は重要です。<br>出典: https://transformer-circuits.pub(および https://thezvi.substack.com/p/no-space-like-j-space)</p>
+<h3>Claude Code の「隠しマーカー」トラッキング削除</h3>
+<p><strong>[確認済]</strong> Gemini が「未確認扱い」としていましたが、Anthropic エンジニア Thariq Shihipar 氏が X 上で公に認めています。Claude Code のシステムプロンプトに、タイムゾーンが <code>Asia/Shanghai</code> または <code>Asia/Urumqi</code> の場合に日付行(<code>Today's date is ...</code>)を Unicode で符号化した隠しマーカーに変える処理が仕込まれていました。3月に無断転売とモデル蒸留対策の「実験」として導入され、開発者 Thereallo 氏の発見を受けて削除、PR はマージ済みです。Gemini の「複数メディアの報道」という位置づけは過小評価で、実際は当事者が認めています。<br>出典: https://www.malwarebytes.com/blog/news/2026/07/claude-codes-hidden-tracker-was-an-experiment-says-anthropic / https://decrypt.co/372977/anthropic-removes-hidden-claude-code-tracker-privacy</p>
+<h3>Microsoft 365 コネクタに書き込み系ツール追加</h3>
+<p><strong>[確認済]</strong> 7月7日。メールの下書き・送信・整理、カレンダー操作、メールボックス設定の更新、OneDrive / SharePoint 上のファイル作成・更新が可能に。codex と Claude が一致し、リリースノートで確認しました。codex が挙げた「Teams は read-only のまま」「管理者の Entra 同意が必要」という条件はリリースノート本文からは確認できず、<strong>[要検証]</strong> です。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Fable 5 / Mythos 5 のアクセス復旧</h3>
+<p><strong>[確認済]</strong> 7月1日(今週の範囲外)。輸出規制の影響で停止していた両モデルへのアクセスが復旧し、同日 Enterprise 管理者向けにモデルと effort レベルを制御する権限管理が追加されました。リリースノートで確認。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>"Hard questions" イニシアチブ / The Making of Claude Code / アルバータ州政府事例</h3>
+<p><strong>[確認済(存在)]</strong> いずれも 7月6日〜9日に公開された公式記事ですが、機能変更ではなく解説記事・事例発表・取り組み発表です。codex と Claude が一致。実装検証の対象にはなりません。</p>
+<hr>
+<h2>検証しきれなかったもの</h2>
+<ul><li><strong>TeraWulf との 20年リース契約(約190億ドル規模)</strong> — Claude が挙げていましたが、今回一次情報を確認していません。<strong>[要検証]</strong></li><li><strong>Claude Security のパブリックベータ</strong> — 検索中に公式ブログ(<code>claude.com/blog/claude-security-public-beta</code>)が出てきましたが、<strong>3AI とも誰も報告していません</strong>。公開日を確認していないため今週の出来事かは不明です。3つの出力に共通する取りこぼしの可能性があり、追って確認する価値があります。<strong>[要検証]</strong></li></ul>
+<hr>
+<h2>今日の注目</h2>
+<p><strong>1. Claude Code v2.1.200 のデフォルト権限モード変更(最優先)</strong><br><code>AskUserQuestion</code> の自動継続が無効化され、デフォルト権限モードが CLI・VS Code・JetBrains 揃って "Manual" になりました。既存の CI パイプラインや headless 実行、自動化スクリプトが「勝手に進んでくれる」前提で組まれている場合、この 2 つの変更だけで無言で止まります。他のどの項目よりも既存資産を壊す可能性が高く、今日確認すべきです。</p>
+<p><strong>2. v2.1.202 の Dynamic workflow size と v2.1.205 の auto モード安全策</strong><br><code>/config</code> の Dynamic workflow size でワークフローのエージェント数を制御できるようになり、<code>workflow.run_id</code> / <code>workflow.name</code> の OpenTelemetry 属性も付きました。マルチエージェント実行のコストを初めて実測して絞り込めます。あわせて 2.1.205 で auto モードが未解決変数への <code>rm -rf</code> 前に確認を取り、バックグラウンドタスクの通知が「人間の承認は発生していない」と明示するようになりました。エージェントに広い権限を与えて運用しているなら、この 2 つは挙動を体感で確かめておく価値があります。</p>
+<p><strong>3. Cowork の Web / モバイル展開と上限倍増(期限あり)</strong><br>リモート実行ベータにより端末を閉じてもスケジュールタスクが走ります。8月5日まで利用上限が倍のキャンペーン中で、<strong>これだけが期限付きです</strong>。Max プランから順次ロールアウトなので、対象なら重いタスクを試すのは今のうちです。</p>
+<hr>
+<h2>3AI の傾向についての所見</h2>
+<p>今回に限っては、<strong>指示にあった「Gemini は数字や固有名を捏造する傾向」は観測されませんでした。</strong> Gemini 単独主張の 4 項目(J-space、Hidden Marker、Claude for Government、VS Code 1.128)は全て実在し、他 2 つが取りこぼしていた情報です。ただし Gemini には別種の弱点がありました。出典が <code>anthropic.com</code> トップページのような粒度の粗い URL ばかりで検証コストが高く、GRAM という手法名を落とし、J-space の限定条件(中間層のみ・分散の約 10% 以下)を落として断定的に書いています。<strong>固有名を作るのではなく、固有名と留保条件を落とす方向の誤り</strong>です。</p>
+<p>逆に、唯一一次情報と矛盾したのは Claude(自分)が VentureBeat 経由で拾った「33.4% / 16.4%」でした。Claude 自身が未確認と明記していた点は機能していますが、次回以降、疑いの重み付けは「どの AI か」ではなく「一次情報から何ホップ離れているか」で置くべきです。</p>
+<p>Sources:</p>
+<ul><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude Apps release notes</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">Cowork on web and mobile</a></li><li><a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" rel="noopener">Bringing Claude Code and Claude Cowork to government</a></li><li><a href="https://www.anthropic.com/news/ben-bernanke" rel="noopener">Ben Bernanke appointed to Anthropic's Long-Term Benefit Trust</a></li><li><a href="https://www.anthropic.com/research/off-switch-dual-use" rel="noopener">An off switch for dual use knowledge in AI models</a></li><li><a href="https://techcrunch.com/2026/07/09/anthropics-new-claude-feature-is-quietly-selling-you-on-ai/" rel="noopener">TechCrunch — Anthropic's new Claude feature</a></li><li><a href="https://www.malwarebytes.com/blog/news/2026/07/claude-codes-hidden-tracker-was-an-experiment-says-anthropic" rel="noopener">Malwarebytes — Claude Code's hidden tracker was an "experiment"</a></li><li><a href="https://decrypt.co/372977/anthropic-removes-hidden-claude-code-tracker-privacy" rel="noopener">Decrypt — Anthropic removes hidden Claude Code tracker</a></li><li><a href="https://code.visualstudio.com/updates/v1_128" rel="noopener">VS Code 1.128 release notes</a></li><li><a href="https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem" rel="noopener">VentureBeat — Claude Design overhaul (June 17)</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

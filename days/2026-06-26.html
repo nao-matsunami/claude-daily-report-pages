@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-06-26 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-06-26</div>
+  <div><span class="lab lab-ok">確認済 6</span><span class="lab lab-warn">要検証 7</span></div>
+  <div class="back"><a href="../index.html#2026-06">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-06-26</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証完了。一次情報・複数報道と突き合わせた結果を以下にまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近の動き — 精査結果（2026/6/26時点）</h1>
+<p>検証範囲は主に 6/19〜6/26。窓のすぐ外（6/15〜6/18）の項目は日付を明記しています。</p>
+<h2>1. Claude Tag（Slack向け新機能）</h2>
+<p><strong>[確認済]</strong> — 6/23発表。Slackで <code>@Claude</code> をタグ付けし、チャンネル文脈・接続ツール・コードベースを使って複数ステップのタスクを自律実行させる「AIチームメイト」型機能。Enterprise/Team向けベータ、Opus 4.8基盤。3AI全てが一致し、公式・主要メディア（Fortune, TechCrunch, Bloomberg, Neowin）が裏付け。</p>
+<ul><li>出典: https://www.anthropic.com/news/introducing-claude-tag / https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/</li></ul>
+<p><strong>補足:「社内コードの65%がClaude Tag由来」 [確認済]</strong> — Claudeは(未確認)としていたが、the-decoder・Fortuneが同数値を報道。実際は「製品チームが提出するコード変更の65%をClaude Tagが承認・取り込み」という文脈。</p>
+<ul><li>出典: https://the-decoder.com/claude-tag-embeds-anthropics-ai-in-slack-already-writes-65-percent-of-internal-code-company-says/</li></ul>
+<p><strong>「既存Claude in Slackアプリを置換／30日移行」 [要検証]</strong> — Codexのみの主張。置換という大枠は妥当だが「30日以内移行」「ローンチクレジット」の具体条件は一次確認できず。</p>
+<h2>2. Alibaba 蒸留（distillation）告発 ← 注目（Geminiのみが捕捉）</h2>
+<p><strong>[確認済]</strong> — Anthropicが、Alibaba関連の運用者が約25,000の不正アカウントで約2,880万回（28.8M）のClaude対話を行い能力を抽出した「過去最大級の蒸留攻撃」と告発。期間は4/22〜6/5、6/10に上院銀行委員会（Warren/Scott両議員）へ書簡。CNBC・Benzinga・Inc等が報道。</p>
+<ul><li><strong>重要</strong>: Geminiの「数万アカウント・約2,900万回」は実数（25,000・28.8M）とほぼ一致。今回に限ればGeminiの数字は捏造ではなく正確で、むしろClaude/Codexが取りこぼした事項。</li><li>出典: https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html / https://www.benzinga.com/markets/tech/26/06/60088712/</li></ul>
+<h2>3. Claude Code（公式changelog一致）</h2>
+<p><strong>[確認済]</strong> — 以下は公式changelogおよびclassmethod解説で一致確認。</p>
+<ul><li><strong>2.1.191（6/24)</strong>: <code>/clear</code>後への <code>/rewind</code> 対応、ストリーミング時CPU約37%削減、停止バックグラウンドエージェント復活バグ修正。</li><li><strong>2.1.187（6/23)</strong>: <code>sandbox.credentials</code> 設定追加（サンドボックスからの認証情報読取りブロック）、モデル制限表示、リモートMCPハング修正。</li><li><strong>2.1.186（6/22)</strong> / <strong>2.1.185（6/20)</strong> / <strong>2.1.183（6/19, auto modeの破壊的git操作ブロック)</strong>: Codex・Claudeが一致、changelogと整合。</li><li>出典: https://code.claude.com/docs/en/changelog / https://dev.classmethod.jp/en/articles/20260625-cc-updates-v2-1-191/</li></ul>
+<p><strong>停止トリガ「10秒→20秒」（2.1.185） [要検証]</strong> — Claudeのみ具体記載。changelog一次未確認。</p>
+<h2>4. Claude Design 大型アップデート</h2>
+<p><strong>[確認済]（ただし日付は窓外=6/17）</strong> — デザインシステムをGitHub/デザインファイル/アップロードからインポート→Claudeが自動整合チェック、Claude Codeとの双方向同期（<code>/design</code>／<code>/design-sync</code>）、直接キャンバス編集、管理者ロール、エクスポート拡充（Adobe, Canva, Gamma, Lovable, Miro, Replit, Vercel, Wix 等）、<strong>チャット/Cowork/Code と利用枠を共通化しトークン消費を効率化</strong>。VentureBeat・TechRepublic等が裏付け。</p>
+<ul><li>注: Geminiが挙げた出力先「Base44」漏れ等の細部差はあるが大枠一致。Geminiの日付「6/17」は正確。</li><li>出典: https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem</li></ul>
+<h2>5. レガシーモデル廃止＆課金変更（6/15、窓外）</h2>
+<p><strong>[確認済（ただし重要な訂正あり）]</strong></p>
+<ul><li>モデル廃止: 廃止対象は <strong>オリジナルのOpus 4 / Sonnet 4（2025年5月版, <code>-20250514</code>）</strong>。デフォルト代替は4.5系。Gemini/Claudeの「Sonnet 4.6 / Opus 4.8へ移行必須」は推奨の一種で、廃止の直接の置換先ではない点に注意。</li><li>課金変更: ヘッドレス/Agent SDK/GitHub Actions等を別クレジットプール化する変更は <strong>6/15予定だったが、施行前に Anthropic が一時停止（pause）</strong>。サブスク利用は従来通り継続中。</li><li><strong>Geminiの「一時停止」記載が正解</strong>。Claudeの「6/15から課金変更が稼働」という現在形の書き方は不正確。</li><li>出典: https://platform.claude.com/docs/en/about-claude/model-deprecations / https://www.digitalapplied.com/blog/anthropic-claude-credit-overhaul-june-15-2026</li></ul>
+<h2>6. Cowork</h2>
+<p><strong>[確認済]</strong> — 直近1週間に大型の新規発表はなし。</p>
+<ul><li>Coworkセッションをサイドバー/Recents/Spacesから削除可能に（Desktop/Cowork changelog v1.15200.0, 6/23, Codex）。</li><li>5時間利用上限の倍増キャンペーン（6/5〜7/5、継続中の施策、Claude）。</li><li>出典: https://claude.com/docs/cowork/changelog</li></ul>
+<p><strong>「Connector Observability ダッシュボード（6/8）」「Interactive Usage Pool制限の保留」 [要検証]</strong> — いずれもGeminiのみ、二次情報（GitHub release/BuildThisNow）依拠で一次未確認。固有名の裏が取れず。</p>
+<h2>7. その他（単独ソース、要検証）</h2>
+<ul><li><strong>API新ツールバージョン対応（コード実行/Web検索/Webフェッチ） [要検証]</strong> — Geminiのみ、内容が曖昧で裏取れず。</li><li><strong>エンタープライズ管理型MCPコネクタ（Okta連携, 6/18） [要検証]</strong> — Claudeのみ、releasebot二次情報、一次URL未確認。</li><li><strong>Artifacts in Claude Code（6/18, 窓外） [要検証]</strong> — Claudeのみ、VentureBeat報道はあるが本窓外。</li><li><strong>JetBrains IDEで「Claude as agent provider」プレビュー（6/22） [要検証]</strong> — Claudeのみ、GitHub Blog出典。本件はGitHub/JetBrains側発表でAnthropic直の発表ではない。</li></ul>
+<h2>棄却・注意</h2>
+<ul><li><strong>[棄却にあたる誤り]</strong> Claudeの「課金変更は6/15から稼働中」— 実際は施行前に停止。Geminiの「一時停止」が正。</li><li>Geminiの一部出典URLは <code>vertexaisearch.cloud.google.com/grounding-api-redirect/...</code> のリダイレクトリンクで、一次ソースを直接指していない。内容自体は概ね正しかったが、URLは信頼の根拠にしないこと。</li></ul>
+<hr>
+<h2>今日の注目（試す価値のある更新）</h2>
+<ol><li><strong>Claude Code <code>/rewind</code>（2.1.191）</strong> — <code>/clear</code>後でも前タスクへ巻き戻して再開可能。会話履歴の事故復旧として実務効果が大きく、即日試せる。公式changelogで確実。</li><li><strong><code>sandbox.credentials</code>（2.1.187）</strong> — サンドボックス実行コマンドからの認証情報・秘密環境変数の読取りをブロック。CI/自動エージェントを回す環境のセキュリティ設定として今すぐ検証する価値あり。</li><li><strong>Claude Design × Claude Code 双方向同期（<code>/design</code> / <code>/design-sync</code>）＋利用枠共通化</strong> — デザイン→実装のラウンドトリップとトークン消費効率化が同時に入った。デザイン実装ワークフローを持つチームは効果検証の好機（日付は6/17で窓外だが実用性は高い）。</li></ol>
+<p><strong>留意</strong>: 課金別プール化（ヘッドレス/Agent SDK）は<strong>現在停止中</strong>で、稼働前提の運用設計は時期尚早。再開時期は本日時点で確認できていません。</p>
+<hr>
+<p>確認できなかった項目（Connector Observability、API新ツールバージョン、Okta連携MCP、Claude Tagの30日移行条件）は、上記の通り一次情報での裏取りができていません。憶測での補完は行っていません。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

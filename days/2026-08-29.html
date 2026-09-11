@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-08-29 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-08-29</div>
+  <div><span class="lab lab-ok">確認済 22</span><span class="lab lab-warn">要検証 5</span><span class="lab lab-no">棄却 2</span></div>
+  <div class="back"><a href="../index.html#2026-08">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-08-29</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証を実施しました（一次情報 WebFetch 8件 + WebSearch 1件 + 既存 knowledge 照合）。結果を以下にまとめます。</p>
+<hr>
+<h1>情報精査ブリーフ 2026-08-29</h1>
+<p>対象期間: 2026-08-22 〜 08-29（隣接する Week 34 = 8/17-21 は参考扱い）</p>
+<hr>
+<h2>0. 全体判定サマリ</h2>
+<ul><li><strong>3AIの Claude Code changelog 記述は、版数の対応がほぼ一致</strong>。個別に一次確認したところ、<strong>codex と Claude の版数マッピングが正しく、Gemini は日付を2件間違えている</strong>。</li><li><strong>Gemini の固有名・数値の捏造は今回ほぼ無い</strong>。ただし <strong>1件、実在する数値を誤った版に付け替えている</strong>（zstd の 340MB→75MB）。</li><li><strong>3AI全員が取りこぼした期間内の一次更新が platform 側に4件ある</strong>（§F-5）。</li></ul>
+<hr>
+<h2>A. Claude Code changelog</h2>
+<p>一次: https://code.claude.com/docs/en/changelog</p>
+<h3>A-1. v2.1.251（8/28）— モデル切替フック・キャッシュ可視化</h3>
+<p><strong>[確認済]</strong> <code>PreModelSwitch</code> / <code>PostModelSwitch</code> フックイベント追加（切替のブロック・確認・注釈）、<code>SessionStart</code> resume フックが staleness と再キャッシュ推定コストを受領、<code>/cost</code> にセッション単位のプロンプトキャッシュ行（hit ratio / misses / tokens re-cached / warm-cold）と <code>prompt_cache</code> ステータスラインオブジェクト、<code>/usage</code> に Spend limit バーと <code>rate_limits.spend_limit</code>、フォアグラウンドサブエージェントのツール呼び出しの Remote Control ライブストリーミング。3AI一致 + changelog 原文で確認。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-2. v2.1.250（8/28）</h3>
+<p><strong>[確認済]</strong> changelog 原文は "Bug fixes and reliability improvements" の1行のみ。<br>※Gemini の「<strong>接続安定性とセッション復元</strong>に関する不具合修正が中心」という内容特定は <strong>[要検証]</strong>。原文にその記述は無く、3AI中Geminiのみの主張。changelog 側に内訳が書かれていないため裏が取れない（＝内容が誤りだと確認したわけではない）。</p>
+<h3>A-3. v2.1.248（8/27）— <code>--restricted</code> と <code>experimental.cacheTtl</code></h3>
+<p><strong>[確認済]</strong> <code>--restricted</code>（= <code>CLAUDE_CODE_RESTRICTED=1</code>）はコマンド/コード実行系ビルトインと <code>WebFetch</code> を除去、ファイルツールを作業ディレクトリ内に限定、<code>bypassPermissions</code> を拒否、<strong>user/project/local の設定ファイルを無視</strong>。加えてエージェント frontmatter の <code>experimental.cacheTtl</code>（<code>"5m"</code> / <code>"1h"</code>）、<code>claude self-hosted-runner --client-label</code>、server-managed settings 診断、<code>/web-setup</code> の GitHub トークン <code>workflow</code> スコープ警告、AWS Marketplace 課金 Enterprise 向け <code>/usage-credits</code>。<br>※Gemini の「<strong>マルチクラウド環境でのクロスセッション通信拡張</strong>」も <strong>[確認済]</strong>。原文は "Added cross-session messaging (<code>SendMessage</code> / <code>ListAgents</code>) between sessions on the same machine on Bedrock, Vertex, and Foundry, and when telemetry is disabled" ＝ <strong>同一マシン内</strong>の限定であり、「セッション間連携のサポート強化」という曖昧な要約より狭い。<br>※Gemini の日付「2026-08-28」は誤り（正: <strong>8/27</strong>）。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-4. v2.1.247（8/26）— SendFeedback / cost-optimize / Sonnet 5 auto-compact</h3>
+<p><strong>[確認済]</strong> <code>SendFeedback</code> ツール（<code>feedbackDrafts</code> 設定で無効化可）、<code>spinnerTipsOverride</code> 拡張（<code>{id,text,cooldownSessions,priority}</code> / <code>tipsFile</code> / <code>label</code>）、<code>/claude-api cost-optimize</code>、Sonnet 5 の既定 auto-compact ウィンドウを 1M フルに変更（約934K → <strong>約967K</strong> で発火）。Gemini の「Auto-Compaction が最大1Mコンテキストまで対応」はこの bullet に対応。<br>※Gemini が <code>/claude-api cost-optimize</code> を v2.1.247 に置いたのは正しい。</p>
+<h3>A-5. v2.1.246（8/25）— Bash ワイルドカード警告 / Auto mode タブ</h3>
+<p><strong>[確認済]</strong> サブコマンドより前にワイルドカードを置いた Bash <strong>allow</strong> ルール（例 <code>Bash(git * main)</code>）への起動時警告、<code>/permissions</code> の Auto mode タブ（分類器ルールの閲覧・編集）。deny / ask は対象外。<br>※Gemini の日付「8/26頃」は誤り（正: <strong>8/25</strong>）。また Gemini は「許可・拒否の分類ルール」と書いているが、警告対象は <strong>allow のみ</strong>。</p>
+<h3>A-6. v2.1.245（8/25）— glibc 2.44 起動クラッシュ修正</h3>
+<p><strong>[確認済]</strong> Arch / CachyOS / Fedora Rawhide 等。3AI一致 + 原文確認。</p>
+<h3>A-7. v2.1.243（8/25）— <code>/usage</code> Loops 内訳 / modelPicker / キャッシュTTL設定</h3>
+<p><strong>[確認済]</strong> <code>/usage</code> の Loops breakdown（ループ別 実行回数・総トークン・実行あたりトークン・最終実行）、<code>modelPicker</code> 設定、<code>promptCacheTtl</code> / <code>subagentPromptCacheTtl</code> 設定、<code>modelPricing</code> managed setting、Console キーレスサインイン。なお <strong>docs 側の要件版は v2.1.242 以降</strong>と書かれており changelog 掲載版と1つずれる（2.1.242 / 2.1.244 は changelog に見出しが無いが、リリース自体は存在）。</p>
+<h3>A-8. 「v2.1.243 で zstd 導入、バイナリ 340MB → 75MB」（Gemini単独）</h3>
+<p><strong>[棄却（版数の付け替え）]</strong> 数値そのものは実在するが、<strong>v2.1.239 の bullet</strong>「the binary is now zstd-compressed (about 75 MB instead of 340 MB on Linux x64)」であり、v2.1.243 ではない。Gemini はこれを v2.1.243 に、かつ「起動速度の向上」まで足している（原文は <strong>download size</strong> の改善）。<strong>数値の捏造ではなく、帰属先の誤り</strong>。</p>
+<h3>A-9. 存在しない版</h3>
+<p><strong>[棄却]</strong> changelog に <strong>2.1.252 と 2.1.249 の見出しは存在しない</strong>（8/29 時点、ページ最上部は 2.1.251）。初回の取得で 2.1.252 として返ってきた内容は取得側の要約誤りで、再取得と既存 knowledge の版数表の両方が 2.1.251 を最新と示している。</p>
+<hr>
+<h2>B. プロンプトキャッシュ公式ドキュメント（今回いちばん実務価値が高い）</h2>
+<h3>B-1. <code>How Claude Code uses prompt caching</code> の全内容</h3>
+<p><strong>[確認済]</strong> Claude の出力（§2）の記述は、<strong>列挙されたほぼ全項目が原文と一致</strong>。原文で確認できた要点:</p>
+<ul><li><strong>3層プレフィックス</strong>: System prompt（コア指示・ツール定義・output style）→ Project context（CLAUDE.md・auto memory・unscoped rules）→ Conversation。<strong>ファイル単位/セグメント単位のキャッシュは無い</strong>（"There is no per-file or per-segment caching"）。</li><li><strong>モデルと effort はプロンプト本文ではないがキャッシュキーの一部</strong>。原文の Tip: "Pick your model and effort level at the top of a session, then save <code>/compact</code> for natural breaks between tasks."</li><li><strong>キャッシュを壊す</strong>: モデル切替 / effort変更 / fast mode ON / MCPサーバ接続・切断（<strong>tool search で deferred なら壊れない</strong>、<code>/advisor</code> トグルも breakpoint 後なので壊れない）/ プラグイン有効無効（<strong>MCPサーバを含む場合のみ</strong>。skills・commands・agents・hooks・monitors・themes は壊さない）/ <strong>ツール名まるごとの deny ルール</strong>（<code>Bash</code>・<code>WebFetch</code>・<code>Bash(<em>)</code>・<code>"</em>"</code>。<code>Bash(rm *)</code> のようなスコープ付き deny と allow/ask は壊さない）/ <code>/compact</code> / アップグレード。</li><li><strong>壊さない</strong>: リポジトリのファイル編集 / CLAUDE.md 途中編集 / output style 変更 / 権限モード変更 / skill・コマンド呼び出し / <code>/recap</code> / <strong><code>/rewind</code></strong> / サブエージェント起動。</li><li><strong>CLAUDE.md の途中編集は「壊さないが反映もされない」</strong>。<code>/clear</code>・<code>/compact</code>・再起動で反映。<strong>サブディレクトリのネスト CLAUDE.md と <code>paths:</code> frontmatter 付きルールは遅延ロード</strong>なので、ロード前の編集は効く。</li><li><strong><code>/compact</code> より <code>/rewind</code></strong>: 原文 Tip に "If you've gone down a path you want to abandon entirely, <code>/rewind</code> to an earlier turn instead. Rewinding truncates back to a prefix that is already cached."</li><li><strong>TTL 2バケット</strong>（設定は v2.1.242 以降）:</li></ul>
+<table><thead><tr><th>バケット</th><th>サブスク枠内</th><th>usage credits / APIキー / クラウドプロバイダ</th></tr></thead><tbody><tr><td>メイン会話（対話 / <code>-p</code> / Agent SDK）</td><td><strong>1時間</strong></td><td>5分</td></tr><tr><td>それ以外（サブエージェント・workflow・teammates・fork・compaction・セッションタイトル）</td><td>5分（※サーバ制御のヘルパー要求のみ1時間）</td><td>5分</td></tr></tbody></table>
+<p>優先順位: <code>FORCE_PROMPT_CACHING_5M=1</code> → バケットの環境変数 → バケットの設定 → <code>ENABLE_PROMPT_CACHING_1H=1</code> → 既定。<strong>プラン上限を超えて usage credits に入るとメイン会話も5分に落ちる</strong>。</p>
+<ul><li><strong>サブエージェント vs fork</strong>: サブエージェントは自前のシステムプロンプトを持つため<strong>親のキャッシュを読まない</strong>。<strong>fork は親の system prompt / tools / 履歴をそのまま継承するので初回リクエストから親のキャッシュにヒット</strong>する。workflow の fan-out では、Claude Code が最初の1体以外を一時的に保留して同一プレフィックスを共有させる。</li><li><strong>スコープはマシン+ディレクトリ</strong>。システムプロンプトに作業ディレクトリ・プラットフォーム・シェル・OSバージョン・auto memory パスが埋まる。<strong>同一リポジトリの worktree 同士も共有しない</strong>。同一ディレクトリの並列セッションは共有する。逐次セッションは起動時の git status スナップショット（ブランチ・直近コミット）が一致したときのみ共有。</li><li><strong>確認方法</strong>: statusline の <code>current_usage.cache_creation_input_tokens</code> / <code>cache_read_input_tokens</code>、<code>claude -p "hello" --output-format json</code> の <code>usage.cache_creation</code>（<code>ephemeral_1h_input_tokens</code> / <code>ephemeral_5m_input_tokens</code>）。</li></ul>
+<p>出典: https://code.claude.com/docs/en/prompt-caching</p>
+<hr>
+<h2>C. Cowork / ブラウザ / メモリ</h2>
+<h3>C-1. Cowork 組み込みブラウザ（8/26）</h3>
+<p><strong>[確認済]</strong> デスクトップアプリのサイドパネル内で Claude 専用ブラウザが開き、閲覧・クリック・入力を行う。Pro/Max/Team にロールアウト、Enterprise は管理者が有効化。<strong>Claude in Chrome とは別サーフェス</strong>で、拡張が入っていればそちらが既定。<br>※Gemini の「ユーザーの個人ブラウザデータとは<strong>分離され安全性を担保</strong>」は要注意。原文が既定オフにしているのは<strong>クッキー（ログイン）の取り込み</strong>であって、サイト訪問のブロックではない。また公式自身が「プロンプトインジェクションのリスクは meaningfully reduce できるが eliminate はできない」と明記しており、「安全性を担保」は言い過ぎ（同 knowledge §2）。<br>出典: https://claude.com/blog/cowork-built-in-browser</p>
+<h3>C-2. Claude in Chrome の一般提供（8/26）</h3>
+<p><strong>[確認済]</strong> 全有料プランで GA、ブラウザ内の一部アクションを毎回承認なしで実行可能に、classifier / probes を強化。<br>出典: https://claude.com/blog/claude-in-chrome-generally-available</p>
+<h3>C-3. メモリのチャット/Cowork 統合（8/25）</h3>
+<p><strong>[確認済]</strong> support の release notes 原文で確認: "Memory now works across chat and Cowork in the cloud"、Settings &gt; Memory &gt; <strong>Topics</strong> で編集・削除可、健康・信条などは "Include sensitive topics in memory" をONにしない限りメモリに入らない、<strong>Free/Pro/Max は既定ON、Team/Enterprise は既定OFF</strong>。3AI一致。<br>出典: https://support.claude.com/en/articles/12138966-release-notes / https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it</p>
+<hr>
+<h2>D. Claude Design</h2>
+<h3>D-1. <code>/design</code> リサーチプレビュー（Week 34 = 8/17-21）</h3>
+<p><strong>[確認済]</strong> 原文: "The <code>/design</code> skill brings Claude Design's artboard workflow into the CLI and Claude Code Desktop, built on artifacts. Run it with a brief and Claude publishes a canvas of editable artboards for your UI. Pick one, tweak it, then have Claude implement it. Available on Pro, Max, Team, and Enterprise. <strong>Requires v2.1.233 or later</strong>."<br><strong>対象期間（8/22-29）内に Claude Design 本体の新発表は、一次情報では確認できませんでした</strong>（＝「無い」と確認したのではなく、公式ページ上に該当エントリを見つけられなかった）。<br>出典: https://code.claude.com/docs/en/whats-new/2026-w34</p>
+<h3>D-2. 「ライブキャンバスで角丸・カラー・透明度を WYSIWYG 調整」（Gemini単独）</h3>
+<p><strong>[要検証]</strong> 公式の記述は "Pick one, tweak it" までで、<strong>調整可能なプロパティの具体名（角丸・カラー・透明度）は一次情報に無い</strong>。Gemini が具体名を出している典型パターンなので、実機で <code>/design</code> を叩くまで採用しない。なお <code>/design</code> と <code>/design-sync</code> は<strong>両方実在する別コマンド</strong>で、Claude Code のコマンドリファレンスに載っているのは <code>/design-sync</code> 側。</p>
+<hr>
+<h2>E. Anthropic 本体</h2>
+<h3>E-1. Claude for Teachers、学校・学区向けに提供開始（8/28）</h3>
+<p><strong>[確認済]</strong> 無償の Enterprise offering として提供、集中管理あり。Learning Commons と共同開発した<strong>新しい teaching skills 2種</strong>（授業準備 / 理解度チェック）も追加。codex 単独主張だったが一次確認できた。<br>出典: https://claude.com/blog/claude-for-teachers-now-available-for-schools-and-districts</p>
+<h3>E-2. Model Hardware Standard（MHS）リサーチプレビュー（8/27）</h3>
+<p><strong>[確認済]</strong> AIエージェントが物理デバイスを安全に操作するための共有仕様。顕微鏡・液体ハンドラ・ロボットアーム・プレートリーダー・qPCR・遠心機・自動インキュベータ等、プログラマブルインタフェースを持つ機器全般。モデル非依存で MCP 等の標準プロトコルを利用。研究所・先進製造業の第一陣に research preview（modelhardwarestandard.com で申込）、<strong>将来のオープンソース化を明記</strong>。HHMI Janelia Research Campus との協業から出発。Claude 単独主張だったが一次確認できた。<br>出典: https://www.anthropic.com/news/model-hardware-standard-research-preview</p>
+<h3>E-3. Sonnet 5 の $2/$10 恒久化</h3>
+<p><strong>[確認済]</strong> 導入価格 $2/$10 が標準価格になり、9/1 予定の $3/$15 への引き上げは行われない。Batch も $1/$5 のまま。<strong>ただし発表は 2026-08-10 で、今週の動きではない</strong>（Gemini の「2026年8月」は範囲としては正しいが直近1週間ではない）。<br>出典: https://platform.claude.com/docs/en/release-notes/overview（August 10, 2026）</p>
+<h3>E-4. 「Expanding our support for scientists」(8/27) /「Funding better evaluations of AI's impact on wellbeing」(8/25)</h3>
+<p><strong>[要検証]</strong> Claude 自身が「詳細未取得」と書いたまま。今回も本文の一次取得を行っていないため、<strong>存在するかどうかを確認できていません</strong>（存在しないと判断したわけではありません）。</p>
+<hr>
+<h2>F. 開発者プラットフォーム（Claude が [要検証] にしていた集約サイト由来の主張）</h2>
+<p>一次: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>F-1. Python SDK v1.0（httpx2 移行 / Python 3.10+）</h3>
+<p><strong>[確認済]</strong> ただし <strong>8/20 付</strong>で対象期間外。<code>httpx</code> → <code>httpx2</code>（API互換フォーク）、Python 3.10+ 必須、legacy Text Completions API と Messages の <code>temperature</code>/<code>top_p</code>/<code>top_k</code> を削除、async の <code>.with_raw_response</code> は <code>await response.parse</code> が必要、<code>AnthropicBedrock</code> はリージョン未設定でエラー（従来は <code>us-east-1</code> にフォールバック）。<strong>Releasebot 由来の主張だったが実在</strong>。</p>
+<h3>F-2. Admin API user-management エンドポイントの GA</h3>
+<p><strong>[確認済]</strong> ただし <strong>8/19 付</strong>で対象期間外。Claude Enterprise (claude.ai) の members / invites / groups / custom roles が out of beta、<code>ce-user-management-2026-07-13</code> ヘッダ不要に。</p>
+<h3>F-3. advisor ツールの <code>max_tokens</code> パラメータ</h3>
+<p><strong>[確認済（ただし時期が全く違う）]</strong> 実在するが <strong>2026-06-02 付</strong>。「直近の動き」として挙げるのは誤り。</p>
+<h3>F-4. 「MCP 2026-07-28 spec のサポート拡大」</h3>
+<p><strong>[一次確認できず]</strong> platform リリースノート全文（2026-08-27 〜 2026-05 相当まで）を走査したが、<strong><code>2026-07-28</code> という spec 日付に言及するエントリは見つかりませんでした</strong>。MCP 関連で見つかったのは MCP tunnels の管理API移設（<code>mcp-tunnels-2026-06-22</code>）等で別物です。<strong>「存在しない」と断定はしません</strong> — このページ以外（MCP 側の docs 等）に記載がある可能性は残ります。</p>
+<h3>F-5. 3AI全員が取りこぼした期間内の platform 更新</h3>
+<p><strong>[確認済]</strong> 以下は 8/22-29 に収まる一次更新だが、3AIのいずれも報告していない:</p>
+<ul><li><strong>8/27</strong>: Console で <strong>personal keys / service account keys</strong> を作成可能に（アカウント除名で失効。workspace API keys はレガシー扱いに）。</li><li><strong>8/27</strong>: Python 1.2.0 等の SDK で <code>client.beta.files</code> / <code>client.beta.skills</code> がベータヘッダを送らなくなり、<code>client.files</code> / <code>client.skills</code> と同一形状に。<code>BetaSkill</code> → <code>BetaContainerSkill</code> にリネーム。</li><li><strong>8/26</strong>: <strong>Compliance API のセッションエンドポイントが Cowork / Claude Code セッションについて out of beta</strong>。ローカルセッションのトランスクリプト取得が正式化。</li><li><strong>8/26</strong>: Admin API が <code>ant</code> CLI と各言語 SDK の <code>client.beta.organization</code> で利用可能に（usage/cost reports と Claude Enterprise の user-management/analytics は引き続き curl のみ）。</li></ul>
+<hr>
+<h2>G. Help Center / 運用知見・コミュニティ</h2>
+<h3>G-1. <code>--bare</code> で非対話起動が約10倍速（codex主張）</h3>
+<p><strong>[確認済]</strong> Help Center 原文: "Add <code>--bare</code> for roughly 10× faster startup"。既定では SDK がローカルファイルを探索するため、非対話用途では <code>--system-prompt</code> / <code>--mcp-config</code> / <code>--settings</code> 等を明示指定するのが推奨。同記事は他に「3〜5セッションを git worktree で並列」「repo root の <code>CLAUDE.md</code> を git 管理しチームで育てる」「auto-memory は <code>~/.claude/projects/&lt;project&gt;/memory/</code> に保存される別物」も明記。<br>出典: https://support.claude.com/en/articles/14554000-claude-code-power-user-tips</p>
+<h3>G-2. AI-Native SDLC playbook（8/21）</h3>
+<p><strong>[確認済]</strong> <code>intent.md</code> / <code>spec.md</code> / <code>plan.md</code> / <code>CLAUDE.md</code> / skills をバージョン管理された成果物として扱い、各段階が次段階の読む成果物をコミットする設計。原文の核心: <strong>"A skill is an advisory control while a hook is the deterministic layer behind it."</strong><br>出典: https://claude.com/blog/the-ai-native-sdlc-playbook</p>
+<h3>G-3. CVE-2026-54316（Claude Code）</h3>
+<p><strong>[確認済]</strong> <code>huggingface.co</code> が WebFetch の bare hostname として事前承認されていたため、攻撃者管理下のモデルリポジトリを含む同ドメイン上の任意パスが権限プロンプト無しで自動承認された。攻撃者は最大64個のリポジトリ（APIキーの1文字ずつに対応）を作らせ、公開ダウンロードカウンタを符号チャネルにして1文字ずつ漏らせた。<strong>0.2.54 〜 2.1.163 が影響、2.1.163 で修正</strong>。悪用には未信頼コンテンツを Claude Code のコンテキストに入れることが必要。<br>出典: https://github.com/anthropics/claude-code/security/advisories/GHSA-fg94-h982-f3mm / https://advisories.gitlab.com/npm/@anthropic-ai/claude-code/CVE-2026-54316/</p>
+<h3>G-4. 「CLAUDE.md は System Prompt ではなく初期 User Message。対策として定期的な <code>/compact</code>」（Gemini単独）</h3>
+<p><strong>[要検証・一部は公式と食い違い]</strong> 公式 prompt-caching ドキュメントの層モデルでは、CLAUDE.md は <strong>Conversation 層ではなく独立した Project context 層</strong>に置かれており、「初期 User Message として読み込まれる」という記述は一次情報に無い（メッセージロールについて公式は言及していない）。さらに<strong>対策としての <code>/compact</code> は逆効果になりうる</strong>: <code>/compact</code> は会話層のキャッシュを設計上無効化する操作として明示列挙されており、公式は「タスクの自然な切れ目で手動実行」、捨てたい方向に進んだ場合は <code>/rewind</code> を推奨している（§B-1）。<strong>「指示が希薄化しやすい」という体感自体を否定はしませんが、根拠と処方箋は公式と整合しません。</strong></p>
+<h3>G-5. 「キャッシュ TTL は標準約5分、<code>cacheTtl</code> で指定可能」（Gemini単独）</h3>
+<p><strong>[要検証（不正確）]</strong> 設定名は用途で3つに分かれる: メイン会話 <code>promptCacheTtl</code> / それ以外 <code>subagentPromptCacheTtl</code>（いずれも v2.1.242 以降）/ エージェント frontmatter の <code>experimental.cacheTtl</code>（v2.1.248）。<strong>「標準5分」もサブスク枠内のメイン会話では誤り</strong>（既定1時間、§B-1 の表）。</p>
+<h3>G-6. 「サブエージェントのネスト深度3層 / 同時実行上限デフォルト20」（日本語二次記事）</h3>
+<p><strong>[棄却]</strong> Claude が指摘したとおり公式 What's new（Week 24）の「バックグラウンドチェーンは5階層まで」と食い違う。二次情報側を採らない。</p>
+<h3>G-7. Opus 5 ベンチマーク数値（SWE-bench Pro 79.2% 等）</h3>
+<h3>G-8. その他のコミュニティ Tips（CLAUDE.md 200-300行、skills の progressive disclosure、Caveman skill のトークン削減率、skill 常時コスト約100トークン、Reddit の「context tax」報告等）</h3>
+<p><strong>[要検証]</strong> いずれも二次情報のみ。特に<strong>「skill 1個あたり約100トークン」「50個入れてもコストほぼゼロ」は公式未確認の数値</strong>で、Claude 自身も未確認と注記している。運用方針としての「強制は hooks/permissions、文脈は skills、委譲境界は subagents」という整理は、G-2 の公式 playbook（"skill is advisory, hook is deterministic"）と方向が一致している。</p>
+<hr>
+<h2>今日の注目（検証・実装を試す価値がある更新）</h2>
+<h3>1. プロンプトキャッシュ公式ドキュメントを headless 運用に落とし込む（最優先）</h3>
+<p><strong>理由</strong>: 今回唯一、<strong>既存の自動化の実コストを直接動かせる一次情報</strong>。特に効くのが3点 —<br>(a) <strong>fork は親のキャッシュにヒットするが、サブエージェントはヒットしない</strong>。同一文脈の派生作業をサブエージェントで回している箇所は fork に寄せるだけで初回リクエストが安くなる。<br>(b) <strong>worktree はキャッシュを共有しない</strong>。「3〜5セッションを worktree 並列」（G-1）は生産性の推奨だが、<strong>キャッシュ観点では各 worktree が別プレフィックスを一から温める</strong>というトレードオフがあり、両方の一次情報を突き合わせて初めて見える。<br>(c) <strong><code>claude -p</code> はメイン会話バケット</strong>だが、cron が API キー / クラウドプロバイダ経由なら <strong>5分固定</strong>。<code>promptCacheTtl: "1h"</code> を明示しないと1時間TTLは効かない。まず <code>claude -p "hello" --output-format json</code> の <code>usage.cache_creation</code> で <code>ephemeral_1h_input_tokens</code> / <code>ephemeral_5m_input_tokens</code> のどちらに入っているかを実測するのが、最小コストで最大の情報が得られる一手です。</p>
+<h3>2. v2.1.248 <code>--restricted</code> — ただし cron への適用は要注意</h3>
+<h3>3. v2.1.251 <code>PreModelSwitch</code> / <code>PostModelSwitch</code> + <code>SessionStart</code> resume の staleness・再キャッシュコスト</h3>
+<p><strong>理由</strong>: §B-1 の「モデル切替はキャッシュを全損させる」という知見を、<strong>初めてフックで観測・ブロックできるようになった</strong>組み合わせ。特に <code>SessionStart</code> resume が<strong>再キャッシュ推定コストを受け取る</strong>のは、長時間セッションの resume を続けるか <code>/clear</code> するかを機械的に判断する材料になる。1と2に比べれば実装コストは高いが、「キャッシュ会計をログに落とす」土台としては今週で唯一の新規手段です。</p>
+<hr>
+<h2>確認できなかったもの（「存在しない」ではない）</h2>
+<ul><li>E-4: <code>Expanding our support for scientists</code>（8/27）/ <code>Funding better evaluations of AI's impact on wellbeing</code>（8/25）の本文 — 未取得。</li><li>F-4: MCP <code>2026-07-28</code> spec サポート拡大 — platform リリースノート上に該当エントリ<strong>なし</strong>。他ページにある可能性は残る。</li><li>D-2: <code>/design</code> の調整可能プロパティの具体名 — 公式ページに記述なし。実機確認が必要。</li><li>A-2: v2.1.250 の修正内容の内訳 — changelog が公開していない。</li></ul>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/prompt-caching" rel="noopener">How Claude Code uses prompt caching</a></li><li><a href="https://code.claude.com/docs/en/whats-new/2026-w34" rel="noopener">What's new — Week 34</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude apps release notes (Support)</a></li><li><a href="https://support.claude.com/en/articles/14554000-claude-code-power-user-tips" rel="noopener">Claude Code power user tips (Support)</a></li><li><a href="https://claude.com/blog/claude-for-teachers-now-available-for-schools-and-districts" rel="noopener">Claude for Teachers now available for schools and districts</a></li><li><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" rel="noopener">Previewing the Model Hardware Standard</a></li><li><a href="https://claude.com/blog/the-ai-native-sdlc-playbook" rel="noopener">The AI-native SDLC playbook</a></li><li><a href="https://github.com/anthropics/claude-code/security/advisories/GHSA-fg94-h982-f3mm" rel="noopener">GHSA-fg94-h982-f3mm (CVE-2026-54316)</a></li><li><a href="https://advisories.gitlab.com/npm/@anthropic-ai/claude-code/CVE-2026-54316/" rel="noopener">CVE-2026-54316 advisory (GitLab)</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

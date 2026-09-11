@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-17 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-17</div>
+  <div><span class="lab lab-ok">確認済 14</span><span class="lab lab-warn">要検証 4</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-17</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を突き合わせ、争点になりそうな主張を一次情報（リリースノート、Claude Code changelog、platform docs）で検証しました。</p>
+<p><strong>まず結論として一番重要な点</strong>: 今回に限り、Geminiの捏造は見つかりませんでした。捏造を疑って重点的に潰しにいった項目（J-Space論文、v1.2581.0というバージョン番号、7月19日という期限、Claude Designのクォータ統合）は、<strong>すべて一次情報または信頼できる報道で裏が取れました</strong>。むしろ誤りは日付の細部にあり、それはGeminiに限りません。</p>
+<hr>
+<h2>Claude Code（最重視）</h2>
+<p><strong>CLIリリース 2.1.206〜2.1.211</strong> — [確認済]<br>公式changelogで日付まで確認。2.1.211（7/15）は <code>--forward-subagent-text</code> フラグと双方向オーバーライド文字（bidi）の権限プレビュー無害化を追加。2.1.210（7/14）は <code>isolation: 'worktree'</code> のサブエージェントがメインリポジトリをgit操作できてしまう不具合を修正。2.1.208（7/14）はスクリーンリーダーモード、<code>vimInsertModeRemaps</code>、<code>CLAUDE_CODE_PROCESS_WRAPPER</code>。2.1.207（7/11）はBedrock/Vertex/Foundryでauto modeがオプトイン不要になり、既定モデルがOpus 4.8へ。<br>→ codexが「2.1.210/2.1.211は日付未確認」としていた点は<strong>解消</strong>しました（7/14と7/15）。Claudeの「2.1.206は7/10」は<strong>誤りで、正しくは7/9</strong>です。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<p><strong>デスクトップの組み込みブラウザ（サンドボックス）</strong> — [確認済]<br>Week 28（7/6〜10、CLI v2.1.202〜2.1.206）で出荷済み。Cmd+Shift+B で開き、クリーンなブラウザプロファイルを使い、外部サイトへの書き込み操作は安全性分類器が審査します。Geminiの挙げた <strong>v1.2581.0 は捏造ではなく実在</strong>しますが、これはCLIのバージョンではなく、この機能が載るペイン型レイアウトが要求する <strong>Claude Desktop 側の最低バージョン</strong>です。<br>出典: https://code.claude.com/docs/en/whats-new/2026-w28 / https://9to5mac.com/2026/07/10/anthropic-highlights-claude-codes-in-app-browser-on-the-desktop/</p>
+<p><strong>週次制限50%増量の7/19延長</strong> — [確認済]<br>Pro / Max / Team および従来のシート課金Enterpriseが対象。当初は7/13までで、7/19 23:59 PTへ延長されました。Freeと従量課金Enterpriseシートは対象外です。<br>出典: https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/</p>
+<h2>Cowork</h2>
+<p><strong>Web / モバイル展開（7/7）</strong> — [確認済]<br>公式リリースノートに記載。セッションがAnthropicのサーバー側で動くため端末オフラインでも継続します。<strong>7/10〜17の窓の中に新規の公式発表はありません</strong> — この点は3AIすべてが一致しています。Geminiが別項目に分けた「バックグラウンド実行の強化」は、同じ7/7の発表の一部であり、独立した更新ではありません。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h2>Claude Design</h2>
+<p><strong>直近1週間の更新なし</strong> — [確認済]<br>3AI一致で、リリースノートにも該当なし。直近の大型更新は6月中旬の刷新（デザインシステム取り込み、Claude Codeとの往復、トークン消費削減）です。</p>
+<p><strong>クォータ共有化の時期</strong> — [要検証]<br>「Claude DesignがChat / Claude Code / Coworkと共有枠になった」こと自体は事実ですが、Geminiの「6月17日発表→7月に順次移行」という時系列は裏が取れません。ユーザー報告ベースでは<strong>5月下旬にアプリ内通知で展開</strong>されており、公式の大々的な告知は確認できていません。<br>出典: https://piunikaweb.com/2026/05/28/claude-design-usage-limits-with-claude-ai-and-claude-code/</p>
+<p><strong><code>/design-sync</code> というコマンド名</strong> — [要検証]<br>GeminiとClaudeの両方が <code>/design-sync</code> と書いていますが、報道が挙げている実際のコマンドは <strong><code>/design</code></strong> です。両者が同じ誤りを共有している可能性があり、一致していても裏付けにはなりません。<br>出典: https://www.fastcompany.com/91561193/anthropics-updated-claude-design-gives-vibe-coders-and-their-design-overlords-more-control</p>
+<h2>Claude / Anthropic 全般</h2>
+<p><strong>会話途中のシステムメッセージ（7/15）</strong> — [確認済]<br>Fable 5 / Mythos 5 / Opus 4.8 で、Claude API・Bedrock・Google Cloud 上で利用可能。ベータヘッダー不要。<strong>Geminiはこれを完全に見落としています。</strong><br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>Enterprise ユーザー管理の Admin API（7/14、ベータ）</strong> — [確認済]<br>メンバー一覧・招待・ロール変更・グループ管理。グループとカスタムロールの操作のみ <code>anthropic-beta: ce-user-management-2026-07-13</code> ヘッダーが必要で、メンバー・招待系は不要です。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>HIPAA設定のセルフサーブ化（7/14）</strong> — [確認済] 公式リリースノートで確認。<br><strong>メモリ機能の刷新（7/10）</strong> — [確認済] 日次サマリーから「カテゴリ分けされた個別エントリ」方式へ。<br><strong>Dreams が Fable 5 / Sonnet 5 対応（7/10、research preview）</strong> — [確認済] codexのみが挙げていた項目で、正しいです。<br>出典: https://support.claude.com/en/articles/12138966-release-notes / https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>Claude for Teachers（7/14）</strong> — [確認済] 3AI一致。米国K-12の認証済み教員向けに、Claude Codeを含むプレミアム機能を無償提供。<br>出典: https://www.anthropic.com/news/claude-for-teachers</p>
+<p><strong>Reflect ベータ（7/9）</strong> — [確認済] ただし窓の外。リリースノート上の正式名は「Monthly Recap &amp; Focus Settings」で、<code>Settings &gt; Reflect</code> と <code>Settings &gt; Time and focus</code> に分かれています。</p>
+<p><strong>J-Space / Jacobian lens 論文（7/6）</strong> — [確認済]、ただし窓の外。<br>Geminiだけが挙げた項目で最も疑わしく見えましたが、<strong>実在します</strong>。論文名は "Verbalizable Representations Form a Global Workspace in Language Models"。Forbes・VentureBeatが報じ、Anthropicのサイトにも関連PDFがあります。<br>出典: https://www.forbes.com/sites/johnwerner/2026/07/12/anthropic-illuminates-llm-j-space-with-j-lens/</p>
+<p><strong>Fable 5 プロモ延長（7/19まで）</strong> — [確認済] 有料プラン向けの無償提供が7/19まで延長。なお7/1にFable 5 / Mythos 5のアクセス自体が復旧しています。<br>出典: https://www.digitaltrends.com/computing/anthropic-is-giving-away-claude-fable-5-at-no-extra-cost-for-a-limited-time/</p>
+<p><strong>カナダAI研究に1,000万ドル（7/14）</strong> — [要検証] Claudeのみが主張。今回は未検証です。<br><strong>Access Transparency / CMEK のドキュメント更新（7/10）</strong> — [要検証] codexのみが主張。取得したページが途中で切れており、当該行は確認できていません。</p>
+<p>[棄却]に該当する項目はありませんでした。3AIが真っ向から矛盾した箇所はなく、食い違いはすべて日付や粒度のレベルです。</p>
+<hr>
+<h2>今日の注目</h2>
+<p><strong>1. 会話途中のシステムメッセージ（7/15）</strong> — 一番新しく、一番試す価値があります。ベータヘッダー不要でOpus 4.8を含む主要モデルとBedrock/Vertexで既に動くため、今日そのままAPIで叩けます。長時間走るエージェントの途中で方針を差し込む用途に直結し、しかも3AIのうちcodexしか拾えていない = 見落とされやすい更新です。</p>
+<p><strong>2. Claude Code 2.1.211 の <code>--forward-subagent-text</code>（7/15）</strong> — サブエージェントのテキストと思考をstream-json出力に流せます。サブエージェントをオーケストレーションしていると中間状態が見えないのが定番の不満なので、それが直接解消します。フラグ1つで検証できるのも良い点です。</p>
+<p><strong>3. <code>isolation: 'worktree'</code> の修正（2.1.210、7/14）</strong> — これは新機能ではなく<strong>バグ修正ですが、影響が大きい</strong>ので挙げます。worktree隔離したはずのサブエージェントがメインリポジトリに対してgit変更コマンドを実行できてしまっていました。並列エージェントでworktree隔離に依存している場合、隔離が効いていると思っていた期間の作業を疑う理由になります。アップデートを優先してください。</p>
+<p>（<code>/design-sync</code> と <code>/design</code> のどちらが正しいコマンド名かは未解決です。実機で確認するのが確実です。）</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

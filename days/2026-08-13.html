@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-08-13 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-08-13</div>
+  <div><span class="lab lab-ok">確認済 18</span><span class="lab lab-warn">要検証 7</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-08">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-08-13</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を突き合わせ、主要項目は一次情報（code.claude.com / platform.claude.com / support.claude.com / anthropic.com）に当たって検証しました。</p>
+<hr>
+<h1>1. Claude Code — リリース（v2.1.221〜229）</h1>
+<h3>権限バイパス脆弱性の修正（Bash / PowerShell）</h3>
+<p><strong>[確認済]（ただし日付は要訂正）</strong><br>changelog で確認。v2.1.221（<strong>8/4</strong>）で zsh の <code>[[ ]]</code> 条件式による隠しコマンド実行と PowerShell の引用符入りパス誤処理を修正、v2.1.223（<strong>8/6</strong>）でコマンド一部を権限チェックから隠す手口・タブ/不可視 Unicode によるダイアログ隠蔽・workflow の動的 <code>import</code> によるサンドボックス外実行・agent 定義の <code>bypassPermissions</code> が組織ポリシーを無視する穴を修正。Gemini の「v2.1.221 は 8/7〜8/8」は<strong>日付が誤り</strong>（バージョン番号自体は正しい）。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.224（8/7）— 期間内最大の機能リリース</h3>
+<p><strong>[確認済]</strong><br>self-hosted runner、cross-session messaging（<code>SendMessage</code>/<code>ListAgents</code>）、<code>archive</code> プラグインソース（HTTPS zip + SHA-256 ピン）、サンドボックス資格情報マスキング拡張、<strong>200サブエージェント/セッション上限の撤廃</strong>、<strong>Write ツールが新しめのモデルでは事前 Read なしに上書き可</strong>、ultraplan 削除。<br>※ Claude 出力は Write ツール変更を v2.1.228 と記載しているが、changelog 上は <strong>v2.1.224</strong>。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.225 / 2.1.226（8/8）</h3>
+<p><strong>[確認済]</strong><br>ゲートウェイ spend-limit 通知、<code>claude agents</code> の未信頼ディレクトリ信頼プロンプト、長期 OAuth トークンが一時 401 で置換される不具合、macOS MCP OAuth の 401、auto mode がセーフティフィルタ拒否を連続ブロックに数える不具合、headless の cross-session メッセージ滞留を修正。3AI とも記述が一致。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.227 / 2.1.228（8/10）・v2.1.229（8/11）</h3>
+<p><strong>[確認済]（バージョン帰属は要訂正）</strong><br>changelog では、codex と Claude が「v2.1.228」に帰属させた内容（再描画停止、Windows の Git Bash 未検出、<code>/tui</code> のモデル巻き戻り、<strong>セッションクリーンアップがプロジェクト memory フォルダを削除する不具合</strong>、<strong>claude.ai 同期 Skills のセキュリティ強化</strong>、cross-session メッセージのインライン表示、Vertex AI 資格情報の即時失敗）は <strong>v2.1.229（8/11）</strong>。v2.1.227/228 は feature flag 評価・<code>claude-code-action</code> 下の Bash 失敗・スラッシュコマンドメニュー UI・イベントループ停滞削減。<strong>期間内の最新版は v2.1.229</strong>（3AI とも言及なし）。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>Week 32 ダイジェストの「その他の改善」</h3>
+<p><strong>[確認済]</strong><br><code>/review</code> は <code>/code-review</code> のエイリアス化（effort 未指定なら前回値を再利用）、<code>/fork</code> セッションが独自 worktree で編集、worktree 分離が Bash と git リダイレクトにも適用、<strong>PreToolUse auto-allow フックが要約・コンパクション等の内部サイドタスクでツール制限を迂回しなくなった</strong>、Remote Control auto-connect のリポジトリ設定からの有効化禁止、VS Code Focus view。Claude 出力の記述と週次ダイジェスト本文が完全一致。<br>https://code.claude.com/docs/en/whats-new/2026-w32</p>
+<hr>
+<h1>2. Claude Code — auto mode がデフォルトに（8/14）</h1>
+<p><strong>[確認済]</strong><br>3AI 一致かつ Week 32 で一次確認。「<strong>8月14日から Pro・Max・Team の新規セッションで auto mode がデフォルト permission mode</strong>。自分で default mode を設定済みなら維持（ワンタイム切替プロンプトを承諾しない限り）、組織管理のデフォルトは不変」。さらに「<strong>auto mode の classifier 呼び出しは使用量上限にカウントされない（既に適用済み）</strong>」も原文どおり。先取りは <code>~/.claude/settings.json</code> の <code>{"permissions":{"defaultMode":"auto"}}</code>。<br>https://code.claude.com/docs/en/whats-new/2026-w32</p>
+<h3>報道系の数値（承認率97% / 人間13.6% 対 auto mode 89% / 1,053人テスト）</h3>
+<p><strong>[要検証]</strong><br>Claude のみが提示。TechCrunch・Help Net Security 等の二次記事由来で、<strong>今回一次情報での裏取りはしていません</strong>（「数値が誤り」ではなく「未確認」）。<br>https://techcrunch.com/2026/08/09/anthropic-is-turning-claude-codes-auto-mode-on-by-default/</p>
+<hr>
+<h1>3. Claude Code — self-hosted environments / cross-session messaging</h1>
+<h3>self-hosted environments パブリックベータ（8/6 発表・v2.1.224）</h3>
+<p><strong>[確認済]</strong> codex・Claude 一致 + Week 32 で一次確認。Team/Enterprise 向け、<code>claude self-hosted-runner</code> で自社マシン/コンテナを cloud session の実行先に。管理設定「Allow self-hosted environments」の有効化が前提。<br>https://code.claude.com/docs/en/whats-new/2026-w32</p>
+<h3>cross-session messaging（macOS/Linux、v2.1.224）</h3>
+<p><strong>[確認済]</strong> 「メッセージは Claude が書いたテキストのみで、<strong>会話履歴やファイルは決して送らない</strong>」は公式原文どおり。<code>/list-agents</code> で到達可能セッション確認、受信側は <code>Ctrl+O</code> で展開。<br>https://code.claude.com/docs/en/cross-session-messaging</p>
+<hr>
+<h1>4. Claude Platform / API</h1>
+<h3>Compliance API がローカルの Cowork / Claude Code セッションの transcript を返却（8/11、Enterprise ベータ）</h3>
+<p><strong>[確認済]</strong> codex・Claude 一致、リリースノートでエンドポイント3種（<code>/v1/compliance/apps/sessions/local</code> ほか）とスコープ <code>read:compliance_user_data</code> まで一致確認。なお 8/3 に先行して claude.ai web/mobile の <strong>remote</strong> Cowork セッション対応が入っている。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3><code>anthropic-workspace-id</code> レスポンスヘッダ追加（8/11）</h3>
+<p><strong>[確認済]</strong>（Claude 単独主張だが一次確認）<code>wrkspc_</code> 接頭辞の workspace ID を返す。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>Claude Sonnet 5 の $2/$10 が正式価格に、9/1 の $3/$15 値上げは実施されず（8/10）</h3>
+<p><strong>[要検証]</strong>（規則7の「既知知見との不一致」扱い／<strong>一次情報自体は確認済み</strong>）<br>https://platform.claude.com/docs/en/release-notes/overview / https://www.anthropic.com/news/claude-sonnet-5</p>
+<h3>Managed Agents に4件追加（8/7）</h3>
+<p><strong>[確認済]</strong>（Claude 単独主張だが一次確認）セッション budget（到達で <code>budget_reached</code> により一時停止、変更/解除で再開）、advisor（同等以上のモデルにターン途中で相談）、<code>inference_geo</code>（推論地域の固定）、マウントした GitHub リポジトリの <code>.claude/skills</code> からの Skills 自動読み込み。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>Inference hooks ベータ / Claude Opus 4.1 提供終了（8/5、境界情報）</h3>
+<p><strong>[確認済]</strong> リリースノートで両方確認。inference hooks は claude.ai・Cowork・Claude Code の各 governed prompt を自社 AI セキュリティサーバの allow/deny 判定にかける。Opus 4.1（<code>claude-opus-4-1-20250805</code>）は API でエラーを返す。<br>※ codex の「MCP・skills・plugins 経由の <strong>tool response</strong> も検査対象」は、リリースノート本文には prompt としか書かれておらず<strong>この部分は未確認</strong>。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<hr>
+<h1>5. Cowork</h1>
+<h3>Chrome サイドパネルが完全な Cowork セッションに（8/12）</h3>
+<p><strong>[確認済]</strong> codex・Claude 一致 + 公式ブログで一次確認。会話履歴に保存され desktop/web/mobile で再開可能、設定済み skills と connectors がブラウザ内でも動作。Max/Team は当日提供、Pro は数週間かけて展開、Enterprise は既定OFF で管理者が許可ドメインを制限可能。プロンプトインジェクションについて「重要操作前の確認は入れるが<strong>リスクは排除できない</strong>」と明記。<br>https://claude.com/blog/cowork-chrome-side-panel</p>
+<h3>Enterprise 向け skill / plugin セキュリティスキャン ベータ（8/6）</h3>
+<p><strong>[確認済]</strong> codex・Claude 一致 + Claude Apps リリースノートで一次確認。<br>https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Cowork のモバイル/web 展開・リモートセッション</h3>
+<p><strong>[確認済（期間外）]</strong> Claude Apps リリースノート上、該当エントリは <strong>7月まで</strong>（7/7 以前）。8/1〜8/13 の Cowork エントリはリリースノートには無し。Claude 自身の「期間内かは未確認」という留保が正しい。<br>https://support.claude.com/en/articles/12138966-release-notes</p>
+<hr>
+<h1>6. Claude Design</h1>
+<h3>期間内（8/6〜8/13）の公式アップデート</h3>
+<p><strong>[確認済 — ただし「不在の確認」ではない]</strong><br>Claude Apps リリースノートと公式ブログを確認した範囲では、<strong>8月中の Claude Design エントリは見つかりませんでした</strong>。これは「更新が存在しない」ことの確認ではなく、「一次3ソースに記載を確認できなかった」という意味です（2026-07-15 Dreams の反省を適用）。codex・Claude とも同じ結論。<br>https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>直近の大型更新は 6/17（codex の「4/17 が最新」は不正確）</h3>
+<p><strong>[確認済]</strong><br>公式ブログの発行日は <strong>2026-06-17</strong> で、デザインシステム取り込み（GitHub リポジトリ/デザインファイル/生データ）、<strong><code>/design-sync</code> による Claude Code との同期</strong>、キャンバス直接編集、chat・Cowork・Code との使用量上限統合、Adobe/Canva/Gamma/Lovable/Miro/Replit/Vercel/Wix へのエクスポートを一次確認。codex の「直近の大きな情報は 4/17 の Anthropic Labs 公開」は、Apps リリースノート（4/16 エントリ）だけを見て 6/17 のブログを見落としたもの。<br>https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</p>
+<h3>Gemini「Cowork / Design / Code 間にネイティブな同期機能がない」</h3>
+<p><strong>[棄却]</strong><br><code>/design-sync</code> による Claude Code との同期は 6/17 に公式発表済みで一次確認できます。「手動ブリッジしかない」という記述は誤りです（<code>design.md</code> 手渡し運用が有効な場面はありますが、それが唯一の手段ではありません）。</p>
+<hr>
+<h1>7. Anthropic 全社・周辺</h1>
+<h3>AI 生成物のウォーターマーク / C2PA プロヴェナンス</h3>
+<p><strong>[確認済（ただし Gemini の記述は要修正）]</strong><br>support 記事で確認。対象は Platform(API)・Claude・<strong>Claude Code・Claude Cowork</strong>・Claude Tag。<strong>2026-08-02 以降に EU でローンチされるモデルは launch 時点で対応、既存モデルは「対応作業中(in progress)」</strong>。Gemini の「8/2 に付与を<strong>開始</strong>した」は言い過ぎで、正しくは「8/2 を境界とする適用方針の告知、既存モデルは未完了」。出典も anthropic.com ではなく support.claude.com。<br>https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content</p>
+<h3>Theseus Infrastructure（Macquarie Asset Management・GIC との JV）</h3>
+<p><strong>[確認済（日付は 8/10 の可能性）]</strong><br>Gemini 単独主張ですが<strong>実在を確認</strong>。米国を初期対象に、Anthropic 専用のデータセンターを長期契約でリースするプラットフォーム。報道・Macquarie 公式リリースは <strong>8/10</strong> 付で、Gemini の 8/11 とは1日ズレ。なお <strong>anthropic.com のニュースルーム上の一次発表は今回確認していません</strong>（Macquarie 公式＋Bloomberg/DCD で確認）。<br>https://www.macquarie.com/au/en/about/news/2026/anthropic-mam-gic-data-centre-infrastructure-partnership.html</p>
+<h3>Claude Fable 5 の生物学セーフガード更新（8/7、フォールバック約85%削減）</h3>
+<p><strong>[確認済]</strong><br>Gemini 単独主張ですが <strong>anthropic.com の公式ポストが実在</strong>し、数値も一致。分類器の「constitution」を専門家フィードバックで書き直して再訓練。<strong>Claude Code での総フォールバック量削減は約17%</strong>（claude.ai 約67%、Cowork 約55%、Platform 約7%）。ウイルス学・毒性学・分子設計などデュアルユース領域は引き続き Opus 5 へフォールバック。<br>https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards</p>
+<h3>VS Code v1.133 での Anthropic / Copilot モデル切替</h3>
+<p><strong>[確認済（一部サブクレームは要検証）]</strong><br>v1.133 は実在し、Claude セッション中に<strong>ターン間で Anthropic と Copilot のモデルを切り替え可能</strong>（Anthropic 側は Anthropic 課金、Copilot 側は Copilot サブスク）になった点は確認。ただし Gemini の「<strong>GitHub サインイン不要で Agents ウィンドウから利用可能</strong>」と「8/12 リリース」は今回確認できませんでした。<br>https://code.visualstudio.com/updates/v1_133</p>
+<h3>Claude in Slack → Claude Tag への移行（8/3）</h3>
+<p><strong>[要検証]</strong> codex 単独主張。support 記事 URL は提示されていますが、今回一次確認していません。</p>
+<hr>
+<h1>8. 論文・二次情報</h1>
+<h3>arXiv 2608.11095 — CLAUDE.md 肥大化の実証研究</h3>
+<p><strong>[確認済]</strong><br>論文は実在。タイトルは「Why Does CLAUDE.md Keep Growing? Catastrophic Remembering in Agentic Coding」。<strong>1,867 リポジトリ / 247,694 instruction lifetimes、生涯 +226%、コミットあたり +4.9 instructions</strong>、命令は古くなるほど削除されにくい、という記述も一致。「prompt comments」で成長を止められ最大 23.1% の性能改善という主張も含む。<strong>未査読プレプリントで、数値は著者の主張</strong>。<br>https://arxiv.org/abs/2608.11095</p>
+<h3>arXiv 2608.08453 — SKILL.md の再利用性分析</h3>
+<p><strong>[確認済]</strong><br>論文は実在（8/9 投稿）。「What Keeps Agent Skills from Being Reusable? Evidence from 138K SKILL.md Files」。<strong>138,133 ファイル / 20,556 リポジトリ、91.8% に1つ以上の欠陥</strong>（測定法により 88.8〜94.6%）、主因は「弱い routing metadata・肥大した/実行不能な body・resource 構成不備」で codex の要約と一致。<strong>未査読</strong>。<br>https://arxiv.org/abs/2608.08453</p>
+<h3>CLAUDE.md「200行制限ルール」</h3>
+<p><strong>[要検証]</strong><br>Gemini が具体的な数値ルールとして提示していますが、出典が <code>zenn.dev</code> / <code>qiita.com</code> のトップページのみで<strong>特定記事を示していません</strong>。他2AIも「CLAUDE.md は常時必要な事実に絞る」という定性的方針では一致しますが、<strong>200行という数値の出所は確認できませんでした</strong>（誤りだと断定はできません）。</p>
+<h3>Skills frontmatter（<code>disable-model-invocation</code>、<code>context: fork</code>、<code>paths</code>、<code>disallowed-tools</code>）</h3>
+<p><strong>[要検証]</strong><br>Gemini と Claude が独立に言及しており実在の可能性は高いものの、<strong>今回 docs.claude.com での一次確認をしていません</strong>。実装前に公式ドキュメントで確認してください。</p>
+<h3>コンテキストバッファ 45K→33K / コンパクション 167K 発火</h3>
+<p><strong>[要検証]</strong> Claude が自己申告で未確認としているとおり、claudefa.st（二次）のみ。一次未確認。</p>
+<h3>HN スレッド（auto mode）</h3>
+<p><strong>[要検証]</strong> codex・Claude とも本文取得に失敗しており、<strong>内容は不明</strong>。</p>
+<hr>
+<h1>今日の注目（検証・実装を試す価値がある更新）</h1>
+<h3>1. auto mode デフォルト化が<strong>明日 8/14</strong>（最優先）</h3>
+<p>一次確認済みで、猶予がありません。今日中にやるべきは (a) <code>~/.claude/settings.json</code> で <code>permissions.defaultMode</code> を意図的に固定するか、切替を受け入れるかの決定、(b) <strong>v2.1.222 の「PreToolUse auto-allow が内部サイドタスクで迂回しなくなった」変更と併せた フック棚卸し</strong>。auto mode 前提になると、「全通しフックで通していた」設計は破綻します。classifier 呼び出しが使用量にカウントされないことも確定済みなので、コスト面の懸念は消えました。</p>
+<h3>2. cross-session messaging + 200サブエージェント上限撤廃の実機確認</h3>
+<h3>3. Sonnet 5 の 9/1 値上げ中止に伴うリポジトリ巻き戻し</h3>
+<hr>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/whats-new/2026-w32" rel="noopener">Claude Code What's New Week 32</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude Apps release notes</a></li><li><a href="https://www.anthropic.com/news/claude-sonnet-5" rel="noopener">Claude Sonnet 5</a></li><li><a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards" rel="noopener">Improving Fable 5's biology safeguards</a></li><li><a href="https://claude.com/blog/cowork-chrome-side-panel" rel="noopener">Cowork Chrome side panel</a></li><li><a href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" rel="noopener">Claude Design stays on brand</a></li><li><a href="https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content" rel="noopener">How Claude marks AI-generated content</a></li><li><a href="https://www.macquarie.com/au/en/about/news/2026/anthropic-mam-gic-data-centre-infrastructure-partnership.html" rel="noopener">Macquarie / Anthropic / GIC — Theseus Infrastructure</a></li><li><a href="https://www.datacenterdynamics.com/en/news/gic-and-macquarie-form-theseus-infrastructure-to-serve-anthropics-data-center-needs/" rel="noopener">Theseus Infrastructure (DCD)</a></li><li><a href="https://code.visualstudio.com/updates/v1_133" rel="noopener">VS Code 1.133</a></li><li><a href="https://arxiv.org/abs/2608.11095" rel="noopener">arXiv 2608.11095</a></li><li><a href="https://arxiv.org/abs/2608.08453" rel="noopener">arXiv 2608.08453</a></li><li><a href="https://techcrunch.com/2026/08/09/anthropic-is-turning-claude-codes-auto-mode-on-by-default/" rel="noopener">TechCrunch: auto mode by default</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-01 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-01</div>
+  <div><span class="lab lab-ok">確認済 12</span><span class="lab lab-warn">要検証 4</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-01</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証完了。一次情報(anthropic.com / code.claude.com / claude.com docs)で主要項目を確認しました。以下にまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近の動き — 精査結果(対象期間 2026-06-24〜07-01)</h1>
+<h2>A. Claude(本体・モデル/プラットフォーム)</h2>
+<h3>1. Claude Sonnet 5 を発表(6月30日)</h3>
+<p><strong>[確認済]</strong> 3AI一致＋公式確認。Free/Proの既定モデル、Max/Team/Enterpriseでも利用可。1Mトークンのコンテキスト。導入価格は8月31日まで入力$2/出力$10(per Mtok)、9月1日以降$3/$15。Chat・Cowork・Claude Code・Platformのレート制限も引き上げ。性能はOpus 4.8に肉薄。</p>
+<ul><li>出典: https://www.anthropic.com/news/claude-sonnet-5</li><li>⚠️ Geminiの貼ったURL(<code>claude-3-5-sonnet</code>)は誤リンク。内容自体は正しいが出典が古いモデルのページを指している。</li></ul>
+<h3>2. Claude Science(科学者向けAIワークベンチ)beta公開(6月30日)</h3>
+<p><strong>[確認済]</strong> codex/Claude一致＋公式確認。Pro/Max/Team/Enterprise向けbeta。60超のキュレート済みスキル/コネクタ(ゲノミクス・プロテオミクス・構造生物学等)、監査可能な成果物(auditable history)、柔軟な計算資源アクセス。</p>
+<ul><li>出典: https://www.anthropic.com/news/claude-science-ai-workbench</li><li>⚠️ 補足: 公式は「最大50プロジェクトへ最大$30,000クレジット、応募7月15日まで」。GeminiのNVIDIA BioNeMo/Modal連携の固有名は<strong>公式ページで確認できず → 要検証</strong>(Geminiの固有名捏造傾向に該当)。</li></ul>
+<h3>3. Claude Tag(Slackで@Claudeに委任)beta公開(6月23日 ※期間のわずか手前)</h3>
+<p><strong>[確認済]</strong> 3AI一致＋公式確認。Slackで<code>@Claude</code>にタスクを委任、チャンネルの文脈を記憶し計画・実行・スレッド返信。<strong>Enterprise/Team向けbeta</strong>。</p>
+<ul><li>出典: https://www.anthropic.com/news/introducing-claude-tag</li><li>⚠️ Geminiは「Claude Tag」を一般機能のように書き、Team/Enterprise限定beta・multiplayer等の要点を欠く。</li></ul>
+<h3>4. Opus 4.7 の fast mode 廃止予告 / Opus 4.6 の fast mode 失効</h3>
+<p><strong>[確認済]</strong> codex/Claude一致＋検索確認。Opus 4.7のfast modeは非推奨で<strong>2026-07-24に削除</strong>(以後<code>speed:"fast"</code>はエラー)。6月29日時点でOpus 4.6の<code>speed:"fast"</code>は標準速度・標準料金扱い。</p>
+<ul><li>出典: https://platform.claude.com/docs/en/about-claude/pricing(Releasebot経由の集約情報含む)</li></ul>
+<h3>5. API レート制限引き上げ・ティア統合(新ティア Start/Build/Scale)</h3>
+<p><strong>[要検証]</strong> Claudeのみが具体的に主張(6月26日)。codexはSonnet 5発表に伴うレート引き上げに言及。一次changelogでの独立確認は未取得(Releasebotは非公式集約サイト)。</p>
+<h3>6. Economic Index "Cadences" 公開(6月26日)</h3>
+<p><strong>[要検証]</strong> codexのみ。anthropic.com/researchの該当URLを独立確認できていない。</p>
+<hr>
+<h2>B. Claude Code(changelog で日付確定)</h2>
+<h3>7. v2.1.197(6/30)— Sonnet 5 を既定モデルに採用、ネイティブ1Mコンテキスト</h3>
+<p><strong>[確認済]</strong> codex/Claude一致＋changelog確認。</p>
+<h3>8. v2.1.196(6/29)— 組織デフォルトモデル、可読なセッション名、添付ファイルのクリック表示、<code>claude mcp list/get</code>の非信頼サーバ起動を防ぐセキュリティ修正、ストリーミングのアイドル監視(5分無応答で中断)既定有効化ほか</h3>
+<p><strong>[確認済]</strong> changelog確認。</p>
+<h3>9. v2.1.195(6/26)— <code>CLAUDE_CODE_DISABLE_MOUSE_CLICKS</code>追加、ハイフン付きフックマッチャの完全一致化、分かち書きしない言語(日/中/タイ)の音声入力auto-submit修正</h3>
+<p><strong>[確認済]</strong> changelog確認。</p>
+<h3>10. v2.1.193(6/25)— <code>autoMode.classifyAllShell</code>、auto-mode拒否理由のtranscript記録、<code>claude_code.assistant_response</code>のOpenTelemetryログ、bashモードのファイルパス補完</h3>
+<p><strong>[確認済]</strong> changelog確認。</p>
+<h3>11. v2.1.191/190(6/24)— <code>/rewind</code>追加、ストリーミング中のスクロール改善、バックグラウンドエージェント信頼性</h3>
+<p><strong>[確認済]</strong> codex/Claude一致＋changelog確認。</p>
+<ul><li>出典(7〜11共通): https://code.claude.com/docs/en/changelog</li></ul>
+<h3>12. Trusted Devices(6/25)</h3>
+<p><strong>[要検証]</strong> codexのみ(support記事)。Team/Enterprise管理者がリモート操作前にデバイス確認を必須化可能、とするが独立未確認。</p>
+<h3>13. (Gemini固有)Agent SDK課金変更の一時停止 / 破壊的gitコマンドの自動実行ガード / <code>mcp__brave-search</code>コネクタ安定化</h3>
+<p><strong>[要検証〜棄却]</strong> いずれもGeminiのみの主張で他AI・公式に裏付けなし。<code>autoMode</code>分類器は実在するが「terraform destroy等を承諾なしにブロックする新ガード」「SDK従量課金を6月15日にPaused」「brave-searchコネクタ」は<strong>確認できず</strong>。Geminiが挙げたURL(<code>claude.ai/code/billing-updates</code>等)は実在性不明。</p>
+<hr>
+<h2>C. Cowork(changelog で日付確定)</h2>
+<h3>14. Cowork のバグ修正・安定化アップデート(6月下旬)</h3>
+<p><strong>[確認済]</strong> Claudeの記述＋docs確認。スケジュールタスクの重複実行修正、リモート/SSHセッション修正、モデルピッカーの選択記憶、All sessionsの「Load more」等。Cowork単独の大型新機能は期間内に見当たらず。</p>
+<ul><li>出典: https://claude.com/docs/cowork/changelog</li><li>補足: codexも「Cowork単独の新機能リリースは公式リリースノートで確認できず」と整合。</li></ul>
+<h3>15. (Gemini固有)Cowork × Brave Search 統合(6/30)/ 利用上限2倍キャンペーン(6/5〜7/5)</h3>
+<p><strong>[棄却寄りの要検証]</strong> Geminiのみ。他2AIは「Cowork単独の新発表なし」と報告。Brave統合・2倍キャンペーンとも<strong>公式・他AIで一切確認できず</strong>。提示URL(<code>brave.com/blog/...</code>, <code>claude.ai/cowork/usage-updates</code>)の実在も未確認。Sonnet 5発表に伴うCoworkレート引き上げ(項目1)と混同した可能性。</p>
+<hr>
+<h2>D. Claude Design(最重視・要注意)</h2>
+<h3>16. Claude Design の「6月17日大型オーバーホール(design system import / <code>/design-sync</code>双方向同期 / WYSIWYGキャンバス編集 / トークン効率改善)」</h3>
+<p><strong>[要検証 — 公式未確認、一部は棄却寄り]</strong></p>
+<ul><li><strong>公式の Claude Design 発表は 2026年4月17日</strong>、Opus 4.7駆動の research preview。これは確認済み。出典: https://www.anthropic.com/news/claude-design-anthropic-labs</li><li>GeminiとClaudeが挙げた「6月17日オーバーホール」「<code>/design-sync</code>」「双方向同期」「トークン消費削減」は、<strong>Anthropic公式ページで確認できない</strong>。公式が記載するのは一方向の「handoff bundle」のみで、<code>/design-sync</code>・双方向同期・WYSIWYG・トークン効率改善の記述は<strong>なし</strong>。</li><li>出典として挙がるのはexplainx.ai・windowsforum・VentureBeatなど<strong>第三者記事のみ</strong>。codexも同旨で「公式では確認できず」と明記。</li><li>⚠️ 結論: <strong>対象期間(6/24〜7/1)内のClaude Design公式アップデートは確認できない。</strong> 「6月17日オーバーホール」は第三者報道ベースで、固有機能名の一次確認が取れていないため鵜呑みにすべきでない。Geminiの提示URL(<code>claude.ai/design/announcement-june-17</code>)は実在不明。</li></ul>
+<hr>
+<h2>E. その他「未確認」(Claudeが列挙、一次未確認)</h2>
+<p><strong>[要検証]</strong> Microsoft Foundry(Azure)でのClaude GA、Bedrock/Google Cloud対応ゲートウェイ、Managed Agentsのself-hosted sandboxes public beta、カリフォルニア州政府向け半額、Okta自動プロビジョニング等 — いずれもReleasebot等の集約要約由来で、対象期間内の一次日付を独立確認できず。</p>
+<hr>
+<h1>今日の注目(検証・実装を試す価値)</h1>
+<ol><li><strong>Claude Sonnet 5 への切替(最優先)</strong> — 既にClaude Code v2.1.197の既定モデルでネイティブ1Mコンテキスト。8月31日までの導入価格($2/$10)中に、実コードベースでOpus 4.8との品質/コスト比較を取る価値が高い。確度[確認済]で即試せる。</li></ol>
+<ol><li><strong>Claude Code の auto-mode 強化(<code>autoMode.classifyAllShell</code> / 拒否理由のtranscript記録)</strong> — v2.1.193で追加・確認済み。CI/ヘッドレス自動化のガードレールとして実設定して挙動を観察する価値あり(Geminiの「破壊的コマンドガード」主張の真偽もこれで実地確認できる)。</li></ol>
+<ol><li><strong>Opus 4.7 fast mode 廃止(7/24)への対応</strong> — [確認済]の期限付き変更。fast modeを使うワークフローはOpus 4.8 fast(より安価)への移行検証を今のうちに。期日があるので実務影響あり。</li></ol>
+<p><strong>逆に手を出す前に裏取りが必要:</strong> Claude Design「6月17日オーバーホール」とCowork「Brave統合/2倍キャンペーン」は一次未確認(特に後者はGemini単独・捏造の疑い)。実装判断には公式changelog/Newsroomでの原典確認を必須とすること。</p>
+<p>Sources:</p>
+<ul><li>https://www.anthropic.com/news/claude-sonnet-5</li><li>https://www.anthropic.com/news/claude-science-ai-workbench</li><li>https://www.anthropic.com/news/introducing-claude-tag</li><li>https://www.anthropic.com/news/claude-design-anthropic-labs</li><li>https://code.claude.com/docs/en/changelog</li><li>https://claude.com/docs/cowork/changelog</li><li>https://platform.claude.com/docs/en/about-claude/pricing</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-08 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-08</div>
+  <div><span class="lab lab-ok">確認済 15</span><span class="lab lab-warn">要検証 8</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-08</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を突き合わせ、一次情報（anthropic.com / code.claude.com / claude.com/docs / support.claude.com / GitHub CHANGELOG）に当たって検証しました。既存 knowledge の該当分は参照先を付けています。</p>
+<hr>
+<h2>A. モデル・プラットフォーム</h2>
+<p><strong>A-1. Claude Fable 5.1 / Mythos 5.1 発表（9/1）</strong> — <strong>[確認済]</strong><br>3AI一致。公式ページを直接取得し、モデルID <code>claude-fable-5-1</code>、入力$10 / 出力$50 per MTok 据え置き、<strong>cache read $0.25/MTok（Fable 5比75%減）</strong>、「通常ワークロード約25%・エージェント的タスク最大45%のコスト減」を確認。Mythos 5.1 は米国組織限定の trusted access（Cyber / Life Sciences Verification Program 経由）。既定 effort は Claude Code=High、Cowork / claude.ai=Medium（codex の主張どおり原文にあり）。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1</p>
+<p><strong>A-2. 仕様（1M context / 128k出力 / adaptive thinking）</strong> — <strong>[確認済（1M のみ）／要検証（128k出力）]</strong><br>1M コンテキストは Claude Code changelog v2.1.257 の原文「1M context」で確認。<strong>「最大出力128kトークン」「always-on adaptive thinking」は今回取得した発表ページ本文に該当記述を確認できませんでした</strong>（＝存在しないと確認したわけではありません。モデル仕様ページ未取得）。</p>
+<p><strong>A-3. 公式ベンチマーク</strong> — <strong>[確認済]</strong><br>発表ページの表から確認：Terminal-Bench 4.0 = Fable 5.1 <strong>55.8%</strong> / Mythos 5.1 <strong>60.9%</strong>、Terminal-Bench-Science 0.1 <strong>52.6%</strong>、HLE <strong>60.9%（ツールなし）/ 65.0%（ツールあり）</strong>、CursorBench 3.2.0 <strong>73.4%</strong>、OSWorld 2.0 77.9%（partial）/41.7%（strict）、GDPval-AA v2 1853、AutomationBench 31.4%。Gemini の「HLE 60.9%」「TB4.0 55.8%」「TB-Science 52.6%」はいずれも正しい数字です。</p>
+<p><strong>A-4. SWE-bench 系の数値（95.0% / 80.0% など）</strong> — <strong>[要検証]</strong></p>
+<p><strong>A-5. Artificial Analysis Intelligence Index 66（歴代最高）</strong> — <strong>[要検証]</strong><br>Gemini 単独。公式ページに記載なし、第三者ベンチのため一次は Anthropic ではありません。<strong>未確認</strong>。</p>
+<p><strong>A-6. サイバー／バイオのセーフガード緩和</strong> — <strong>[確認済（ただし文言に注意）]</strong><br>公式原文は「<strong>false positives が60%減</strong>」「バイオは良性リクエストに対する介入が Fable 5 比 85% 減」。codex の「safeguard 介入が平均約60%減」は<strong>誤検知の減少</strong>を指すので言い換えとしてはやや広すぎます。Fable 5.1 で防御目的の脆弱性発見が許可された点は一致。</p>
+<p><strong>A-7. API 破壊的変更（forced tool use / thinking block）</strong> — <strong>[確認済]</strong><br>Forced tool use 非サポート、旧モデルは 5.1 の thinking block を読めない、過去ターン編集で thinking block 無効化。いずれも公式 whats-new ページで逐条確認済み。加えて発表ページには<strong>新規 API アカウントは多ターン会話の過去コンテキストを手動編集できない</strong>（anti-distillation）とあります。</p>
+<p><strong>A-8. EU AI Act 対応の不可視テキスト透かし</strong> — <strong>[確認済]</strong><br>2026-08-02 以降にリリースされたモデルの出力に適用、検出 API は private preview。codex 単独主張でしたが発表ページ本文で確認。</p>
+<p><strong>A-9. Enterprise Frontier Safeguards（9/1）</strong> — <strong>[確認済]</strong><br>ZDR と不正検知の両立、データは顧客管理クラウドに保持。対象は Claude Code / Enterprise / Platform / Bedrock / Google Agent Platform / Microsoft Foundry。「this fall から段階展開」で、それまでは対象顧客に Fable 5 / 5.1 の ZDR を暫定提供。<br>https://www.anthropic.com/news/enterprise-frontier-safeguards</p>
+<p><strong>A-10. <code>ant</code> CLI v1.30.0 / <code>ant apply</code>（9/3）</strong> — <strong>[確認済]</strong><br>公式ドキュメント「Manage resources as code with <code>ant apply</code>」が実在（agents / environments / skills / memory stores / deployments を Markdown・YAML で宣言、<code>claude-lock.json</code> でドリフト検知、<code>--dry-run</code> / <code>--yes</code> で CI 運用）。<strong>v1.30.0 以降が必要</strong>という記述も docs 側にあり。ただし<strong>「9/3リリース」という日付自体は二次情報</strong>です。<br>https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply</p>
+<p><strong>A-11. Commerce agents blueprint（9/2）</strong> — <strong>[確認済（一次ページは未取得）]</strong><br>Claude 単独主張だが、Apache-2.0 の <code>anthropics/commerce-agents</code>、小売・旅行・通信・チケッティングの参照実装、<strong>Claude Code プラグイン同梱</strong>という内容で独立した二次情報が多数一致。<code>anthropic.com/news/claude-commerce-agents</code> は 404 で、<strong>私は一次ページのURLを特定できませんでした</strong>（不在の確認ではありません）。</p>
+<p><strong>A-12. Sonnet 5 の導入価格が恒久化</strong> — <strong>[確認済]</strong><br>pricing ページ Note に「9/1 予定の $3/$15 への値上げは行われない」と明記済み。ただし Gemini の「<strong>2026-09月初旬</strong>に撤回」という時期は誤りで、確定は 8月中旬時点です。</p>
+<hr>
+<h2>B. Claude Code（重点）</h2>
+<p>版数は GitHub CHANGELOG 原文で照合しました。</p>
+<p><strong>B-1. v2.1.257（9/1）</strong> — <strong>[確認済]</strong><br>Fable 5.1 追加（既定 Fable モデル、1M、$0.25 cache read）／auto mode に <strong>Containment Escape ルール</strong>（クラウドメタデータ資格情報取得・egress回避・クロステナント到達を自動承認しない）／<strong><code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code></strong>／<code>/effort</code> に <code>s</code>（当該セッション限り）。<br>※ Gemini はこの3件を「v2.1.261/263」の内容として並べており、<strong>版数帰属が誤り</strong>です。</p>
+<p><strong>B-2. v2.1.258（9/2）</strong> — <strong>[確認済]</strong> macOS 12 起動不能（2.1.255 のリグレッション）とリモート/スケジュールセッションの修正のみ。Claude のみが記載。</p>
+<p><strong>B-3. v2.1.259（9/2）</strong> — <strong>[確認済]</strong><br><code>managedMcpServers</code>（組織が HTTP/SSE MCP を全ユーザーに配布、コマンド実行型エントリはスキップ）／<strong><code>--permission-prompts none</code></strong>（無人 headless：プロンプトが要る操作は自動 deny、権限モード自体は生きたまま）。日付は codex=9/2・Claude=9/3 で割れており、docs 側表記は 9/2。</p>
+<p><strong>B-4. v2.1.260（9/3）</strong> — <strong>[確認済]</strong><br>フルスクリーンの <strong><code>/diff</code> パネル</strong>／<code>/cost</code> とステータスラインの <code>prompt_cache</code> に<strong>キャッシュミスの推定原因</strong>（ツール定義・システムプロンプト変更、TTL超過）／<strong>Fable 5.1 で tool result 後のコンテキストがキャッシュ対象外になり毎ツールターン再送されていた不具合の修正</strong>／<code>model: fable</code> が <code>[1m]</code> タグを無視して 200K で走る不具合の修正／<code>/reload-plugins</code> の headless 対応／<code>/advisor</code> のテキスト形式。<br><strong>[要検証（版数のみ）]</strong>: 「1M モデルの auto-compact 改善」と「サブエージェントのバックグラウンドコマンド1時間上限の撤廃」は、CHANGELOG の取得のたびに 2.1.257 / 2.1.260 / 2.1.261 と帰属が揺れました。<strong>機能の存在は確認済、載っている版数だけ未確定</strong>です。</p>
+<p><strong>B-5. v2.1.261（9/4）</strong> — <strong>[確認済]</strong><br><strong><code>/skill-doctor</code></strong>（未使用スキルとその context コストを提示）／<strong><code>bashOutputMaxChars</code> / <code>taskOutputMaxChars</code>（最大128K文字）</strong>／<strong><code>--append-subagent-system-prompt-file</code></strong>／<code>/status</code>・<code>claude doctor</code> の「Organization policy」行／<strong>セッション再開時に並列ツール呼び出し周辺の hook 出力が失われる不具合の修正</strong>／<code>/ultrareview</code> の待機を30→45分に延長。3AI とも内容は一致。</p>
+<p><strong>B-6. v2.1.262 / v2.1.263（9/6）</strong> — <strong>[確認済・Claude の記述を訂正]</strong><br><strong>2.1.262 は CHANGELOG に存在し</strong>、2.1.263 と同じく「Bug fixes and reliability improvements」の一行のみ。Claude の「2.1.262 は見当たらず (未確認)」は誤りです。</p>
+<p><strong>B-7. <code>/skill-doctor</code> の必要バージョン</strong> — <strong>[要検証]</strong><br>skills ドキュメントは「<strong>v2.1.252 以降が必要</strong>」と記す一方、CHANGELOG では <strong>2.1.261 で追加</strong>。どちらかが古い/誤りの可能性があり、決着していません。</p>
+<p><strong>B-8. スキルリスティングは context の1%、<code>skillListingBudgetFraction</code> で調整</strong> — <strong>[確認済]</strong><br>公式 skills ドキュメント原文「The budget scales at 1% of the model's context window.」および <code>skillListingBudgetFraction</code>（例 <code>0.02</code>）／<code>SLASH_COMMAND_TOOL_CHAR_BUDGET</code> を確認。<strong>Claude の「二次情報のみで未確認」は訂正</strong>。<code>context: fork</code> も同ページに正式記載。</p>
+<p><strong>B-9. 週次利用枠：9/13 に暫定+50% 終了、9/14 から恒久+25%（実質約17%減）</strong> — <strong>[確認済（内訳に注意）]</strong><br>暫定+50% の 9/13 終了と対象プランは support.claude.com の一次記事で確認済み。<strong>「+25%／約17%減」は Anthropic 公式アカウントの投稿が出所で、Anthropic のウェブページ上には存在しません</strong>。また「150→125」は二次メディアの説明用指数であり公式数値ではありません。Gemini の記述はこの区別をしていない点だけが不正確です。</p>
+<hr>
+<h2>C. Claude Cowork</h2>
+<p><strong>C-1. v1.46388.3（9/4）ホームフォルダ／ドライブ全体のアタッチ対応</strong> — <strong>[確認済]</strong><br>Windows の Documents・AppData、macOS の Library、ドライブ全体を添付可能に。ただし Claude 自身の設定・セッションデータ、SSH鍵・AWS/GCP 資格情報・シェル起動ファイルは対象外。Claude のみが挙げた項目で、公式 changelog で確認。<br>https://claude.com/docs/cowork/changelog</p>
+<p><strong>C-2. 非推奨設定フィールドのアプリ内警告（9/10 から）</strong> — <strong>[確認済・Claude の「一次未確認」を訂正]</strong><br>9/10 から dismissible な通知、受付停止24時間前にもう一度表示、Details ダイアログに置換先と期限、管理者向けの Copy report。<strong><code>disableConfigDeprecationWarnings</code></strong> で初回表示のみ抑止可能（最後の24時間通知は出る）。</p>
+<p><strong>C-3. 組み込みブラウザ / Claude in Chrome の既定値</strong> — <strong>[確認済]</strong><br>Team は展開に伴い既定ON、Enterprise はローンチ時OFFで <strong>2026-09-10 から既定ON（管理者が明示的にOFFにしていない限り）</strong>。両方使える場合は Settings &gt; Cowork の Preferred browser でユーザーが選択。codex の記述どおり。</p>
+<p><strong>C-4. クラウドバックグラウンドセッション／チャットとの共有メモリ</strong> — <strong>[確認済（ただし今週の新機能ではない）]</strong><br>クラウド実行の Cowork はラップトップを閉じても継続、メモリは Claude.ai チャットと共有（ローカル実行の Cowork はメモリを使わない）。<strong>共有メモリの発効は 2026-08-25 前後</strong>で、9/1〜9/8 の changelog には該当エントリがありません。Gemini は「8月下旬〜9月初旬」と幅を持たせているので誤りではありませんが、<strong>今週の更新ではない</strong>点は明確にすべきです。</p>
+<p><strong>C-5. 「組み込み Chromium ブラウザ」という固有名</strong> — <strong>[要検証]</strong><br>公式は "a browser built into Claude Cowork" としか書いておらず、<strong>Chromium という記述は一次で確認できませんでした</strong>（技術的には正しい可能性がありますが、Gemini の固有名付加は裏が取れていません）。</p>
+<hr>
+<h2>D. Claude Design</h2>
+<p><strong>D-1. 直近1週間の新規発表</strong> — <strong>[確認済：なし]</strong><br>公式ローンチページは現在も <strong>research preview / Claude Opus 4.7 ベース / Pro・Max・Team・Enterprise</strong> の記述のままで、9/1〜9/8 に該当する更新エントリを確認できませんでした。codex・Claude の結論と一致。<br>https://www.anthropic.com/news/claude-design-anthropic-labs</p>
+<p><strong>D-2. Gemini の「Beta へ移行」「9/3 公式ウェビナー開催」</strong> — <strong>[要検証（Beta 移行は否定的）]</strong><br>公式ページが今も research preview と表記している以上、<strong>「Beta へ移行した」という主張は一次と食い違います</strong>。ただし「beta と書いている二次記事が存在する」こと自体は事実で、私は<strong>Beta 移行が存在しないことを確認したのではなく、移行を示す一次情報を見つけられなかった</strong>だけです。9/3 のウェビナーについても一次・二次いずれの裏付けも取れませんでした。</p>
+<p><strong>D-3. <code>/design</code> コマンド</strong> — <strong>[確認済（部分）]</strong><br><code>/design-sync</code>（と <code>/design-login</code>）が Claude Code のコマンドリファレンスに掲載。<code>/design</code> は claude.com の製品ページに「work directly in Claude Code with /design」と記載があるものの、<strong>コマンドリファレンスには不在</strong>。Gemini の <code>/design</code> 主張は捏造ではありませんが、Claude Code 側の正式一覧には載っていません。</p>
+<hr>
+<h2>E. コミュニティ由来の運用知見</h2>
+<p><strong>E-1. 「短い CLAUDE.md ＋ 必要時だけ skill ＋ subagent で隔離 ＋ hooks で強制」</strong> — <strong>[確認済（方向性のみ）]</strong><br>3AI とも同じ結論に到達しており、公式ドキュメント側の <code>context: fork</code>・1%リスティング予算・<code>/skill-doctor</code> とも整合します。ただし <strong>「100〜150行以内」(Gemini) / 「200行未満」(codex) という具体的な行数に公式基準はありません</strong> → 数値部分は [要検証]。</p>
+<p><strong>E-2. Qiita の実測値</strong>（v2.1.260 でツール使用ターンは 6/6 が 99.7% キャッシュヒット、非ツール会話は 9回中8回が 38.6% のまま／<code>/model</code> 切替直後に cache creation が 197→56,584 tokens／大型スキル導入で on-invoke 約90K tokens） — <strong>[要検証]</strong><br>codex 単独、個人環境・少試行。方向性は妥当ですが数値は一次でも再現でもありません。</p>
+<p><strong>E-3. v2.1.257 以降に <code>Co-Authored-By</code> 系の attribution が注入される／<code>attribution</code> 設定で抑止</strong> — <strong>[要検証]</strong><br>Reddit 由来、公式確認なし。設定キー名の実在も未確認です。</p>
+<p><strong>E-4. サブエージェントで3〜5倍速</strong> — <strong>[要検証]</strong> 個人・ベンダーブログの主張のみ。</p>
+<p><strong>E-5. トークン効率：「Opus 5 比で出力58%減・36%高速」 vs 「出力トークン70%増」</strong> — <strong>[棄却（少なくとも一方は誤り）]</strong><br>両者は相互に矛盾し、どちらも一次で裏が取れていません。<strong>どちらの数字も引用しないのが妥当</strong>です。</p>
+<hr>
+<h2>今日の注目（検証・実装を試す価値のある3件）</h2>
+<ol><li><strong><code>/skill-doctor</code> ＋ <code>skillListingBudgetFraction</code>（v2.1.261 / skills docs）</strong></li></ol>
+<ol><li><strong>v2.1.260 のキャッシュミス理由表示＋Fable 5.1 の tool-result キャッシュ欠落修正</strong></li></ol>
+<ol><li><strong><code>--permission-prompts none</code>（v2.1.259）</strong></li></ol>
+<hr>
+<h3>確認の限界（明示）</h3>
+<ul><li><code>platform.claude.com/docs/en/release-notes/platform</code> は 404 で取得できず、<strong>プラットフォーム側リリースノートの一次照合はできていません</strong>。</li><li><code>anthropic.com/news/claude-commerce-agents</code> も 404。<strong>Commerce agents の一次ページURLを特定できませんでした</strong>（不在の確認ではありません）。</li><li>CHANGELOG の版数帰属は、同一ファイルを2回取得して B-4 の2項目で結果が割れました。<strong>版数を根拠に何かを決める場合は再取得を推奨</strong>します。</li></ul>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener">Introducing Claude Fable 5.1 and Claude Mythos 5.1</a></li><li><a href="https://www.anthropic.com/news/enterprise-frontier-safeguards" rel="noopener">Enterprise Frontier Safeguards</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a> / <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a></li><li><a href="https://code.claude.com/docs/en/skills" rel="noopener">Extend Claude with skills</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork changelog</a></li><li><a href="https://support.claude.com/en/articles/16635803-set-up-browser-use-in-claude-cowork-for-team-and-enterprise-plans" rel="noopener">Set up browser use in Claude Cowork</a></li><li><a href="https://www.anthropic.com/news/claude-design-anthropic-labs" rel="noopener">Introducing Claude Design by Anthropic Labs</a></li><li><a href="https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply" rel="noopener">Manage resources as code with ant apply</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

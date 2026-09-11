@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-10 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-10</div>
+  <div><span class="lab lab-ok">確認済 13</span><span class="lab lab-warn">要検証 6</span><span class="lab lab-no">棄却 2</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-10</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<h2>前提</h2>
+<p>Gemini(agy)の出力は空でした。今回の突き合わせは codex と Claude の2系統のみで、一致判定は「2AI一致」ではなく「一次情報との照合」に依拠しています。Claude Code changelog、Claude Platform リリースノート、claude.com ブログ、support.claude.com を WebFetch で原文取得して検証しました。</p>
+<h2>A. Claude Code CLI</h2>
+<p><strong>A-1. v2.1.260(9/3)UI とサブエージェント運用の変更</strong><br>[確認済]<br>fullscreen に <code>/diff</code> サイドパネル、<code>/cost</code> とステータスラインへのキャッシュミス推定原因表示、<code>/reload-plugins</code> の headless 対応、<code>/advisor</code> のテキスト版が入りました。サブエージェントのバックグラウンドコマンド1時間制限は撤廃され、Fable 5.1 のプロンプトキャッシュ不具合も同版で修正されています。codex の記述は原文と一致。Claude はこの版を丸ごと落としています(矛盾ではなく欠落)。<br>https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-2. v2.1.261(9/4)<code>/skill-doctor</code> ほか</strong><br>[確認済]<br><code>/skill-doctor</code>、<code>bashOutputMaxChars</code> と <code>taskOutputMaxChars</code>(最大128K文字)、<code>--append-subagent-system-prompt-file</code>、<code>/status</code> と <code>claude doctor</code> の Organization policy 行、<code>/context</code> のローカル推定フォールバックを原文で確認しました。両AIの記述に誤りはありません。<br>https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-3. v2.1.262 と v2.1.264 は欠番、v2.1.263(9/6)はバグ修正のみ</strong><br>[確認済]<br>changelog に 2.1.262 と 2.1.264 の見出しは存在せず、2.1.263 は「Bug fixes and reliability improvements」の1行のみです。Claude の記述が正しく、codex は 2.1.263 に言及していません。<br>https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-4. v2.1.265(9/8)プラグインフォルダ、1GB上限、キャッシュ再利用修正</strong><br>[確認済]<br><code>--plugin-dir</code> へのプラグイン親フォルダ指定、ディスク保存ツール結果の1GB上限、サブエージェント/エージェントチームメイト/<code>SubagentStart</code> フック周りのプロンプトキャッシュ再利用修正を原文で確認しました。codex が挙げた <code>/workflows</code> エージェント詳細表示の改善、Claude が挙げた OpenTelemetry のコレクター直送も両方とも原文にあります。同版には非対話セッションの <code>cd</code> 永続化修正も含まれます。<br>https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-5. v2.1.266(9/8)ゲートウェイ回帰の修正</strong><br>[確認済]<br>未文書の環境変数 <code>CLAUDE_CODE_USE_GATEWAY</code> が 2.1.265 で単独でもクラウドゲートウェイのサインインを強制し、APIキーや <code>apiKeyHelper</code> 併用構成が全リクエスト失敗した回帰を戻したものです。両AIの記述が原文と一致し、設定変更不要という点も原文どおりです。<br>https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-6. v2.1.267(9/9)<code>maxEffortLevel</code> と大量のキャッシュ修正</strong><br>[確認済]<br><code>maxEffortLevel</code>(トップレベルまたは <code>modelSettings</code> 配下、Bedrock・Vertex・Foundry を含む全プロバイダで上限を固定)と <code>--system-prompt-snapshot off</code> を確認しました。プロンプトキャッシュ関連の修正は十数件あり、<code>/model</code> でのモデル切替時のツール定義再送、セッション途中の MCP・プラグインツール追加、<code>-p</code> 会話の対話 resume、5MB超トランスクリプトの resume での並列ツール呼び出しとフック出力の欠落がすべて原文にあります。<code>effort:</code> フロントマターの無視が Opus 4.7 / Opus 4.8 / Fable 5 で修正された点も原文どおりです。<br>https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-7. <code>allowedMcpServers</code> の意味変更を v2.1.265 とした点</strong><br>[棄却]<br>Claude はこれを v2.1.265(9/8)の項目として挙げましたが、原文では v2.1.259(9/2)の項目です。変更内容そのもの(ユーザー追加サーバーのみを対象とし、<code>managed-mcp.json</code> 由来を止めるには <code>deniedMcpServers</code> を使う)は実在しますが、今回の対象期間の項目としては誤りです。<br>https://code.claude.com/docs/en/changelog</p>
+<h2>B. Claude Developer Platform</h2>
+<p><strong>B-1. <code>ant apply</code>(9/3)</strong><br>[確認済]<br><code>ant</code> CLI v1.30.0 に追加され、エージェント・環境・スキル・メモリストア・デプロイメントをリポジトリ内ファイルから宣言的に作成更新し、承認プランを表示します。<code>claude-lock.json</code> をコミットすると以後の実行が同一リソースを更新する点まで原文と一致しました。Claude の単独報告ですが裏が取れています。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>B-2. Google Cloud でのメッセージ単位 effort 変更(ベータ、9/3)</strong><br>[確認済]<br>Fable 5.1、Mythos 5.1、Opus 5 が対象で、ベータヘッダは <code>mid-conversation-output-config-2026-07-01</code> です。Claude の記述はヘッダ文字列まで原文と一致しました。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>B-3. Claude Managed Agents の予算上限・<code>inference_geo</code>・GitHub スキル自動読み込み</strong><br>[棄却]<br>Claude は「日付未確認」として9月分の可能性を残しましたが、リリースノート原文ではこれらは 2026年8月7日と8月9日の項目です。機能自体は実在するので誤りは日付の帰属だけですが、対象期間の更新としては成立しません。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h2>C. 公式ブログ</h2>
+<p><strong>C-1. コストと性能の改善ガイド(9/8)</strong><br>[確認済]<br>公開日と3コマンド(<code>/claude-api prompt-audit</code>、<code>/claude-api hillclimb</code>、<code>/claude-api cost-optimize</code>)を原文で確認しました。プロンプトキャッシュの助言は「静的なコンテキスト(ツール定義とシステムプロンプト)を先に置き、伸びる会話をその後ろに置く」という形で書かれています。<br>https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform</p>
+<p><strong>C-2. 記事中の数値の帰属</strong><br>[確認済(ただし Claude の表ラベルは要修正)]<br>Claude は 14.6% と 5.3% を「prompt-audit 適用時」と表にしましたが、原文ではこれは顧客サポートベンチマークを Opus 4.8 から Opus 5 へ移行した際の数値です。Claude 自身が本文で正しい条件を書いているので、表のラベルだけがずれています。原文にはほかに次の数値があります。</p>
+<table><thead><tr><th>項目</th><th>数値</th></tr></thead><tbody><tr><td>hillclimb 最終構成の精度(ベースライン 78.6%)</td><td>90.5%、コストは5分の1</td></tr><tr><td>cost-optimize / LegalBench</td><td>約58%のコスト減</td></tr><tr><td>cost-optimize / Tau2-bench retail</td><td>約73%のコスト減</td></tr><tr><td>cost-optimize / SWE-bench Verified</td><td>約55%のコスト減</td></tr></tbody></table>
+<p>https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform</p>
+<h2>D. Cowork</h2>
+<p><strong>D-1. 組み込みブラウザと Claude in Chrome がエンタープライズで既定ON(本日 9/10 発効)</strong><br>[確認済]<br>ヘルプ記事の原文は組み込みブラウザについて「Enterprise plans: Off by default at launch. Starting September 10, 2026, it turns on by default unless you've turned it off.」と書いており、Claude in Chrome も同じ扱いです。Team は展開時から既定ONです。両AIが同じ日付を報告し、原文と一致しました。<br>https://support.claude.com/en/articles/16635803-set-up-browser-use-in-claude-cowork-for-team-and-enterprise-plans</p>
+<p><strong>D-2. Cowork のクラウド定期タスク起動失敗の修正(v2.1.267)</strong><br>[確認済]<br>管理設定でサンドボックスを必須にしている組織で発生していた起動時失敗の修正です。Claude の単独報告ですが changelog 原文で確認しました。<br>https://code.claude.com/docs/en/changelog</p>
+<h2>E. Claude Design</h2>
+<p><strong>E-1. 対象期間の更新</strong><br>[一次確認できず]<br>claude.com ブログ、support.claude.com のリリースノート、公式ドメイン限定検索のいずれでも 9月3日から9月10日の Claude Design 更新は見つかりませんでした。これは「更新が存在しない」ことの確認ではなく、確認できなかったという意味です。直近の大型更新として辿れるのは6月17日のブログです。<br>https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</p>
+<h2>F. 対象期間外(9/1)だが影響が大きい項目</h2>
+<p><strong>F-1. Fable 5.1 と Mythos 5.1 の価格とキャッシュ読み取り</strong><br>[確認済]<br>入出力は $10 / $50 per MTok で Fable 5 と同じ、キャッシュ読み取りは75%減の $0.25 per MTok です。公式は典型ワークロードで約25%、複雑なコーディングと高度にエージェント的なタスクで最大約45%のコスト減としています。codex の「cache read pricing 低下」は裏が取れました。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1</p>
+<p><strong>F-2. Fable 5.1 の既定 effort</strong><br>[確認済]<br>原文は「Fable 5.1 defaults to High effort in Claude Code, and to Medium in Claude Cowork and on Claude.ai.」です。codex の記述が正確でした。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1</p>
+<p><strong>F-3. 「v2.1.257 から Claude Code の既定モデルが Fable 5.1」</strong><br>[要検証]<br>Claude の単独主張で、今回 2.1.257 の changelog エントリまでは追えていません。関連事実として v2.1.260 に「<code>/model</code> ピッカーが Fable 5.1 を表示しない問題の修正」があり、9月3日時点でもピッカー側に不備が残っていたことは確認できます。</p>
+<p><strong>F-4. 「Terminal-Bench-Science のスコアが Fable 5 の倍以上」</strong><br>[要検証]<br>Claude が Hacker News スレッド経由の話題として挙げたもので、一次情報での裏取りは未了です。ベンチマーク数値は過去にも出所が問題になっています。</p>
+<h2>G. 二次情報(いずれも一次確認できず)</h2>
+<p><strong>G-1. <code>/diff</code> パネルの表示条件(110カラム以上、144カラム以上で自動表示)</strong><br>[要検証]<br>changelog は fullscreen で <code>/diff</code> により開くこととパネルの存在を書いていますが、カラム数のしきい値には一切触れていません。具体的な数字が出典なしで付いている典型例です。<br>https://www.getclaudeskills.com/blog/claude-code-diff-panel-fullscreen-mode</p>
+<p><strong>G-2. <code>CLAUDE.md</code> から <code>AGENTS.md</code> への <code>@</code> インポートが確実</strong><br>[要検証]<br>記事の筆者自身が、root の <code>AGENTS.md</code> を Claude Code がインポートなしで読むかは未検証と明記しています。方針としては妥当ですが、根拠は示されていません。<br>https://wotai.co/blog/agents-md-vs-claude-md</p>
+<p><strong>G-3. 参照資料を <code>references/</code> に外出ししてトークン約20%減</strong><br>[要検証]<br>Qiita 記事の個別事例で、再現条件が示されていません。ただし記事が挙げる手法のうち <code>disable-model-invocation</code>、<code>context: fork</code>、<code>paths</code> は一次情報で実在が確定しています。<br>https://qiita.com/NaokiIshimura/items/4de860f1d62bc4f3e7a4</p>
+<p><strong>G-4. ccleaks の 2.1.265 / 2.1.266 解説</strong><br>[要検証]<br>サイト自身が AI 支援分析であり不正確または古い可能性があると明記しています。codex もそう注記しており、扱いは妥当です。事実確認は公式 changelog 側で行うべきです。</p>
+<h2>今日の注目</h2>
+<ol><li><strong><code>maxEffortLevel</code> の導入可否を検討する(v2.1.267)。</strong> Fable 5.1 は Claude Code で High が既定なので、定期実行の headless ジョブでは effort が過剰になりがちです。モデル別に上限を固定できるため、cron 側のジョブだけ上限を下げるという運用が設定1つで組めます。<code>--system-prompt-snapshot off</code> は逆にキャッシュを毎回捨てるので、プロンプト文面を詰める作業時だけの一時フラグとして使うのが妥当です。</li></ol><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

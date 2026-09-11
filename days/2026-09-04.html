@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-04 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-04</div>
+  <div><span class="lab lab-ok">確認済 17</span><span class="lab lab-warn">要検証 6</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-04</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を一次情報と突き合わせました。今回 WebFetch で直接確認した一次ページ: code.claude.com/docs/en/changelog、/cli-reference、/commands、/skills、anthropic.com/claude-fable-and-mythos-5-1、/news/enterprise-frontier-safeguards、support.claude.com（Fable プラン記事・Cowork ブラウザ記事）、github.blog。</p>
+<hr>
+<h1>2026-09-04 ブリーフ（対象期間 2026-08-28 〜 09-04）</h1>
+<h2>A. モデル / Anthropic 本体</h2>
+<h3>A-1. Claude Fable 5.1 / Mythos 5.1 発表（2026-09-01）</h3>
+<p><strong>[確認済]</strong> 3AI 一致。anthropic.com の発表ページを直接取得し、価格 $10/$50 per MTok・cache read $0.25/MTok（75%減）・「典型ワークロード約25%減 / エージェント的作業で最大約45%減」・デフォルト effort（Claude Code=High、Cowork=Medium、claude.ai=Medium）・Mythos 5.1 はサイバーセキュリティ/ライフサイエンスの審査済み組織限定、をすべて原文で確認。</p>
+<ul><li>https://www.anthropic.com/claude-fable-and-mythos-5-1</li></ul>
+<h3>A-2. ベンチマーク数値</h3>
+<p><strong>[確認済（一部）]</strong> Terminal-Bench-Science 0.1 = 52.6%（Fable 5 は 24.7%）、Terminal-Bench 4.0 = Fable 5.1 55.8% / Mythos 5.1 60.9%、CursorBench 3.2.0 = 73.4% は発表ページで確認。ただし Claude 出力の <strong>Humanity's Last Exam 60.9% / 65.0% は今回の取得結果に含まれておらず、一次確認できていません</strong>（誤りと確認したわけではない）。</p>
+<ul><li>出典同上</li></ul>
+<h3>A-3. Fable 5.1 の必要バージョンと提供面</h3>
+<p><strong>[確認済]</strong> codex 単独主張だったが Help Center 原文で確認。「Fable 5 は v2.1.170 以降、Fable 5.1 は <strong>v2.1.255 以降</strong>」。提供面に <strong>Claude Code / Cowork / Claude Design</strong> が明記されている。API ID は <code>claude-fable-5-1</code>（changelog v2.1.257 でも確認）。</p>
+<ul><li>https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan</li></ul>
+<h3>A-4. Fable 5.1 の破壊的変更・挙動リグレッション</h3>
+<p><strong>[確認済]</strong> Claude が挙げた <code>tool_choice</code> の <code>any</code>/<code>tool</code> 非サポート、thinking ブロックの後方互換制限、per-message effort（beta）、turn-scoped system messages（beta）は既に検証済み。既知の知見では、この7項目は<strong>当リポジトリに1件も対処が入っていない</strong>点が指摘済みです。</p>
+<h3>A-5. Sonnet 5 の値上げ中止（$2/$10 据え置き）</h3>
+<p><strong>[確認済]</strong> 既に一次確定済み。</p>
+<ul><li>ただし Gemini が付けた <strong>「2026-09-01 にアナウンス」という日付は裏付けなし</strong>。知見側の確認は 2026-08-14 時点で既に成立しており、9/1 発表という Gemini の記述は時系列が合いません。事実は正しいが日付は採らないでください。</li></ul>
+<h3>A-6. Enterprise Frontier Safeguards（EFS）発表（2026-09-01）</h3>
+<p><strong>[確認済]</strong> codex・Claude 一致、一次ページで確認。ZDR と誤用検知を両立させ、ログは顧客管理のクラウドに顧客の鍵で保存、Anthropic 側の人手レビューなし。対応予定は Claude Code / Claude Enterprise / Claude Platform / Bedrock / Claude Platform on AWS / Google Agent Platform / Microsoft Foundry。<strong>2026年秋以降に段階展開</strong>。提供までの間、対象顧客は Fable 5 / 5.1 で ZDR を受けられる。</p>
+<ul><li>https://www.anthropic.com/news/enterprise-frontier-safeguards</li></ul>
+<h3>A-7. 「Improving our alignment and security practices」（2026-08-31）</h3>
+<p><strong>[確認済（存在と概要）]</strong> Claude が「本文未読・未確認」としていた項目。実在します。正式タイトルは <strong>"practices"</strong>（Claude 出力の "efforts" は誤り、URL スラッグが efforts）。内容は内部エージェント利用のオフライン監視拡大、約150名のプロダクトエンジニアをセキュリティ/信頼性/プライバシーへ再配置、RL 環境の検証体制の逼迫など。あわせて August 2026 Risk Report を公開。</p>
+<ul><li>https://www.anthropic.com/news/improving-alignment-security-efforts</li></ul>
+<h3>A-8. GitHub Copilot での Fable 5.1 GA（2026-09-01）</h3>
+<p><strong>[確認済]</strong> codex 単独主張。GitHub Changelog 原文で確認。Copilot Pro+ / Max / Business / Enterprise、VS Code・JetBrains・Copilot CLI・coding agent 等。<strong>Business/Enterprise 管理者はポリシー有効化が必要（既定 OFF）</strong>、Fable 5.1 は既定でデータ保持あり、対象エンタープライズは年末まで ZDR の一時免除。</p>
+<ul><li>https://github.blog/changelog/2026-09-01-claude-fable-5-1-generally-available-in-github-copilot/</li></ul>
+<h3>A-9. Text watermarking の検出 API「更新」</h3>
+<p><strong>[要検証]</strong> codex 単独主張。watermark ページ自体は存在しますが、<strong>直近1週間に「更新された」という事実は一次確認できていません</strong>（存在しないと確認したわけではありません）。</p>
+<hr>
+<h2>B. Claude Code（最重視）</h2>
+<h3>B-1. v2.1.259（2026-09-02）</h3>
+<p><strong>[確認済]</strong> 3AI 一致、changelog 原文で全項目確認。</p>
+<ul><li><code>managedMcpServers</code> 管理設定（HTTP/SSE のみ、command 実行型はスキップ）</li><li><code>--permission-prompts none</code>（無人ヘッドレス向け。プロンプトが出る操作は自動 deny、permission mode 自体の判断は生きる）</li><li><code>glab mr create/merge/close/reopen/note/update</code> 認識、<code>claude plugin validate --json</code></li><li><strong><code>allowedMcpServers</code> の対象がユーザー追加サーバのみに変更</strong> — 従来 allowlist で弾かれていた <code>managed-mcp.json</code> のサーバがアップグレード後に読み込まれる（止めるには <code>deniedMcpServers</code>）</li><li><strong>managed settings が読めない場合は黙って無視せず起動拒否</strong></li><li>https://code.claude.com/docs/en/changelog</li></ul>
+<p><strong>補足（今回の追加発見）</strong>: <code>--permission-prompts</code> は changelog には明記されていますが、<strong>CLI reference（/docs/en/cli-reference）にはまだ掲載されていません</strong>。ドキュメント反映待ちの可能性があり、非対話運用に入れる前に実機確認が要ります。</p>
+<h3>B-2. v2.1.257（2026-09-01）</h3>
+<p><strong>[確認済]</strong> changelog 原文で確認。Fable 5.1 追加、<code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code>、<code>/effort</code> の <code>s</code>、auto mode の Containment Escape ルール、作業ディレクトリ外 read の初回確認と <code>permissions.blockReadsOutsideWorkingDirectories</code>、<code>timeFormat</code>/<code>timeZone</code>。</p>
+<ul><li><strong>破壊的変更</strong>: <code>defaultMode: "bypassPermissions"</code> はプロジェクト settings では無視、<code>--add-dir</code> 系がネットワークパス拒否</li><li><strong>キャッシュ関連</strong>: advisor model 設定時のバックグラウンドリクエストのキャッシュミス、スクリーンショット多用セッションの毎ターン miss、Remote Control 途中接続時の Bash ツール定義再送を修正。<code>/fork</code> が元会話の prompt cache を引き継ぐように変更</li><li><strong>gateway 経由では <code>fable</code>/<code>best</code> は当面 Fable 5 に解決されたまま</strong>（<code>/model</code> で明示選択が必要）</li></ul>
+<h3>B-3. v2.1.258 — macOS 12 起動失敗の修正（2026-09-01）</h3>
+<p><strong>[確認済]</strong>（ただし Gemini の記述は不正確）changelog 原文は「<strong>2.1.255 で入ったリグレッションを 2.1.258 で修正</strong>」。Gemini はこれを「v2.1.259 の安定性向上に含まれる」と書いていますが、修正版は 2.1.258 です。</p>
+<h3>B-4. v2.1.251（2026-08-28）</h3>
+<p><strong>[確認済]</strong> codex・Claude 一致、changelog 原文で確認。</p>
+<ul><li><code>PreModelSwitch</code> / <code>PostModelSwitch</code> hook イベント、<code>SessionStart</code> resume hook がセッションの古さと再キャッシュ推定コストを受け取る</li><li><strong><code>/cost</code> にセッション単位の prompt cache 行</strong>（ヒット率・ミス数・再キャッシュされたトークン数・warm/cold）と status line 用 <code>prompt_cache</code> オブジェクト</li><li><code>/usage</code> の Spend limit バー、<code>rate_limits.spend_limit</code></li><li>フォアグラウンドサブエージェントのツール呼び出し/結果を Remote Control へライブ配信</li><li><strong>seat-based Enterprise のデフォルトモデルが Opus 5 に変更</strong></li><li>シンボリックリンク経由の権限迂回（Read/Write/Edit、Grep/Glob、プラグイン宣言パス）を修正、プロジェクト settings の <code>env</code> から <code>CLAUDE_CONFIG_DIR</code>/<code>TMPDIR</code> 等を設定不可に</li></ul>
+<h3>B-5. 「v2.2 は未リリース」</h3>
+<p><strong>[確認済（否定の確認）]</strong> Gemini 主張。changelog を直接確認し、<strong>最新は 2.1.259（2026-09-02）で、それより上のバージョンは存在しません</strong>。これは「確認できなかった」ではなく「一次情報上で不在を確認した」ケースです。</p>
+<h3>B-6. <code>--safe-mode</code> によるトラブルシュート</h3>
+<p><strong>[確認済]</strong> Gemini 単独主張でしたが、<strong>実在します</strong>。CLI reference 原文: 「CLAUDE.md, skills, plugins, hooks, MCP servers, custom commands and agents, output styles, workflows … do not load」。認証・モデル選択・組み込みツール・権限は通常動作。managed settings のポリシーは引き続き適用。<code>CLAUDE_CODE_SAFE_MODE</code> を設定します。<code>--bare</code> とは挙動が異なる点も明記されています。</p>
+<ul><li>https://code.claude.com/docs/en/cli-reference</li></ul>
+<h3>B-7. <code>/cd</code>（セッションを保ったままディレクトリ移動）</h3>
+<p><strong>[確認済]</strong> Gemini 単独主張でしたが実在。commands reference に記載、<strong>v2.1.169 以降</strong>（パス補完は v2.1.206 以降）。加えて skills ドキュメントに「<strong>v2.1.246 以降は <code>/cd</code> 時に移動先の project skills を追加読み込みする</strong>」と明記。</p>
+<ul><li>https://code.claude.com/docs/en/commands</li></ul>
+<h3>B-8. カスタムコマンドの Skills への統合</h3>
+<p><strong>[確認済]</strong> Gemini 主張が公式ドキュメント原文と一致。「<strong>Custom commands have been merged into skills.</strong> <code>.claude/commands/deploy.md</code> と <code>.claude/skills/deploy/SKILL.md</code> はどちらも <code>/deploy</code> を作り、同じように動作する。既存の <code>.claude/commands/</code> は動き続ける」。</p>
+<ul><li>ただし Gemini の「ホットリロード」主張は<strong>条件付き</strong>です。原文では、監視対象は <code>~/.claude/skills/</code>・プロジェクト <code>.claude/skills/</code>・<code>--add-dir</code> 内の <code>.claude/skills/</code> のみで、<strong><code>.claude/agents/</code> と <code>.claude/commands/</code> は監視されず再起動が必要</strong>、bare mode では skill も監視しません。Gemini の書き方は無条件のように読めるので注意。</li><li>https://code.claude.com/docs/en/skills</li></ul>
+<hr>
+<h2>C. 利用上限</h2>
+<h3>C-1. 週次上限 +50% プロモの終了（2026-09-13 23:59 PT）</h3>
+<p><strong>[確認済]</strong> 既に一次確定済み。Gemini・Claude 双方が言及。Claude 出力の「一次未確認」という注記は、知見側で既に解消されています。</p>
+<h3>C-2. 9/14 からの「恒久 +25%」と「実質約17%減」</h3>
+<p><strong>[要検証]</strong> 知見の結論を踏襲。<strong>+25% は Anthropic 公式アカウント @ClaudeDevs の X 投稿（2026-08-29）が出所で、Anthropic 所有の web ページ上には現時点で存在しません</strong>。また「150→125」「17%減」という数値は<strong>公式が公表した絶対値ではなく、二次メディアが導入した説明用の指数</strong>です。Gemini はこれを「一次情報」として support.claude.com に帰していますが、その帰属は誤りです。</p>
+<hr>
+<h2>D. Cowork（重視）</h2>
+<h3>D-1. 組み込みブラウザの既定値と 2026-09-10</h3>
+<p><strong>[確認済]</strong> codex 単独主張でしたが、今回 Help Center 原文で確認。Team は「rollout に伴い既定 ON」、<strong>Enterprise は launch 時 OFF、2026-09-10 から、無効化していなければ既定 ON</strong>。Claude in Chrome は別設定。</p>
+<ul><li>https://support.claude.com/en/articles/16635803-set-up-browser-use-in-claude-cowork-for-team-and-enterprise-plans</li></ul>
+<h3>D-2. Cowork / claude.ai クラウドセッションでの artifact 読み取り</h3>
+<p><strong>[確認済]</strong> v2.1.257 の changelog 原文: 自分のものでない artifact の読み取りは <strong>auto mode でも必ず確認を求める</strong>ように変更。</p>
+<h3>D-3. 期間内の Cowork 固有の新機能発表</h3>
+<p><strong>[確認できず]</strong> Claude は「見つけられなかった」、codex はブラウザ記事のみ、Gemini は「スケジュールタスクの連携が進んでいる」と書いていますが具体的な発表・日付・URL がありません。<strong>Cowork 固有の新機能が今週なかったと断定はできません</strong>が、3AI いずれも一次ソースを提示できていません。</p>
+<h3>D-4. 「13の新規エンタープライズコネクタ / 10の部門別プラグイン / Plugin Create」</h3>
+<p><strong>[要検証]</strong> Claude 自身が「日付・一次ソース未確認」と明記。今回も裏取りしていません。</p>
+<hr>
+<h2>E. Claude Design（重視）</h2>
+<h3>E-1. <code>/design</code> と <code>/design-sync</code> は別コマンドで両方実在</h3>
+<p><strong>[確認済]</strong> Gemini が両方を挙げたのは正しい。今回 commands reference を再取得し、<strong>両方とも現在は掲載されています</strong>（前回検証時は <code>/design</code> が不在だった → ドキュメント側が追いついた）。</p>
+<ul><li><code>/design [brief]</code>: artboard を1つのキャンバスに描き artifact として publish。<strong>artifacts が使えるセッションと Claude Code v2.1.234 以降</strong>が必要。Bedrock / Google Agent Platform / Microsoft Foundry / Claude Platform on AWS では artifacts が使えないため利用不可。</li><li><code>/design-sync [hint]</code>: リポジトリの React デザインシステムを Claude Design にアップロード。初回同期は大規模リポジトリで数時間。</li><li>https://code.claude.com/docs/en/commands</li></ul>
+<h3>E-2. 「双方向同期の強化」「コンポーネント単位の実装引き継ぎがシームレスに」（Gemini）</h3>
+<p><strong>[要検証]</strong> <code>/design-sync</code> の機能説明としてはドキュメントと方向性が合いますが、<strong>「直近アップデートで強化された」ことを示す一次ソースは確認できていません</strong>。Gemini の出典はドメイントップ（claude.com）と Reddit のみです。</p>
+<h3>E-3. 期間内の Claude Design 新規発表</h3>
+<p><strong>[確認できず]</strong> Claude が「見つけられなかった」と報告。今回も 8/28〜9/4 の Design 固有の発表は確認していません。<strong>存在しないという確認ではありません。</strong></p>
+<hr>
+<h2>F. コミュニティ・実践知</h2>
+<h3>F-1. CLAUDE.md 200行 / hooks は強制 / skills は遅延ロード / subagent は境界</h3>
+<p><strong>[確認済（ただし今週の新知見ではない）]</strong> 出所は公式ブログ「Steering Claude Code」（2026-06-18）。Gemini はこれを「技術コミュニティの二次情報」として Zenn/Qiita のドメイントップに帰していますが、<strong>実際は Anthropic 公式の一次情報</strong>です。Claude の整理（公式ブログを一次として引用）が正確。</p>
+<ul><li>https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more</li></ul>
+<h3>F-2. <code>context: fork</code> によるコンテキスト分離</h3>
+<h3>F-3. Gemini の実践知セクション全般の出典</h3>
+<p><strong>[棄却（出典として）]</strong> Gemini の Tips セクションの出典はほぼすべて <code>https://zenn.dev</code> <code>https://qiita.com</code> <code>https://note.com</code> <code>https://news.ycombinator.com</code> といった<strong>ドメインルートで、特定記事を指していません</strong>。内容自体は公式ガイドと重なる部分が多く誤りとは言えませんが、<strong>出典としては検証不能</strong>です。加えて changelog の出典に <code>claude-code.mintlify.app/changelog</code> を挙げていますが、公式ドメインは <code>code.claude.com</code> です。</p>
+<h3>F-4. Reddit / HN の定性評価（「85%削減」、文体改善、冗長コメント）</h3>
+<p><strong>[要検証]</strong> codex・Claude 双方が自ら未検証と明記。個人の主観であり再現性のある計測ではありません。</p>
+<h3>F-5. 障害情報（status.claude.com、9/3 Fable/Mythos/Opus 5 の elevated errors 等）</h3>
+<p><strong>[要検証]</strong> codex 単独主張。今回 status.claude.com を取得していないため一次確認できていません。過去の障害履歴は性質上すぐ流れるので、必要なら別途確認を。</p>
+<hr>
+<h1>今日の注目</h1>
+<h3>1. <code>/cost</code> の prompt cache 行 + status line <code>prompt_cache</code>（v2.1.251）を実測に使う</h3>
+<h3>2. <code>--permission-prompts none</code>（v2.1.259）を headless 定期実行で実機確認する</h3>
+<h3>3. <code>allowedMcpServers</code> の意味変更（v2.1.259）— アップグレード時に挙動が変わる</h3>
+<p><strong>理由</strong>: これは新機能ではなく<strong>サイレントな挙動変化</strong>です。「<code>allowedMcpServers</code> はユーザーが追加したサーバのみを対象に変更 — 従来 allowlist で弾かれていた <code>managed-mcp.json</code> のサーバがアップグレード後に読み込まれる」。allowlist を絞る目的で設定していた場合、<strong>アップグレードした瞬間に想定外の MCP サーバが有効化されます</strong>。止めるには <code>deniedMcpServers</code> への書き換えが必要。同じ v2.1.259 で「managed settings が壊れていたら起動拒否」も入っているので、MCP / managed settings 周りは 2.1.259 に上げる前に棚卸ししておくのが安全です。</p>
+<hr>
+<p><strong>補足（確認の不在 vs 不在の確認）</strong></p>
+<ul><li><strong>不在を一次で確認したもの</strong>: v2.2 は存在しない（changelog 最新は 2.1.259）。<code>--permission-prompts</code> は CLI reference に未掲載（changelog にはある = ドキュメントの不整合であって機能の不在ではない）。</li><li><strong>確認できなかっただけのもの</strong>: 期間内の Cowork / Claude Design 固有の新規発表、watermarking API の「更新」、status.claude.com の障害履歴、Cowork の 13コネクタ/10プラグイン。いずれも<strong>存在しないとは書けません</strong>。</li></ul>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/cli-reference" rel="noopener">Claude Code CLI reference</a></li><li><a href="https://code.claude.com/docs/en/commands" rel="noopener">Claude Code commands reference</a></li><li><a href="https://code.claude.com/docs/en/skills" rel="noopener">Extend Claude with skills</a></li><li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener">Claude Fable 5.1 and Claude Mythos 5.1</a></li><li><a href="https://www.anthropic.com/news/enterprise-frontier-safeguards" rel="noopener">Enterprise Frontier Safeguards</a></li><li><a href="https://www.anthropic.com/news/improving-alignment-security-efforts" rel="noopener">Improving our alignment and security practices</a></li><li><a href="https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan" rel="noopener">Claude Fable models on your plan</a></li><li><a href="https://support.claude.com/en/articles/16635803-set-up-browser-use-in-claude-cowork-for-team-and-enterprise-plans" rel="noopener">Set up browser use in Claude Cowork</a></li><li><a href="https://github.blog/changelog/2026-09-01-claude-fable-5-1-generally-available-in-github-copilot/" rel="noopener">Claude Fable 5.1 GA in GitHub Copilot</a></li><li><a href="https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more" rel="noopener">Steering Claude Code</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-07 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-07</div>
+  <div><span class="lab lab-ok">確認済 8</span><span class="lab lab-warn">要検証 6</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-07</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証が取れました。以下にまとめます。</p>
+<hr>
+<h1>Claude / Anthropic 直近1週間（2026-06-30〜07-07）情報精査レポート</h1>
+<p>対象窓は本日(2026-07-07)から遡って <strong>6/30〜7/7</strong>。一次情報(anthropic.com / code.claude.com / support.claude.com)で裏取りした範囲を明記します。</p>
+<h2>1. モデル・プラットフォーム</h2>
+<h3>Claude Sonnet 5 発表</h3>
+<p><strong>[確認済]</strong> 2026-06-30発表。Free/Proの既定モデル、Max/Team/Enterprise・Claude Code・API・Bedrock・Vertexで利用可。ネイティブ1Mコンテキスト。導入価格 $2/$10 per Mtok(2026-08-31まで、以降 $3/$15)。APIモデル名 <code>claude-sonnet-5</code>。3AIが一致し、公式記事・システムカードで確認。<br>出典: https://www.anthropic.com/news/claude-sonnet-5</p>
+<h3>Sonnet 5 のAPI仕様変更(adaptive thinking等)</h3>
+<p><strong>[要検証]</strong> codexのみが詳細主張(128k max output、manual extended thinking削除で指定すると400エラー、非既定 temperature/top_p/top_k も400、新tokenizerで約30%トークン増)。方向性は妥当だが公式リリースノート原文までは今回未確認。実装前にAPIドキュメントで各項目を要確認。<br>出典(codex提示): https://platform.claude.com/docs/en/release-notes</p>
+<h3>Fable 5 / Mythos 5 の再展開・アクセス復旧</h3>
+<p><strong>[確認済]</strong> 輸出規制が6/30に解除、<strong>Fable 5は7/1にグローバル復旧</strong>(Claude Platform, Claude.ai, Claude Code, Claude Cowork)。Mythos 5は一部米国組織向けに復旧。3AI一致+公式記事で確認。<br>出典: https://www.anthropic.com/news/redeploying-fable-5</p>
+<ul><li><strong>付随: Fable 5の週次利用枠50%扱い</strong> → <strong>[要検証]</strong> codexは「一部プランで7/7まで週次使用量の最大50%まで含まれ、その後usage credits扱い」と主張。Geminiは「週間利用制限を50%緩和、7/13まで」と別内容で記載。<strong>両者の数字・日付が食い違うため、Geminiの『7/13/枠拡大』は棄却寄り</strong>。codex版が公式に近いが原文の当該一文は今回のスニペットで直接確認できず。</li></ul>
+<h3>Claude Science(研究者向けワークベンチ)beta</h3>
+<p><strong>[確認済]</strong> 2026-06-30、Pro/Max/Team/Enterprise向けbeta。60以上のcurated skills/connectors、reviewer agent、タンパク質・分子の3D表示、SSH/HPC対応。AI for Scienceで最大50プロジェクト・$30,000クレジット(応募〜7/15)。3AI一致+公式・複数報道で確認。<br>出典: https://www.anthropic.com/news/claude-science-ai-workbench</p>
+<h3>Enterprise向け Model Entitlements(beta)</h3>
+<p><strong>[確認済]</strong> 2026-07-01。Enterprise管理者がユーザーの利用可能モデルとeffort levelを制御可能に。codex・Claudeが一致、支援記事リリースノートで確認。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Linux版 Claude Desktopアプリ beta</h3>
+<p><strong>[確認済]</strong> 2026-06-30、Ubuntu 22.04+/Debian 12+(x86_64/arm64)向けbeta。Chat/Cowork/Code の3セクション、MCP対応。Computer UseとディクテーションはLinux未対応。Gemini・Claude(Codeドキュメント)で確認。<br>出典: https://code.claude.com/docs/en/desktop-linux</p>
+<h3>プライバシーポリシー改定(7/8発効)/ Claude Tag(Slack統合, 6/23)</h3>
+<p><strong>[要検証]</strong> いずれもGemini単独主張。今回一次情報で確認できず。Claude Tagは窓外(6/23)かつ他2AIも言及なし。<strong>現時点では裏取り不可</strong>。</p>
+<h2>2. Claude Code(公式チェンジログで確認)</h2>
+<p>以下いずれも <strong>[確認済]</strong>(code.claude.com/changelog 原文で確認、codex・Claudeが一致):</p>
+<ul><li><strong>v2.1.197 (6/30)</strong> — Sonnet 5を既定モデル化、1Mコンテキスト、8/31まで導入価格。</li><li><strong>v2.1.198 (7/1)</strong> — サブエージェント既定バックグラウンド実行/<strong>Claude in Chrome 一般提供(GA)</strong>/<strong><code>/dataviz</code> スキル追加</strong>(パレット検証付き)/background agentが自動でdraft PR作成。</li><li><strong>v2.1.199 (7/2)</strong> — スタックしたslash skill最大5個ロード、SSL証明書エラー即時失敗、ストリーミング部分応答の保持等の修正。</li><li><strong>v2.1.200 (7/3)</strong> — <code>AskUserQuestion</code> が既定で自動継続しない/<strong>既定パーミッションモードを "Manual" に変更</strong>(CLI, VS Code, JetBrains)。</li><li><strong>v2.1.201 (7/3)</strong> — Sonnet 5セッションで会話途中のsystemロールをharnessリマインダーに使わない変更。</li></ul>
+<blockquote>Geminiの「デフォルト権限Manual化(7月上旬・未確認)」は正しく、<strong>v2.1.200 (7/3)</strong> が正体。日付を確定できます。</blockquote>
+<h2>3. Cowork</h2>
+<h3>Coworkチェンジログ(v1.17377.1 / v1.18286.0)</h3>
+<p><strong>[要検証]</strong> Claude単独提示(6/30・7/2、セッション再開クラッシュ修正、Computer Use teachモード修正等)。内容は妥当だがCowork changelog原文は今回未クロール。他AIの裏取りなし。<br>出典(Claude提示): https://claude.com/docs/cowork/changelog</p>
+<h3>Linux/Fable 5経由のCowork利用</h3>
+<p><strong>[確認済(派生)]</strong> Linux Desktop・Fable 5復旧の対象にCoworkが含まれる点は上記2件から確認済み。Gemini独自の追加事実ではなく既出項目の言い換え。</p>
+<h2>4. Claude Design(特に重視)</h2>
+<h3><code>/design-sync</code>・双方向同期・MCPサーバ・<code>/design-login</code>・Pro以上beta</h3>
+<p><strong>[確認済(機能実在)/ただし発表は窓外]</strong> 機能は実在:<code>/design-sync</code>でGitHub/デザインファイル/ローカルからデザインシステムをインポートしClaude Codeと双方向同期、<code>claude mcp add ... claude-design</code>でMCP接続後 <code>/design-login</code> 認証、Pro/Max/Team/Enterprise beta(Enterpriseは既定off)。<strong>ただし大型アップデート告知("stays on brand")の公開日は2026-06-17で今回の窓の外</strong>。support記事が"Updated this week"なのはドキュメント更新にすぎない。<br>出典: https://support.claude.com/en/articles/14604416-get-started-with-claude-design / https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</p>
+<h3>デザインシステムのインポート/管理者ロック(Admin Roles)/トークン消費最適化・枠統合</h3>
+<p><strong>[要検証(窓外の可能性)]</strong> いずれもGemini単独+二次ソース(HumanCo, UX Planet, ExplainX)。実体は6/17の同じDesign刷新に含まれる公算(VentureBeatが「token-burning問題の修正」を報道)。<strong>個別の"Admin Roles/ロック"という固有名は一次情報で確認できず、Geminiの固有名化は要警戒</strong>。窓内の新規発表としては扱えない。</p>
+<h2>5. 周辺・報道ベース</h2>
+<h3>Alibaba が Claude Code を利用禁止(7/10〜)</h3>
+<p><strong>[要検証(第三者報道)]</strong> 複数媒体(TechCrunch, Tom's Hardware等)が報道。r/ClaudeAIの投稿がv2.1.91(4/2)以降の「中国検知ロジック」を主張、Alibabaは7/10からQoderへ移行指示。Anthropicエンジニアが「不正リセラー対策/蒸留防止の3月の実験で、削除PRを7/1にマージ」とX上で説明。<strong>Anthropic公式発表ではなく報道+個人SNSベース。事実関係は係争的</strong>。<br>出典: https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-claude-code/</p>
+<h3>7/6 の障害(Claude.ai/Code OAuth、複数モデルのエラー増)</h3>
+<p><strong>[要検証]</strong> codex単独、statusページ由来。20:05 UTC解決と記載。内容は妥当だが今回status原文を直接確認せず。恒久的な更新ではなく一時障害。</p>
+<hr>
+<h2>今日の注目(検証・実装を試す価値のある更新)</h2>
+<ol><li><strong>Claude Code v2.1.200 の既定パーミッション "Manual" 化</strong> — 既存の自動実行前提のワークフロー/CIやスクリプトが<strong>黙って止まる</strong>可能性があるため、最優先で挙動確認を。<code>--permission-mode</code> / <code>"defaultMode"</code> の設定を見直す実利がある。 [確認済]</li><li><strong>Sonnet 5 が Claude Code 既定 + ネイティブ1Mコンテキスト(導入価格8/31まで)</strong> — 価格が安い今のうちにコーディング/エージェント用途で実測する価値。ただしAPI側の仕様変更(extended thinking/temperature指定で400エラー、tokenizer変更で約30%トークン増)は[要検証]なので、移行前にAPIドキュメントで各パラメータを実際に叩いて確認するのを推奨。</li><li><strong><code>/dataviz</code> スキル(v2.1.198)</strong> — パレット検証付きでチャート/ダッシュボード生成を試せる、実装コストが低く効果が見えやすい新機能。 [確認済]</li></ol>
+<p>（Claude Designの<code>/design-sync</code>双方向同期も試す価値は高いが、発表自体は6/17で「直近1週間の新規更新」ではない点に留意。）</p>
+<p><strong>補足:</strong> Gemini出力は固有名・日付の精度に問題が散見されました。特に①Design「50%利用枠拡大・7/13」(codexの「Fable 5週次50%・7/7」と食い違い→棄却寄り)、②「Admin Roles」等の固有名化、③「Claude Tag(6/23)」「プライバシーポリシー7/8発効」は裏取り不可。数字・固有名はGemini単独ソースを採用しないのが安全です。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

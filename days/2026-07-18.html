@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-18 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-18</div>
+  <div><span class="lab lab-ok">確認済 9</span><span class="lab lab-warn">要検証 2</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-18</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証が取れました。以下にまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近動向 精査レポート(基準日 2026-07-18)</h1>
+<h2>前提メモ</h2>
+<ul><li><strong>codex(ChatGPT)は収集失敗</strong>のため、突き合わせは Gemini と Claude の2ソース。よって「複数AI一致」の判定は実質2AI間。裏取りは WebSearch で一次情報(anthropic.com / claude.com / code.claude.com)を優先確認した。</li><li>「直近1週間」= 7/11〜7/18 と解釈。7/7 前後の発表は枠外として区別。</li></ul>
+<hr>
+<h2>1. Claude Code</h2>
+<h3>v2.1.211 リリース(7/15)</h3>
+<p><strong>[確認済]</strong> <code>--forward-subagent-text</code>(stream-json でサブエージェントのテキスト/思考を出力)追加、権限プレビューの制御文字無害化、メモリリーク修正。Gemini・Claude 一致、一次changelogとも整合。ただしGeminiは「7/15」、releasebot集約は「7/16」と表記差あり。<br>出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a> / <a href="https://releasebot.io/updates/anthropic/claude-code" rel="noopener">releasebot</a></p>
+<h3>v2.1.212 リリース(7/17)</h3>
+<p><strong>[確認済]</strong> <code>/fork</code> のバックグラウンドセッション複製化、<code>claude auto-mode reset</code> 追加、<strong>セッション単位の WebSearch 呼び出し上限(既定200)・サブエージェント生成上限</strong>、2分超MCPツールの自動バックグラウンド化。Claudeのみ記載だが一次changelogで確認できた。<br>出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></p>
+<h3>v2.1.207〜210(7/11〜14)</h3>
+<p><strong>[確認済]</strong> Bedrock/Vertex/Foundry での Auto mode オプトイン不要化(207)、スクリーンリーダーモード(208)、<code>worktree</code> サブエージェントの git 誤操作修正(210)等。Claudeのみだが changelog と整合。</p>
+<h3>既定モデルを Opus 4.8 へ</h3>
+<p><strong>[確認済]</strong> Claude Code の Bedrock/Vertex/AWS 既定モデルが <strong>Claude Opus 4.8</strong>。一次docsでも「Opus 4.8 が既定(旧4.6)」と確認。<br>出典: <a href="https://code.claude.com/docs/en/model-config" rel="noopener">Model configuration docs</a></p>
+<h3>⚠️ Gemini の「週間利用制限50%増量」の帰属誤り</h3>
+<p><strong>[要検証→部分訂正]</strong> Geminiは「Claude Code の週間利用制限50%ボーナスを7/19まで延長」と単独キャンペーン扱い。実際は <strong>Fable 5 アクセス延長に付随した措置</strong>(下記4参照)。50%増量・7/19 という数字自体は正しいが、Geminiは Fable 5 という文脈を丸ごと欠落させている。</p>
+<hr>
+<h2>2. Claude Cowork(Web / モバイル)</h2>
+<p><strong>[確認済]</strong> <strong>7/7</strong> に Web(claude.ai)+ iOS/Android(ベータ、まず Max プラン)へ拡大。サーバー側リモートセッションでデバイスオフラインでもタスク継続・スケジュール実行。両AI一致、一次ブログで確認。<strong>7/11〜18の枠内には Cowork 固有の新発表なし</strong>(両AI一致)。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">claude.com/blog/cowork-web-mobile</a> / <a href="https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/" rel="noopener">TechCrunch</a></p>
+<h3>⚠️ Gemini の「Cowork 利用上限2倍キャンペーン(8/5まで)」</h3>
+<p><strong>[要検証・疑わしい]</strong> Gemini 単独主張。裏付けが取れず、Fable 5 の増枠キャンペーンと混同した可能性が高い。<strong>確認できなかった。</strong> 数字・日付を鵜呑みにしないこと。</p>
+<hr>
+<h2>3. Claude Design</h2>
+<p><strong>[確認済]</strong> <strong>7/11〜18の枠内に新機能・仕様変更なし</strong>(両AI一致)。直近の大きな動きは 2026年6月の大型アップデート(デザインシステムインポート、Claude Code 連携、トークン消費削減、エンタープライズ向けエクスポート)。初回ローンチは 4/17。<br>出典: <a href="https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem" rel="noopener">VentureBeat</a></p>
+<h3>⚠️ コマンド名の不一致</h3>
+<p><strong>[要検証]</strong> Gemini は <code>/design-sync</code>、Claude は <code>/design</code> と記載。<strong>正確なコマンド名は未確認。</strong> Gemini は「利用クォータ共通化」も主張するが裏取れず。固有名はGeminiの捏造傾向に注意。</p>
+<hr>
+<h2>4. モデル / プロモーション</h2>
+<h3>Fable 5 アクセスを 7/19(PT 23:59)まで再延長 + 週間レート上限50%増</h3>
+<p><strong>[確認済]</strong> 週内2度目の延長。OpenAI の新モデル(GPT-5.6、コードネーム "Sol")投入への対応。有料プランで週次上限の最大50%を Fable 5 に充当可、Claude Code の週間レート50%ボーナスも同日まで連動。Claudeが正しく捕捉、複数報道で確認。<br>出典: <a href="https://www.forbes.com/sites/tylerroush/2026/07/13/ai-model-wars-anthropic-extends-fable-access-again-after-openais-sol-release/" rel="noopener">Forbes(7/13)</a> / <a href="https://officechai.com/ai/anthropic-extends-claude-fable-5s-access-on-paid-plans-until-19th-july/" rel="noopener">officechai</a></p>
+<h3>❌ Gemini「Claude Sonnet 5 を各サービスのバックエンドで展開(6/30発表、8/31まで特別価格)」</h3>
+<p><strong>[棄却]</strong> 今週のフラッグシップ/プロモ対象は <strong>Fable 5</strong>、Claude Code 既定は <strong>Opus 4.8</strong>。「Sonnet 5 がバックエンド」「6/30」「8/31まで特別価格」は裏付けが取れず、<strong>Gemini の固有名・日付の捏造の疑いが濃い。</strong> Sonnet 5 自体は実在モデルだが、この文脈の主張は誤り。</p>
+<hr>
+<h2>5. Anthropic 全般</h2>
+<h3>Claude for Teachers 正式ローンチ(7/14)</h3>
+<p><strong>[確認済]</strong> 米国の認定K-12教員に無償提供。全50州の学習標準に対応、Learning Commons 連携、OpenSciEd・Illustrative Mathematics 等の教材連携。データは学習に不使用、FERPA準拠。両AI一致、公式発表で確認。(補足:2027/6/30 までに登録で1年間フルアクセス)<br>出典: <a href="https://www.anthropic.com/news/claude-for-teachers" rel="noopener">anthropic.com/news/claude-for-teachers</a></p>
+<h3>FedRAMP High / Claude for Government(公共部門)</h3>
+<p><strong>[確認済]</strong> <strong>7/7</strong>、Claude Code + Claude Cowork を <strong>FedRAMP High 認可環境</strong>の「Claude for Government Desktop」公開ベータとして提供。行政・立法・司法の三権に拡大、ハッシュチェーン監査ログ等。Anthropic が契約・請求主体。両AI・一次ブログで確認。※Gemini の「7/7発表」は正しいが、Claude が日付未確認としていた「Claude for Government ベータ」も同一発表に帰結。<br>出典: <a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" rel="noopener">claude.com/blog/bringing-claude-code-and-claude-cowork-to-government</a></p>
+<h3>セルフサービス HIPAA 設定 / Admin API ベータ(7/14) / 会話途中システムメッセージ(7/15)</h3>
+<p><strong>[要検証]</strong> いずれも Claude 単独、出典は第三者集約 releasebot のみ。一次確認は未実施。<strong>確認できていない。</strong><br>出典: <a href="https://releasebot.io/updates/anthropic/claude" rel="noopener">releasebot/claude</a> / <a href="https://releasebot.io/updates/anthropic/claude-developer-platform" rel="noopener">releasebot/developer-platform</a></p>
+<h3>❌/⚠️ Gemini「カナダ AI研究に1,000万ドル支援(7/14)」</h3>
+<p><strong>[要検証・疑わしい]</strong> Gemini 単独、金額・日付が具体的だが裏取れず。<strong>確認できなかった。</strong> Gemini の数字捏造傾向に鑑み、鵜呑み不可。</p>
+<hr>
+<h2>今日の注目(検証・実装を試す価値)</h2>
+<ol><li><strong>Claude Code v2.1.212 のセッション単位ガードレール</strong> — WebSearch(既定200)・サブエージェント生成(既定200)の上限、2分超MCPツールの自動バックグラウンド化。エージェント暴走の実務的な安全弁で、既存の自動化スクリプトの挙動が変わる可能性があり、<strong>今すぐ実挙動を確認する価値</strong>が高い。<a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></li></ol>
+<ol><li><strong>Fable 5 アクセス + Claude Code 50%レート増(7/19 PT 23:59 まで)</strong> — 期限が明日で切れる。高負荷の検証・比較を回すなら<strong>今週末が実質ラストチャンス</strong>。延長履歴があるとはいえ確約なし。<a href="https://www.forbes.com/sites/tylerroush/2026/07/13/ai-model-wars-anthropic-extends-fable-access-again-after-openais-sol-release/" rel="noopener">Forbes</a></li></ol>
+<ol><li><strong>Claude for Teachers(7/14)</strong> — 教育文脈のワークフロー/スキル連携を試すなら、対象該当者は今週の登録で1年分確保できる導線が明確。教材連携(Learning Commons)の実挙動は<strong>新規性が高く検証価値あり</strong>。<a href="https://www.anthropic.com/news/claude-for-teachers" rel="noopener">公式</a></li></ol>
+<hr>
+<h3>総括:Gemini 出力の信頼度</h3>
+<ul><li><strong>要注意点</strong>:「Sonnet 5 バックエンド」(棄却)、「Cowork 2倍キャンペーン8/5」「カナダ$10M」(いずれも裏取れず)、<code>/design-sync</code> コマンド名。数字・固有名の捏造傾向が今回も複数箇所で確認された。</li><li><strong>Claude 出力</strong>は概ね一次情報と整合したが、HIPAA/Admin API 等 releasebot 依存項目は一次未確認のまま「要検証」で残る。</li></ul>
+<p><strong>Sources:</strong></p>
+<ul><li>https://www.anthropic.com/news/claude-for-teachers</li><li>https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government</li><li>https://claude.com/blog/cowork-web-mobile</li><li>https://code.claude.com/docs/en/changelog</li><li>https://code.claude.com/docs/en/model-config</li><li>https://www.forbes.com/sites/tylerroush/2026/07/13/ai-model-wars-anthropic-extends-fable-access-again-after-openais-sol-release/</li><li>https://releasebot.io/updates/anthropic/claude-code</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

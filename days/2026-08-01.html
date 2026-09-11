@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-08-01 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-08-01</div>
+  <div><span class="lab lab-ok">確認済 13</span><span class="lab lab-warn">要検証 6</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-08">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-08-01</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3つの出力を突き合わせ、一次情報で裏取りしました。結果は以下です。</p>
+<hr>
+<h1>A. モデル / Anthropic 全般</h1>
+<h3>1. Claude Opus 5 提供開始（2026-07-24）</h3>
+<p><strong>[確認済]</strong> 3AI一致 + 一次情報確認。<code>claude-opus-5</code>、1Mコンテキスト（デフォルト兼上限）、128k max output、thinking デフォルトON、$5/$25 per MTok（Opus 4.8 と同価格）。API / Bedrock / Google Cloud / Microsoft Foundry で提供。<br>→ https://www.anthropic.com/news/claude-opus-5 / https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>2. Opus 5 の破壊的変更（thinking 無効化の制限）</h3>
+<p><strong>[確認済]</strong> codex のみが指摘、一次情報で確認。Opus 5 では effort <code>xhigh</code> / <code>max</code> 指定時に <code>thinking: {"type":"disabled"}</code> を渡すと <strong>400 エラー</strong>（Opus 4.8 からの破壊的変更）。effort ladder は <code>low</code>〜<code>max</code>。<br>→ https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>3. サイバーセキュリティ評価での実世界インシデント3件（2026-07-30）</h3>
+<p><strong>[確認済]</strong> 3AI一致。評価環境の設定ミスで実インターネット到達。<strong>141,006 件</strong>の評価ランを遡及レビューし3件（計6ラン、3組織）を特定。関与モデルは <strong>Claude Opus 4.7 / Claude Mythos 5 / 社内リサーチ用テストモデル</strong>。最も深刻な事例は数百行の機密データを含む本番DBへのアクセス。<br>→ https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals<br>※ Gemini の「7月31日」は誤り（正しくは 7/30）。Claude が挙げた 141,006 という数字は一次情報と一致。</p>
+<h3>4. オープンウェイトモデルに関する立場表明（2026-07-27）</h3>
+<p><strong>[確認済]</strong> codex / Claude 一致、newsroom で存在確認。<br>→ https://www.anthropic.com/news/position-open-weights-models<br>※ codex の「Dario Amodei が『禁止を主張したことはない』と明記」という帰属・引用内容までは本文未確認 → その部分は <strong>[要検証]</strong>。</p>
+<h3>5. Cognizant との提携拡大（2026-07-27）</h3>
+<p><strong>[確認済]</strong> codex / Claude 一致、newsroom で存在確認。エンタープライズ顧客向けに Claude を展開。<br>→ https://www.anthropic.com/news/cognizant-anthropic</p>
+<h3>6. AI for Science 希少疾患研究助成（発表 7/20 / 締切 2026-08-02 23:59 PST）</h3>
+<p><strong>[確認済]</strong> Gemini 単独主張だったが<strong>一次情報で裏が取れた</strong>。6か月で最大 <strong>$50,000 相当の Claude クレジット</strong>。対象は①希少遺伝性疾患の基礎研究者、②希少疾患の臨床開発を進めるアーリーステージのバイオテック企業。<br>→ https://www.anthropic.com/news/rare-disease-research-grants</p>
+<h3>7. 大規模障害（2026-07-29〜30）</h3>
+<p><strong>[確認済（発生自体）] / [要検証（詳細数値）]</strong> claude.ai / API / Claude Code / Cowork で 529 Overloaded が多発。7/29 19:49 UTC に認知、7/30 中に復旧。ただし「約25分の断続的障害」「2件のネットワーク障害」「2,000件超の障害報告」は<strong>すべて二次情報</strong>で、公式ポストモーテムを確認できていません。<br>※ Claude が出典に挙げた <code>status.anthropic.com/incidents/thhxckx9srjr</code> は<strong>2025年3月25日の別インシデント</strong>にリダイレクトされます。出典URLとしては誤りです。</p>
+<hr>
+<h1>B. Claude Code（重点）</h1>
+<h3>8. v2.1.219（2026-07-24）— 今週の実質的な中身はここに集中</h3>
+<p><strong>[確認済]</strong> 公式 changelog で全項目確認。codex / Claude の記載はほぼ正確。</p>
+<ul><li>Opus 5 が<strong>デフォルトの Opus モデル</strong>に（1M context、fast mode は $10/$50 per Mtok）</li><li><code>sandbox.network.strictAllowlist</code>：許可リスト外ホストをプロンプトなしで拒否</li><li><code>DirectoryAdded</code> フック（<code>/add-dir</code> / SDK <code>register_repo_root</code> 後に発火）</li><li><strong>サブエージェントのネスト生成が既定 depth 3 に</strong>（従来1。<code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code> で無効化）</li><li><code>workflowSizeGuideline</code> 設定キー追加 / 動的ワークフローの既定サイズが medium（15エージェント未満目安）</li><li>stream-json：<code>mcp_server_errors</code> を init イベントに追加、ネストサブエージェント転送</li><li>fast mode から <strong>Opus 4.7 を除外</strong>（<code>/fast</code> は Opus 5 / 4.8 対象）</li><li><code>claude-api</code> skill の既定を Opus 5 に変更</li></ul>
+<p>→ https://code.claude.com/docs/en/changelog</p>
+<h3>9. v2.1.220（2026-07-25）</h3>
+<p><strong>[確認済]</strong> 記載は「Bug fixes and reliability improvements」の1行のみ。<strong>8/1 時点で 2.1.220 以降のバージョンは未公開</strong>（codex / Claude が正確、Gemini が 219/220 の内容を混同して 220 側に機能を帰属させている）。</p>
+<h3>10. 「週間利用上限+50%キャンペーンが 7/19〜7/25 に終了」（Gemini）</h3>
+<p><strong>[棄却]</strong> 当該プロモーションは終了しておらず、<strong>2026-08-19 まで延長</strong>されています（Pro / Max / Team / シート課金 Enterprise 対象）。Claude の「8/19 まで」という記載のほうが正しい。<br>→ 二次情報のみ（https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/ 等）。公式ヘルプの一次記載は未確認のため、<strong>「8/19 まで」という日付自体は [要検証]</strong>。確実なのは「7/25 に終了した」が誤りである点です。</p>
+<hr>
+<h1>C. MCP（Claude Code / Cowork 共通の仕様変更）</h1>
+<h3>11. MCP 2026-07-28 仕様の Claude 導入（2026-07-28）</h3>
+<p><strong>[確認済]</strong> <strong>Claude のみが挙げた項目でしたが、公式ブログで確認できました</strong>。Gemini / codex はこれを取りこぼしています。今週で最も実務インパクトが大きい変更です。</p>
+<ul><li><strong>ステートレス化</strong>：双方向ステートフルプロトコル → request/response モデルへ。サーバーレス／エッジ配備が可能に</li><li><strong>標準拡張</strong>：<strong>MCP Apps</strong>（サーバーが会話内に対話的UIを描画）、<strong>Tasks</strong>（長時間処理）をバージョン付き拡張として提供</li><li><strong>認可の強化</strong>：本番 OAuth 2.0 / OIDC 準拠。Entra / Okta 等の企業IdPと接続可能</li><li>対応範囲：Claude 本体（コネクタディレクトリ 950+ サーバー）、<strong>Claude Code</strong>、<strong>Claude Cowork</strong>、managed auth を伴うエンタープライズ配備</li></ul>
+<p>→ https://claude.com/blog/bringing-mcp-2026-07-28-to-claude / https://blog.modelcontextprotocol.io/posts/2026-07-28/</p>
+<h3>12. 「MCP SDK 月間ダウンロード 400M 超」</h3>
+<p><strong>[確認済]</strong> Claude が「未確認・二次情報」としていましたが、<strong>公式ブログ本文に記載があります</strong>（"exceeds 400 million monthly SDK downloads"）。ただし「年内4倍」の部分は未確認。</p>
+<hr>
+<h1>D. Claude Cowork（重点）</h1>
+<h3>13. 直近1週間の Cowork 固有の新機能・仕様変更：<strong>なし</strong></h3>
+<p><strong>[確認済]</strong> 3AI一致。Claude Apps 公式リリースノートの最新エントリは <strong>7/24（Opus 5）</strong> で、7/25 以降の Cowork 項目はありません。直近の大型更新は範囲外の <strong>7/7</strong>（web / iOS / Android 拡張、セッションのリモート保存、Chat と Cowork のホーム統合、Max から順次展開）。<br>→ https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>14. Cowork の5時間あたり利用上限 2倍キャンペーンが 2026-08-05 まで継続</h3>
+<p><strong>[確認済]</strong> Claude 単独主張でしたが、<strong>公式 @claudeai の告知で確認</strong>。対象は Pro / Max / Team / 旧シート課金 Enterprise。<strong>5時間レートリミットのみ</strong>が対象で、週間上限・Claude Code・通常チャットは対象外。無料プランと従量課金シートは除外。<br>→ https://x.com/claudeai/status/2074525821755101458</p>
+<h3>15. 7/29〜30 障害の Cowork への影響</h3>
+<p><strong>[要検証]</strong> 影響対象に含まれるという記述は二次情報ベース。公式ステータスの一次記載は未確認。</p>
+<hr>
+<h1>E. Claude Design（重点）</h1>
+<h3>16. 直近1週間の Claude Design の新機能・仕様変更：<strong>なし</strong></h3>
+<p><strong>[確認済]</strong> 3AI一致。公式リリースノートにも 7/25 以降の Claude Design 項目はありません。</p>
+<h3>17. 直近の大型更新は 2026-06-17（design-sync 等）</h3>
+<p><strong>[要検証]</strong> 複数の二次情報が一致（デザインシステムのインポート、WYSIWYG キャンバス編集、Claude Code との双方向 <code>/design-sync</code>、PDF/PPTX 等へのエクスポート、research preview → beta）。<strong>anthropic.com / support.claude.com の一次記載は確認できませんでした</strong>。Gemini の「6月17日」と Claude の「6月」は矛盾せず、二次情報とも整合。</p>
+<h3>18. Claude Design の開始時期</h3>
+<p><strong>[要検証]</strong> Gemini「4/17 Research Preview 公開」、codex「4/17 Claude Design by Anthropic Labs 開始」で一致。ただし公式ヘルプは「Claude Design は 2026年4月に launch」までしか確認できず、<strong>17日という日付は一次未確認</strong>。</p>
+<h3>19. 「初週で100万人超が利用」「外部9ツール連携（Adobe / Canva / Gamma 等）」</h3>
+<p><strong>[要検証]</strong> 二次情報のみ。一次ソース未確認。Claude 自身が未確認と明記しており、その扱いは妥当。</p>
+<hr>
+<h1>総評（AI別の信頼性）</h1>
+<ul><li><strong>Claude</strong>：今週唯一 MCP 2026-07-28 を捕捉。未確認項目に自分でフラグを立てており精度が最も高い。ただし障害の出典URLを誤ったものに紐付けている（2025年3月の別インシデント）。</li><li><strong>codex</strong>：日付・URL の正確性が高く、誤りは見つかりませんでした。網羅性で MCP を落としています。</li><li><strong>Gemini</strong>：<strong>捏造は今回は見つかりませんでした</strong>（$50k / 8月2日締切の助成は一次情報と完全一致）。ただし①CTF報告の日付を1日ずらす、②v2.1.219 の機能を 220 に混ぜて帰属、③<strong>利用上限プロモの終了を事実と逆に記述</strong>、という3件の誤りがあります。特に③は他AIと矛盾し、事実としても誤りなので棄却しました。</li></ul>
+<hr>
+<h1>今日の注目（検証・実装を試す価値のある更新）</h1>
+<p><strong>1. MCP 2026-07-28 のステートレス化 — 最優先</strong><br><code>initialize</code> ハンドシェイクと <code>Mcp-Session-Id</code> を前提にした自作 MCP サーバーは、request/response モデルへの移行で挙動が変わる可能性があります。Claude Code / Cowork 双方に効くうえ、MCP Apps（会話内UI描画）と Tasks（長時間処理）は今すぐ試せる新しい設計余地です。今週唯一の「仕様レベル」の変更で、影響範囲が最も広い。</p>
+<p><strong>2. Claude Code のネストサブエージェント depth 3 + <code>workflowSizeGuideline</code></strong><br>既定値の変更なので、<strong>アップデートしただけで自分のエージェント構成の挙動が変わっています</strong>。多段委譲を組んでいるなら実挙動の確認を推奨。逆に想定外のネストを避けたいなら <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code> で明示的に戻せます。<code>sandbox.network.strictAllowlist</code> も、サンドボックス実行の許可プロンプトを減らせる実用的な追加です。</p>
+<p><strong>3. 期限が迫っている2件（該当する場合のみ）</strong></p>
+<ul><li><strong>AI for Science 希少疾患助成：締切 2026-08-02 23:59 PST — 明日です。</strong> 最大 $50,000 相当のクレジット。</li><li><strong>Cowork 5時間上限2倍：8/5 まで。</strong> 重いタスクをまとめて投げるなら今週中。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://www.anthropic.com/news/claude-opus-5" rel="noopener">Introducing Claude Opus 5</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener">Investigating three real-world incidents in our cybersecurity evaluations</a></li><li><a href="https://www.anthropic.com/news/position-open-weights-models" rel="noopener">Our position on open-weights models</a></li><li><a href="https://www.anthropic.com/news/cognizant-anthropic" rel="noopener">Cognizant and Anthropic expand their partnership</a></li><li><a href="https://www.anthropic.com/news/rare-disease-research-grants" rel="noopener">Apply for Anthropic's AI for Science rare disease research grants</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://claude.com/blog/bringing-mcp-2026-07-28-to-claude" rel="noopener">Bringing MCP 2026-07-28 to Claude</a></li><li><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" rel="noopener">The 2026-07-28 Specification — MCP Blog</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Release notes for Claude Apps (Help Center)</a></li><li><a href="https://x.com/claudeai/status/2074525821755101458" rel="noopener">@claudeai: doubled Cowork usage limits through August 5</a></li><li><a href="https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/" rel="noopener">Claude Code weekly limits promotion extended — Help Net Security</a></li><li><a href="https://explainx.ai/blog/claude-outage-network-failures-recovery-july-2026" rel="noopener">Claude Outage July 29-30 2026 — explainx.ai</a></li><li><a href="https://pasqualepillitteri.it/en/news/5308/claude-code-claude-design-two-way-sync-design-sync" rel="noopener">Claude Code and Claude Design Now Sync Both Ways with /design-sync</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

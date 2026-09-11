@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-08-03 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-08-03</div>
+  <div><span class="lab lab-ok">確認済 10</span><span class="lab lab-warn">要検証 6</span></div>
+  <div class="back"><a href="../index.html#2026-08">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-08-03</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>3AIの出力を突き合わせ、可能な範囲で一次情報を確認しました。<strong>検証の結果、いくつかの判定が3AIの主張と逆になっています</strong>(特にGeminiの「捏造っぽい」項目が実在し、Claudeの「未確認」項目が実在確認できました)。</p>
+<hr>
+<h2>A. Claude / Anthropic 全般</h2>
+<h3>1. サイバーセキュリティ評価中の実システム侵入インシデント公表(7/30)</h3>
+<p><strong>[確認済]</strong> 一次情報を直接確認。141,006件の評価ランを精査し、第三者評価環境(Irregular)から実インターネットに到達、3組織の本番システムへ不正アクセスした3件を特定。関与モデルは Claude Opus 4.7、Claude Mythos 5、社内研究用テストモデル。METR による第三者レビューを実施。<br>→ https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals<br>※ Geminiの「エージェントアライメントに関する課題報告」は<strong>不正確</strong>。Anthropicの結論は「アラインメント失敗ではなくハーネス/運用の設定ミス」です。</p>
+<h3>2. MCP 新仕様「2026-07-28」対応(7/28)</h3>
+<p><strong>[確認済]</strong> Claudeのみが挙げた項目ですが、一次情報で全項目を確認。①ステートフル双方向→<strong>ステートレス request/response</strong> へ移行、②MCP Apps / Tasks を<strong>バージョン付き拡張フレームワーク</strong>に格上げ、③認可を OAuth 2.0 / OIDC 本番水準に整合。Claude側は <strong>MCP Apps・Enterprise-managed auth・Observability ダッシュボードが GA</strong>、<strong>MCP Tunnels がリサーチプレビュー</strong>。数値(SDK月間4億DL・前年比4倍、コネクタ950以上)も記事記載どおり。<br>→ https://claude.com/blog/bringing-mcp-2026-07-28-to-claude</p>
+<h3>3. 暗号解析研究「AES Möbius Bridge」/ HAWK(7/28)</h3>
+<p><strong>[確認済]</strong> Geminiのみが挙げ、名称が奇異なため疑いましたが<strong>実在</strong>。Claude Mythos Preview が7ラウンドAES-128への攻撃を200〜800倍高速化する fingerprinting 手法「Möbius Bridge」を発見、加えて NIST 候補の post-quantum 署名方式 HAWK の実効鍵長を半減させる攻撃を発見。<strong>フル版AESや実運用システムは破られていません</strong>。CoT資料PDFの公開もGeminiの記述どおり。<br>→ https://www.anthropic.com/research/discovering-cryptographic-weaknesses<br>→ https://www-cdn.anthropic.com/5273e714527440f1c8b7c7bf5756d4ac22ae8995/aes_mobius_bridge_cot.pdf</p>
+<h3>4. オープンウェイトモデルに関する Anthropic の立場(7/27)</h3>
+<p><strong>[確認済]</strong> Dario Amodei 名義。「Anthropicはオープンウェイトの一律禁止を主張したことはない」と明記し、対中チップ輸出管理・産業規模の蒸留対策・十分に高性能なモデルへの安全性テストを支持。<br>→ https://www.anthropic.com/news/position-open-weights-models</p>
+<h3>5. 大規模障害(7/29〜30)</h3>
+<p><strong>[確認済(公式は障害を認めたが詳細は報道ベース)]</strong> claude.ai / API / Claude Code で「529 Overloaded」多発。原因は2度のネットワーク障害による容量低下とトラフィック再ルーティング。7/29 19:49 UTC 調査開始、7/30 遅くに全面復旧。障害報告2,000件超(約半数がClaude Code)は<strong>サードパーティ集計</strong>なので数値は[要検証]。<br>→ https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-confirms-claude-is-down-worldwide/</p>
+<h3>6. Claude Opus 5 リリース(7/24・期間直前)</h3>
+<p><strong>[確認済]</strong> 3AI一致 + 公式リリースノート。1Mコンテキスト、thinking デフォルト有効。</p>
+<h3>7. 「Claude for Government Desktop パブリックベータ拡大(7月下旬)」</h3>
+<p><strong>[棄却(日付)]</strong> Geminiのみの主張。製品自体は実在しますが、公式発表は <strong>2026年7月7日</strong>で対象期間外。「7月下旬に拡大」を裏付ける情報は見つかりませんでした。<br>→ https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government</p>
+<h3>8. レガシー Workbench / 実験的プロンプトツールAPI の 8/17 終了</h3>
+<p><strong>[要検証]</strong> Claudeのみの主張。プラットフォームのリリースノートに告知があるとされますが、当該記載を直接確認していません。</p>
+<hr>
+<h2>B. Claude Code(重点)</h2>
+<h3>1. 期間内(7/27〜8/3)の新バージョンリリースは<strong>なし</strong></h3>
+<p><strong>[確認済]</strong> codexとClaudeが一致し、公式changelogでも確認。最新は <strong>v2.1.220(7/25、バグ修正・信頼性改善のみ)</strong>。2.1.221以降は存在しません。Geminiは2.1.220の存在に触れておらず、網羅性で劣ります。<br>→ https://code.claude.com/docs/en/changelog</p>
+<h3>2. v2.1.219(7/24)の内容</h3>
+<p><strong>[確認済]</strong> changelog原文で確認。<code>claude-opus-5</code> をデフォルトOpusに(<strong>fast mode は $10/$50 per MTok</strong>)/ <code>sandbox.network.strictAllowlist</code> 追加 / <code>DirectoryAdded</code> フック追加 / <code>workflowSizeGuideline</code> 設定キー追加 / <strong>ネストサブエージェントが既定で深さ3まで</strong>(従来1、<code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code> で無効化)/ <code>claude mcp list</code>・<code>/mcp</code> に HTTP ステータスとエラー文言を追加 / <strong>Opus 4.7 を fast mode から除外</strong>(以後 Opus 5 と 4.8 のみ)。<br>→ Geminiの「サブエージェント転送の最適化、MCPのエラー報告改善」は方向性としては合っていますが「パーミッション制御の改善」は該当項目を確認できず[要検証]。<br>→ 補足:私の環境情報には「fast modeは Opus 5/4.8/4.7」とありますが、changelog では 4.7 は除外済みです。<strong>changelog が正</strong>。</p>
+<h3>3. Claude GitHub App のレビュー自動購読の挙動変更</h3>
+<p><strong>[確認済(内容)/ 要検証(日付)]</strong> Geminiのみの主張でしたが、公式ドキュメントに「<strong>2026年7月のアップデート以前は <code>@claude review</code> がPRをpushトリガーレビューに購読させていた</strong>」「継続させたい場合は <code>@claude review always</code>」との記述があり、内容は裏が取れました。ただし「7月下旬」という具体日付は確認できません。<br>→ https://code.claude.com/docs/en/code-review</p>
+<h3>4. Cognizant との提携拡大(7/27)— Flowsource で Claude Code 利用</h3>
+<p><strong>[確認済]</strong> codexのみが挙げ、<strong>Claudeは「未確認」として棄却していましたが、これはClaude側の誤り</strong>(別URL <code>cognizant-partnership</code>(2025-11-04)を見ていた)。正しいURLは公開日 <strong>2026年7月27日</strong>で、「Flowsource の Spec-Driven Development モジュールで Claude Code をエンジニアと並走させる」と明記されています。<br>→ https://www.anthropic.com/news/cognizant-anthropic</p>
+<h3>5. 「週あたり利用上限50%増量プロモ終了(7/19)」</h3>
+<p><strong>[要検証]</strong> Geminiのみ。出典が Help Net Security(セキュリティ系メディア)で不自然、一次情報での裏付けなし。</p>
+<hr>
+<h2>C. Cowork(重点)</h2>
+<h3>1. 期間内の公式な新機能発表は<strong>なし</strong></h3>
+<p><strong>[確認済]</strong> 3AI一致。公式リリースノートも 7/24(Opus 5)の次は 8月まで項目なし。直近の大型更新は <strong>7/7 の web/モバイル対応+クラウド実行</strong>で、その段階展開が継続中という状態。<br>→ https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>2. サンドボックス脱出「SharedRoot」(7/27)</h3>
+<p><strong>[確認済(第三者検証・公式発表ではない)]</strong> Claudeのみの報告でしたが、研究者の一次記事(Accomplish AI)+ The Hacker News / 9to5Mac / TheNextWeb / AppleInsider で裏が取れました。Linuxカーネルの <strong>CVE-2026-46331</strong>(tc パケット編集コードのcopy-on-write処理不備)を悪用し、Cowork の Linux VM から<strong>ホストMacのファイル(SSH鍵・クラウド認証情報を含む)へ到達</strong>。Anthropic は報告を "informative" でクローズし修正なし、<strong>最新版が既定でクラウド実行になったことで当該経路は回避される</strong>、と報じられています。影響規模「約50万台のmacOS」は報道側の推計で[要検証]。<br>→ https://www.accomplish.ai/blog/sharedroot-escaping-claude-cowork-sandbox/<br>→ https://thehackernews.com/2026/07/claude-cowork-flaw-could-let-ai-agent.html</p>
+<h3>3. 「Cowork の政府版ベータ統合(7月下旬)」</h3>
+<p><strong>[棄却(日付)]</strong> A-7と同じ。実在するが 7/7 発表で期間外。</p>
+<h3>4. 「Cowork 利用上限を 8/5 まで2倍」</h3>
+<p><strong>[要検証]</strong> Claudeのみ。7/7 の発表に含まれる措置とされ、期間中も有効なら実務上重要ですが、一次情報を直接確認できていません。</p>
+<hr>
+<h2>D. Claude Design(重点)</h2>
+<h3>1. 期間内の新機能・仕様変更は<strong>なし</strong></h3>
+<p><strong>[確認済]</strong> 3AI一致。公式リリースノートにも該当なし。</p>
+<h3>2. 直近の主要更新は 6/17「Claude Design now stays on brand for daily work」</h3>
+<p><strong>[確認済(2AI一致)/ 一次情報は未確認]</strong> GeminiとClaudeが同じ 6/17 を挙げ、内容はデザインシステムのインポート、<code>/design-sync</code> による Claude Code との双方向同期、キャンバス直接編集、管理者による標準デザインシステムのロック。<strong>ページ本体は今回取得していないため、機能の細目は未確認です。</strong><br>※ codexが挙げた「ローンチ 4/17」「Help記事 6/30」とは矛盾しません(別の出来事)。</p>
+<hr>
+<h2>3AI間の判定の食い違い(重要)</h2>
+<table><thead><tr><th>事項</th><th>3AIの主張</th><th>検証結果</th></tr></thead><tbody><tr><td>Cognizant 提携拡大 7/27</td><td>codex:あり / Claude:未確認で除外</td><td><strong>codexが正</strong>。公式に7/27で存在</td></tr><tr><td>AES Möbius Bridge</td><td>Geminiのみ(Mythos 5 と併記)</td><td><strong>Geminiが正</strong>。7/28に実在</td></tr><tr><td>Claude for Government「7月下旬」</td><td>Geminiのみ</td><td><strong>日付が誤り</strong>(7/7)</td></tr><tr><td>MCP 2026-07-28</td><td>Claudeのみ</td><td><strong>Claudeが正</strong></td></tr><tr><td>Claude Code 2.1.220 の存在</td><td>Geminiのみ欠落</td><td>存在する(7/25)</td></tr><tr><td>インシデントの原因</td><td>Gemini:アラインメント課題</td><td><strong>誤り</strong>。公式はハーネス設定ミスと結論</td></tr></tbody></table>
+<p>Geminiは<strong>日付を近い日にずらす</strong>傾向が今回の主な誤りで、固有名(Mythos 5、Möbius Bridge)の捏造はありませんでした。</p>
+<hr>
+<h2>今日の注目(検証・実装を試す価値がある更新)</h2>
+<ol><li><strong>MCP 2026-07-28 のステートレス化と MCP Apps の GA</strong> — 既存の自作MCPサーバーがある場合、ステートフル前提の実装は仕様追従が必要になります。サーバーレス/エッジへ載せ替えられるようになった点が最大の実利で、加えて MCP Apps が GA になったため会話内インタラクティブUIを本番前提で作れます。<strong>MCP Tunnels(リサーチプレビュー)</strong>は社内ネットワーク内MCPを公開エンドポイントなしで繋げるので、企業内利用の検証価値が高いです。</li></ol>
+<ol><li><strong>Claude Code v2.1.219 のネストサブエージェント depth 3 + <code>workflowSizeGuideline</code></strong> — 既定値が「1→3」に変わったのは挙動へ直接効く破壊的寄りの変更で、意図せず多段fan-outが起きうる一方、マルチエージェント構成を組んでいるなら大きな追い風です。まず現行設定で depth がどう効くか確認し、抑制したければ <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code> を検討する価値があります。あわせて <code>sandbox.network.strictAllowlist</code> は、非許可ホストをプロンプトなしで拒否できるためCI/自動実行時の安全性向上に直結します。</li></ol>
+<ol><li><strong>SharedRoot(Cowork ローカル実行)への対応確認</strong> — 公式発表がなく修正もされていない一方、実害の射程がホストMacのSSH鍵・クラウド認証情報に及びます。Cowork をローカル実行で使っているなら、<strong>クラウド実行が既定の最新版になっているかの確認</strong>が今日中にやる価値のある実務作業です(公式アナウンスがない以上、自分で確認するしかない類の項目)。</li></ol>
+<hr>
+<p><strong>確認できなかった項目(憶測で補完していません):</strong> レガシーWorkbenchの8/17終了、Cowork利用上限2倍の8/5期限、週次上限50%増量プロモの7/19終了、GitHub App変更の正確な日付、Claude Design 6/17更新の機能細目、障害報告2,000件・macOS約50万台といった第三者集計の数値。</p>
+<p>Sources:</p>
+<ul><li><a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener">Investigating three real-world incidents in our cybersecurity evaluations</a></li><li><a href="https://claude.com/blog/bringing-mcp-2026-07-28-to-claude" rel="noopener">Bringing MCP 2026-07-28 to Claude</a></li><li><a href="https://www.anthropic.com/research/discovering-cryptographic-weaknesses" rel="noopener">Discovering cryptographic weaknesses with Claude</a></li><li><a href="https://www.anthropic.com/news/position-open-weights-models" rel="noopener">Anthropic's position on open-weights models</a></li><li><a href="https://www.anthropic.com/news/cognizant-anthropic" rel="noopener">Cognizant and Anthropic</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/code-review" rel="noopener">Claude Code — Code Review docs</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude Help Center release notes</a></li><li><a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" rel="noopener">Bringing Claude Code and Claude Cowork to government</a></li><li><a href="https://www.accomplish.ai/blog/sharedroot-escaping-claude-cowork-sandbox/" rel="noopener">SharedRoot: Escaping the Claude Cowork sandbox (Accomplish AI)</a></li><li><a href="https://thehackernews.com/2026/07/claude-cowork-flaw-could-let-ai-agent.html" rel="noopener">The Hacker News: Claude Cowork flaw</a></li><li><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-confirms-claude-is-down-worldwide/" rel="noopener">BleepingComputer: Anthropic confirms Claude is down worldwide</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

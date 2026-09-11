@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-09 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-09</div>
+  <div><span class="lab lab-ok">確認済 14</span><span class="lab lab-warn">要検証 1</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-09</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証完了。3つの出力を突き合わせ、一次情報・複数メディアで裏取りした結果をまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近1週間(2026/7/2〜7/9)精査結果</h1>
+<h2>Cowork / Claude Code / Design(最重視領域)</h2>
+<h3>Claude Cowork をWeb・モバイルに拡張(ベータ)</h3>
+<p><strong>[確認済]</strong> デスクトップに加えWeb(claude.ai)・モバイル(iOS/Android)で利用可能に。リモート(クラウド)セッション、端末をまたいだ継続、オフライン時のスケジュール実行、ChatとCoworkのホーム統合。Maxから数週間かけて順次ロールアウト。<strong>公式ブログで2026年7月7日付を確認</strong>。3AI全て一致。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">claude.com/blog/cowork-web-mobile</a></p>
+<h3>Cowork 利用上限2倍を8月5日まで延長</h3>
+<p><strong>[確認済]</strong> Web・モバイルローンチに合わせ、Cowork利用枠を倍増、<strong>2026年8月5日まで</strong>。公式ブログ記載を確認。agy・codex一致。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">claude.com/blog/cowork-web-mobile</a></p>
+<h3>Claude Code v2.1.204(7/8)</h3>
+<p><strong>[確認済]</strong> ヘッドレスセッションの<code>SessionStart</code>フックでイベントがストリーミングされず、リモートワーカーがフック中にidle-reapされる問題を修正。changelog/GitHub Releasesで確認。3AI一致。<br>出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">code.claude.com/docs/en/changelog</a></p>
+<h3>Claude Code v2.1.203(7/7)</h3>
+<p><strong>[確認済]</strong> ログイン期限切れ警告、manualパーミッションモードのグレー⏸バッジ、MCP <code>roots/list</code>への作業ディレクトリ追加通知。macOSでバックグラウンドエージェント切替が15〜20秒フリーズする問題(v2.1.196のリグレッション)修正、トークン失効後のセッション自動復旧。changelogで確認。3AI一致。<br>出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">code.claude.com/docs/en/changelog</a></p>
+<h3>VS Code 1.128 のマルチチャット対応(7/8)</h3>
+<p><strong>[確認済]</strong> 同一Claudeセッション内で複数チャットを並列実行・アプローチ比較。公式リリースノートと複数メディアで確認。agyのみが挙げていたが裏取り成立。※これはMicrosoft/VS Code側の機能でAnthropic製品ではない点に注意。<br>出典: <a href="https://code.visualstudio.com/updates/v1_128" rel="noopener">code.visualstudio.com/updates/v1_128</a></p>
+<h3>Claude Design — 今週の新発表なし</h3>
+<p><strong>[確認済(不在の確認)]</strong> 7/2〜7/9に新規公式発表は確認できず。大型アップデート(デザインシステムのインポート、<code>/design-sync</code>によるClaude Codeとの往復、キャンバス直接編集、PDF/PPT書き出し)は<strong>2026年6月17日</strong>で今週の範囲外。codex・Claudeが正確に指摘。<strong>agyがこれを「直近」に含めたのは誤り</strong>(下記参照)。<br>出典: <a href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" rel="noopener">claude.com/blog/claude-design-stays-on-brand-for-daily-work</a></p>
+<hr>
+<h2>Claude本体・エコシステム</h2>
+<h3>Fable 5 の無料枠を7月12日まで延長 → 以後は従量課金</h3>
+<p><strong>[確認済]</strong> 反発を受け、有料プラン(Pro/Max/Team/一部Enterprise)の「週50%枠」無料利用を当初7/7から<strong>7月12日まで延長</strong>。以後はusage credits(前払いクレジット)へ移行。agyの「7/12まで延長」が正しい。※Anthropic公式ページ(<a href="https://www.anthropic.com/news/redeploying-fable-5" rel="noopener">redeploying-fable-5</a>、公開日6/30)は延長前の「7/7まで」記載で、延長は複数メディア報道ベース。<br>出典: <a href="https://www.techtimes.com/articles/319875/20260707/" rel="noopener">techtimes.com</a> / <a href="https://www.androidauthority.com/claude-fable-5-free-extension-3685103/" rel="noopener">androidauthority.com</a></p>
+<h3>Fable 5 の価格 $10/$50(百万トークン)</h3>
+<p><strong>[要検証]</strong> 入力$10・出力$50/百万トークン(Opus 4.8の約2倍、GA最高値)とされるが、<strong>Anthropic公式ページには記載なし</strong>。複数の二次メディアが一致して報じているものの一次確認は取れていない。Claudeが慎重に「要一次情報」と扱ったのが妥当。<br>出典: <a href="https://www.techtimes.com/articles/319875/20260707/" rel="noopener">techtimes.com</a>(二次情報)</p>
+<h3>Microsoft 365 コネクタに書き込みツール(7/7)</h3>
+<p><strong>[確認済]</strong> メール作成・送信・整理、カレンダー管理、OneDrive/SharePointのファイル作成・更新に対応。Teamsはread-onlyのまま。Entra管理者の同意・有効化が必要。<strong>公式リリースノートで7/7を確認</strong>。codexが指摘、Claudeは「未確認」としていたが裏取り成立。<br>出典: <a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">support.claude.com/en/articles/12138966-release-notes</a></p>
+<h3>Claude Code / Cowork を Claude for Government に公開ベータ追加(7/7)</h3>
+<p><strong>[確認済]</strong> FedRAMP High認証環境の政府向けデスクトップに追加。ローカル履歴、部門別管理、支出・モデル上限、hash-chained監査ログ、機微操作の2人承認。公式ブログで確認。codexが指摘。<br>出典: <a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" rel="noopener">claude.com/blog/bringing-claude-code-and-claude-cowork-to-government</a></p>
+<h3>「隠しトラッカー」問題(6月末〜7/1)</h3>
+<p><strong>[確認済]</strong> システムプロンプトで不可視Unicode(視覚的に同一のアポストロフィ)・日付書式改変を用い、中国TZ(Asia/Shanghai等)や中国系プロキシ(Alibaba/ByteDance等)を検出する隠しコードを研究者が発見(6/30 Reddit)。Anthropicは「3月の(蒸留・不正転売対策の)実験」と認め、削除PRを7/1リリースに反映。Alibabaが社内利用禁止に追加との報道も。agyが詳細に把握、内容は正確。<br>出典: <a href="https://www.malwarebytes.com/blog/news/2026/07/claude-codes-hidden-tracker-was-an-experiment-says-anthropic" rel="noopener">malwarebytes.com</a></p>
+<h3>UST との戦略提携(7/8)</h3>
+<p><strong>[確認済]</strong> UST が Claude を自社プラットフォーム/エンジニアリング/運用に統合し、全世界2万人の従業員を認定。Global 1000のAIネイティブ化を推進。複数プレスリリースで確認。agyが指摘、内容正確。<br>出典: <a href="https://www.morningstar.com/news/pr-newswire/20260708io00270/" rel="noopener">morningstar.com(PR)</a></p>
+<h3>NEC「AI Insight Reporting Service」(7上旬)</h3>
+<p><strong>[確認済(ただしagyの要約に誤り)]</strong> ClaudeとSnowflake Cortexで購買データから商品企画・販促案を自動生成。<strong>ただし「開始」ではなく、まず約30社で検証、本格商用は10月、月額100万円〜</strong>。agyの「サービス開始」は不正確。<br>出典: <a href="https://finance.biggo.com/news/6ccb745c-35e9-4b46-85a5-5cbbd0c2418b" rel="noopener">finance.biggo.com</a></p>
+<h3>新プライバシーポリシー(7/8発効)</h3>
+<p><strong>[確認済]</strong> エージェント機能(第三者アプリ連携・タスク代行)のデータフローに対応。「Inputs」の定義拡大、権限に応じた外部アクション明記。加えて年齢・本人確認要求、法執行機関への"善意の判断"に基づく開示条項も追加。Free/Pro/Max対象(Enterprise/Team/APIは対象外)。agyが指摘、発効日7/8正確。<br>出典: <a href="https://privacy.claude.com/en/articles/10301952-updates-to-our-privacy-policy" rel="noopener">privacy.claude.com</a></p>
+<hr>
+<h2>参考: 今週の範囲ぎりぎり(7/1〜7/2)、codexが挙げた項目</h2>
+<ul><li><strong>Enterprise管理者向け分析・コスト管理強化(7/2)</strong> — [確認済] richer admin analytics、model-level entitlements、spend alerts。出典: <a href="https://claude.com/blog/giving-admins-more-visibility-and-control-over-claude-usage-and-spend" rel="noopener">claude.com/blog</a></li><li><strong>Claude Code v2.1.198(7/1〜2)</strong> — [確認済] Subagentsのデフォルトbackground実行、Claude in Chrome GA、<code>/dataviz</code>スキル。出典: <a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></li><li><strong>Fable 5・Mythos 5 再展開、Enterprise model entitlements beta(7/1)</strong> — [確認済] 出典: <a href="https://www.anthropic.com/news/redeploying-fable-5" rel="noopener">anthropic.com/news/redeploying-fable-5</a></li></ul>
+<hr>
+<h2>各AIの信頼性メモ</h2>
+<ul><li><strong>今回、agy(Gemini)の「捏造」はほぼ無し</strong>。事前警戒したほど数字・固有名の捏造はなく、UST・NEC・隠しトラッカー・VS Code・Fable延長すべて裏取れた。ただし①Claude Designの<code>/design-sync</code>を「直近」に含めた(実際は6/17)、②NECを「開始」と誤要約(実際は検証段階)、の2点は不正確。</li><li><strong>codex(ChatGPT)</strong> が最も精度が高く、一次情報URL(公式ブログ/release notes/changelog)中心で信頼できた。範囲判定(7/2基準)も厳密。</li><li><strong>Claude</strong> は慎重(集約サイト由来を明示し「未確認」ラベル)だが、その結果Microsoft 365書き込み・Government・Fable価格を過度に「未確認」扱いした。実際は前2つは一次確認可能だった。</li></ul>
+<hr>
+<h2>今日の注目 — 検証・実装を試す価値がある更新</h2>
+<ol><li><strong>Cowork のリモート/オフライン・スケジュール実行(Web・モバイル)</strong> — 端末を閉じても継続、スケジュール起動という運用モデルの変化が最も実務インパクト大。Maxユーザーは今すぐ挙動(通知・承認フロー、モバイルからの介入)を試す価値あり。</li></ol>
+<ol><li><strong>Claude Code v2.1.203/204 のバックグラウンドエージェント安定化</strong> — macOSフリーズ修正・トークン失効後の自動復旧・headlessフックのidle-reap修正は、CI/自動化でClaude Codeを回している場合に直結。バージョンを上げて長時間ジョブの安定性を実測すべき。</li></ol>
+<ol><li><strong>Microsoft 365 書き込みツール</strong> — 読み取り専用から「メール送信・ファイル更新」まで踏み込んだ点は、権限設計と新プライバシーポリシー(外部アクション明記)をセットで確認する価値あり。管理者同意が必要なので、有効化前にスコープを検証しておくのが実務的。</li></ol>
+<p>いずれも一次情報を直接開いてさらに裏取り可能です。Fable 5の$10/$50価格だけは公式未記載のため、実装判断に使う前に課金画面/APIドキュメントで確認することをおすすめします。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

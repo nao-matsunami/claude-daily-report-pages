@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-12 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-12</div>
+  <div><span class="lab lab-ok">確認済 13</span><span class="lab lab-warn">要検証 4</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-12</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証が取れたので、審判結果をまとめます。</p>
+<hr>
+<h1>情報精査レポート：Claude/Anthropic 直近1週間(2026-07-05〜07-12)</h1>
+<p>一次情報(support.claude.com / platform.claude.com / claude.com/blog)で裏取りできた範囲で判定しました。捏造傾向のあるGeminiの数字・固有名は個別に確認しています。</p>
+<h2>1. Claude Cowork(最重視領域)</h2>
+<h3>Cowork の Web・モバイル展開</h3>
+<p><strong>[確認済]</strong> — 7/7、デスクトップ限定だったCoworkがWeb(claude.ai)・モバイルに拡張。Maxプランから数週間かけてベータ展開。セッションとファイルはアカウントに保存されデバイス間で継続。3AI一致 + 公式で確認。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">公式ブログ</a> / <a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">公式リリースノート</a></p>
+<h3>バックグラウンド/リモート実行</h3>
+<p><strong>[確認済]</strong> — 7/7、ノートPCを閉じてもクラウド上でタスク継続、判断が必要な時はモバイルに通知。公式ブログの "Close the laptop… Claude keeps going" で確認。<br>※Geminiの「オフライン動作」表現はやや誤解を招く。端末がオフラインでも<strong>クラウド側で</strong>継続、が正確。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">公式ブログ</a></p>
+<h3>ChatとCoworkの「1つのホーム」統合</h3>
+<p><strong>[確認済]</strong> — 7/7、Web・Desktopでチャットとコワークが統合ホームに。codex/Claudeが一致、公式確認。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">公式ブログ</a></p>
+<h3>Cowork の2倍利用上限の延長</h3>
+<p><strong>[要検証→確認済(日付注意)]</strong> — 公式ブログで <strong>2026-08-05まで延長</strong>を確認。codexが正しい。<strong>Geminiの「7/13まで」は誤り。</strong>別のキャンペーンと混同した可能性。<br>出典: <a href="https://claude.com/blog/cowork-web-mobile" rel="noopener">公式ブログ</a></p>
+<h2>2. Claude Code(最重視領域)</h2>
+<h3>v2.1.207(7/10)</h3>
+<p><strong>[確認済]</strong> — 以下すべて裏取り済み:</p>
+<ul><li>Auto Mode を Bedrock / Vertex AI / Foundry で明示オプトインなしに既定化</li><li>デフォルトモデルを <strong>Claude Opus 4.8</strong> に更新(Bedrock/Vertex/AWS上のClaude Platform)</li><li>デスクトップ版にアプリ内ブラウザ追加</li><li>長いリスト/コードブロック等ストリーミング時のターミナルのフリーズ・入力ラグ修正</li></ul>
+<p>出典: <a href="https://dev.classmethod.jp/en/articles/20260711-cc-updates-v2-1-207/" rel="noopener">DevelopersIO(classmethod)</a> / <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" rel="noopener">公式CHANGELOG</a></p>
+<h3>v2.1.206 系(7/8〜7/9)/ <code>/doctor</code> の強化</h3>
+<p><strong>[要検証]</strong> — <code>/doctor</code>のフルセットアップ点検化(<code>/checkup</code>エイリアス)、auto modeのtranscript改ざんブロック、<code>rm -rf</code>事前確認などはClaude/codexが挙げるが、CHANGELOGにバージョン毎の日付が無く、各項目の正確なバージョン・日付の対応は未確認。機能自体は概ね実在と見てよい。<br>※Geminiの「27件の修正」等の具体数字は一次確認できず <strong>[要検証]</strong>。<br>出典: <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" rel="noopener">公式CHANGELOG</a></p>
+<h3>モデル選択 &amp; effort level 使い分けガイド</h3>
+<p><strong>[確認済]</strong> — 7/7、Claude Code向け公式解説記事(新機能でなくベストプラクティス)。codexが単独で拾ったが公式ブログで確認可能。<br>出典: <a href="https://claude.com/blog/claude-model-and-effort-level-in-claude-code" rel="noopener">claude.com/blog</a></p>
+<h2>3. Claude Design(最重視領域)</h2>
+<h3>デザインシステム統合 / <code>/design-sync</code> / キャンバス編集 / サイドバー配置</h3>
+<p><strong>[要検証(時期に注意)]</strong> — 機能そのものは実在を確認。ただし<strong>大型オーバーホールの発表は6月中旬〜下旬</strong>で、直近1週間(7/5–12)の新規発表ではない。codex・Claudeとも「今週のClaude Design新規発表なし」で一致。<strong>Geminiの「2026年7月頃」は時期の誇張</strong>。releasebot(アグリゲータ)由来で日付が曖昧。<br>出典: <a href="https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem" rel="noopener">VentureBeat</a> / <a href="https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design" rel="noopener">公式ヘルプ</a></p>
+<h3>利用制限のトークン枠統合(Gemini単独)</h3>
+<p><strong>[要検証]</strong> — Geminiのみ主張。一次確認できず。</p>
+<h2>4. Claude 本体プロダクト</h2>
+<h3>Reflect / Monthly Recap + Time and focus</h3>
+<p><strong>[確認済]</strong> — 7/9、Settings &gt; Reflect に月次リキャップ(トピック/活発な曜日/ピーク時間)。Settings &gt; Time and focus に休憩リマインダー・クワイエットアワー。Free/Pro/Max ベータ、Web・Desktop、メモリ有効化必須。3AI一致 + 公式確認。<br>※Geminiは7/7としたが<strong>公式は7/9</strong>。<br>出典: <a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">公式リリースノート</a></p>
+<h3>Microsoft 365 コネクタに Write Tools</h3>
+<p><strong>[確認済]</strong> — 7/7、メール下書き・送信・整理、カレンダー管理、OneDrive/SharePointのファイル作成・更新。<strong>Teamsは読み取り専用のまま</strong>(codexが正確)。3AI一致 + 公式確認。<br>出典: <a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">公式リリースノート</a></p>
+<h3>API/Admin APIキーの有効期限設定</h3>
+<p><strong>[確認済]</strong> — 7/8、Claude Consoleでキー作成時に有効期限を設定可(プリセット/カスタム/Never)。7日以上のキーは失効前にメール通知。Admin APIの<code>expires_at</code>に反映。codexが正確。<strong>ClaudeはこれをReleasebot経由「未確認」としたが、platform公式で裏取れた。</strong><br>出典: <a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Developer Platform リリースノート</a></p>
+<h3>CMEK content preservation / Access Transparency ドキュメント拡充</h3>
+<p><strong>[確認済]</strong> — 7/10、<code>cmek_preserve</code>イベントのフィルタ例・ペイロード例・保存理由コード追加。codex単独だがplatform公式で確認。<br>出典: <a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Developer Platform リリースノート</a></p>
+<h3>J-space の発見(学術発表)</h3>
+<p><strong>[確認済(内容訂正あり)]</strong> — 論文 "Verbalizable Representations Form a Global Workspace in Language Models"。<strong>「J-lens(Jacobian lens)」という解釈技術</strong>で、CoTに出力せず内部で概念を処理する「J-space」を同定。<strong>公式発表は7/6</strong>(Geminiの「7/11頃」は誤り)。Geminiは大枠正しいが日付・手法名(J-lens)が不正確。<br>出典: <a href="https://venturebeat.com/technology/anthropics-new-j-lens-reveals-a-silent-workspace-inside-claude-that-mirrors-a-leading-theory-of-consciousness" rel="noopener">VentureBeat</a> / Transformer Circuits(論文本体)</p>
+<h3>Claude for Government Desktop でCode/Coworkがパブリックベータ</h3>
+<p><strong>[確認済]</strong> — 7/7、FedRAMP High認証環境で提供。ハッシュチェーン監査ログ、部門別支出配分等のガバナンス機能。codex単独だが公式ブログあり(Claudeは未確認としていた)。<br>出典: <a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" rel="noopener">claude.com/blog</a></p>
+<h2>5. 棄却・要注意項目(主にGemini)</h2>
+<ul><li><strong>Fable 5 のアクセス期限「7/7→7/12延長、以後クレジット経由のみ」</strong> — <strong>[棄却寄り/要検証]</strong>。公式リリースノートは <strong>7/1に「Fable 5・Mythos 5 のアクセス復旧(restored)」</strong> とあり、Geminiの主張と食い違う。出典とされる <code>digitalapplied.com</code>(vertexaisearchリダイレクト)は一次情報ではない。数字・日付が具体的だが裏が取れず、<strong>Gemini特有の捏造パターン</strong>と判断。</li><li><strong>週次使用量上限50%増量「7/13まで」</strong> — <strong>[要検証]</strong>。Coworkの2倍上限(8/5まで)とは別物として語られているが、一次確認できず。note.com由来。</li><li><strong>Gemini の出典URL群</strong> — 大半が <code>vertexaisearch.cloud.google.com/grounding-api-redirect/...</code> のリダイレクトで、実体が classmethod / note / releasebot / cio.com 等の<strong>二次情報</strong>。公式一次ソースはほぼ無い点に注意。</li></ul>
+<hr>
+<h2>🎯 今日の注目(検証・実装を試す価値)</h2>
+<ol><li><strong>Claude Code v2.1.207 の Bedrock/Vertex デフォルト Opus 4.8 + Auto Mode 既定化</strong> — エンタープライズ環境で挙動が変わる破壊的インパクト。既にBedrock/Vertexを使っているなら、<code>disableAutoMode</code>設定の要否とコスト影響を即確認する価値あり。<strong>[確認済]なので実地検証に進める。</strong></li></ol>
+<ol><li><strong>Cowork の Web・モバイル + リモート実行</strong> — 「端末を閉じてもクラウドで継続」は実運用の体感が大きく変わる。Maxプランなら実タスク(メール処理・定例準備)で挙動と通知フローを試す価値。<strong>[確認済]。</strong></li></ol>
+<ol><li><strong>J-space / J-lens(解釈可能性研究)</strong> — プロダクト機能ではないが、安全性・デバッグの観点で「出力に現れない内部思考の可視化」は今後のツールに波及しうる。論文一次読み込みの価値あり。<strong>[確認済]だが手法名はGeminiの「J-space発見」でなく「J-lensでJ-spaceを観測」が正確。</strong></li></ol>
+<p><strong>補足:</strong> Claude Design は今週の新規発表なし(大型更新は6月)。「直近1週間」に厳密に絞るなら対象外です。範囲を2週間に広げれば Design オーバーホールや Sonnet 5 既定化が入ります。必要なら再調査します。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

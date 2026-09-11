@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-06-21 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-06-21</div>
+  <div><span class="lab lab-ok">確認済 7</span><span class="lab lab-warn">要検証 2</span></div>
+  <div class="back"><a href="../index.html#2026-06">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-06-21</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証完了。3つの出力を突き合わせ、一次情報で裏取りした結果を以下にまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近の動き 精査レポート（2026-06-14〜21）</h1>
+<h2>Claude Design</h2>
+<h3>Claude Design 大型アップデート（6月17日）</h3>
+<p><strong>[確認済]</strong> デザインシステムのインポート再構築（GitHubリポジトリ/デザインファイル/アップロードから複数取り込み）、Claude Codeとの双方向連携（<code>/design-sync</code>でシステム取り込み、ハンドオフ）、キャンバス直接編集、PDF/PowerPointエクスポート、Adobe/Canva/Vercel等へのコネクタ拡張。codexとClaudeが正確に把握、Geminiも大筋一致(ただしGeminiの出典CNETは未確認・公式は下記)。</p>
+<ul><li>https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</li></ul>
+<h3>Claude Designの利用量カウント仕様の矛盾</h3>
+<p><strong>[要検証]</strong> codexが指摘した通り、公式ブログ/「Get started」ヘルプは「chat・Claude Code・Coworkと共有プール」と記載する一方、別ヘルプ「subscription usage and pricing」は「独立した利用量・週次上限」と記載し<strong>公式ドキュメント間で記述が衝突</strong>。ブログ側は共有プールを明言しており、どちらが現行仕様か一次情報だけでは確定できない。</p>
+<ul><li>https://support.claude.com/en/articles/14604416-get-started-with-claude-design</li></ul>
+<h2>Claude Code</h2>
+<h3>Artifacts をClaude Codeでサポート（6月18日）</h3>
+<p><strong>[確認済]</strong> セッションの作業をライブ更新される共有可能なWebページ（PRウォークスルー、インシデントページ、ダッシュボード等）に変換。組織内限定共有・バージョン履歴はTeam/Enterpriseベータ。codex・Claudeが正確。Geminiは言及なし。</p>
+<ul><li>https://claude.com/blog/artifacts-in-claude-code</li></ul>
+<h3>Claude Code チェンジログ（2.1.178〜2.1.185）</h3>
+<p><strong>[確認済]</strong> 公式チェンジログで確認。主な日付と内容:</p>
+<ul><li><strong>2.1.185（6/20）</strong>: ストリーム停止ヒントの文言変更・発火を10秒→20秒</li><li><strong>2.1.183（6/19）</strong>: Auto modeで破壊的gitコマンド/<code>terraform destroy</code>等をブロック、モデル非推奨警告、<code>/config --help</code></li><li><strong>2.1.181（6/17）</strong>: <code>/config key=value</code>構文、macOS <code>sandbox.allowAppleEvents</code></li><li><strong>2.1.179（6/16）</strong>: Agent teamsの<code>TeamCreate</code>/<code>TeamDelete</code>削除（暗黙の1チーム方式へ）、<code>Tool(param:value)</code>権限構文</li></ul>
+<p>注: codexは「TeamCreate/TeamDelete削除」を2.1.178(6/15)としたが、公式は<strong>2.1.179(6/16)</strong>。軽微な版・日付ズレ。</p>
+<ul><li>https://code.claude.com/docs/en/changelog</li></ul>
+<h3>約40万Claude Codeセッションの研究公開</h3>
+<p><strong>[確認済]</strong> Geminiの主張を裏取りできた。論文「Agentic coding and persistent returns to expertise」。約235,000ユーザー・約400,000セッション（2025年10月〜2026年4月）を分析。ドメイン専門知識がソフトウェア背景より成功を予測。<strong>Geminiが正しく把握していた数少ない固有項目</strong>。</p>
+<ul><li>https://www.anthropic.com/research/claude-code-expertise</li></ul>
+<h2>Cowork</h2>
+<h3>5時間制限の倍増プロモーション（6月5日〜7月5日）</h3>
+<p><strong>[確認済]</strong> Pro/Max/Team・一部レガシーEnterpriseシート対象。Cowork限定で、週次上限・他製品(web/desktop/Claude Code)は据え置き。開始日(6/5)は厳密には対象期間前だが継続中。3者一致。</p>
+<ul><li>https://thenewstack.io/anthropic-claude-cowork-promotion/</li></ul>
+<h3>Cowork単独の新機能</h3>
+<p><strong>[確認済（消極的）]</strong> この1週間にCowork単独の新機能発表は確認できず（codex・Claudeとも同結論）。下記MCPコネクタ集中認可はCoworkにも適用。</p>
+<h2>プラットフォーム全般</h2>
+<h3>Agent SDK利用量変更は「一時停止」（6月15日）</h3>
+<p><strong>[確認済 / Gemini棄却]</strong> <strong>重要な相違</strong>。予定されていた「Agent SDK・<code>claude -p</code>・サードパーティアプリをサブスク枠から切り離し月次クレジット化」は<strong>6月15日に一時停止</strong>され、当面従来どおりサブスク枠から消費。codex・Claudeは正しく「停止」と把握。一方<strong>Geminiは「API利用料ベースの個別月次クレジットへ移行した」と既成事実として記載しており誤り</strong>。</p>
+<ul><li>https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan</li></ul>
+<h3>エンタープライズ管理MCPコネクタ認可（6月18日）</h3>
+<p><strong>[確認済]</strong> Okta等のIdP経由で管理者が組織全体のコネクタ認可を集中管理（ゼロタッチ）。Team/Enterpriseベータ。Asana/Atlassian/Canva/Figma/Linear等が対応、Slackは近日。codex・Claudeが把握。</p>
+<ul><li>https://claude.com/blog/enterprise-managed-auth</li></ul>
+<h3>ソウルオフィス開設・韓国パートナーシップ（6月17日）</h3>
+<p><strong>[確認済]</strong> LG CNS・Samsung SDS・Hanwha等との提携、NAIRL（KAIST等）との研究、科学技術情報通信部とのMOU。Claudeのみ把握。</p>
+<ul><li>https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem</li></ul>
+<h3>Claude Corps フェローシップ</h3>
+<p><strong>[確認済（ただしGeminiの説明は不正確）]</strong> 初期$150M・1,000フェローは正しい。ただし内容は「AI研究開発支援」ではなく、<strong>非営利団体に1年間フルタイムで派遣する有給フェローシップ</strong>（CodePathが雇用、年俸$85k）。第1コホート100名は2026年10月開始・応募締切7月17日。Geminiは金額・人数は正しいが<strong>目的を誤記</strong>。</p>
+<ul><li>https://www.anthropic.com/news/claude-corps</li></ul>
+<h3>Claude Sonnet 4 / Opus 4 の廃止（6月15日）</h3>
+<p><strong>[確認済（用語注意）]</strong> 「非推奨」ではなく<strong>API上の正式廃止(retirement)が6月15日</strong>（廃止予告は4月14日）。Geminiは概ね正しいが、移行先を「Opus 4.6」とした点は注意（現行最上位はOpus 4.8）。</p>
+<ul><li>https://platform.claude.com/docs/en/about-claude/model-deprecations</li></ul>
+<h3>Fable 5 / Mythos 5 アクセス一時停止（6月12日）</h3>
+<p><strong>[確認済（対象期間外の文脈）]</strong> 米政府の輸出管理指令（外国籍への提供制限、Fable 5のジェイルブレイク懸念）を受け6月12日に全世界で停止。公式声明あり。3者言及。厳密には6/14より前だが背景として重要。</p>
+<ul><li>https://www.anthropic.com/news/fable-mythos-access</li></ul>
+<h3>Workload Identity Federation のGA</h3>
+<p><strong>[要検証]</strong> ClaudeがReleasebot基準で言及。静的APIキーを短命・スコープ付き認証情報に置換。<strong>一次情報(公式)で日付・内容を直接確認できていない</strong>。他AIは未言及。</p>
+<ul><li>https://releasebot.io/updates/anthropic/claude</li></ul>
+<h3>Managed Agents（ホステッド型エージェント）パブリックベータ</h3>
+<p><strong>[要検証→棄却寄り]</strong> <strong>Geminiのみ</strong>がReleasebot出典で主張(cron実行・MCPトンネル等)。公式・他AIで裏が取れず。Gemini自身も「未確認」と注記。捏造傾向を踏まえ<strong>現時点では信頼できない</strong>。</p>
+<hr>
+<h2>今日の注目（検証・実装を試す価値のある更新）</h2>
+<ol><li><strong>Artifacts in Claude Code（6/18）</strong> — Team/Enterpriseベータ。セッションのコンテキスト（コードベース＋コネクタ＋会話）からライブ更新Webページを生成しチーム共有。PR walkthrough・インシデントページ等、実運用ワークフローに直結するため<strong>最も試す価値が高い</strong>。</li></ol>
+<ol><li><strong>Claude Code 2.1.183 の Auto mode 安全強化（6/19）</strong> — <code>terraform/pulumi/cdk destroy</code>や破壊的gitコマンドの自動ブロック。Auto modeを常用する環境では挙動が変わるため、<strong>バージョンアップ前に確認推奨</strong>。</li></ol>
+<ol><li><strong>Claude Design × Claude Code 双方向連携（6/17）</strong> — <code>/design-sync</code>でデザインシステムを取り込み、スクリーンショットではなく既存作業からClaude Codeへハンドオフ。デザイン→実装の往復を扱うチームは試す価値あり。ただし<strong>利用量カウント仕様が公式ドキュメント間で矛盾</strong>しているため、コスト面は事前検証が必要。</li></ol>
+<p><strong>精査メモ:</strong> Geminiは「課金変更が施行済み」と既成事実化した点が明確な誤り（実際は停止）、「Managed Agents」は裏取り不可。一方で40万セッション研究・Claude Corpsの金額/人数は正確で、捏造傾向は項目により濃淡あり。codexとClaudeはおおむね一次情報と整合し、特にcodexのバージョン別チェンジログとClaude Design仕様矛盾の指摘は精度が高い。</p>
+<p>Sources:</p>
+<ul><li><a href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" rel="noopener">Claude Design blog</a></li><li><a href="https://support.claude.com/en/articles/14604416-get-started-with-claude-design" rel="noopener">Claude Design usage 矛盾ヘルプ</a></li><li><a href="https://claude.com/blog/artifacts-in-claude-code" rel="noopener">Artifacts in Claude Code</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://www.anthropic.com/research/claude-code-expertise" rel="noopener">Claude Code expertise research</a></li><li><a href="https://thenewstack.io/anthropic-claude-cowork-promotion/" rel="noopener">Cowork promotion</a></li><li><a href="https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan" rel="noopener">Agent SDK usage (paused)</a></li><li><a href="https://claude.com/blog/enterprise-managed-auth" rel="noopener">Enterprise-managed MCP auth</a></li><li><a href="https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem" rel="noopener">Seoul office</a></li><li><a href="https://www.anthropic.com/news/claude-corps" rel="noopener">Claude Corps</a></li><li><a href="https://platform.claude.com/docs/en/about-claude/model-deprecations" rel="noopener">Model deprecations</a></li><li><a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener">Fable 5 / Mythos 5 statement</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

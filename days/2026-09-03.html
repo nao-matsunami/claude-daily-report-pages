@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-03 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-03</div>
+  <div><span class="lab lab-ok">確認済 22</span><span class="lab lab-warn">要検証 5</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-03</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<h2>0. 前提 — 今日の突き合わせ条件</h2>
+<p><strong>Gemini(agy)の出力は空でした。</strong> したがって今日は「複数AI一致」による確度判定が使えるのは codex ↔ Claude の2系統のみです。両者一致しても2票にすぎないため、Claude Code / Cowork / Design の主要項目は WebSearch / WebFetch で一次情報を直接確認しました。以下、確認できたものは出典を明記し、確認できなかったものは「一次確認できなかった」と「誤りである」を書き分けています。</p>
+<hr>
+<h2>1. モデル / API</h2>
+<h3>1-1. Claude Fable 5.1 / Mythos 5.1 リリース(2026-09-01)</h3>
+<p><strong>[確認済]</strong> — codex・Claude 一致、かつ一次確認済み。<code>claude-fable-5-1</code> / <code>claude-mythos-5-1</code>。既定かつ上限 1M コンテキスト、max output 128k、adaptive thinking 常時オン、$10/$50 per MTok(Fable 5 据え置き)、<strong>キャッシュリードのみ $0.25/MTok(base input の 0.025x、他モデルは 0.1x)</strong>。5m cache write $12.50 / 1h cache write $20 は変更なし。Batch は $5/$25。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1 / https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1</p>
+<h3>1-2. コスト削減率「典型25% / エージェント最大45%」</h3>
+<p><strong>[確認済]</strong> — 発表ページ原文で確認。"approximately 25% less than Fable 5 for typical workloads" / "up to approximately 45%"。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1</p>
+<h3>1-3. Claude Code では High effort が既定(Cowork / claude.ai は Medium)</h3>
+<p><strong>[確認済]</strong> — 両AI一致、発表ページ原文で確認。API 側の既定も <code>high</code>(docs の移行手順に "Re-tune effort from the default (<code>high</code>)")。<strong>Claude Code のコスト/レイテンシが上がったらまずここを疑う</strong>という Claude の解釈は妥当。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1</p>
+<h3>1-4. Mythos 5.1 のアクセス条件</h3>
+<p><strong>[確認済 / ただし呼称に注意]</strong> — 発表ページは「CVP(Cyber Verification Program)/ LSVP(Life Sciences Verification Program)、現在は米国の一部組織のみ」と説明。一方 <strong>docs / release notes は「Project Glasswing 参加者のみ」</strong> という別呼称を使っています。両方とも一次情報で、矛盾ではなくレイヤ違い(プログラム総称 vs 個別プログラム)と読めますが、<strong>どちらのAIも "Project Glasswing" に触れていません</strong>。<br>https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1</p>
+<h3>1-5. サイバーセーフガード「セッションあたり約60%少ない介入」</h3>
+<p><strong>[確認済]</strong> — Claude 単独主張でしたが原文で確認。"Claude Code users can expect an average of around 60% fewer interventions per session from our cyber safeguards, relative to the previous safeguards on Fable 5"。<br>https://www.anthropic.com/claude-fable-and-mythos-5-1</p>
+<h3>1-6. ベンチマーク数値(Terminal-Bench-Science 52.6 / Terminal-Bench 4.0 55.8 / GDPval-AA v2 1853 等)</h3>
+<p><strong>[要検証]</strong> — Claude 単独主張。発表ページに<strong>ベンチマーク表が存在すること自体は確認できた</strong>(項目名: Terminal-Bench-Science 0.1、Terminal-Bench 4.0、HLE、CursorBench 3.2.0、OSWorld 2.0、GDPval-AA v2、AutomationBench)が、<strong>個々の数値は今回の取得では抽出できず一次確認できていません</strong>。docs の <code>whats-new-fable-5-1</code> には数値表はありません。<strong>「数値が誤り」ではなく「未確認」</strong>です。項目名がすべて一致している点は、少なくとも捏造ではないことの傍証になります。</p>
+<h3>1-7. API 破壊的変更 — <code>tool_choice: any/tool</code> が 400</h3>
+<p><strong>[確認済]</strong> — 両AI一致、原文確認。エラー文言は <code>tool_choice: type "tool" and "any" are not supported for this model.</code>。理由も明記(thinking が常時オンで、強制ツール呼び出しは思考をスキップし引数品質が落ちるため)。代替は strict tool use または structured outputs。<br>https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1</p>
+<h3>1-8. thinking ブロックのモデル束縛・prefix 検証</h3>
+<p><strong>[確認済]</strong> — 原文確認。Fable 5.1 の thinking は旧モデルで読めず(片方向)、かつ <strong>system / tools / 過去メッセージを書き換えると以降の thinking が無効化</strong>。<strong>2026-08-31 以降に作成されたアカウントでは強制</strong>、それ以前は <code>thinking.block_binding.prefix_mismatch_behavior</code> を設定した場合のみ作用。beta ヘッダ <code>thinking-binding-controls-2026-08-01</code> で <code>input_transformations</code> に drop が報告される。Claude Code / claude.ai / Agent SDK は prefix を保つので自動対応済み。<br>https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1</p>
+<h3>1-9. 3つの beta(per-message effort / turn-scoped system messages / <code>thinking.display: "updates"</code>)</h3>
+<p><strong>[確認済]</strong> — 両AI一致、ヘッダ名まで原文一致(<code>mid-conversation-output-config-2026-07-01</code> / <code>mid-conversation-system-clear-at-2026-08-21</code> / <code>thinking-display-updates-2026-08-18</code>)。turn-scoped system message は <strong>プロンプトキャッシュを壊さず、クリア後は入力トークン0</strong> という点が運用上の要点。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>1-10. 【両AIとも未言及・追加確認】Fable 5.1 の挙動リグレッション7項目</h3>
+<p><strong>[確認済]</strong> — docs "Changed from Claude Fable 5" に明記。Claude Code 運用に直接効くので追加します:</p>
+<ul><li><strong>並列ツール呼び出しが不安定化</strong>(Fable 5 がまとめて出していた箇所で1ターン1呼び出しになる)→ 往復・トークン・実時間が増える</li><li><strong>ツール実行間の進捗テキストが減る</strong>(高 effort ほど顕著)</li><li><strong>low effort で検索せず記憶から答えがち</strong></li><li><strong>小さな編集でもファイル全体を書き直しがち</strong>(出力トークン増)</li><li>散文が密になる / チャットでの装飾が減る / 要約時に引用符なしで原文を再現しがち</li></ul>
+<p>いずれも公式に prompting 側の対処法が用意されています。<strong>どちらのAIもこの節を拾っていません。</strong><br>https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1</p>
+<h3>1-11. ウォーターマーク / C2PA、データ保持</h3>
+<p><strong>[確認済]</strong> — Fable 5.1 / Mythos 5.1 の生成テキストに統計的ウォーターマーク、code execution tool 由来の画像・動画は Files API 経由で C2PA Content Credentials 付き。また <strong>両モデルは 30日データ保持が必須で、Anthropic の明示的許可がない限り ZDR 不可</strong>。これは 1-13 の EFS 経過措置と矛盾しません(経過措置＝明示的許可)。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>1-12. SDK 更新(2026-08-27)</h3>
+<p><strong>[確認済]</strong> — Claude 単独主張でしたが release notes 原文で確認。Python 1.2.0 / TS 0.122.0 / Go 1.68.0 / Java 2.59.0 / Ruby 1.67.0 / C# 12.44.0、<code>client.beta.files</code> / <code>client.beta.skills</code> が beta ヘッダ不要に、<code>BetaSkill</code> → <code>BetaContainerSkill</code> リネーム。Console の個人キー / サービスアカウントキー追加(workspace API key はレガシー)も同日。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>1-13. Enterprise Frontier Safeguards(2026-09-01)</h3>
+<p><strong>[確認済]</strong> — 両AI一致、原文確認。顧客自身のクラウド(S3 / Azure Blob / GCS、顧客管理鍵)にデータを置いたまま誤用検知を行う。対象は Claude Code / Enterprise / Platform / Bedrock / Claude Platform on AWS / Google Agent Platform / Microsoft Foundry。<strong>2026年秋から段階展開</strong>。"None of them change model behavior, API pricing, or rate limits." と明記、Anthropic 側の課金はなし。<strong>対象顧客は EFS 提供までの経過措置として Fable 5 / 5.1 で ZDR 継続</strong>。<br>https://www.anthropic.com/news/enterprise-frontier-safeguards</p>
+<hr>
+<h2>2. Claude Code(最重視)</h2>
+<h3>2-1. v2.1.257(2026-09-01)— 今週最大</h3>
+<p><strong>[確認済]</strong> — 両AI一致、changelog 原文で逐条確認しました。</p>
+<ul><li>Fable 5.1 が Fable 系の既定モデルに(1M / $10・$50 / $0.25 キャッシュリード)</li><li><code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code> — per-spawn とエージェント定義の model 上書きを<strong>無視して</strong>全サブエージェントに適用</li><li><code>/effort</code> の <code>s</code>(セッション限定)、<code>timeFormat</code> / <code>timeZone</code></li><li>auto mode に <strong>Containment Escape ルール</strong>(クラウドのメタデータ資格情報取得・egress 回避・クロステナント到達を自動承認しない)</li><li>作業ディレクトリ外の初回読み取りで一度だけ確認、<code>permissions.blockReadsOutsideWorkingDirectories</code> でブロック可</li><li><code>.claude/</code> を起動後に作成した場合に設定が拾われない問題を修正</li><li><strong><code>defaultMode: "bypassPermissions"</code> はプロジェクト設定では「拒否」ではなく「無視」</strong>(<code>"auto"</code> と同様。user / managed settings か <code>--permission-mode</code> で指定)← Claude の「拒否」という表現は原文とわずかにズレます</li><li>キャッシュ関連の修正: <strong>スクリーンショット多用セッションで画像がリクエストサイズ上限を超えると毎ターン キャッシュミス</strong>していた問題を修正、サブエージェント transcript 切替時のトークンカウンタ停止を修正</li><li>セキュリティ: プラグインが symlink 経由で自ディレクトリ外を読める問題を修正</li><li><code>/code-review --comment</code> が <code>glab mr note</code> 経由で <strong>GitLab MR にコメント可能</strong>に</li><li>VSCode 拡張: モデル pill + Effort 行、ACCOUNT &amp; USAGE / SESSION MANAGER の折りたたみヘッダ</li></ul>
+<p>https://code.claude.com/docs/en/changelog</p>
+<h3>2-2. <code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code></h3>
+<h3>2-3. v2.1.258(2026-09-01)</h3>
+<p><strong>[確認済]</strong> — 両AI一致、原文確認。macOS 12 (Monterey) の起動失敗(<strong>2.1.255 で入った回帰</strong>と明記)、リモート/スケジュール実行での <code>user messages must have non-empty content</code> 失敗を修正。バグ修正のみ。</p>
+<h3>2-4. v2.1.252(2026-08-31)</h3>
+<p><strong>[確認済]</strong> — 原文確認。Bash の "task output swap refused"、新規プロジェクトで "always allow" が保存されない、Remote Control の停滞(Claude Desktop / VS Code ホスト、claude.ai 接続劣化時)、巨大な失敗出力による API リクエストサイズ超過。</p>
+<h3>2-5. v2.1.251(2026-08-28)— hooks とコスト可視化</h3>
+<h3>2-6. v2.1.248(2026-08-27)</h3>
+<p><strong>[確認済]</strong> — 両AI一致、原文確認。<code>--restricted</code> / <code>CLAUDE_CODE_RESTRICTED=1</code>(コマンド・コード実行系ツールと WebFetch を除去、file tool は作業ディレクトリ内、<code>bypassPermissions</code> 拒否、<strong>user/project/local 設定ファイルを無視</strong>)、<code>experimental.cacheTtl</code>(<code>"5m"</code> / <code>"1h"</code>、エージェント frontmatter、サブエージェント TTL 設定がないときに使用)、<code>claude self-hosted-runner --client-label</code>、server-managed settings 診断、<code>/usage-credits</code>、Bedrock/Vertex/Foundry とテレメトリ無効時のクロスセッションメッセージング。</p>
+<h3>2-7. 欠番バージョン</h3>
+<p><strong>[一部棄却]</strong> — Claude は「v2.1.249 / v2.1.253〜256 が見当たらない」としましたが、<strong>changelog 上の欠番は 2.1.244 / 2.1.249 / 2.1.253 / 2.1.254 の4つ</strong>です。<strong>2.1.255 と 2.1.256 は存在します</strong>(2.1.258 の記載が「2.1.255 で入った回帰」に言及している点が決定的)。Claude の「253〜256」は範囲が過大です。</p>
+<h3>2-8. 参考: v2.1.243 / 246 / 247(スコープ外だが運用に効く)</h3>
+<p><strong>[確認済]</strong> — <code>promptCacheTtl</code> / <code>subagentPromptCacheTtl</code>、<code>/usage</code> の Loops 内訳、<code>/permissions</code> の Auto mode タブ、<code>/claude-api cost-optimize</code>。既に検証済み。</p>
+<hr>
+<h2>3. Cowork</h2>
+<h3>3-1. Enterprise の built-in browser / Claude in Chrome が <strong>2026-09-10 から既定ON</strong></h3>
+<p><strong>[確認済]</strong> — codex 単独主張でしたが、support 記事原文で確認しました。Built-in browser: Team は "On by default as it rolls out."、Enterprise は "Off by default at launch. Starting September 10, 2026, it turns on by default unless you've turned it off."。<strong>Claude in Chrome も同一日付・同一ルール</strong>。<br>https://support.claude.com/en/articles/16635803-set-up-browser-use-in-claude-cowork-for-team-and-enterprise-plans</p>
+<h3>3-2. Cowork 組み込みブラウザ(2026-08-26)/ Claude in Chrome GA(2026-08-26)</h3>
+<p><strong>[確認済]</strong> — 検証パイプラインで決着済み。なお同知見は「銀行・メール・SSO は既定で除外」という表現を<strong>要修正</strong>としています(除外されるのは <em>クッキー取り込みのチェックボックス</em> であって、サイト訪問のブロックではない)。今日の Claude 出力はこの点に触れていないので、そのまま引用しないこと。また「一度サインインすると、そのマシンの以後の全 Cowork セッションで資格情報が使える」という点が運用上いちばん効きます。</p>
+<h3>3-3. Compliance API のセッションエンドポイントが beta 卒業(2026-08-26)</h3>
+<p><strong>[確認済]</strong> — 両AI一致、原文確認。<strong>加えて両AIとも落としている続報</strong>があります: local session エンドポイントが **Claude Science セッション(<code>product_surface: claude_science</code>)と Claude for Microsoft 365(Excel / PowerPoint / Word / Outlook、<code>office_agents*</code>)** の transcript も返すようになりました(Enterprise 向け beta)。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>3-4. メモリがチャットと Cowork で統合(2026-08-25)</h3>
+<p><strong>[要検証]</strong> — Claude 単独主張。support release notes と claude.com/blog を出典としていますが、<strong>今回のセッションでは一次確認していません</strong>(時間配分を Claude Code / Design 側に振ったため)。「Free/Pro/Max は既定オン、Team/Enterprise は既定オフ」という既定値の具体性が高いので、そのまま使う前に裏取りを推奨します。<strong>誤りと判定したわけではありません。</strong></p>
+<h3>3-5. 調査期間(8/27〜9/3)内の Cowork 単独の新発表</h3>
+<p><strong>[確認済(否定的結論として)]</strong> — codex・Claude とも「期間内の新発表は見つからず、8/25〜8/26 のものが直近」で一致。ただしこれは<strong>「発表が存在しない」ことの確認ではなく、両者が見つけられなかったという事実</strong>です。</p>
+<hr>
+<h2>4. Claude Design</h2>
+<h3>4-1. "Getting Started with Claude Design" ウェビナー(2026-09-03 10:00 PT)</h3>
+<p><strong>[確認済]</strong> — codex 単独主張でしたが、ページを直接確認しました。実在します。<strong>新機能の発表ではなく導入・運用向け</strong>。内容は「どの成果物に Claude Design を使うか」「ブランド一貫性のための design system 取り込み」「アウトラインから各種フォーマットへの export までの一連のワークフロー」。Claude Enterprise で利用可能な既存機能として紹介されています。<br>https://www.anthropic.com/webinars/getting-started-with-claude-design</p>
+<h3>4-2. 期間内の Claude Design 新機能・仕様変更</h3>
+<hr>
+<h2>5. 料金 / 利用上限</h2>
+<h3>5-1. 週次上限: 9/14 に暫定+50% が終了し、ベースライン比 +25% に(実質約17%減)</h3>
+<p><strong>[要検証 — 一次確認できず]</strong> — Claude 単独主張。複数の二次メディア(BleepingComputer / Notebookcheck / DevOps.com / XenoSpectrum ほか)が一致して「9/13 で +50% 終了、9/14 から恒久 +25%、150→125 なので heavy user は約17%減、対象は Pro / Max / Team / seat-based Enterprise」と報じており、<strong>報道の一致度は高い</strong>です。<br>しかし今回、<strong>anthropic.com / claude.com / support.claude.com への限定検索と、support「Models, usage, and limits in Claude Code」の直接取得のいずれでも、9/14 の日付・+25%・-17% への言及を見つけられませんでした</strong>。関連しそうな <code>anthropic.com/news/higher-limits-spacex</code> は 2026-05-06 付で、恒久的な引き上げを "effective today" として告知しており、<strong>失効日には触れていません</strong>。<br>→ <strong>「一次情報が存在しない」とは断定できません。ここで確認できなかった、というだけです。</strong> 影響が大きい項目なので、公式アナウンス(メール / アプリ内通知 / Help Center の別記事)を別途当たる価値があります。<br>https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-cutting-claude-codes-current-weekly-limits-by-17-percent/</p>
+<h3>5-2. Sonnet 5 は $2/$10 が正式価格、9/1 の $3/$15 値上げは実施されず</h3>
+<p><strong>[確認済]</strong> — Claude は「二次・一次未確認」としていましたが、<strong>検証パイプラインで既に決着済み</strong>です。pricing ページ Note に "The previously scheduled increase to $3/$15 ... on September 1, 2026 will not occur." が確認済み。Batch も $1/$5 のまま。</p>
+<hr>
+<h2>6. 二次情報</h2>
+<h3>6-1. primeline.cc の3本(いずれも 2026-08-30)</h3>
+<p><strong>[確認済(記事の存在と数値)]</strong> — codex 単独主張でしたが、3本とも実在し、引用された数値が原文と一致することを確認しました。</p>
+<ul><li><strong>"Is Your Claude Code Cache Really 96% Efficient?"</strong> — 63,880 billed requests / 3,031 transcripts、token-weighted 96.59% / median session 86.41%。原文はさらに「<strong>上位0.8%のセッションが全入力トークンの半分を占める</strong>」「<strong>cache write は想定の 1.25x でなく 2x ティアで課金され、通常セッションでは入力系コストの約76%を占める</strong>」と述べています(codex の要約はここを落としています)。https://primeline.cc/blog/claude-md-cache-cost</li><li><strong>"Does Tool Description Wording Change What Claude Code Picks?"</strong> — 230 runs、主ブロックで 0/10 → 10/10、p = 0.00001。「同じ文言を別フィールドに置いても 10/10」という対照群があり、<strong>フィールド名ではなく description 文字列の内容が効く</strong>という codex の解釈を支持します。https://primeline.cc/blog/tool-description-wording</li><li><strong>"Do Claude Code Review Rounds Actually Converge?"</strong> — PR #582 で 19, 7, 7, 9。https://primeline.cc/blog/review-rounds-converge</li></ul>
+<p>※ <strong>いずれも単一著者の実測であり、主張の一般化可能性は未検証</strong>です。「記事が実在し数値が正確」と「主張が正しい」は別です。</p>
+<h3>6-2. Reddit r/ClaudeAI の6スレッド(codex 提示)</h3>
+<p><strong>[要検証]</strong> — <strong>www.reddit.com は本環境から取得できず、URL・投稿内容・日付のいずれも確認できませんでした。</strong> Claude 側は「今週分の Reddit 投稿は検索経由で特定できなかった」としており、両者は矛盾していません(codex が見つけ、Claude が見つけられなかった、という可能性がある)。codex 自身も "Gone in 60 Seconds" 投稿を「未確認」と自己申告しています。<strong>存在しないと判定したわけではありません。</strong> 内容(hooks で code style 強制、CLAUDE.md を小さく保つ、subagent へのモデル継承で quota 消費)はいずれも公式仕様と整合的ですが、コミュニティ意見であって一次情報ではありません。</p>
+<h3>6-3. Simon Willison「Claude Fable 5.1 made me a really nice animated pelican」(2026-09-01)</h3>
+<p><strong>[確認済]</strong> — Claude 単独主張でしたが原文確認。Low 1,998 tok / 23.8s / $0.10、Medium 1,977 tok / 23s / $0.099、High 2,612 tok / 29.6s / $0.131、<strong>xhigh 36,767 tok / 7分51秒 / $1.83</strong>、<strong>max 65,927 tok / 13分54秒 / $3.30</strong>。Claude の要約は Extra High の所要時間を「7分超」、Max を「14分」としており原文と整合。<strong>effort を xhigh 以上に上げると出力トークンが1桁跳ねる</strong>という目安として有用。<br>https://simonwillison.net/2026/Sep/1/claude-fable-5-1/</p>
+<h3>6-4. 「How Anthropic employees use Claude Tag」</h3>
+<p><strong>[一部棄却]</strong> — Claude の要約に<strong>数値の誤り</strong>があります。</p>
+<ul><li>誤: 「15件超の Slack <strong>スレッド</strong>から2ページのブリーフを <strong>1時間以内</strong>」 → 正: <strong>15メッセージの1スレッド</strong>から2ページの文書を<strong>約45分</strong></li><li>正: 顧客要望 約24件を約26分で集約 ✅</li><li>正: 法務のアセット事前チェックが1日以上 → 1アセット約30分 ✅</li><li>Claude が落としている項目: 約120件の raw finding を 23 open / 14 resolved に約50分で整理</li></ul>
+<p>https://claude.com/blog/how-anthropic-employees-use-claude-tag</p>
+<h3>6-5. status.claude.com の障害(8/28 Cowork・Claude Code on web、8/31 claude.ai・Claude Code degraded)</h3>
+<p><strong>[要検証 — 一次確認できず]</strong> — codex 単独主張。status.claude.com/history を取得しましたが、<strong>インシデント一覧が JS レンダリングのため本文を取得できませんでした</strong>。障害の有無自体を否定するものではありません。</p>
+<h3>6-6. その他</h3>
+<ul><li><strong>Hacker News スレッド(400+ points、Felix Rieseberg の「過小評価されているのは文章」コメント)</strong> — <strong>[要検証]</strong> Claude 単独主張、未確認。ただし docs の "Changed from Claude Fable 5"(1-10)に「散文が密になる」「チャットでの装飾が減る」とあり、<strong>文章面の変化があること自体は一次情報と整合</strong>します。</li><li><strong>DevelopersIO / VentureBeat / Vellum / note・smartscope の Tips 記事</strong> — <strong>[要検証]</strong> いずれも未確認。Claude 自身が「公開日未確認」と付記しているものが複数あります。</li></ul>
+<hr>
+<h2>7. 今日の注目 — 検証・実装を試す価値がある3件</h2>
+<h3>① Fable 5.1 の挙動リグレッション(並列ツール呼び出し / ファイル全体書き直し)の実測</h3>
+<p><strong>理由:</strong> これは<strong>どのAIも拾わなかったが、一次情報に明記され、かつ今日から自分の環境に効いている</strong>唯一の項目です。Claude Code は 2.1.257 で Fable 5.1 を既定にしたので、「1ターン1ツール呼び出しになって往復が増える」「小さな編集でファイル全体を書き直して出力トークンが増える」が<strong>既に起きている可能性</strong>があります。しかも Claude Code の既定 effort は High で、公式が「高 effort ほど進捗テキストが減る」とも書いている。<code>/cost</code> のキャッシュ行(v2.1.251)と合わせれば、<strong>体感ではなく数値で</strong> before/after を取れます。公式に prompting 側の対処(バッチ指示の1行追加、targeted edit の指示)が用意されているので、検証 → 対処までが1セットで回せます。</p>
+<h3>② <code>/cost</code> のプロンプトキャッシュ行 × <code>experimental.cacheTtl</code> × <code>prompt_cache</code> status line</h3>
+<h3>③ Enterprise の built-in browser / Claude in Chrome が 9/10 に既定ON(残り1週間)</h3>
+<hr>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener">Introducing Claude Fable 5.1 and Claude Mythos 5.1</a></li><li><a href="https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1" rel="noopener">What's new in Claude Fable 5.1</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://www.anthropic.com/news/enterprise-frontier-safeguards" rel="noopener">Enterprise Frontier Safeguards</a></li><li><a href="https://support.claude.com/en/articles/16635803-set-up-browser-use-in-claude-cowork-for-team-and-enterprise-plans" rel="noopener">Set up browser use in Claude Cowork for Team and Enterprise plans</a></li><li><a href="https://www.anthropic.com/webinars/getting-started-with-claude-design" rel="noopener">Getting started with Claude Design (webinar)</a></li><li><a href="https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code" rel="noopener">Models, usage, and limits in Claude Code</a></li><li><a href="https://www.anthropic.com/news/higher-limits-spacex" rel="noopener">Higher usage limits for Claude and a compute deal with SpaceX</a></li><li><a href="https://claude.com/blog/how-anthropic-employees-use-claude-tag" rel="noopener">How Anthropic employees use Claude Tag</a></li><li><a href="https://simonwillison.net/2026/Sep/1/claude-fable-5-1/" rel="noopener">Simon Willison: Claude Fable 5.1</a></li><li><a href="https://primeline.cc/blog/claude-md-cache-cost" rel="noopener">primeline.cc: Is Your Claude Code Cache Really 96% Efficient?</a></li><li><a href="https://primeline.cc/blog/tool-description-wording" rel="noopener">primeline.cc: Does Tool Description Wording Change What Claude Code Picks?</a></li><li><a href="https://primeline.cc/blog/review-rounds-converge" rel="noopener">primeline.cc: Do Claude Code Review Rounds Actually Converge?</a></li><li><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-cutting-claude-codes-current-weekly-limits-by-17-percent/" rel="noopener">BleepingComputer: Claude Code weekly limits</a></li><li><a href="https://www.notebookcheck.net/Anthropic-announces-a-25-increase-to-Claude-Code-limits-but-there-s-a-17-catch.1382735.0.html" rel="noopener">Notebookcheck: 25% increase, 17% catch</a></li><li><a href="https://xenospectrum.com/en/claude-code-weekly-limit-change/" rel="noopener">XenoSpectrum: Claude Code weekly limit change</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

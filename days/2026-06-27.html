@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-06-27 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-06-27</div>
+  <div><span class="lab lab-ok">確認済 5</span><span class="lab lab-warn">要検証 8</span></div>
+  <div class="back"><a href="../index.html#2026-06">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-06-27</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証が一通り完了しました。以下にまとめます。</p>
+<hr>
+<h1>Claude/Anthropic 直近の動き — 3AI突き合わせ精査</h1>
+<p>検証方針: 各項目をWebSearchで一次情報・複数報道に当たって確認しました。特にGeminiの具体的な数字・日付・固有名は厳しく見ています。<strong>結果として、Geminiの「Fable 5/Mythos 5提供停止」は捏造ではなく事実</strong>でした。一方、<strong>Geminiの「ヘッドレス課金が6/15に移行完了」は誤り(実際は施行直前に保留)</strong>で、これは要注意の食い違いです。</p>
+<hr>
+<h2>1. Claude / Anthropic(全体)</h2>
+<h3>Claude Tag(Slack向けAIチームメイト)を正式発表</h3>
+<p><strong>[確認済]</strong> — 3AI一致＋公式・複数大手報道で確認。6月23日発表。Slackで<code>@Claude</code>をタグ付けし、チャンネルの永続コンテキストを記憶してタスクを委任できるベータ機能。Claude Enterprise / Team向け、Opus 4.8で動作。既存「Claude in Slack」アプリを置き換える位置づけ。社内では既にコード変更の65%を承認・取り込みと公称。</p>
+<ul><li>公式: https://www.anthropic.com/news/introducing-claude-tag</li><li>報道: https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/ / https://www.bloomberg.com/news/articles/2026-06-23/anthropic-wants-claude-to-be-your-new-slack-coworker</li><li>補足: Geminiの「旧アプリ2026年8月3日サポート終了」という具体的日付は裏が取れず <strong>[要検証]</strong>(codexは「管理者が30日以内に移行オプトイン可」とのみ)。</li></ul>
+<h3>Fable 5 / Mythos 5 の提供停止(米政府の輸出管理指令)</h3>
+<p><strong>[確認済]</strong> — Geminiのみが主張したが、Anthropic公式・CNBC等で事実と確認。2026年6月12日、米政府が国家安全保障を根拠に外国籍ユーザー(社内含む)へのアクセス全停止を指令し、Anthropicは両モデルを全顧客向けに無効化。6月22日時点でも復旧せず。他のClaudeモデルは影響なし。</p>
+<ul><li>公式: https://www.anthropic.com/news/fable-mythos-access</li><li>報道: https://www.cnbc.com/2026/06/12/anthropic-disables-access-to-fable-5-and-mythos-5-to-comply-with-government-directive</li><li>注: Geminiの「6月9日に100万トークン・適応的思考(adaptive thinking)搭載の最上位として発表」という細部は未確認 <strong>[要検証]</strong>。事象の本筋(政府指令で停止)は確認済み。厳密には「直近1週間」より前(6/12)。</li></ul>
+<h3>旧モデル(Sonnet 4 / Opus 4)のAPI廃止(6/15適用)</h3>
+<p><strong>[要検証]</strong> — Geminiのみ。モデル廃止スケジュール自体は通常運用として存在しうるが、この日付・対象モデルの裏は取れず。</p>
+<hr>
+<h2>2. Claude Code</h2>
+<h3>v2.1.193(6月25日)</h3>
+<p><strong>[確認済]</strong> — codex・Claude一致＋公式CHANGELOG/GitHub Release/公式X投稿で確認。<code>autoMode.classifyAllShell</code>設定(全Bash/PowerShellコマンドを自動モード分類器へ通す)、拒否理由のトランスクリプト/トースト/<code>/permissions</code>への表示、bashモード(<code>!</code>)のライブパス補完、OpenTelemetryログ拡張、アイドル時バックグラウンドシェルのメモリ自動回収、MCPサーバ認証通知。</p>
+<ul><li>公式: https://code.claude.com/docs/en/changelog / https://github.com/anthropics/claude-code/releases/tag/v2.1.193</li></ul>
+<h3>その他の周辺バージョン(v2.1.186〜2.1.195)</h3>
+<p><strong>[要検証]</strong> — Claudeが v2.1.190/191(<code>/rewind</code>、ストリーミングのスクロール修正等)、v2.1.187(<code>sandbox.credentials</code>、組織レベルのモデル制限)、v2.1.186(<code>claude mcp login/logout</code>)を、codexが v2.1.195(マウス無効化環境変数、hook matcher修正等)を挙げる。各々もっともらしく公式CHANGELOG由来とされるが、個別の日付・内容までは今回未照合。v2.1.193以外は突き合わせ未完了。</p>
+<h3>Headless(プログラム自動化)利用の別課金化</h3>
+<p><strong>[棄却(誤り)]</strong> — Geminiは「6/15に移行<strong>完了</strong>」と断定。実際は2026年6月15日施行予定だったが、Anthropicは<strong>6月16日に施行を保留</strong>し、Agent SDK / <code>claude -p</code> / GitHub Actionsは通常のサブスク枠から消費が継続。Geminiの「移行した」という完了形は事実と異なる。</p>
+<ul><li>報道: https://www.techtimes.com/articles/317625/20260602/anthropic-ends-subscription-subsidy-agents-june-15-credit-pool-replaces-flat-rate-access.htm / https://www.digitalapplied.com/blog/anthropic-claude-credit-overhaul-june-15-2026</li></ul>
+<h3>Remote Control の Trusted Devices 必須化(6/25)/ API レート制限統合(6/26)/ Opus 4.7 fast mode 非推奨化(7/24削除)</h3>
+<p><strong>[要検証]</strong> — いずれもcodexのみ。Remote Control機能・fast modeの存在自体は確認できたが、これらの具体的変更・日付の裏は取れず。特に「Opus 4.7 fast mode を7/24削除」は、検索したリリースノートでOpus 4.7が廃止対象に入っていないため確認できなかった。</p>
+<h3>JetBrains IDEでClaudeを「agent provider」プレビュー提供(6/22)</h3>
+<p><strong>[要検証]</strong> — Claudeのみ。GitHub Changelog由来。サードパーティ告知で、本筋から外れるため未深掘り。</p>
+<hr>
+<h2>3. Cowork</h2>
+<h3>Coworkのモバイル(リモコン型)対応をテスト中</h3>
+<p><strong>[要検証 / 公式未発表]</strong> — 3AIが言及、複数メディアが報道。スマホをリモコンとし重い処理はPC側で継続。"Dispatch"というツール名、Pro/Maxベータといった記述あり。<strong>Anthropicの公式発表はなく、リーク/報道ベース</strong>。Geminiの出典(Digital Today/Releasebot)より、BleepingComputer等の方が確度が高い。</p>
+<ul><li>報道: https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-testing-desktop-like-claude-cowork-for-mobile/ / https://cybernews.com/ai-news/claude-ai-agent-cowork-mobile/</li></ul>
+<h3>5時間使用上限の2倍キャンペーン(6/5〜7/5)</h3>
+<p><strong>[確認済(ただし直近1週間より前の発表)]</strong> — Gemini・Claude一致。Pro/Max/Team向け。期間は継続中だが発表自体は6月上旬。</p>
+<ul><li>報道: https://thenewstack.io/anthropic-claude-cowork-promotion/</li><li>Geminiの「MCPコネクタのエンタープライズ管理認証」は <strong>[要検証]</strong>(Cowork固有の新機能としての裏は薄い。Claude Tag/管理機能と混同の可能性)。</li></ul>
+<hr>
+<h2>4. Claude Design</h2>
+<h3>大型アップデート(デザインシステム取り込み＋双方向 <code>/design-sync</code>＋キャンバス直接編集)</h3>
+<p><strong>[確認済(ただし約10日前=6/17頃の発表)]</strong> — Gemini・Claude一致＋公式ブログ・複数報道で確認。GitHubリポジトリ/デザインファイル/アップロードからデザインシステムを取り込み、Claude Codeと双方向同期(<code>/design-sync</code>)、WYSIWYGなキャンバス直接編集、PDF/PPTX出力やAdobe/Canva/Miro等への書き出しを強化。利用上限はchat/Cowork/Claude Codeと共通プールに統合。Pro以上でベータ提供。初週で100万人超が利用と公称。</p>
+<ul><li>公式: https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</li><li>報道: https://www.techrepublic.com/article/news-anthropic-claude-design-overhaul-enterprise-teams/</li><li>注: 「直近1週間(6/20〜27)」には収まらない。codexが指摘した「管理ガイドが"Updated this week"」はヘルプ記事の更新であり、機能発表ではない <strong>[要検証]</strong>。</li></ul>
+<hr>
+<h2>今日の注目(検証・試用の価値があるもの)</h2>
+<ol><li><strong>Claude Tag(Slackチームメイト)</strong> [確認済] — 直近1週間で唯一の大型公式新機能。Claude Code/Coworkの延長線上にある「非同期・チーム共有のエージェント」という方向性そのもので、Enterprise/Teamを使っているなら移行・試用の価値が高い。旧「Claude in Slack」からの移行期限は要確認。</li></ol>
+<ol><li><strong>Claude Code v2.1.193 の <code>autoMode.classifyAllShell</code></strong> [確認済] — 全シェルコマンドを自動モード分類器に通すセキュリティ強化。エージェント自動実行を使う環境ならすぐ試せる設定で、拒否理由の可視化も併せて運用改善に直結する。</li></ol>
+<ol><li><strong>Claude Design の双方向 <code>/design-sync</code></strong> [確認済(6/17)] — デザイン↔コードの往復が閉じた点が実務インパクト大。厳密には1週間より前だが、Claude Code連携の検証テーマとして試す価値あり。</li></ol>
+<hr>
+<h3>確認できなかった/保留の主な点</h3>
+<ul><li><strong>Opus 4.7 fast mode の7/24削除、APIレート制限のStart/Build/Scale統合、Trusted Devices必須化</strong>(いずれもcodex単独・日付の裏取れず)。</li><li><strong>Claude Tag旧アプリの8/3終了日、旧モデル6/15廃止</strong>(Gemini単独)。</li><li><strong>Cowork "Dispatch"/モバイル対応</strong>(公式未発表・報道のみ)。</li><li>v2.1.193以外のClaude Codeバージョンの個別内容は今回未照合。</li></ul>
+<p><strong>特記</strong>: Geminiは「Fable 5/Mythos 5停止」を正しく拾った一方、「ヘッドレス課金の6/15移行完了」を誤って断定しました。後者は実際には保留されており、3AIの中で最も注意して扱うべき食い違いです。</p>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://www.anthropic.com/news/introducing-claude-tag" rel="noopener">Introducing Claude Tag (Anthropic)</a></li><li><a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener">Statement on Fable 5 / Mythos 5 suspension (Anthropic)</a></li><li><a href="https://www.cnbc.com/2026/06/12/anthropic-disables-access-to-fable-5-and-mythos-5-to-comply-with-government-directive" rel="noopener">CNBC — Fable 5/Mythos 5 disabled</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code Changelog</a> / <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.193" rel="noopener">v2.1.193 release</a></li><li><a href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" rel="noopener">Claude Design stays on brand (Anthropic)</a></li><li><a href="https://www.techtimes.com/articles/317625/20260602/anthropic-ends-subscription-subsidy-agents-june-15-credit-pool-replaces-flat-rate-access.htm" rel="noopener">TechTimes — June 15 billing change</a> / <a href="https://www.digitalapplied.com/blog/anthropic-claude-credit-overhaul-june-15-2026" rel="noopener">DigitalApplied — change paused</a></li><li><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-testing-desktop-like-claude-cowork-for-mobile/" rel="noopener">BleepingComputer — Cowork mobile</a></li><li><a href="https://thenewstack.io/anthropic-claude-cowork-promotion/" rel="noopener">The New Stack — Cowork promotion</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

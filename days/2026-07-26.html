@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-07-26 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-07-26</div>
+  <div><span class="lab lab-ok">確認済 9</span><span class="lab lab-warn">要検証 4</span></div>
+  <div class="back"><a href="../index.html#2026-07">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-07-26</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<p>検証が取れました。以下、3AIの出力を突き合わせ、一次情報（anthropic.com / platform.claude.com / code.claude.com）で裏取りした結果をまとめます。</p>
+<hr>
+<h2>総評</h2>
+<ul><li>大枠（Opus 5 発表、Claude Code 2.1.216→2.1.220、voice mode、Economic Index コネクタ）は<strong>codex(ChatGPT)とClaudeの出力が概ね正確</strong>で、一次情報とも整合しました。</li><li><strong>Gemini(agy)は日付・大枠は当てているが、細部の「固有名・バグ修正内容」を捏造</strong>しています（特に 2.1.220 の中身）。該当箇所を下に明示します。</li><li>Cowork「Record a Skill」はGeminiとcodexは触れず、<strong>Claudeだけが挙げていたが、複数の第三者報道で裏が取れました</strong>（ただし anthropic.com の一次発表URLは未特定）。</li></ul>
+<hr>
+<h2>Claude / Anthropic 本体</h2>
+<h3>Claude Opus 5 を発表（2026-07-24）</h3>
+<p><strong>[確認済]</strong> 一次情報で全面確認。$5/$25（百万トークン, Opus 4.8据え置き）、1Mコンテキスト（既定=最大）、128k出力、<strong>thinkingデフォルトON</strong>。Claude Max既定・Pro最上位。API/Bedrock/Google Cloud/Microsoft Foundryで提供。</p>
+<ul><li>Geminiの数値（1M/128k）も正しい。Claudeが「(未確認)」としていた価格は<strong>一次確認できたので[確認済]に格上げ</strong>。</li><li>出典: https://www.anthropic.com/news/claude-opus-5 、 https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5</li></ul>
+<h3>API仕様変更（Opus 5に伴う, 2026-07-24）— codexのみが指摘</h3>
+<p><strong>[確認済]</strong> platform docsで全面確認。以下すべて正確でした:</p>
+<ul><li><strong>thinking無効化は effort <code>high</code>以下でのみ可</strong>。<code>xhigh</code>/<code>max</code> で <code>thinking:{disabled}</code> は <strong>400エラー</strong>（Opus 4.8からの破壊的変更）。</li><li><strong>mid-conversation tool changes（ベータ）</strong>: <code>mid-conversation-tool-changes-2026-07-01</code> ヘッダ。会話途中のツール増減でprompt cache維持。</li><li><strong><code>fallbacks</code> の "default" モード（ベータ）</strong>: <code>server-side-fallback-2026-07-01</code> ヘッダ。分類カテゴリ別に推奨フォールバックへ自動ルーティング。</li><li>補足（未指摘）: prompt cache最小長が1024→<strong>512トークン</strong>に低下。</li><li>出典: https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5</li></ul>
+<h3>AMDとの戦略的パートナーシップ（2026-07-22）— Geminiのみが指摘</h3>
+<p><strong>[確認済]</strong> AMD/複数報道で確認。最大2GWの <strong>Instinct MI450シリーズ</strong>展開、AMDがAnthropicに<strong>最大$5B出資</strong>、初回1GWは2027年前半。Geminiの記述は方向性として正確（「ギガワット規模」）。</p>
+<ul><li>出典: https://ir.amd.com/news-events/press-releases/detail/1292/ 、 https://www.cnbc.com/2026/07/22/amd-anthropic-ai-chip-investment.html</li></ul>
+<h3>Voice mode 刷新（2026-07-23頃）</h3>
+<p><strong>[確認済]</strong> codexとClaudeが一致、TechCrunch/MacRumorsで確認。Haiku固定→<strong>Opus/Sonnet/Haiku選択可・会話途中で切替</strong>。Gmail/Calendar/Slack等の連携アクション、18言語対応。無料枠はHaiku＋連携1つ。</p>
+<ul><li>出典: https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/</li></ul>
+<h3>Economic Index コネクタ公開（2026-07-22）</h3>
+<p><strong>[確認済]</strong> codexとClaudeが一致、anthropic.comで確認。claude.aiのconnectorsメニューから有効化、Claude上で経済データを対話探索。</p>
+<ul><li>出典: https://www.anthropic.com/news/anthropic-economic-index-connector</li></ul>
+<h3>その他 Anthropic発表（Claudeのみが列挙）</h3>
+<p><strong>[要検証]</strong> 以下はClaude単独・anthropic.com/news由来。存在は妥当だが個別に一次確認まではしていない: Economic Futures研究アジェンダ(7/22)、Public First Actionへ$20M寄付(7/21)、AI for Science 希少疾患グラント募集(7/20)。</p>
+<ul><li>出典: https://www.anthropic.com/news</li></ul>
+<hr>
+<h2>Claude Code（特に重視）</h2>
+<h3>2.1.219（2026-07-24）: Opus 5統合</h3>
+<p><strong>[確認済]</strong> changelogで確認。<strong>Opus 5を既定Opusモデルに（1M）</strong>、fast mode <strong>$10/$50</strong>、<code>sandbox.network.strictAllowlist</code>、<code>DirectoryAdded</code> フック、nested subagent forwarding（stream-json）、<code>workflowSizeGuideline</code> 設定を追加。<strong>Opus 4.7 fast mode削除</strong>。</p>
+<ul><li>codexの記述が正確。Geminiはこれを「v2.1.219 でOpus 5サポート」と正しく捉えている。Claudeが「(未確認)」とした版番・価格は<strong>一次確認済み</strong>。</li><li>出典: https://code.claude.com/docs/en/changelog</li></ul>
+<h3>2.1.220（2026-07-25）</h3>
+<p><strong>[確認済（内容は一般的記述のみ）]</strong> 公式changelogは「<strong>Bug fixes and reliability improvements</strong>」のみ。</p>
+<ul><li>⚠️ <strong>Geminiの「メモリリーク解消／Windowsパス処理修正／<code>/doctor</code>安定化／スクリーンリーダー対応」は[要検証〜棄却]</strong>。公式は具体を列挙しておらず、<strong>Geminiの捏造の可能性が高い</strong>。裏付けなし。</li></ul>
+<h3>2.1.218（2026-07-22）</h3>
+<p><strong>[確認済]</strong> codex記述と整合。<code>/code-review</code> が<strong>バックグラウンドのサブエージェント</strong>として動作、<code>/deep-research</code> は手動起動のみ、auto/plan mode改善など。</p>
+<ul><li>出典: https://code.claude.com/docs/en/changelog</li></ul>
+<h3>2.1.217（07-21）/ 2.1.216（07-20）</h3>
+<p><strong>[確認済]</strong> codexが列挙、changelogで確認可能。2.1.217=絵文字ショートコード補完・同時subagent上限・<code>--max-budget-usd</code>のbg停止対応など。2.1.216=<code>sandbox.filesystem.disabled</code>追加・長時間セッション遅延修正・web版Claude Code修正など。</p>
+<ul><li>出典: https://code.claude.com/docs/en/changelog</li></ul>
+<hr>
+<h2>Cowork</h2>
+<h3>「Record a Skill」追加（2026-07-21）</h3>
+<p><strong>[確認済（一次発表URL未特定）]</strong> Claudeのみが挙げたが、複数の独立第三者報道（the-decoder、Search Engine Journal 等）で内容一致。画面録画＋音声ナレーションから再利用可能スキルを生成。Desktopアプリの「+」メニュー。<strong>Pro/Max/Team</strong>向け。</p>
+<ul><li>anthropic.com の一次プレスは検索で特定できず。実在は高確度だが<strong>公式URLは要確認</strong>。</li><li>出典: https://the-decoder.com/claude-cowork-learns-new-skills-through-screen-recordings-and-voice-over-explanations/ 、 https://www.searchenginejournal.com/anthropics-claude-can-now-watch-a-video-and-learn-your-job/583053/</li></ul>
+<h3>web/モバイル展開（2026-07-07）</h3>
+<p><strong>[確認済・ただし対象週の外]</strong> 3AIとも「直近1週間より前」と正しく区別。</p>
+<hr>
+<h2>Claude Design（重視）</h2>
+<h3>直近1週間の新機能</h3>
+<p><strong>[確認済：新機能なし]</strong> 3AIが一致。7/19–26に<strong>製品としての新機能発表は確認できず</strong>。</p>
+<ul><li>codexが挙げた 7/24 の「Claude Design公式ブログ」は<strong>利用事例/解説記事であって新機能発表ではない</strong>（codex自身もそう明記、妥当）。</li><li>「モデル選択ガイド」にClaude Designが対象製品として明記された点は付随的更新。</li><li>design-system import / <code>/design-sync</code> 等の大型更新は <strong>2026年6月</strong>（対象週の外）。Geminiはこれをなぜか「6/17」としているが、他ソースは「6月」止まりで<strong>日付「6/17」は裏が取れず[要検証]</strong>。</li></ul>
+<hr>
+<h2>その他（codex単独, 参考）</h2>
+<ul><li><strong>Fable 5 プロモ終了（2026-07-19 PT）</strong> — <strong>[要検証]</strong> Help Center由来、他AI未言及。関連で anthropic.com に「Redeploying Fable 5」記事は存在。</li><li>Managed Agents更新(7/22)、voice(7/23)、Claude for Teachers注記更新(7/21) — <strong>[要検証]</strong> codex単独、内容は妥当だが個別一次確認は未実施。</li></ul>
+<hr>
+<h2>今日の注目（検証・実装を試す価値あり）</h2>
+<ol><li><strong>Opus 5 の「thinking無効化 × effort xhigh/max = 400エラー」破壊的変更</strong> ⭐最優先</li></ol>
+<p>既存コードで <code>thinking:{disabled}</code> を高effortで送っている統合は<strong>7/24以降そのまま壊れます</strong>。自分のAPI/エージェント実装を今すぐ点検すべき、影響が具体的で確実な項目。（一次確認済）</p>
+<ol><li><strong>mid-conversation tool changes（ベータ）</strong></li></ol>
+<p>長寿命エージェントでツール集合を動的に増減してもprompt cacheを維持できる。マルチエージェント/MCPを多用する構成ではキャッシュ費とレイテンシに直結するので、<code>mid-conversation-tool-changes-2026-07-01</code> ヘッダで試す価値が高い。（一次確認済）</p>
+<ol><li><strong>Cowork「Record a Skill」</strong></li></ol>
+<p>画面録画→スキル化という新しいワークフロー化手段。反復作業を持つ人には実地検証の価値大。ただし<strong>公式一次発表URLが未特定</strong>なので、試す前に claude.ai/Desktopアプリ側で機能有無を確認するのが安全。</p>
+<p><strong>未確認として明記すべき点</strong>: ① Claude Code 2.1.220 の具体的バグ修正内容（Geminiの記述は裏なし・捏造疑い）、② Cowork「Record a Skill」の公式一次URL、③ Claude Design「6/17」という日付、④ codex単独のFable 5プロモ終了・Managed Agents更新の一次確認。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-12 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-12</div>
+  <div><span class="lab lab-ok">確認済 18</span><span class="lab lab-warn">要検証 11</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-12</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/3 系統</strong> — agy(0行(下限20行))<br>突き合わせできたのは 2 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-09-12.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<p>本日は3系統のうち agy(Gemini)が0行で欠落しており、突き合わせは codex と Claude の2系統のみです。通常より確度が低い点に留意してください。</p>
+<h2>Claude Code(2.1.265〜2.1.269)</h2>
+<p><strong><code>claude plugin eval</code> の追加(2.1.269)</strong> [確認済]<br>プラグインの eval スイートを走らせて採点し、JSON と HTML のレポートを出力します。両系統が一致し、CHANGELOG 原文と専用ドキュメントページの実在をこちらで直接確認しました。<br>出典: https://code.claude.com/docs/en/plugin-evals / https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md</p>
+<p><strong>グレーダー6種と課金、CI ゲート</strong> [要検証]<br>ドキュメントは no-plugin ベースラインとの比較および CI でのスコアゲートを明記していますが、「グレーダー6種」「うち2種は判定モデルの課金が発生」という内訳はこちらの取得では確認できませんでした。Claude 単独の主張で、出典は二次記事です。<br>出典: https://www.marktechpost.com/2026/09/11/anthropic-adds-plugin-evals-to-claude-code-6-grader-types-a-no-plugin-baseline-and-a-ci-gate-for-skills/</p>
+<p><strong><code>/output-style [name]</code>(2.1.269)</strong> [確認済]<br>Remote Control、cloud、headless の各セッションで出力スタイルを一覧・切替できます。CHANGELOG 原文で確認しました。</p>
+<p><strong><code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code>(2.1.269)</strong> [確認済]<br>Workflow ツールの1実行あたり同時エージェント数の上限を 1〜256 で引き上げます。範囲の数値も CHANGELOG 原文どおりです。</p>
+<p><strong>プロンプトキャッシュ修正(2.1.269)</strong> [確認済]<br>応答打ち切り後の自動再開でキャッシュが部分無効化される問題と、思考の途中で割り込んで再開した際にキャッシュ再利用が壊れる問題が修正されました。両系統が一致し、原文でも確認しました。</p>
+<p><strong>attribution reminder が CLAUDE.md を上書きしていた問題の修正(2.1.269)</strong> [確認済]<br>コミットや PR の attribution を禁止する CLAUDE.md / memory のルールを、attribution reminder が上書きしていた不具合の修正です。codex 単独の主張でしたが、CHANGELOG 原文で確認しました。</p>
+<p><strong>VS Code 拡張のエージェントマップ / Hooks ダイアログ / 権限ルールダイアログ</strong> [確認済]<br>取得した CHANGELOG では3点とも 2.1.269 の項目として並んでいます。Claude が指摘した「複数版に重複して現れ初出が不明」という懸念のうち、2.1.269 に記載がある点は確定しました。それ以前の版への重複記載の有無は未確認のままです。</p>
+<p><strong>cloud セッションの queued message 取り消し</strong> [確認済/版数訂正]<br>Claude が読む前にキュー済みメッセージを取り戻せる機能です。codex は「直近 changelog」とだけ述べていましたが、取得した原文では 2.1.265 の項目でした。</p>
+<p><strong>2.1.268 の内容</strong> [要検証]<br>Claude は「サードパーティ互換エンドポイントで毎ターン HTTP 400 になる回帰の修正」「WebFetch の無限ハング」「アイドル時 CPU 高負荷」「SDK セッションでのキャッシュと拡張思考の破損」を挙げています。こちらの取得した 2.1.268 の項目はゲートウェイの価格設定、<code>gatewayInternalNetworks</code>、プラグインコマンドの <code>--json</code>、symlink 配下の deny/ask ルール修正でした。矛盾が証明されたわけではなく、取得側が項目を絞った可能性があります。一次確認できていない、というのが正確な状態です。</p>
+<p><strong>2.1.267 の <code>maxEffortLevel</code></strong> [確認済]<br>Bedrock、Vertex、Foundry を含む全プロバイダで effort の上限を決める設定です。CHANGELOG 原文で確認しました。</p>
+<p><strong>2.1.267 のシステムプロンプト毎回再生成オプションと Cowork スケジュールタスク修正</strong> [要検証]<br>Claude 単独の主張です。前者は二次のリリース要約に「fresh system-prompt rendering」として現れますが、一次の原文では未確認です。後者は一次でも二次でも確認できませんでした。</p>
+<p><strong>2.1.266 のゲートウェイ回帰修正と <code>--plugin-dir</code></strong> [確認済]<br>未文書の <code>CLAUDE_CODE_USE_GATEWAY</code> が API キー併用時にサインインを強制していた 2.1.265 回帰の修正、およびプラグイン群のフォルダを指定する <code>--plugin-dir</code> の追加です。いずれも原文で確認しました。</p>
+<p><strong>2.1.265 のその他(組織全体への MCP 配布、ヘッドレス権限プロンプト無効化、設定巻き戻し修正、Bash の Read 拒否ルール)</strong> [要検証]<br>Claude 単独の主張で、こちらの取得範囲には含まれていませんでした。特に「複合コマンドが Read 拒否ルールを素通りしていた」は自動化の安全性に直結するため、原文の逐条確認を推奨します。</p>
+<p><strong><code>/skill-doctor</code> とスキル一覧の1%予算</strong> [確認済]<br>2.1.261 での追加と、スキル一覧が既定でコンテキストウィンドウの1%を予算とする点は検証済みです。</p>
+<p><strong>Bash が変更したファイルの差分をツール結果に添付</strong> [要検証]<br>Claude 単独の主張で、こちらが取得した 2.1.269 の項目一覧には含まれていませんでした。</p>
+<p><strong>CLAUDE.md / Skills / Subagents / Hooks の使い分け</strong> [確認済]<br>codex が挙げた公式ドキュメント由来の運用指針です。新規発表ではなく既存ドキュメントの内容で、本リポジトリでは棚卸し済みです。<br>出典: https://code.claude.com/docs/en/memory</p>
+<h2>プラットフォーム、アプリ、Cowork、Design</h2>
+<p><strong>Managed Agents の permission policy に <code>auto</code> 追加(9月10日)</strong> [確認済]<br>サーバー側が各 agent / MCP tool call を評価して実行、拒否、承認待ちのいずれかに振り分け、評価結果が <code>evaluation</code> フィールドでイベントに入ります。codex 単独の主張でしたが、platform.claude.com のリリースノートを直接取得して確認しました。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong><code>ant beta:sessions connect</code>(9月10日)</strong> [確認済]<br>ターミナルを Managed Agents セッションに接続し、ライブ追跡、メッセージ送信、承認待ち tool call の許可と拒否ができます。<code>--web</code> を渡すとコンソールのセッションビューアをローカルで開けます。同じリリースノートで確認しました。</p>
+<p><strong>Smart reports ベータ(Enterprise、9月10日)</strong> [確認済]<br>チームの Claude 利用状況、コスト、摩擦の起きた箇所、共有スキルにまとめる価値のある反復パターンを分析します。両系統が一致し、サポートのリリースノート原文でも確認しました。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<p><strong>AI 悪用の検出と対策レポート(9月10日)</strong> [確認済]<br>脅威アクターによる Claude 悪用の摘発事例集です。Claude 単独の主張でしたが、Anthropic Newsroom に該当記事の掲載を確認しました。<br>出典: https://www.anthropic.com/news</p>
+<p><strong>Cowork が Windows 更新でファイルにアクセスできない既知不具合</strong> [確認済]<br>9月8日の Windows 更新(KB5124008 を含む)が原因で、ローカル実行の Cowork セッションがワークスペースに到達できません。9月10日の v1.52386.0 は原因を表示するだけで、根本解決はしていないと公式変更履歴が明記しています。クラウドセッションと Claude Code は影響を受けません。Claude が「復旧状況は未確認」としていた点を、公式変更履歴の直接確認で埋めました。<br>出典: https://claude.com/docs/cowork/changelog</p>
+<p><strong>Cowork の添付可能フォルダ拡大(9月4日)</strong> [確認済]<br>ホームフォルダ、Windows の Documents と AppData、macOS の Library、ドライブ全体を添付できるようになりました。Claude の設定領域と一部の資格情報およびシェル起動ファイルは対象外のままです。どちらの系統も収集していませんが、公式変更履歴で確認しました。</p>
+<p><strong>Cowork の新機能発表(9月5日から12日)</strong> [確認済/不在]<br>この期間の Cowork 公式変更履歴には新機能の追加が見当たらず、記載は不具合対応と既知不具合の告知に限られます。Claude の「直近1週間の新機能発表は確認できなかった」という報告と整合します。</p>
+<p><strong>Claude Design</strong> [要検証/確認不能]<br>両系統とも直近1週間の発表を確認できていません。こちらの検索でも Design 専用の変更履歴や9月の発表に到達できませんでした。これは「発表が存在しない」の確認ではなく、「確認できなかった」です。Design のコマンド名や非対話実行可否は検証済みです。</p>
+<p><strong>週次利用上限の9月14日変更</strong> [確認済]<br>一時的な +50% が9月13日で終了し、恒久的な +25% に切り替わります。検証パイプラインで決着済みです。</p>
+<p><strong>セッションキー窃取による利用枯渇</strong> [要検証]<br>インフォスティーラーに感染した端末からセッションを奪い、パスワードと二要素認証を迂回して有料利用枠を消費する事例です。事象そのものは複数の独立報道が一致しており、Anthropic がセッション無効化と一部返金を行ったとされます。ただし「窃取したセッションキーから Claude Code の OAuth トークンが不正発行された」という部分は特定の被害者1名の証言に依拠し、Anthropic の一次発表では確認できていません。<br>出典: https://techcrunch.com/2026/09/08/hackers-are-stealing-claude-tokens-from-subscribers/</p>
+<p><strong>Fable 5.1 の思考レベル既定(Claude Code は High、claude.ai は Medium)</strong> [要検証]<br>日本語の二次記事のみが出所で、一次確認はできていません。既存の検証結果と照合したうえで扱うべき項目です。</p>
+<p><strong>「Fable 5.1 は指標で首位だがタスク単価が2割高い」</strong> [要検証]<br>Hacker News 経由の二次情報だと codex 自身が明記しています。元ベンチマークの条件は未確認です。</p>
+<p><strong>Skill 導入で出力が43%短縮という検証(Qiita、9月9日)</strong> [要検証]<br>個人の検証で、情報量も減ったと本人が述べています。再現条件は未確認です。</p>
+<p><strong>Claude Code hooks の function hooks(フラグ裏)</strong> [要検証]<br>codex 自身が公式 changelog で確認できないと明記しています。こちらでも確認していません。</p>
+<p><strong>10月 IPO、評価額8000億ドル</strong> [要検証]<br>Claude が一次で裏を取れなかったと報告しており、こちらでも確認していません。</p>
+<p><strong><code>ant apply</code>(CLI 1.30.0、9月3日)</strong> [確認済/収集外]<br>どちらの系統も拾っていませんが、検証中にリリースノートで確認しました。リポジトリ内のファイルから agent、environment、skill、memory store、deployment を作成および更新します。</p>
+<h2>今日の注目</h2>
+<ol><li><strong><code>claude plugin eval</code></strong> 一次情報が最も厚く、ドキュメントページも独立して存在します。スキルとプラグインの変更を CI でゲートできるため、検証パイプラインに直接載せられます。まず <code>claude plugin eval init</code> を1プラグインで走らせ、no-plugin ベースラインとの差分が意味を持つか見るのが低コストです。</li><li><strong>attribution reminder が CLAUDE.md を上書きしていた不具合の修正</strong> CLAUDE.md 側のルールが黙って無効化されていた類の不具合で、リポジトリの運用規約に直接影響します。2.1.269 へ上げたうえで、コミットと PR の attribution が意図どおり抑止されるか実機で1回確認する価値があります。</li><li><strong><code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code> とプロンプトキャッシュ修正</strong> ヘッドレスの fan-out を回す構成では効きます。既存のキャッシュ関連の知見の前提が2.1.269 で変わっていないか、再確認の対象になります。</li></ol>
+<p>最優先で原文確認すべき残件は、2.1.265 の「Bash の Read 拒否ルールが複合コマンドを素通りしていた」修正です。権限の床に関わるにもかかわらず、現時点では1系統の主張のみで一次確認できていません。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

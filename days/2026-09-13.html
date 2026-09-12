@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-13 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-13</div>
+  <div><span class="lab lab-ok">確認済 29</span><span class="lab lab-warn">要検証 11</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-13</h1>
+<blockquote>3AI(agy/codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/3 系統</strong> — agy(0行(下限20行))<br>突き合わせできたのは 2 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-09-13.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>⚠️ 本日は Gemini(agy)の収集が0行で失敗し、ChatGPT(codex)と Claude の2系統しか突き合わせていません。いつもより確度は低めです。2系統が一致した項目も、一次情報を直接確認できたものだけを [確認済] にしています。</blockquote>
+<p><strong>確認方法:</strong> code.claude.com の changelog、GitHub の CHANGELOG.md 原文、Cowork の changelog、support と platform のリリースノート、status.claude.com の incidents API、脅威レポートとブログの本文を取得しました。取得ツールは小型モデルの要約を返すため、<strong>changelog の版数が取得ごとに食い違いました</strong>。内容は原文で見つかったが版数が決まらない項目は [要検証] にし、その理由を書いています。</p>
+<hr>
+<h2>1. Claude Code(changelog)</h2>
+<h3>v2.1.270:長時間セッションで読み取り専用の git まで許可を求める不具合を修正</h3>
+<p><strong>[確認済]</strong> 2.1.269 で入った不具合の修正です(09-12)。2系統が一致し、docs の changelog と原文の両方で確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.269:<code>claude plugin eval</code> の追加</h3>
+<p><strong>[確認済]</strong> プラグインの eval スイートを実行し、再現できるスコアを JSON と HTML のレポートで出します(09-11)。2系統が一致し、changelog でも確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.269:<code>/output-style [name]</code>、<code>bashEditDiffEnabled</code>、<code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code>(1〜256)</h3>
+<p><strong>[確認済]</strong> 出力スタイルの一覧と切り替え(Remote Control、クラウド、headless でも可)、Bash が編集したファイルの差分表示、Workflow の同時エージェント数の上限変更です。2系統が一致し、changelog でも確認しました。<br>出典: 同上</p>
+<h3>v2.1.269:<code>OTEL_METRICS_INCLUDE_REPOSITORY</code> と <code>CLAUDE_CODE_GATEWAY_MODEL_DISCOVERY_TIMEOUT_MS</code>(既定3秒)</h3>
+<p><strong>[確認済]</strong> Claude の出力だけが挙げた項目ですが、changelog の原文で直接確認しました。<br>出典: 同上</p>
+<h3>v2.1.269:権限まわりのセキュリティ修正</h3>
+<p><strong>[確認済]</strong> 次の2点です。いずれも Claude の出力だけが挙げた項目で、changelog で直接確認しました。</p>
+<ul><li>Bash の <code>tee</code> の書き込み先にも <code>Edit</code> の deny ルールが効くようになりました。<code>Bash(tee:*)</code> の allow は作業ディレクトリの外をカバーしなくなります。</li><li><code>!</code> で始まる deny/ask ルールは、書かれた設定ソースの中だけで効くようになりました。<code>!</code> だけの否定は無視されます。</li></ul>
+<p>出典: 同上</p>
+<h3>v2.1.269:CLAUDE.md の帰属表示ルール、日本語などのプロンプト候補、<code>anthropic-skills:&lt;name&gt;</code> への名前変更</h3>
+<p><strong>[確認済]</strong> CLAUDE.md やメモリに書いた「帰属表示を入れない」ルールが効くようになりました(managed settings の行は引き続き適用)。単語を空白で区切らない言語でプロンプト候補が消える問題も修正されています。どちらも changelog で確認しました。<br>出典: 同上</p>
+<h3>v2.1.269:キャッシュと compaction の修正</h3>
+<p><strong>[確認済]</strong> 修正内容は次のとおりで、いずれも CHANGELOG.md 原文の 2.1.269 にありました。</p>
+<ul><li>出力トークン上限で途切れて自動再開した次のターンで、キャッシュが一部無効になる</li><li>思考中に中断したセッションを再開すると、キャッシュが効きにくくなる</li><li>クラウドセッションの最初のリクエストでキャッシュが外れる</li><li>compaction 後に渡す git status が古い</li><li>「Prompt is too long」から抜け出せなくなる</li><li><code>/goal</code> が API エラー後に止まる</li><li>長いセッションで transcript 全体を処理し直す(応答性の改善)</li></ul>
+<p>codex と Claude で拾った範囲は違いますが、どちらの記述も原文と整合します。版数は原文を1回取得しただけの帰属です。<br>出典: https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md</p>
+<h3>v2.1.269:VS Code 拡張の新機能</h3>
+<p><strong>[確認済]</strong> エージェントマップ、Hooks ダイアログ、Permission rules ダイアログを追加しました。managed、plugin、session のフックとルールは読み取り専用です。Focus view で実行中サブエージェントの進捗表示(codex だけが言及)は原文で確認しました。<br>出典: changelog / CHANGELOG.md</p>
+<h3>v2.1.268:<code>gateway.yaml</code> の <code>pricing:</code> で <code>/cost</code> と telemetry を利用額メーターに一致させる</h3>
+<p><strong>[確認済]</strong> codex だけが挙げた項目ですが、docs の changelog と原文の両方で 2.1.268 と確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.268:<code>--print</code> モードで PermissionRequest hooks が発火しない問題を修正</h3>
+<p><strong>[確認済]</strong> Claude の出力だけが挙げた項目ですが、docs の changelog で 2.1.268 と確認しました。headless の cron 実行に直接関わります。<br>出典: 同上</p>
+<h3>v2.1.268:<code>--continue</code>/<code>--resume</code> の高速化、SessionEnd hooks、auto mode、CPU など</h3>
+<p><strong>[確認済]</strong> 次の項目が CHANGELOG.md 原文の 2.1.268 にありました。</p>
+<ul><li><code>--continue</code>/<code>--resume</code> が SessionStart hooks を待たずに会話を表示</li><li><code>CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS</code> が、個別の <code>timeout</code> を持たない SessionEnd hooks に効かない問題を修正</li><li>auto mode で拒否したとき、止めたルール名を Claude に伝える</li><li>アイドル中の busy loop で CPU を使い続ける問題を修正</li><li><code>.claude/workflows/</code> の起動時間を改善</li><li><code>/compact</code> で終わった会話を再開したとき、ファイルのメモが毎回同じ順で読み込まれる</li></ul>
+<p>版数は原文を1回取得しただけの帰属です。<br>出典: CHANGELOG.md</p>
+<h3>WebFetch を300秒で打ち切る(<code>CLAUDE_CODE_WEBFETCH_DEADLINE_MS</code>、0で無効)</h3>
+<p><strong>[要検証]</strong> 内容は原文で確認しましたが、版数が決まりません。docs の changelog では 2.1.268、原文の2回目の取得では 2.1.266 の2番目の項目として出ました。2系統はどちらも 2.1.268 としています。<br>出典: changelog / CHANGELOG.md</p>
+<h3>Todo/Task ツールを旧モデル限定にする変更と、MEMORY.md 切り詰め警告の改善</h3>
+<p><strong>[要検証]</strong> 対象は Claude 3.x、Opus 4.0〜4.7、Sonnet 4.0〜4.6、Haiku 4.5 で、それ以外のモデルでは <code>CLAUDE_CODE_ENABLE_TODO_TOOLS=1</code> が必要です。文言は原文で確認しましたが、docs の changelog は 2.1.265、原文は 2.1.268 に置いており食い違います。<code>$</code> を含む要約が崩れる問題の修正と、<code>/plugin</code> の変更が <code>/reload-plugins</code> なしで反映される件も同じ状況です。<br>出典: changelog / CHANGELOG.md</p>
+<h3>v2.1.268:Bedrock/Vertex/Foundry でツール一覧を会話中に変えない</h3>
+<p><strong>[確認済]</strong> 後から接続したツールは遅延ロードされます。原文を2回取得し、どちらも 2.1.268 でした。<br>出典: CHANGELOG.md</p>
+<h3>v2.1.267:<code>maxEffortLevel</code> と <code>--system-prompt-snapshot off</code> の追加、<code>effort:</code> frontmatter の修正</h3>
+<p><strong>[確認済]</strong> frontmatter の <code>effort:</code> が無視されていた対象は、既定の effort が固定されているモデル(<strong>Opus 4.7、Opus 4.8、Fable 5</strong>)で、docs の changelog に明記されています。Fable 5.1 は対象に入っていません。2系統が一致しています。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.267:キャッシュと resume の修正</h3>
+<p><strong>[確認済]</strong> 次の項目が原文の 2.1.267 にありました。</p>
+<ul><li><code>/model</code> で切り替えるたびにツール定義を全部送り直していた</li><li>セッション途中の MCP やプラグインのツールが一覧を書き換えていた(対応モデルでは遅延定義に)</li><li><code>--system-prompt</code> や <code>--append-system-prompt</code> を使うセッションとサブエージェントが、プロンプトを毎回作り直していた</li><li>5MB を超える transcript を再開すると、並列ツール呼び出しと hook の出力が落ちていた</li></ul>
+<p>出典: CHANGELOG.md</p>
+<h3>管理設定ファイルを読み込めないときは起動を拒否する</h3>
+<p><strong>[要検証]</strong> Claude は 2.1.265 としていますが、原文の取得結果は 2.1.267 と 2.1.261 で割れました。<br>出典: CHANGELOG.md</p>
+<h3><code>--effort</code> でそのセッションだけ既定 effort の固定を外す</h3>
+<p><strong>[要検証]</strong> Claude は 2.1.265 としていますが、原文では <strong>2.1.257</strong> の項目として見つかりました。今週の変更ではない可能性があります。<br>出典: CHANGELOG.md</p>
+<h3>v2.1.266:gateway/proxy 構成の不具合修正</h3>
+<p><strong>[確認済]</strong> 2.1.265 以降、<code>CLAUDE_CODE_USE_GATEWAY</code> だけでクラウド gateway へのサインインが強制されていた問題を修正しました。日付は docs の changelog では <strong>09-08</strong> です(Claude の出力にある 09-09 とは違います)。Claude が「内容は出典によって食い違う」と書いた点は、この修正の文言としては確認できました。ただし、原文の 2.1.266 に他の項目も入っているのかは決まっていません。<br>出典: changelog</p>
+<h3>v2.1.265:<code>--plugin-dir</code> にプラグインをまとめたフォルダを指定可能に、ディスク保存するツール結果の上限を1GBに、再開したサブエージェントでキャッシュが効かない問題を修正</h3>
+<p><strong>[確認済]</strong> docs の changelog で 2.1.265 と確認しました。1GB 上限は原文でも 2.1.265 です。<br>出典: changelog</p>
+<h3>SubagentStart hook の context と preloaded skills がプロンプト先頭から外れる問題(teammate / 再開したサブエージェント)</h3>
+<p><strong>[要検証]</strong> 2系統とも 2.1.265 としていますが、今日の取得では該当する文言を特定できませんでした。原文の取得では 2.1.260 付近を示す注記がありましたが、信頼できません。<br>出典: なし(一次確認できず)</p>
+<h3><code>--worktree</code> を並列チェックアウトで高速化、<code>/context</code> がローカルの推定値を使うように</h3>
+<p><strong>[要検証]</strong> 文言は実在しますが、docs の changelog は 2.1.265、原文は 2.1.261 で食い違います。<br>出典: changelog / CHANGELOG.md</p>
+<h3>v2.1.263:「Bug fixes and reliability improvements」だけ</h3>
+<p><strong>[確認済]</strong> 2系統が一致し、changelog でも確認しました(09-06)。<br>出典: changelog</p>
+<hr>
+<h2>2. Cowork / Claude Desktop</h2>
+<h3>Windows の9月8日更新で、PC 上の Cowork がファイルにアクセスできない</h3>
+<p><strong>[確認済]</strong> 状況は次のとおりです。</p>
+<ul><li>status.claude.com の incidents API では、09-10 15:54 UTC に「Identified」となり、まだ解決していません。</li><li>同 API に「Microsoft has developed a fix and is working to release it」とあり、codex の「Microsoft の修正待ち」と整合します。</li><li>影響がないのは、クラウドセッションと Claude Code(Code タブを含む)です。Cowork の changelog で確認しました。</li><li>GitHub issue #92958(09-09 起票、Open)では、ARM64(KB5124012)と x64(KB5124008)の両方で再現し、KB をアンインストールすると回復した、と報告されています。Anthropic 側の返信は、取得した範囲では見当たりませんでした。</li></ul>
+<p>出典: https://status.claude.com/ / https://claude.com/docs/cowork/changelog / https://github.com/anthropics/claude-code/issues/92958</p>
+<h3>Desktop v1.52386.0(09-10)</h3>
+<p><strong>[確認済]</strong> Claude の出力だけが挙げた項目ですが、Cowork の changelog で直接確認しました。</p>
+<ul><li>返信中に送ったメッセージがキューで待つ(「Send now」か Cmd/Ctrl+Enter で割り込み)</li><li>Code タブで、新しいセッションの既定の Transcript 表示を選べる</li><li>管理者向けのセッション保持期間の設定。<code>coworkSessionRetentionDays</code> のほか chat 用と code 用もあり、<code>sessionRetentionHold</code> でリーガルホールド</li><li><code>coworkVmIpv6Enabled</code> と <code>sshTransport</code>(beta)の追加</li></ul>
+<p>組織プラグインの hooks が Chat でも動く件は、changelog の「3P」セクションにある記載です。<br>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>Desktop v1.52386.3(09-11)と v1.49585.0(09-08)</h3>
+<p><strong>[確認済]</strong> v1.52386.3 では、スケジュールタスクのクラウド移行の再試行と、claude.ai へ移行中のプロジェクトの不具合を修正しました。v1.49585.0 の内容は次のとおりです。</p>
+<ul><li>Electron 44 への更新で macOS 13 以降が必須に</li><li>worktree を使わないローカルセッションでは Git が不要に</li><li>5時間の上限に達した後に保留したメッセージを、リセット時に自動送信</li><li>tool search の既定オンは、Bedrock、Vertex(Claude 4.5 以降)、API 直結でカスタム base URL がない構成に限られます。Gateway、Foundry、カスタム base URL の構成は変わりません。</li></ul>
+<p>出典: 同上</p>
+<h3>「Cowork が Pro プランに含まれた」「内蔵ブラウザが入った」</h3>
+<p><strong>[要検証]</strong> Claude の出力だけが挙げた項目です。support のリリースノートでは、9月の項目にどちらも見当たりませんでした(内蔵ブラウザは7月の項目にあるとのこと)。内蔵ブラウザ自体は 09-10 の修正項目に出ており存在します。Pro プランの件は一次確認できませんでした。これは「誤り」と確かめたわけではありません。</p>
+<hr>
+<h2>3. Claude apps / Developer Platform / Anthropic</h2>
+<h3>Smart reports(beta)を Enterprise 向けに開始(09-10)</h3>
+<p><strong>[確認済]</strong> チームの利用傾向、コスト、つまずいている点、共有 skill にできる繰り返しパターンを分析します。2系統が一致し、support のリリースノートでも確認しました。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Managed Agents の permission policy に <code>auto</code> を追加、<code>ant beta:sessions connect</code>(09-10)</h3>
+<p><strong>[確認済]</strong> Claude の出力だけが挙げた項目ですが、platform のリリースノートで直接確認しました。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>Fable 5.1 / Mythos 5.1(09-01、期間の直前)と <code>ant apply</code>(09-03)</h3>
+<p><strong>[確認済]</strong> platform のリリースノートで確認しました。</p>
+<ul><li>1M コンテキスト、最大出力 128k、adaptive thinking は常時オン</li><li>料金は $10/$50、キャッシュ読み取りは $0.25(基本入力価格の 0.025 倍)</li><li><code>tool_choice</code> の <code>any</code> と <code>tool</code> は 400 エラー</li><li>effort の途中変更(beta)と、ターン限定の system メッセージ(beta)を追加</li></ul>
+<p>出典: 同上</p>
+<h3>脅威インテリジェンスレポート「Detecting and countering misuse of AI: September 2026」</h3>
+<p><strong>[確認済]</strong> 対象期間は 2025年12月〜2026年8月です。攻撃者が「workflow を動かす Claude Code skills を修正していた」という記述を本文で確認しました。codex は公開日を 09-10 としていますが、ページに書かれていたのは「September 2026」だけで、日付までは確認できていません。<br>出典: https://www.anthropic.com/threat-intelligence-report-september-2026</p>
+<h3>公式ブログ「Reducing cost and improving performance with Claude Platform」(09-08)</h3>
+<p><strong>[確認済]</strong> 推奨事項は、キャッシュヒット率の監視、あまり使わないツールの遅延ロード、システムプロンプトをメッセージで更新すること、<code>max_tokens: 0</code> での事前ウォームです。<code>/claude-api</code> の <code>prompt-audit</code>、<code>cost-optimize</code>、<code>hillclimb</code> の紹介も確認しました。<br>「コスト14.6%減、精度5.3%向上」という数値は記事にあります。ただし今日の取得では「Opus 4.8 から Opus 5 への移行時の prompt 監査の平均」と説明されていました。Claude の出力にある「顧客サポートのベンチマーク」という前提は確認できていません。公開日は WebSearch の要約によるものです。<br>出典: https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform</p>
+<h3>status:Fable 5.1 / Mythos 5.1 のエラー増加(09-11)、US Midwest の遅延(09-10)</h3>
+<p><strong>[確認済]</strong> codex だけが挙げた項目ですが、incidents API で確認しました。前者の影響は 13:57〜14:20 UTC で、14:37 UTC に解決しています。後者は 23:24 UTC に解決です。<br>出典: https://status.claude.com/</p>
+<h3>Salesforce との「Claudeforce」(8/26 発表、9月に open beta 予定)</h3>
+<p><strong>[要検証]</strong> Claude の出力だけが挙げた項目で、期間外です。今日は一次確認していません。</p>
+<hr>
+<h2>4. Claude Design</h2>
+<h3>今週の公式アップデート</h3>
+<p><strong>[要検証]</strong> 2系統とも「見つからなかった」と書いています。これは確認できなかったというだけで、アップデートが無いと確かめたわけではありません。</p>
+<h3>過去のコマンド名の記述(<code>/design</code> / <code>/design-sync</code>)</h3>
+<p><strong>[確認済]</strong><br>コマンド名は検証済みの知見で決着しているため、今日は蒸し返しません。codex は <code>/design</code> だけ、Claude は VentureBeat を出典に <code>/design-sync</code> も並べています。どちらが知見と合うかは、上記ファイルで確認してください。</p>
+<hr>
+<h2>5. コミュニティ・二次情報(すべて1系統だけの主張で、今日は本文を取得していません)</h2>
+<p>以下はすべて <strong>[要検証]</strong> です。</p>
+<ul><li><strong>Qiita @sescore:</strong> 時短術7選(Claude の出力)。https://qiita.com/sescore/items/b3ebef2a1f727e3eca28</li><li><strong>Zenn idnet:</strong> Terminal-Bench が 42.0%→55.8% という数値(Claude の出力。公式の数値とは照合していません)。https://zenn.dev/idnet/articles/d041991dde0608</li><li><strong>Hacker News:</strong> Anthropic 社員を名乗る投稿者のコメント(Claude の出力)。https://news.ycombinator.com/item?id=49525378</li><li><strong>Qiita の「Harness」記事(codex):</strong> codex 自身が個別の記事を特定できていません。出典が qiita.com のトップページなので、裏付けとしては使えません。</li><li><strong>公式ブログ「Steering Claude Code」(6/18、CLAUDE.md は200行未満など。Claude の出力):</strong> 期間外で、今日は取得していません。</li></ul>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>v2.1.269 の権限修正で、自リポジトリの deny 設定を見直す</strong></li></ol>
+<ul><li><code>Bash(tee:*)</code> の allow は作業ディレクトリの外をカバーしなくなり、<code>tee</code> にも <code>Edit</code> の deny が効くようになりました。<code>!</code> ルールは書かれた設定ソースの中だけで効きます。</li><li>2.1.270 で読み取り専用 git の許可要求の不具合も直ったので、2.1.270 以上で確認するのが前提です。</li></ul>
+<ol><li><strong>headless 実行の挙動変化を実機で確認する</strong></li></ol>
+<ul><li><code>--print</code> で PermissionRequest hooks が発火するようになりました(2.1.268、docs で確認)。既存の cron 実行に、今まで動いていなかった hook が突然効き始める可能性があります。</li><li>WebFetch の300秒打ち切り(版数は未決着)は、WebFetch を使うブリーフの収集に直接関わります。</li><li>どちらも <code>claude -p</code> で小さく再現して確かめられます。</li></ul>
+<ol><li><strong>changelog の版数の食い違いを原文の差分で決着させ、Todo ツールの知見を見直す</strong></li></ol>
+<ul><li>取得ツールの要約では版数が安定しませんでした。対象は Todo/Task ツールの変更、MEMORY.md の警告、<code>$</code> を含む要約の修正、<code>/plugin</code> の即時反映、WebFetch の打ち切り、<code>--worktree</code>、<code>/context</code>、管理設定ファイルの起動拒否、<code>--effort</code> です。</li><li>CHANGELOG.md を curl で直接取得して見出しの範囲を切り出す方法で決着させることを勧めます。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" rel="noopener">Claude Code CHANGELOG.md (GitHub raw)</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork / Desktop changelog</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude release notes (support)</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://status.claude.com/api/v2/incidents.json" rel="noopener">Claude Status incidents API</a></li><li><a href="https://www.anthropic.com/threat-intelligence-report-september-2026" rel="noopener">Detecting and countering misuse of AI: September 2026</a></li><li><a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform" rel="noopener">Reducing cost and improving performance with Claude Platform</a></li><li><a href="https://github.com/anthropics/claude-code/issues/92958" rel="noopener">GitHub issue #92958</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

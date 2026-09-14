@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-15 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-15</div>
+  <div><span class="lab lab-ok">確認済 27</span><span class="lab lab-warn">要検証 9</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-15</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude / Anthropic 直近の動き 審判まとめ(2026-09-08〜09-15)</h1>
+<p><strong>前提</strong>: 情報源は codex と Claude の2つだけです。両方が同じことを言っていても、独立した裏付けとしては弱いです。そのため [確認済] は、原則として一次情報を自分で取得して中身が合ったものに限りました。<br><strong>取得できた一次情報</strong>: code.claude.com changelog、platform.claude.com release notes、support.claude.com release notes、status.claude.com、anthropic.com/news、claude.com/blog の各記事、arXiv。<br><strong>読めなかったもの</strong>: plugin-evals と permission-modes のドキュメントは、ページが大きすぎて全文を読めませんでした。</p>
+<hr>
+<h2>1. Claude Code リリース</h2>
+<h3>v2.1.265(9/8)<code>--plugin-dir</code> にプラグインの親フォルダを指定可能に/ツール結果の保存上限 1GB</h3>
+<p>[確認済] 両AIが報告し、changelog の原文でも確認しました。子フォルダのうち manifest があるものが読み込まれ、実行中の追加・削除も反映されます。ディスクに保存するツール結果は 1GB で打ち切られます。Claude が「未確認(まとめサイト由来)」としていた点は、これで解消です。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.266(9/8)<code>CLAUDE_CODE_USE_GATEWAY</code> の回帰修正</h3>
+<p>[確認済] 両AIが報告し、原文でも確認しました。2.1.265 では、この未ドキュメントの環境変数が単独でも Cloud gateway へのサインインを強制していました。そのため API キーと併用すると全リクエストが失敗していましたが、元の挙動に戻りました。設定の変更は不要です。<br>出典: 同上</p>
+<h3>v2.1.267(9/9)<code>maxEffortLevel</code> と <code>--system-prompt-snapshot off</code> の追加</h3>
+<p>[確認済] 原文で確認しました。<code>maxEffortLevel</code> はトップレベルにも <code>modelSettings</code> のモデル別にも書け、Bedrock / Vertex / Foundry を含む全プロバイダーで効きます。ユーザーがそれより低い effort を選ぶことはできます。<code>--system-prompt-snapshot off</code> は Claude だけが報告していましたが、原文で確認できました。<br>出典: 同上</p>
+<h3>v2.1.267 <code>effort:</code> frontmatter が無視される問題の修正/プロンプトキャッシュ再利用の修正群</h3>
+<p>[確認済] 原文で確認しました。ただし <code>effort:</code> の修正は全モデルが対象ではなく、既定の effort が固定されているモデル(Opus 4.7 / Opus 4.8 / Fable 5)に限られます。キャッシュ関連の修正は以下のとおりです。</p>
+<ul><li>MCP やプラグインのツールがセッション途中で追加されても、遅延定義として渡すようにした</li><li>resume 時にツール記述を作り直していた問題</li><li>サブエージェントのプレフィックスが変わっていた問題</li><li>SubagentStart フックの文脈や事前読み込みスキルがプレフィックスの外へ移っていた問題</li></ul>
+<p>codex はこの一部を 2.1.265/266 のものとしていましたが、取得結果では 2.1.267 です(prompt-cache-invalidation-repo-audit.md の前提に関わります)。<br>出典: 同上</p>
+<h3>v2.1.268(9/10)gateway の <code>pricing:</code> を <code>/cost</code> とテレメトリーに反映/<code>gatewayInternalNetworks</code></h3>
+<p>[確認済] 両AIが報告し、原文でも確認しました。<code>gateway.yaml</code> に <code>pricing:</code> を書くと、サインイン済みクライアントに managed settings 経由で同じ単価が届き、<code>/cost</code> とテレメトリーが spend meter と一致します。<br>出典: 同上</p>
+<h3>v2.1.268 の修正(セキュリティと安定性)</h3>
+<p>[確認済] 原文の 2.1.268 の全項目で確認しました。</p>
+<ul><li>シンボリックリンクのディレクトリ(macOS の <code>/etc</code> <code>/tmp</code> <code>/var</code> など)に書いた deny/ask ルールが、実パスで指定されると効かなかった。Bash も、シンボリックリンク側の表記で書いた deny ルールを無視していた。</li><li>MCP やプラグインのエラー表示に、git URL のトークンや <code>${VAR}</code> から解決された秘密情報が出ていた。</li><li>サードパーティの互換エンドポイントで、Artifact ツールのスキーマ内の正規表現が原因で毎ターン HTTP 400 になっていた。</li><li>WebFetch が応答を返さないサーバーで止まり続けていたので、300秒で失敗するようにした(<code>CLAUDE_CODE_WEBFETCH_DEADLINE_MS</code> で変更可、0 で無効)。</li><li>長時間アイドル中の高CPU、<code>/compact</code> で <code>$</code> を含む文字列が壊れる問題、<code>--continue</code> / <code>--resume</code> の高速化。</li></ul>
+<p>秘密情報の修正は、1回目の取得では 2.1.267 / 2.1.269 の項目として返りました。全文を取得し直すと 2.1.268 に載っていたので、2.1.268 と判断しています(tee の修正と合わせ、下の 2.1.269 の項も参照)。<br>出典: 同上</p>
+<h3>v2.1.269(9/11)<code>claude plugin eval</code>、<code>/output-style</code>、<code>bashEditDiffEnabled</code>、<code>OTEL_METRICS_INCLUDE_REPOSITORY</code>、<code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code>(1〜256)</h3>
+<p>[確認済] 両AIが報告し、原文でも確認しました。Bash の結果にファイル差分が付くのは、設定 <code>bashEditDiffEnabled</code> が有効な場合です。VS Code 拡張の Agent map、Hooks ダイアログ、サブエージェントの進捗行、Permission rules ダイアログも原文にあります。<br>出典: 同上</p>
+<h3>v2.1.269 の権限修正:<code>!</code> 付きルールの効く範囲を限定/<code>tee</code> の書き込み先チェック</h3>
+<p>[確認済] Claude は Qiita の記事を元に「要確認」としていましたが、原文で確認しました。</p>
+<ul><li><code>!</code> で始まる deny/ask ルールは、書かれた設定ファイルの中でだけ効くようになりました。<strong><code>!</code> 単独の否定ルールは無視されるようになったので、挙動が変わります。</strong></li><li><code>Bash tee</code> の書き込み先に <code>Edit</code> の deny ルールと書き込みパスのチェックが効くようになり、<code>Bash(tee:*)</code> の許可は作業ディレクトリの外には及ばなくなりました。</li></ul>
+<p>tee の修正は、取得のたびに 2.1.267 と 2.1.269 の間で揺れました。2.1.269 の全項目には確実に含まれています。2.1.267 にも重複して載っているかどうかは確定できていません。<br>出典: 同上</p>
+<h3>v2.1.269 の性能修正</h3>
+<p>[確認済] 原文で確認しました(主に codex が報告)。</p>
+<ul><li>出力トークン上限で途切れて自動再開した次のターンで、キャッシュが一部失効していた</li><li>思考の途中で中断して resume すると、キャッシュの再利用が悪化していた</li><li>compaction 後に Claude へ伝える git status が古かった</li><li>クラウドセッションの初回リクエストでキャッシュミスしていた</li><li>長いセッションで transcript 更新のたびに会話全体を処理していた</li></ul>
+<p>出典: 同上</p>
+<h3><code>--worktree</code> の大規模リポジトリでの起動改善</h3>
+<p>[要検証] 内容自体は changelog にありますが、版帰属が決まりません。codex は 2.1.265 としています。1回目の取得では 2.1.268 と返りましたが、2.1.268 の全文リストには見当たりませんでした。</p>
+<h3>v2.1.270(9/12)読み取り専用の git コマンドが、長時間セッション後に許可を求める問題(2.1.269 の回帰)を修正</h3>
+<p>[確認済] 両AIが報告し、原文でも確認しました。<br>出典: 同上</p>
+<hr>
+<h2>2. Platform / アプリ / Cowork / Design</h2>
+<h3>Managed Agents の権限ポリシーに <code>auto</code> を追加(9/10)</h3>
+<p>[確認済] Claude だけが報告していましたが、Platform release notes で確認しました。サーバーがツール呼び出しを1件ずつ判定し、実行・拒否・承認待ちのどれかにします。判定の内容はイベントの <code>evaluation</code> フィールドに入ります。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3><code>ant beta:sessions connect</code>(9/10)</h3>
+<p>[確認済] Claude だけが報告していましたが、一次情報で確認しました。動いている Managed Agents のセッションにターミナルから接続し、様子の確認、メッセージ送信、承認待ちツールの許可・拒否ができます。<code>--web</code> を付けると Console のビューアをローカルで開きます。<br>出典: 同上</p>
+<h3>Smart reports beta(Enterprise、9/10)</h3>
+<p>[確認済] 両AIが報告し、Help Center release notes でも確認しました。チームの Claude の使い方とコスト、つまずいている箇所、共有スキルにできそうな繰り返し作業を分析します。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Smart reports の Cowork 分析は最大28日、CMEK / HIPAA / ZDR 構成では使えない</h3>
+<p>[要検証] Claude だけが報告しており、出典は Big Hat Group(二次情報)です。一次情報では確認できませんでした。誤りだと確認したわけではありません。</p>
+<h3>Windows 版 Cowork でローカルコマンドを実行できない障害(9/8〜9/14)</h3>
+<p>[確認済] 両AIが報告し、status ページでも確認しました。原因は 9/8 の Windows 更新で、9/14 の Microsoft の更新で解消しています。<br>出典: https://status.claude.com/</p>
+<h3>上記障害の KB 番号(KB5124008 / KB5124012)と影響するバージョン</h3>
+<p>[要検証] 出典は beevaults(二次情報)だけで、一次情報では確認できませんでした。</p>
+<h3>Fable 5.1 / Mythos 5.1 のエラー増加(9/11)</h3>
+<p>[確認済] codex が報告し、status ページで障害があったことは確認しました。時刻は食い違っています。status ページの取得結果では 14:19〜14:37 UTC ですが、codex は「13:57〜14:20 に影響、14:37 解消」としています。解消時刻は一致、開始時刻は食い違ったままです。<br>出典: 同上</p>
+<h3>Claude API の一部で遅延(US Midwest、9/10)</h3>
+<p>[確認済] codex が報告し、status ページで確認しました(21:43〜23:24 UTC)。<br>出典: 同上</p>
+<h3>Claude for Financial Advisors(9/14)</h3>
+<p>[確認済] Claude だけが報告していましたが、blog 本文で確認しました。Addepar、Schwab、Vanguard、BlackRock など11のコネクタと、8つのスキルを含むプラグインです。<br>出典: https://claude.com/blog/claude-for-financial-advisors</p>
+<h3>脅威インテリジェンスレポート 2026年9月版(9/10)</h3>
+<p>[確認済] Claude だけが報告していましたが、Newsroom に "Detecting and countering misuse of AI: September 2026" として載っています。ただし Claude が示した URL(<code>/news/threat-intelligence-report-september-2026</code>)は <strong>404</strong> でした。Newsroom に載っている URL は下記です。<br>出典: https://www.anthropic.com/threat-intelligence-report-september-2026</p>
+<h3>Claude Design:この1週間に公式の新機能発表なし</h3>
+<p>[確認済] 両AIの結論が一致し、Help Center release notes にも9月の Design 関連の記載はありませんでした。「最新の大きな更新」は両者で食い違いますが、見ている範囲が違うだけで、矛盾ではありません。</p>
+<ul><li>codex:4月の Labs でのリリース(Help Center の記載は 4/16)</li><li>Claude:6/17 の "stays on brand"(blog)</li></ul>
+<p>blog 記事では <code>/design-sync</code> への言及も確認しました(claude-design-command-name.md)。<br>出典: https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</p>
+<hr>
+<h2>3. 運用の知見・Tips</h2>
+<h3><code>claude plugin eval</code> の採点ルール6種と課金</h3>
+<p>[確認済] 採点ルールは <code>regex</code> / <code>tool_used</code> / <code>tool_order</code> / <code>file_exists</code> が追加コストなし、<code>llm</code> / <code>baseline</code> が判定モデルを呼ぶため課金ありです。これは検証済みの知見と一致します(plugin-eval-grader-types-and-billing.md)。<code>claude plugin eval init</code> でテストケースの叩き台を作れることと、プラグインなしとの比較ができることは、ドキュメント冒頭で確認しました。<br>出典: https://code.claude.com/docs/en/plugin-evals</p>
+<h3>plugin eval の既定値:1ケース3回実行、LLM 採点は Haiku</h3>
+<p>[要検証] 出典は Qiita(二次情報)だけです。ドキュメントは全文を読めず、一次情報では確認できませんでした。</p>
+<h3>公式 blog「Reducing cost and improving performance」(9/8)</h3>
+<p>[確認済] Claude だけが報告していましたが、本文で確認しました。</p>
+<ul><li>「double-check」「be maximally thorough」のような書き方は逆効果</li><li>Opus 4.8 から 5 への移行時に、<code>/claude-api prompt-audit</code> で見直してコスト −14.6%、精度 +5.3%</li><li>変わらない内容を先頭に置き、変わる内容は末尾に足す</li><li>指示を足すときは会話途中の system メッセージを使う</li><li>CursorBench 3.2 で、Fable 5.1 の effort low が Fable 5 の effort high と同等、コストは約3分の1</li></ul>
+<p>関連する知見は mid-conversation-system-messages.md と prompt-audit-subcommand-reality-check.md です。「CLAUDE.md にも当てはまる」という部分は Claude 自身の推測で、確認していません。<br>出典: https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform</p>
+<h3>公式 blog「Agentic coding is straining CI」(9/14)</h3>
+<p>[確認済] Claude だけが報告していましたが、本文で確認しました。CI ジョブ数が半年で25倍、テスト数が10倍。「2四半期で25倍の負荷を想定する」「プロセスに状態を持たせない」「Claude が監視しやすいよう計測を仕込む」という提言も記事にあります。<br>出典: https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic</p>
+<h3>Fable 5.1 をエージェントで使うときの注意(並列ツール呼び出しの減少、ファイル全体の書き直し、会話は追記のみ)</h3>
+<p>[確認済] 公開は 9/1 なので期間外です。検証済みの知見と一致します(fable-5-1-regression-mitigation-inventory.md)。<br>出典: https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1</p>
+<h3>arXiv「Scanning the Harness」(9/7)</h3>
+<p>[確認済] codex だけが報告していましたが、abstract で確認しました。3,171 リポジトリを調べ、MCP のバージョン未固定が 9.8%、<code>Bash(python:*)</code> のような一見狭い許可で任意実行を許しているものが 3.1%、シェルを事前承認するスキルを含むものが 3.8%、セキュリティ上の欠陥があるものが 16.0% でした。当リポジトリでは bash-wildcard-allow-rule-audit.md と同じ観点です。<br>出典: https://arxiv.org/abs/2609.07360</p>
+<h3>DevelopersIO:Bedrock で auto mode を使う場合、<code>defaultMode: "auto"</code> はユーザー設定にしか効かない/<code>ANTHROPIC_MODEL</code> が settings の <code>model</code> より優先</h3>
+<p>[要検証] codex だけが報告しています。記事(9/14)は取得でき、主張が記事に書かれていることは確認しました。ただし次の点に注意が必要です。</p>
+<ul><li>検証に使われたのは <strong>v2.1.248</strong> で、今の版より古い</li><li>プロジェクト設定では効かないという点は、公式ドキュメント(permission-modes)を全文読めず、一次情報では確認できていない</li><li>関連する知見:auto-mode-default-impact-on-cron-scripts.md、anthropic-default-model-env-spec-check.md、settings-audit-1m-tag-and-bypass-permissions.md(A-13)</li></ul>
+<p>出典: https://dev.classmethod.jp/articles/claude-code-auto-mode-default-bedrock/</p>
+<h3>Reddit:ルールは CLAUDE.md より hooks に置くほうが確実で、トークンも節約できる</h3>
+<p>[要検証] codex だけが報告しており、経験談なので効果の大きさは不明です。Claude はこのスレッドにアクセスできず、私も取得していません。</p>
+<h3>Zenn:並列サブエージェントには担当範囲を書いた <code>CONTRACT.md</code> を置く/モデルと effort の使い分け</h3>
+<p>[要検証] Claude だけが報告しており、どちらも期間外(9/4、9/2)の個人記事で、体験に基づく内容です。</p>
+<hr>
+<h2>4. 未確認・食い違い</h2>
+<h3>Fable 5.1 は Claude Code の既定モデルか</h3>
+<p>[要検証] <strong>検証済みの知見と食い違う主張があります。</strong> fable-5-1-default-model-version-trace.md では「既定モデルになっていない」と決着しています。今日の収集では、gradually.ai の検索要約だけが「v2.1.257 で既定」と主張しています。Zenn の記事は知見と同じ結論です。gradually.ai 側は検索結果の要約で、原文を確認していないため、今のところ知見を覆す根拠にはなりません。念のため、知見の再確認をおすすめします。</p>
+<h3>9/14 の週次利用上限の変更</h3>
+<p>[確認済] 一次情報の探索と確度の判定は、検証パイプラインで済んでいます(weekly-limit-2026-09-14-primary-source-hunt.md)。今日の収集は Big Hat Group の記述が出てきただけで、新しい情報はありません。結論はナレッジファイルを参照してください。</p>
+<h3>Sonnet 5 の値上げ撤回</h3>
+<p>[確認済] 9/1 の値上げ中止は、検証済みの知見と一致します(stale-knowledge-reconcile-subagent-cap-and-sonnet5-pricing.md)。Claude は「公式で確認できなかった」としていましたが、すでに決着済みです。</p>
+<h3>S-1 提出、評価額、9/9 のセキュリティ事案の開示</h3>
+<p>[要検証] Big Hat Group の記述だけで、今日は一次情報を確認できませんでした。<strong>事実でないと確認したわけではありません。</strong></p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>v2.1.268 / 2.1.269 の権限修正に合わせて、自分の設定を見直す</strong></li></ol>
+<p><code>!</code> 単独の否定ルールが無視されるようになり、<code>!</code> ルールの効く範囲も書いた設定ファイルの中だけになりました。<code>Bash(tee:*)</code> の許可も作業ディレクトリの外には及ばなくなり、シンボリックリンク経由の deny ルールも効くようになっています。どれも、今の settings の効き方が黙って変わる種類の変更です。bash-wildcard-allow-rule-audit.md の続きとして、<code>!</code> ルールと tee の許可ルールを洗い出す価値があります。<br>あわせて、どちらのAIも拾っていませんでしたが、2.1.268 の原文には headless の定期実行に直接関わる修正があります。</p>
+<ul><li><code>--print</code> モードで PermissionRequest フックが発火しなかった問題の修正</li><li>フックごとの timeout を持たない SessionEnd フックにも <code>CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS</code> が効くようにした修正</li><li>TodoWrite などのタスク管理ツールを旧モデルでだけ提供する変更(todo-tools-deprecation-impact.md に関連)</li></ul>
+<ol><li><strong><code>claude plugin eval</code> で手元のスキルを実際に測る</strong></li></ol>
+<p>プラグインなしとの比較や <code>tool_used: Skill</code> の採点で、「スキルが本当に呼ばれているか」を数字で確かめられます。採点ルールごとの課金は検証済みです。未確認の既定値(実行回数と判定モデル)を、<code>claude plugin eval --help</code> などで手元で確かめるところから始めるのがよいと思います。</p>
+<ol><li><strong>2.1.267〜2.1.269 のキャッシュ修正のあとで、コストを測り直す</strong></li></ol>
+<p>サブエージェントやフック、途中で追加される MCP、resume、出力上限からの自動再開でキャッシュが外れていた問題が、まとめて直りました。prompt-cache-invalidation-repo-audit.md で監査した「キャッシュを捨てている箇所」の一部が、クライアント側で解消した可能性があります。<code>/usage</code> での測り方(claude-api-cost-optimize-usage-loops-spec.md)を使い、更新前後で比べる価値があります。</p>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Help Center release notes</a></li><li><a href="https://status.claude.com/" rel="noopener">Claude Status</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic News</a></li><li><a href="https://www.anthropic.com/threat-intelligence-report-september-2026" rel="noopener">Threat intelligence report Sept 2026</a></li><li><a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform" rel="noopener">Reducing cost and improving performance</a></li><li><a href="https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic" rel="noopener">Agentic coding is straining CI</a></li><li><a href="https://claude.com/blog/claude-for-financial-advisors" rel="noopener">Claude for Financial Advisors</a></li><li><a href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" rel="noopener">Claude Design stays on brand</a></li><li><a href="https://code.claude.com/docs/en/plugin-evals" rel="noopener">Test plugins with evals</a></li><li><a href="https://arxiv.org/abs/2609.07360" rel="noopener">arXiv 2609.07360</a></li><li><a href="https://dev.classmethod.jp/articles/claude-code-auto-mode-default-bedrock/" rel="noopener">DevelopersIO auto mode on Bedrock</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-18 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-18</div>
+  <div><span class="lab lab-ok">確認済 23</span><span class="lab lab-warn">要検証 5</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-18</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>情報精査レポート — Claude/Anthropic 直近の動き(対象: 2026-09-11〜09-18 JST)</h1>
+<p><strong>前提の明示</strong></p>
+<ul><li>突き合わせ対象は <strong>ChatGPT(codex) と Claude の2系統のみ</strong>。2つが一致しても「多数決」にはならないため、本レポートでは <strong>一致だけでは [確認済] にせず、一次情報(code.claude.com / claude.com / platform.claude.com / support.claude.com / anthropic.com)を今回実際に取得できたものだけ [確認済]</strong> とした。</li><li>指示中に Gemini への言及がありますが、今回の収集に Gemini 出力は含まれていません。捏造警戒の基準は両系統に同様に適用しました。</li><li>今回 changelog 記載事項は <strong>両系統の主張16項目+主要機能14項目を逐条照合し、すべて原文で確認できました</strong>。両系統とも changelog 由来の記述は精度が高いです。</li></ul>
+<hr>
+<h2>1. Claude Code(CLI/Desktop/VS Code/Web)</h2>
+<h3>v2.1.274(2026-09-17)</h3>
+<p><strong>[確認済]</strong> メモリ逼迫時の可視警告、<code>CLAUDE_CODE_MCP_STARTUP_WAIT_MS</code>(非対話の初回ターンが MCP 接続を待つ上限)、OTel <code>claude_code.llm_request</code> スパンへの <code>effort</code> 属性追加、compaction 済みセッション再開で <code>/goal</code> が失われる不具合修正。両系統が一致し、changelog 原文でも該当版に確認。<br>https://code.claude.com/docs/en/changelog</p>
+<h3><code>/code-review</code> が軽量インラインレビューに変更(v2.1.274)</h3>
+<p><strong>[確認済]</strong> 専用チューニング設定のないモデルでは、多数のレビューサブエージェントを立てず leaner な inline review prompt を使う挙動に変更。両系統一致・原文確認済み。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.274 のパフォーマンス/MCP 修正群</h3>
+<p><strong>[確認済]</strong> 言語サーバの全プロジェクト診断によるターンごとの遅延、plugin reload 後の shell profile 再読込ストール、background task 完了ごとの余分なモデル呼び出し、Streamable HTTP MCP ツール呼び出しの約5分タイムアウト、<code>claude agents</code> が自動更新再起動後に <code>--model</code>/<code>--effort</code>/<code>--permission-mode</code>/<code>--agent</code> を失う問題、hook 起点セッションが compaction せず "Prompt is too long" で終了する問題 — いずれも原文で該当版を確認。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.273(2026-09-15)ゲートウェイ hint ヘッダ</h3>
+<p><strong>[確認済]</strong> <code>x-claude-code-request-class</code> / <code>-agent-type</code> / <code>-prev-tool-durations</code> / <code>-compaction</code> / <code>-context-compacted</code> を追加、<code>CLAUDE_CODE_GATEWAY_HINT_HEADERS=1</code> でオプトイン。両系統一致・原文確認済み。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.273 の長時間セッション改善</h3>
+<p><strong>[確認済]</strong> hook 進捗/サブエージェント活動で会話全体を毎回再処理しない改善、コンテキストメーター/auto-compact が advisor ツールターンを過大計上し実質半分で compact する問題の修正、Bedrock/Vertex/Foundry の auto mode が既定でローカル分類器を使う変更、<code>OTEL_LOG_TOOL_DETAILS</code> への agent/skill/plugin/MCP サーバ名の追加、MCP のセッション途中切断通知、<code>--remote-control</code> セッションの fork 対応。全項目を原文で確認。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.271(2026-09-14)<code>omitClaudeMd</code></h3>
+<p><strong>[確認済]</strong> エージェント frontmatter と <code>--agents</code> JSON に <code>omitClaudeMd</code> を追加し、カスタム/プラグインのサブエージェントを user/project/local の <code>CLAUDE.md</code> 抜きで起動できる(managed policy ファイルは引き続きロード)。両系統一致・原文確認済み。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.271 の auto mode / sandbox 変更</h3>
+<p>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.271 のその他運用系</h3>
+<p><strong>[確認済]</strong> <code>claude plugin install/update</code> の <code>--accept-command &lt;sha256&gt;</code>、<code>modelPricing</code> の <code>multiplier</code>(1〜10、社内チャージバック上乗せ)、<code>/model</code> のキャッシュ喪失警告、<code>/config</code> フルスクリーンのマウス対応。Claude 単独主張だが原文で確認。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>dynamic workflows の上限到達時継続 / Pro の既定ワークフローサイズ</h3>
+<p><strong>[確認済]</strong> usage limit 到達時に dynamic workflows がエージェントを落とさず reset 後に自動継続、Pro の既定ワークフローサイズが small、medium の目安が 15 → 10 agents に低下(いずれも v2.1.271)。codex 単独主張だったが changelog 原文で確認。なお <code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code> の追加自体は <strong>v2.1.269</strong> で、codex は 9/14 の文脈でまとめて扱っており版数帰属が1つずれている。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>Monitor watch のデッドライン必須化</h3>
+<p><strong>[要検証(版数帰属のみ)]</strong> 「watch は必ずデッドラインを持つ(最大30分、<code>-p</code> 単発は10分)/ 無期限 <code>persistent</code> 廃止」は実在するが、changelog 上 <strong>v2.1.269 と v2.1.271 の両方に該当記述があり</strong>、Claude は v2.1.271 のみに帰属させている。機能の存在は [確認済]、どちらが初出かは未確定。<br>https://code.claude.com/docs/en/changelog</p>
+<h3><code>claude plugin eval</code>(v2.1.269 / 9/11)</h3>
+<p><strong>[確認済]</strong> プラグインを評価スイートで走らせ、JSON + HTML レポート付きで再現可能に採点。既定で「プラグイン無し」ベースラインも走らせ差分を出す。グレーダー6種のうち4種は無料、<code>llm</code>/<code>baseline</code> は判定モデル課金 — この課金・種別の詳細は検証済み。両系統一致・原文確認済み。<br>https://code.claude.com/docs/en/whats-new/2026-w37 / https://code.claude.com/docs/en/plugin-evals</p>
+<h3><code>/output-style [name]</code> ほか v2.1.269</h3>
+<p><strong>[確認済]</strong> 出力スタイルの一覧・切替(Remote Control / cloud / headless でも)、Bash によるファイル編集の diff 添付(<code>bashEditDiffEnabled</code>)、<code>OTEL_METRICS_INCLUDE_REPOSITORY</code>、中断・resume 時の prompt cache 部分無効化の修正。原文確認済み。<br>https://code.claude.com/docs/en/changelog</p>
+<h3><code>--post</code> でのPRコメント直接投稿 — コマンド名の食い違い</h3>
+<p><strong>[要検証]</strong> Claude は「<code>/ultrareview --post</code>」と記述しているが、<strong>changelog 原文は <code>/code-review</code> の <code>--post</code></strong>。<code>/ultrareview</code> は同機能の deprecated alias であるため実害はないが、原文表記は <code>/code-review</code> が正。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>Week 38(9/14–18)公式ダイジェスト</h3>
+<p><strong>[確認済 — 未公開であることを確認]</strong> <code>https://code.claude.com/docs/en/whats-new/2026-w38</code> は本日時点で <strong>HTTP 404</strong>。Claude の「未公開」判断は正しい。ただしこれは「今日時点で未公開」であり「今後も出ない」ではない。</p>
+<h3>Week 37 ダイジェストの個別機能(<code>maxEffortLevel</code> / WebFetch 5分デッドライン / Desktop ペイン切り出し / VS Code agent map 等)</h3>
+<p><strong>[要検証]</strong> Claude 単独主張。Week 37 ページの存在自体は両系統が参照しており実在するが、今回は個別項目までページ原文で照合していない(<strong>未照合であり、誤りと判定したわけではない</strong>)。特に <code>CLAUDE_CODE_WEBFETCH_DEADLINE_MS</code> と <code>maxEffortLevel</code> は設定名が具体的なので、採用前に原文確認を推奨。<br>https://code.claude.com/docs/en/whats-new/2026-w37</p>
+<hr>
+<h2>2. Cowork / Claude 本体統合(最重視)</h2>
+<h3>Cowork とチャットの統合「one Claude」(2026-09-16)</h3>
+<p>https://claude.com/blog/cowork-is-now-claude / https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude</p>
+<h3>Claude Code は統合対象外</h3>
+<p><strong>[確認済]</strong> 公式ブログ本文に Claude Code は統合対象として登場せず、ターミナル/IDE 向けの独立プロダクトとして維持。日本語メディア3本も同旨。<br>https://claude.com/blog/cowork-is-now-claude / https://gihyo.jp/article/2026/09/claude-cowork-and-chat-are-one-claude</p>
+<h3>展開範囲の食い違い(統合ロールアウト vs Docs/Design 個別の提供プラン)</h3>
+<p><strong>[確認済 — 両方が正しく、層が違う]</strong> codex は「Docs は Pro/Max/Team/Enterprise でベータ」、Claude は「統合は Pro/Max から、他は後続」と書いており一見矛盾するが、<strong>統合UXのロールアウトが Pro/Max 先行、Docs/Design 機能そのもののベータ対象が Pro/Max/Team/Enterprise(Free 除外)</strong> という別レイヤー。Claude が指摘した「全有料プランでベータとする二次記事が公式と食い違う」という警告は、Docs のヘルプ記事に照らすと<strong>過剰な警戒</strong>であり、二次記事側も誤りではない。<br>https://support.claude.com/en/articles/16923645-get-started-with-claude-docs</p>
+<h3>Claude Docs(ベータ)</h3>
+<p><strong>[確認済]</strong> 会話から rich-text ドキュメントを作成・共同編集・コメント・共有。<strong>Pro/Max/Team/Enterprise でベータ、Free は対象外、Enterprise は既定 off</strong>。Word(.docx)/ PDF / Markdown / Google Docs へエクスポート。<strong>Claude Code のセッションを spec / runbook / readout に変換できる</strong>旨もヘルプ記事に明記(codex の主張どおり)。<br>https://support.claude.com/en/articles/16923645-get-started-with-claude-docs</p>
+<h3>Claude Slides(ベータ)</h3>
+<p><strong>[確認済 — ただし専用ヘルプ記事は未特定]</strong> 有料プランでベータ、Enterprise 管理者が組織設定で有効化、PowerPoint / PDF エクスポート、共有権限(view/comment/edit)あり。codex は「詳細ページを見つけられなかった」としていたが、<strong>Slides の存在と仕様は support.claude.com 側の記述で確認できた</strong>。専用の "Get started with Claude Slides" 記事 URL は今回特定できていない(<strong>未特定であって不在の確認ではない</strong>)。<br>https://support.claude.com/en/articles/14604416-get-started-with-claude-design</p>
+<hr>
+<h2>3. Claude Design(最重視)</h2>
+<h3>Design が任意の会話・Artifacts・Claude Code から利用可能に</h3>
+<p><strong>[確認済]</strong> ヘルプ記事本文で、会話内・Artifacts タブ・Claude Code・モバイル(閲覧)・claude.ai/design スタンドアロンの5経路を確認。<strong>Pro/Max/Team でベータ既定 on、Enterprise は既定 off、Free は対象外</strong>。両系統一致。<br>https://support.claude.com/en/articles/14604416-get-started-with-claude-design</p>
+<h3>Claude Code のコマンドは <code>/design</code> と <code>/design-sync</code> の2つ</h3>
+<p>https://support.claude.com/en/articles/14604416-get-started-with-claude-design</p>
+<h3>この1週間に Design 単独のリリースはない</h3>
+<p><strong>[確認済]</strong> 更新は 9/16 の統合発表に内包される。Design 本体の発表は 2026-04-17(期間外)。Claude の整理が正しい。<br>https://www.anthropic.com/news/claude-design-anthropic-labs</p>
+<hr>
+<h2>4. Projects 再設計 — 両系統が最も食い違った項目</h2>
+<h3>Projects redesigned: from folder to conversation(2026-09-17)</h3>
+<p><strong>[確認済 — codex の「公式未確認」を今回解消]</strong> Projects が会話ベースのコーディネーター型に。<strong>各スレッドは自前のブランチとリポジトリのコピーを持つ完全な Claude Code クラウドセッション</strong>で、重複はマージコンフリクトとして解決。プロジェクト単位の memory と、追加ファイル+生成物を集める library を新設。展開は <strong>クラウドセッション利用中の Pro/Max ベータ → Pro/Max の Claude Code ユーザー全体 → Team/Enterprise</strong>。</p>
+<ul><li>codex は The Verge 報道のみを根拠に「<strong>公式未確認</strong>」と扱った(「存在しない」とは書いていない点で正しい姿勢)。今回 claude.com のブログ本文を取得し、<strong>一次情報が実在することを確認</strong>した。codex 側の探索漏れ。</li><li>Claude の記述内容は一次情報とほぼ一致。ただし Claude の「ローカルマシンでのスレッド実行は近日」は今回取得した本文からは確認できなかった(<strong>未確認であり、誤りと判定したわけではない</strong>)。</li></ul>
+<p>https://claude.com/blog/projects-redesigned</p>
+<hr>
+<h2>5. API / Platform</h2>
+<h3>Messages API のオンデマンド compaction(ベータ / 2026-09-14)</h3>
+<p>https://platform.claude.com/docs/en/build-with-claude/compaction</p>
+<h3>Compliance API が Claude in Chrome セッションのトランスクリプトを返却(2026-09-18)</h3>
+<p>https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>Fable 5.1 / Mythos 5.1</h3>
+<p>https://platform.claude.com/docs/en/release-notes/overview</p>
+<hr>
+<h2>6. プロダクト/業種向け発表</h2>
+<h3>Salesforce in Claude(ベータ / 2026-09-15)</h3>
+<p><strong>[確認済]</strong> アカウント・商談・パイプラインを Claude に取り込み、<strong>37 個の pre-built sales skills</strong> を提供。有料プランで Salesforce 承認待ちの形。codex 単独主張だったが、公式リリースノートで「37」を含め確認。<br>https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>Claude for Financial Advisors(2026-09-14)</h3>
+<p><strong>[確認済]</strong> Claude 単独主張だったが公式ブログで確認。コネクタは <strong>11社</strong>(Addepar / BlackRock / Charles Schwab / Envestnet / iCapital / Orion / SS&amp;C Black Diamond / Wealthbox / Wealth.com / Vanguard / Zocks)ほか Microsoft 365・Salesforce 等。スキル8種。コンプライアンススキルが <strong>SEC マーケティングルール</strong>に対して顧客向け文言を審査。RIA には監査ログのある Enterprise を推奨、9月末までの新規ライセンス申請に利用クレジット。<br>https://claude.com/blog/claude-for-financial-advisors</p>
+<h3>Claude for Small Business(2026-09-15)</h3>
+<p><strong>[確認済(投稿の存在・日付・タイトル)/ 要検証(詳細)]</strong> 「Claude for Small Business launches new workflows, integrations, and training programs」が 9/15 付で実在。ただし Claude が挙げた「<strong>14 の技術パートナー</strong>」「<strong>9月下旬〜11月の無料ライブ Webinar</strong>」は、今回取得したカテゴリ一覧ページからは確認できなかった(<strong>未確認であり否定ではない</strong>)。数字が具体的なので採用前に本文確認を推奨。<br>https://claude.com/blog-category/announcements</p>
+<h3>研究/ポリシー2本(2026-09-17)</h3>
+<p><strong>[確認済]</strong> 「Measurements for understanding the pace of AI development inside frontier labs」「Introducing the Life Sciences Verification Program」の2本を Anthropic Newsroom で確認。Claude 単独主張だったが一次確認済み。<br>https://www.anthropic.com/news</p>
+<hr>
+<h2>7. 既検証知見に該当する項目(蒸し返さない)</h2>
+<h3>Claude Code 週次利用上限の 2026-09-14 切替</h3>
+<p><strong>[確認済]</strong> 5/13 開始の期間限定ブーストが終了し 9/14 から新上限に移行した件。検証パイプラインで決着済み。ただし Claude が併記した「+25% 恒久 / 体感比 約17%減」という<strong>数値の表現は BleepingComputer・HN 由来の二次情報</strong>であり、数値の確度は knowledge 側の結論を正とすること。</p>
+<h3>スキルリスティングの「コンテキスト長の約1%」予算</h3>
+<p><strong>[確認済]</strong> Claude は「未確認・公式裏取り推奨」としているが、検証済み。<strong>要検証には戻さない</strong>。<br>一方、併記された「スキルあたり description + when_to_use が 1,536 文字上限」は既知の知見に含まれず、二次記事のみの具体数値のため <strong>[要検証]</strong> のまま。</p>
+<h3><code>/skill-doctor</code> の必要バージョン</h3>
+<h3><code>claude plugin eval</code> のグレーダーと課金</h3>
+<p><strong>[確認済]</strong> 6種のグレーダー、うち <code>llm</code> / <code>baseline</code> は判定モデルが実課金、<code>--threshold</code> による CI ゲート化 — 検証済み。</p>
+<hr>
+<h2>8. 二次情報・出典品質の問題</h2>
+<h3>codex の二次情報3件の引用先がトップページ</h3>
+<p><strong>[棄却(出典として)]</strong> codex が <code>claude plugin eval</code> 解説として挙げた ai-tldr.dev / developersdigest.tech、および hooks/skills/subagents 整理として挙げた dev.to は、<strong>いずれも記事 URL ではなくサイトのトップページ URL(<code>?utm_source=openai</code> 付き)</strong>。記事そのものを特定できておらず、出典として使えない。なお主張内容自体(plugin eval のベースライン比較・CI ゲート)は公式ドキュメントと整合するので、<strong>内容が誤りなのではなく出典が無効</strong>。</p>
+<h3>「50個のスキルは遅くしないが、5,000行の CLAUDE.md は遅くする」等の役割分担論</h3>
+<p><strong>[要検証]</strong> Claude が alexop.dev・zenn 記事を挙げているが、Claude 自身が「掲載日未確認」と明記。今週の新規かどうか不明。定性的な設計論としては今週の <code>omitClaudeMd</code> と整合するが、数値(50 / 5,000)に一次裏付けはない。</p>
+<h3><code>/skill-doctor</code> 実測記事「40 skills, 3,060 tokens a turn」</h3>
+<p><strong>[要検証]</strong> dev.to / implicator.ai の個人計測であり、環境依存。Claude 自身も「各筆者の計測」と注記しており妥当。数値は引用不可。<br>https://dev.to/rulestack/skill-doctor-40-skills-3060-tokens-a-turn-and-the-wrong-ones-to-cut-3g83</p>
+<h3>Simon Willison / 日本語メディア</h3>
+<p><strong>[確認済(記事の存在と論旨)]</strong> 統合を歓迎、OpenAI の Codex → ChatGPT リブランドとの並行性を指摘。事実主張は公式発表の範囲内で、追加の固有名・数値の持ち込みはない。<br>https://simonwillison.net/2026/Sep/16/one-claude/</p>
+<h3>Reddit / HN / lobste.rs / Discord の直近スレッド</h3>
+<p><strong>[確認できず]</strong> 両系統とも「今週分として採用に値するものを特定できなかった」と報告しており、これは<strong>探索の不首尾であって「有用な議論が存在しない」ことの確認ではない</strong>。</p>
+<hr>
+<h2>今日の注目(検証・実装を試す価値のあるもの)</h2>
+<h3>1. <code>omitClaudeMd</code>(v2.1.271)でサブエージェントのコンテキストを削る</h3>
+<h3>2. <code>/code-review</code> の軽量インライン化(v2.1.274)— 挙動変化の実測</h3>
+<p>このリポジトリの運用に直接効く変更で、<strong>レビュー品質とコストのトレードオフが変わった可能性がある</strong>。「専用調整のないモデル」が具体的にどのモデル設定を指すかは changelog の文言だけでは確定できないため、同一 PR に対する変更前後の所見数・所要時間・消費を比較する価値が高い。なお <code>--post</code> の直接投稿(v2.1.269)は正式名が <code>/code-review --post</code> で、<code>/ultrareview</code> は deprecated alias である点を運用ドキュメント側に反映しておくとよい。</p>
+<h3>3. headless/cron 経路の耐久性修正セット(v2.1.274 + Messages API compaction ベータ)</h3>
+<hr>
+<p><strong>Sources:</strong></p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code Changelog</a> / <a href="https://code.claude.com/docs/en/whats-new/2026-w37" rel="noopener">Week 37 digest</a> / <a href="https://code.claude.com/docs/en/whats-new/2026-w38" rel="noopener">Week 38 (404)</a> / <a href="https://code.claude.com/docs/en/plugin-evals" rel="noopener">Plugin evals docs</a></li><li><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener">Cowork and chat are now one Claude</a> / <a href="https://claude.com/blog/projects-redesigned" rel="noopener">Projects redesigned</a> / <a href="https://claude.com/blog/claude-for-financial-advisors" rel="noopener">Claude for Financial Advisors</a> / <a href="https://claude.com/blog-category/announcements" rel="noopener">Announcements 一覧</a></li><li><a href="https://support.claude.com/en/articles/16923645-get-started-with-claude-docs" rel="noopener">Get started with Claude Docs</a> / <a href="https://support.claude.com/en/articles/14604416-get-started-with-claude-design" rel="noopener">Get started with Claude Design</a> / <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude" rel="noopener">Cowork and chat are one Claude (Help)</a> / <a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Help Center release notes</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a> / <a href="https://platform.claude.com/docs/en/build-with-claude/compaction" rel="noopener">Compaction docs</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic News</a> / <a href="https://www.anthropic.com/news/claude-design-anthropic-labs" rel="noopener">Introducing Claude Design</a></li><li><a href="https://simonwillison.net/2026/Sep/16/one-claude/" rel="noopener">Simon Willison: one Claude</a> / <a href="https://gihyo.jp/article/2026/09/claude-cowork-and-chat-are-one-claude" rel="noopener">gihyo.jp</a> / <a href="https://dev.to/rulestack/skill-doctor-40-skills-3060-tokens-a-turn-and-the-wrong-ones-to-cut-3g83" rel="noopener">DEV: /skill-doctor 実測</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-20 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-20</div>
+  <div><span class="lab lab-ok">確認済 24</span><span class="lab lab-warn">要検証 10</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-20</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>突き合わせ結果(対象期間: 2026-09-13〜09-20 JST)</h1>
+<p><strong>前提</strong>: 情報源は2系統(codex / Claude)のみ。「2つが一致」だけでは相互独立の裏付けとして弱いため、Claude Code changelog 原文・公式ドキュメント・claude.com blog・platform release notes を今日実際に取得して一次確認した項目のみ [確認済] としています。一次確認できなかったものは「存在しない」ではなく「今日の一次確認では裏が取れなかった」と書き分けます。</p>
+<hr>
+<h2>A. Claude Code (CLI)</h2>
+<h3>A-1. v2.1.278 — auto mode 分類器のサーバ側既定化(課金なし)</h3>
+<p><strong>[確認済]</strong> Claude API / Enterprise / Bedrock / Vertex / Foundry / ゲートウェイで auto mode の safety classifier をサーバ側実行に既定変更し、分類器オーバーヘッドは課金されない。<code>/status</code> に <code>Auto mode server</code> 行(<code>Enabled</code>/<code>Disabled</code>)が追加。両AI一致 + changelog 原文と専用ドキュメントを今日確認。</p>
+<ul><li>https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md</li><li>https://code.claude.com/docs/en/auto-mode-classifier-billing</li></ul>
+<h3>A-2. v2.1.278 の運用上の落とし穴(ゲートウェイ/プロキシ)</h3>
+<p><strong>[確認済]</strong> ヘッダ・ボディを書き換えるゲートウェイがあると <code>safeguards</code> リクエストフィールド / <code>safeguard_results</code> レスポンスフィールドが通らず、従来どおり分類器分が課金され、プロンプトで通知が出る。<code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> でオプトアウト(一時設定、将来削除の可能性あり)。Pro/Max/Team には通知が出ない。Claude 単独主張だったが一次ドキュメントで全項目裏取り。</p>
+<ul><li>https://code.claude.com/docs/en/auto-mode-classifier-billing</li></ul>
+<h3>A-3. v2.1.277 — AGENTS.md サポート</h3>
+<p><strong>[確認済]</strong> CLAUDE.md が無いプロジェクトでは AGENTS.md を読む。両AI一致 + changelog 原文で確認。優先順位・当リポジトリ影響は検証済み。</p>
+<ul><li>https://code.claude.com/docs/en/memory#agents-md</li></ul>
+<h3>A-4. <code>/config</code>「Project instructions」の4選択肢・<code>CLAUDE.local.md</code> の扱い</h3>
+<p><strong>[要検証]</strong> Claude 単独。4択の正確な文言は gihyo / Qiita の二次情報由来で、今日 memory ドキュメント原文からは該当箇所を抽出できませんでした(ページは取得できたが全文が大きく該当節を確定できず)。docs に「AGENTS.md を単独でも CLAUDE.md と併用でも使える」旨の記述があることは確認済み。<strong>「CLAUDE.local.md が1つでもあると AGENTS.md が読まれない」「1回目のセッションでは読まれない」は個人検証(Qiita)であり未裏取り</strong> — 誤りと断定もできません。</p>
+<ul><li>https://code.claude.com/docs/en/memory</li></ul>
+<h3>A-5. サブエージェント出力の明示ヘッダ化 / TaskOutput ツール削除</h3>
+<p><strong>[確認済(ただし版数に注意)]</strong> changelog 原文の <strong>2.1.277</strong> 節に "Changed subagent results to reach the main agent under a header marking them as subagent output" と "Removed the deprecated TaskOutput tool" が並んでおり、既存知見と一致。<br><strong>Claude の「v2.1.275 の変更」という帰属は [棄却]</strong>(同版の原文リストに該当行なし)。codex は日付をぼかしており誤りではない。</p>
+<h3>A-6. v2.1.277 のその他(headless/SDK 起動改善ほか)</h3>
+<p><strong>[確認済]</strong> <code>claude -p</code> / Agent SDK が内部エラー後に無言ハングする不具合修正、<code>--resume</code> 後の "text content blocks must be non-empty" 修正、SDK/headless の初回ターンが CLAUDE.md lookup を待たなくなる改善、resume 時の添付再レンダリング修正、resumed subagent の MCP ツール定義再描画によるプロンプトキャッシュ破壊の修正。両AI言及 + changelog 原文で確認。</p>
+<h3>A-7. v2.1.276 — ゲートウェイ利用者向けの緊急回避</h3>
+<p><strong>[確認済]</strong> <code>ANTHROPIC_BASE_URL</code> がプロキシ/ゲートウェイを指すと全リクエストが <code>400 … Input tag 'advisor_20260301'</code> で落ちる 2.1.275 リグレッションの修正。<strong>2.1.276 はこの1行のみの版</strong>。Claude 単独主張だが changelog 原文で確認。</p>
+<h3>A-8. v2.1.275 — claude.ai のスキル/プラグイン同期ほか</h3>
+<p><strong>[確認済]</strong> <code>syncClaudeAiSkills</code> / <code>syncClaudeAiPlugins</code>(既定同期・オプトアウト可)、send-now キー(ctrl+enter / ctrl+x ctrl+s)、<code>--forward-subagent-text</code> で <code>context: fork</code> スキル発のサブエージェントメッセージが落ちる不具合の修正、復元メモリファイルの age 注記によるプロンプトキャッシュミスの修正、<code>/plugin install &lt;plugin&gt; --marketplace &lt;source&gt;</code> 追加。Claude 単独主張だが changelog 原文で全て確認。</p>
+<h3>A-9. <code>/output-style [name]</code> の追加</h3>
+<p><strong>[要検証]</strong> Claude が v2.1.275 として挙げたが、今日取得した 2.1.275 の原文リストに該当行を確認できませんでした。別版の可能性があり、<strong>存在しないとは言えません</strong>。</p>
+<h3>A-10. hook 実行中のスピナー表示 / ターミナル描画性能改善</h3>
+<p><strong>[要検証(内容は実在、版数が食い違う)]</strong> "Improved hook feedback: SessionStart / UserPromptSubmit / PreToolUse / SessionEnd 実行中にスピナーへ経過時間表示、SessionStart 待ちは Esc でキャンセル" と "Improved terminal rendering performance" は changelog 上 <strong>2.1.271</strong> 節に存在。Claude は 2.1.275 としており、版数帰属が誤りの可能性が高い(機能自体の存在は確認済)。</p>
+<h3>A-11. v2.1.274 — 起動レイテンシ/MCP/大規模リポジトリ</h3>
+<p><strong>[確認済]</strong> <code>CLAUDE_CODE_MCP_STARTUP_WAIT_MS</code> 追加(非対話の初回ターンが MCP 接続を待つ上限)、Streamable HTTP MCP の約5分タイムアウト修正、language server が大量診断を publish するとターン毎に遅くなる問題の修正、hook 駆動セッションの "Prompt is too long" 修正と resume 時の <code>/goal</code> 消失修正、メモリ逼迫時の警告、OTel の <code>effort</code> 属性 / <code>managed_settings_resolved</code> イベント。Claude 単独主張だが changelog 原文で確認。</p>
+<h3>A-12. v2.1.273 — 長時間セッションの応答性 / advisor ターン二重計上</h3>
+<p><strong>[確認済]</strong> hook の進捗更新やサブエージェント活動のたびに会話全体を再処理しなくなる改善、context meter が advisor-tool ターンを約2倍に数えていた問題の修正、LLM ゲートウェイ向けヒントヘッダ(<code>x-claude-code-request-class</code> ほか)、<code>--remote-control</code> セッションのフォーク、<code>permissions.blockReadsOutsideWorkingDirectories</code> 関連修正。両AI一致 + changelog 原文で確認。</p>
+<h3>A-13. v2.1.271 — <code>omitClaudeMd</code> ほか</h3>
+<p><strong>[確認済]</strong> <code>omitClaudeMd</code> を agent frontmatter / <code>--agents</code> JSON に追加(カスタム・プラグインのサブエージェントが user/project/local CLAUDE.md を読まずに走る。管理ポリシーファイルは読む)、Bash/PowerShell/Monitor のコマンド単位 <code>allowed_domains</code>(auto mode + sandbox)、<code>claude plugin install/update --accept-command &lt;sha256&gt;</code>、MCP <code>list_changed</code> タイトループでの CPU 張り付き修正、Remote/self-hosted runner の fast mode。両AI一致 + changelog 原文で確認。</p>
+<h3>A-14. <code>CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK</code> / <code>CLAUDE_CODE_RETRY_WATCHDOG</code></h3>
+<p><strong>[棄却(Claude の否定的判断のほうが誤り)]</strong> Claude は「changelog で裏取りできず、存在しない可能性が高い」として除外していますが、両方とも <strong>2.1.271 節に実在</strong>します(いずれも「新規追加の環境変数」ではなく、その環境変数下での fast mode 挙動の<strong>修正</strong>として記載)。確認の不在を不在の確認として扱った例。</p>
+<h3>A-15. v2.1.272 / v2.1.270</h3>
+<p><strong>[確認済]</strong> 2.1.272 は "Bug fixes and reliability improvements" のみで個別項目なし(Claude の記述と一致)。<br><strong>[要検証]</strong> 2.1.270 の「read-only な git コマンドが権限を聞いてくるリグレッション(2.1.269 由来)の修正」は Claude 単独で、今日は原文を確認していません。</p>
+<h3>A-16. 各版のリリース日付</h3>
+<p><strong>[要検証]</strong> 両AIの日付(278=9/19, 277=9/18, 276=9/18, 275=9/17, 274=9/17, 273=9/15, 271=9/14, 270=9/12)は一致していますが、今日取得した CHANGELOG 原文には日付が含まれず、<strong>日付そのものは一次確認できていません</strong>(GitHub Releases のタイムスタンプで別途確認可能)。</p>
+<hr>
+<h2>B. Cowork / Claude アプリ / Docs / Slides / Design</h2>
+<h3>B-1. Cowork と chat の統合(2026-09-16)</h3>
+<p><strong>[確認済]</strong> claude.com の公式ブログを今日取得し、日付・内容・ロールアウト(Pro/Max から数週間 → Team/Free、Enterprise は30日以上前に管理者通知、既存 Cowork のチャット・プロジェクト・アーティファクト・コネクタ・スキルは維持)まで一致。<strong>codex の URL が正しく、Claude の「一次ソース未特定」は解消</strong>。ただし Claude の指摘どおり <strong>anthropic.com/news の一覧には本件の記事は無い</strong>(newsroom を今日確認)— 掲載先が claude.com/blog だったためです。</p>
+<ul><li>https://claude.com/blog/cowork-is-now-claude</li></ul>
+<h3>B-2. Claude Docs / Claude Slides の新規追加、Claude Design をチャット内から利用可</h3>
+<p><strong>[確認済]</strong> 3つとも有料プランでベータ。直接編集・PowerPoint/PDF ダウンロード・リンク共有に対応。両AI一致 + 公式ブログ原文で確認。</p>
+<ul><li>https://claude.com/blog/cowork-is-now-claude</li></ul>
+<h3>B-3. Claude Design の単体アップデート</h3>
+<p><strong>[確認済(否定結果)]</strong> 今週期間内に Design 単体の更新は両AIとも挙げておらず、9/16 の統合に含まれる「チャット内からの呼び出し」が該当。コマンド名まわりは検証済み。</p>
+<h3>B-4. Cowork/Desktop v2.2553.0(2026-09-17)</h3>
+<p><strong>[確認済]</strong> 公式 changelog を今日取得し、以下を確認:Code のクラウドセッションでのファイル閲覧(トランスクリプトのファイルリンク / Files ペイン / Background tasks パネル)、<strong><code>${CLAUDE_PLUGIN_ROOT}</code> / <code>${CLAUDE_SKILL_DIR}</code> が空のままコマンド実行される不具合の修正</strong>、プリインストール Node パッケージ(<code>pptxgenjs</code>, <code>docx</code>, <code>pdf-lib</code>, <code>sharp</code>)の <code>require</code> 解決修正、巨大リポジトリ(<code>.worktreeinclude</code> 含む)の起動遅延修正、OAuth トークン期限切れの背景更新、Customize の独立ページ化と <strong>Memory の Settings 配下移動</strong>。Claude 単独主張だが全項目一次確認。</p>
+<ul><li>https://claude.com/docs/cowork/changelog</li></ul>
+<h3>B-5. 管理者向け設定の追加(v2.2553.0 / v2.110.0)</h3>
+<p><strong>[確認済]</strong> <code>allowedPluginMcpServers</code>、<code>builtinBrowserEnabled</code> + <code>builtinBrowserDefaultDomainPolicy</code> / <code>AllowedDomains</code> / <code>BlockedDomains</code>、<code>inferenceCredentialHelperWindows</code>、<code>modelCatalogEnabled</code> / <code>modelCatalogUrl</code>、<code>scheduledTasksEnabled</code>、<code>defaultModelEffort</code> / <code>maxEffort</code> / <code>alwaysStartWithDefaultModel</code>、<code>inferenceFoundryBaseUrl</code>。組み込みブラウザの境界は検証済み。</p>
+<h3>B-6. Chat の承認挙動変更と戻し方(v2.110.0, 2026-09-15)</h3>
+<p><strong>[確認済]</strong> Claude が生成したファイルを返す際に毎回承認を求めなくなり、<code>builtinToolPolicy</code> が <code>Bash(curl *)</code> のような引数スコープ付きルールを受け付けるように変更。<code>"Bash": "ask"</code> が公式の設定例として記載。<code>chromiumFlags</code>、SSH/WSL のアイドル維持、Routines のカレンダービュー削除も原文で確認。</p>
+<h3>B-7. v2.2553.1(2026-09-18)/ v1.52386.6(2026-09-13)</h3>
+<p><strong>[確認済]</strong> 前者は壊れたトランスクリプトでの起動/再開失敗と、フォーク/バックグラウンドセッションの rewind によるファイル破損の修正(同梱 CLI 2.1.275)。後者は同梱 CLI 2.1.270 更新と巨大プロンプトの "Prompt is too long" 修正。</p>
+<h3>B-8. Windows 更新(KB5124008)による Cowork のファイルアクセス不能 → 9/14 解消</h3>
+<p><strong>[要検証]</strong> Claude 単独。KB 番号・解消日・<code>KB5129195</code> 適用の要否を今日一次確認していません(Microsoft サポートページ未取得)。<strong>誤りと判断したわけではありません。</strong></p>
+<hr>
+<h2>C. Claude Developer Platform (API)</h2>
+<h3>C-1. Messages API のオンデマンド compaction(ベータ、2026-09-14)</h3>
+<p><strong>[確認済]</strong> ベータヘッダ <code>compact-2026-09-04</code>。トップレベル <code>compaction</code> パラメータを送ると署名付き <code>compaction</code> ブロックが返り、以降のリクエストで該当メッセージ群を置換できる。直近ターンは逐語で保持、圧縮をバックグラウンド実行可能、thinking 保持モデルでは残存ターンの thinking も有効。Claude 単独主張だが platform release notes 原文で確認。</p>
+<ul><li>https://platform.claude.com/docs/en/release-notes/overview</li></ul>
+<h3>C-2. Compliance API が Claude in Chrome セッションを返す(2026-09-18)</h3>
+<p><strong>[確認済]</strong> <code>product_surface</code> = <code>claude_in_chrome</code>、Enterprise ベータ、既存 Compliance Access Key(<code>read:compliance_user_data</code> スコープ)を使用。</p>
+<h3>C-3. Managed Agents の <code>auto</code> パーミッションポリシー / <code>ant</code> CLI 1.32.0(2026-09-10、期間直前)</h3>
+<p><strong>[確認済]</strong> サーバがツール呼び出しごとに実行/拒否/承認待ちを判定し、<code>evaluation</code> フィールドで報告。<code>ant beta:sessions connect</code>(<code>--web</code> で Console のセッションビューアをローカル配信)。</p>
+<hr>
+<h2>D. Anthropic 公式発表</h2>
+<h3>D-1〜D-3. Newsroom(9/17〜9/18)</h3>
+<p><strong>[確認済]</strong> 「Partnering with Accenture on embedded evaluation」(9/18)、「Introducing the Life Sciences Verification Program」(9/17)、「フロンティアラボ内部の AI 開発ペースを測る指標の提案」(9/17)。両AI一致 + newsroom 一覧で今日確認。いずれも Claude Code の機能ではなく企業/評価/産業向け。</p>
+<ul><li>https://www.anthropic.com/news</li></ul>
+<h3>D-4. Salesforce in Claude(ベータ、2026-09-15)</h3>
+<p><strong>[確認済]</strong> 有料プラン全体、Salesforce 承認組織向けのプラグイン、<strong>37 個の pre-built sales skills</strong>。両AI一致 + Help Center リリースノート原文で数値まで確認。</p>
+<ul><li>https://support.claude.com/en/articles/12138966-release-notes</li></ul>
+<h3>D-5. 「Claude が次世代モデル開発の R&amp;D の 1/4 を主導」報道(9/18 頃)</h3>
+<p><strong>[要検証]</strong> Claude が二次情報として挙げ、自ら未突合と明記。今日 newsroom 一覧を見た限り該当する公式記事は無いが、<strong>報道自体の真偽は判定していません</strong>(公式発表ではなくインタビュー発言由来の可能性)。</p>
+<hr>
+<h2>E. コミュニティ・二次情報(Claude Code 運用に関わるもの)</h2>
+<h3>E-1. Hacker News の AGENTS.md スレッド</h3>
+<p><strong>[確認済 / 部分要検証]</strong> Claude が挙げた <code>id=49760187</code>(タイトル「Claude Code now reads AGENTS.md if there is no Claude.md」、<strong>713 points</strong>、リンク先は公式 changelog)は今日 HN で実在・点数まで一致を確認。<strong>codex が挙げた <code>id=49758250</code> は HTTP 429 で今日は確認できず(存在しないとは言えない)</strong>。</p>
+<ul><li>https://news.ycombinator.com/item?id=49760187</li></ul>
+<h3>E-2. 「<code>.agents/skills/</code> 配下のスキルは検出されない」</h3>
+<p><strong>[要検証]</strong> 両AIがコミュニティ発として一致して挙げているが、一次ドキュメントでの裏取りは未了。2系統とも同じ HN スレッドを参照している可能性が高く、一致を独立の裏付けとは見なせません。</p>
+<h3>E-3. AGENTS.md の実地検証(Qiita 各記事、symlink 一元化手法)</h3>
+<p><strong>[要検証]</strong> 個人検証。symlink(<code>ln -s AGENTS.md CLAUDE.md</code>)方式は挙動が予測しやすいという主張は妥当だが、Windows の git symlink 差異が地雷という指摘とあわせて未検証。</p>
+<h3>E-4. <code>.git/config</code> の <code>core.fsmonitor</code> によるコード実行(期間外、2.1.196 で修正済み)</h3>
+<p><strong>[要検証]</strong> Claude 単独、二次情報。修正版数(2.1.196 / 2026-06-29)と緩和策(<code>git config --global core.fsmonitor false</code>)は今日一次確認していません。</p>
+<h3>E-5. コンテキスト管理の一般論(60% で <code>/compact</code>、CLAUDE.md 100〜300行、<code>/clear</code> 習慣 等)</h3>
+<p><strong>[要検証]</strong> すべて個人ブログ由来の経験則で、今週固有の変更ではありません。数値(60%、500K、100〜300行)に一次的根拠はありません。</p>
+<hr>
+<h1>今日の注目(検証・実装を試す価値がある更新)</h1>
+<h3>1. v2.1.271 <code>omitClaudeMd</code> — サブエージェントのコンテキスト設計に直結</h3>
+<h3>2. v2.1.278 の <code>Auto mode server</code> — 課金が変わるのに気づきにくい</h3>
+<p>ゲートウェイ経由だと<strong>サイレントに従来課金のまま</strong>で、通知は Pro/Max/Team では出ず、Enterprise/API でも1セッション1回・Enter 後は再表示されません。auto mode を headless/cron で回している構成では <code>/status</code> の <code>Auto mode server</code> 行、および非対話時に stderr / stream-json の <code>system</code> warning が出る点を実機で確認する価値が高い。</p>
+<h3>3. Messages API のオンデマンド compaction(<code>compact-2026-09-04</code>)</h3>
+<p>自前の要約ロジックを公式機構に置き換えられる可能性がある、今週いちばん実装価値の高い API 変更。署名付きブロックの再利用で「直近ターンは逐語、過去は圧縮」を明示制御できるため、プロンプトキャッシュ前提の設計と噛み合うか、小さな実験で測る価値があります。</p>
+<hr>
+<h2>判定の要点(2系統しかないことによる限界)</h2>
+<ul><li><strong>一致は独立の裏付けではない</strong>: E-2 のように両AIが同一の HN スレッドを読んでいるケースがあり、「2AI一致」だけでは [確認済] にしていません。上記 [確認済] は<strong>今日の一次取得で裏が取れたもの</strong>に限っています。</li><li><strong>版数帰属の誤りが複数</strong>: A-5(Claude が 2.1.275 → 実際は 2.1.277)、A-10(Claude が 2.1.275 → 実際は 2.1.271)。日付・版数を細かく書く出力ほど帰属ズレが入りやすいので、changelog 原文に当てるまで採用しない運用が引き続き有効です。</li><li><strong>否定的主張も裏取りが必要</strong>: A-14 は「changelog で見つからなかった」を「存在しない可能性が高い」と書いた例で、実際には 2.1.271 に存在しました。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" rel="noopener">Claude Code CHANGELOG</a></li><li><a href="https://code.claude.com/docs/en/auto-mode-classifier-billing" rel="noopener">Auto mode classifier request charges</a></li><li><a href="https://code.claude.com/docs/en/memory" rel="noopener">How Claude remembers your project</a></li><li><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener">Cowork is now Claude (claude.com blog)</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Claude Desktop / Cowork changelog</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude Help Center release notes</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic Newsroom</a></li><li><a href="https://news.ycombinator.com/item?id=49760187" rel="noopener">HN: Claude Code now reads AGENTS.md if there is no Claude.md</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

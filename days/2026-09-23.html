@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-23 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-23</div>
+  <div><span class="lab lab-ok">確認済 21</span><span class="lab lab-warn">要検証 5</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-23</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>審判まとめ:Claude / Anthropic の直近の動き(2026-09-16〜09-23)</h1>
+<p><strong>前提:</strong> 収集元は ChatGPT(codex)と Claude の2系統だけです。両方が一致した項目と、片方だけの項目でも一次情報で確認できたものを [確認済] にしています。一次情報は、Claude Code の changelog、platform.claude.com、anthropic.com、claude.com/blog、support.claude.com、Cowork の changelog を直接取得して照合しました。</p>
+<hr>
+<h2>A. モデル(Opus 5.5)</h2>
+<p><strong>A-1. Claude Opus 5.5 リリース(09-22)</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致し、一次情報とも整合しています。</li><li>ID は <code>claude-opus-5-5</code>。コンテキストは 1M、最大出力は 128k、価格は $4/$20 です。</li><li>キャッシュ読み取りは $0.20、Batch は半額です。公式の説明は「ほとんどの作業で Fable 5.1 と同等、コストは Opus 5 より 40% 安い」です。</li><li>出典: https://www.anthropic.com/claude-opus-5-5 / https://platform.claude.com/docs/en/release-notes/overview / https://support.claude.com/en/articles/12138966-release-notes</li></ul>
+<p><strong>A-2. Opus 5.5 のベンチマークと Fast mode</strong></p>
+<ul><li><strong>[確認済]</strong> Claude だけが挙げた項目ですが、公式ページに同じ数値がありました。</li><li>ベンチマーク: Terminal-Bench 4.0 が 66.4%、CursorBench 4.0 が 57.8%、OSWorld 2.0 が 81.8%。</li><li>Fast mode は Claude API 限定の research preview で、$8/$40、速度は最大 2.5 倍です。</li><li>公式ページ自身が「ベンチマークの差は実務での差の指標として当てにならなくなってきた」と注記しています。</li><li>出典: https://www.anthropic.com/claude-opus-5-5</li></ul>
+<p><strong>A-3. Opus 5.5 の破壊的変更と挙動の違い</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致し、一次情報とも整合しています。</li><li>次の指定は 400 エラーになります:</li><li><code>thinking: disabled</code></li><li><code>budget_tokens</code> の指定</li><li><code>tool_choice</code> の <code>any</code> / <code>tool</code></li><li>Claude API と Google Cloud での <code>computer_20251124</code>(Bedrock では引き続き使えます)</li><li>effort を省略したときの既定値は <code>medium</code> です(Opus 5 では <code>high</code>)。同じ effort でも思考量は多めになります。</li><li>ツール呼び出しの間に書かれるテキストは thinking ブロックとして返り、既定の表示設定では空になります。</li><li>一次情報には、両系統が触れていない注意点もあります。</li><li>2026-08-31 以降に作られたアカウントでは、前の部分が変わった thinking ブロックを送り返すと既定で 400 になります(prefix binding)。</li><li>公式は、会話を追記のみにして、指示の変更は mid-conversation system message で入れるよう推奨しています。</li><li>出典: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5</li></ul>
+<p><strong>A-4. 「Claude が Anthropic の研究開発の 26% を主導」(09-18)</strong></p>
+<ul><li><strong>[要検証]</strong> 報道は2本(NBC / Spectrum)で一致しています。NBC は「Anthropic のブログ投稿」を出典にしています。</li><li>ただし anthropic.com/news の 9 月分一覧にも、ドメインを絞った検索にも見当たりませんでした。</li><li>一次情報を確認できなかっただけで、投稿が存在しないと確認したわけではありません。news 以外(research など)に載っている可能性があります。</li><li>出典: https://www.nbcnews.com/tech/tech-news/anthropic-says-model-claude-helping-build-next-version-rcna598494</li></ul>
+<hr>
+<h2>B. Claude Code(最重要)</h2>
+<p><strong>B-1. v2.1.280(09-22)</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致し、changelog 原文と整合しています。</li><li>Opus 5.5 を追加し、Opus の既定モデルにしました。</li><li><code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code> を追加しました。</li><li><code>hook_execution_complete</code> の OTel イベントに、hook 出力のサイズを追加しました。</li><li>再開したフォーク型サブエージェントがツール一覧を作り直して prompt cache を壊す不具合を修正しました。</li><li>ホストアプリ(Desktop / VS Code / SDK)からモデルを切り替えたときに cache miss が起きる不具合を修正しました。</li><li>auto mode で、安全チェックに断られた操作を何度も再試行する不具合を修正しました。</li><li>出典: https://code.claude.com/docs/en/changelog</li></ul>
+<p><strong>B-2. Pro / Team Standard の既定モデルが Sonnet から Opus に(版数の帰属)</strong></p>
+<ul><li><strong>[確認済:2.1.280]</strong> Claude は 2.1.277 と書いていましたが、changelog 原文では 2.1.280 です。Claude 自身も版数を「未確認」としていました。今回 2.1.280 で決着です。</li></ul>
+<p><strong>B-3. AGENTS.md 対応(v2.1.277)</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致しています。</li><li>CLAUDE.md がないプロジェクトでは AGENTS.md を読みます。<code>/config</code> の「Project instructions」で変更でき、Bedrock / Vertex / Foundry では未対応です。</li><li>Claude が挙げていた「2.1.280 と重複して載っている」件は、原文では 2.1.277 だけでした。</li></ul>
+<p><strong>B-4. auto mode がサーバー側の分類器を既定で使う(v2.1.278)</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致しています。<code>/status</code> に「Auto mode server」の行も追加されました。</li></ul>
+<p><strong>B-5. サブエージェントの結果に「subagent output」の見出しが付く</strong></p>
+<ul><li><strong>[確認済:2.1.277]</strong> Claude の「2.1.275」という帰属は <strong>[棄却]</strong> です。</li><li>changelog 原文でも既存の知見でも 2.1.277 です。</li></ul>
+<p><strong>B-6. v2.1.275 の変更</strong></p>
+<ul><li><strong>[確認済]</strong> Claude だけが挙げた項目ですが、changelog 原文で確認できました。</li><li>実行中のターンを中断してすぐ送る send-now キー(ctrl+enter / ctrl+x ctrl+s)を追加しました。</li><li>claude.ai で有効にしている skills / plugins がターミナルに同期されるようになりました。止めるには <code>syncClaudeAiSkills: false</code> / <code>syncClaudeAiPlugins: false</code> を設定します。</li><li><code>__SYSTEM_PROMPT_DYNAMIC_BOUNDARY__</code> 行を使ったときのキャッシュ効率が改善しました。</li></ul>
+<p><strong>B-7. v2.1.276:<code>ANTHROPIC_BASE_URL</code> を proxy に向けると全リクエストが 400 になる不具合の修正</strong></p>
+<ul><li><strong>[確認済]</strong> 原文のエラーは <code>advisor_20260301</code> の input tag に関するものです。「2.1.275 で入ったリグレッション」という部分は、原文での確認までは取れていません。</li></ul>
+<p><strong>B-8. v2.1.273 の変更</strong></p>
+<ul><li><strong>[確認済]</strong> <code>blockReadsOutsideWorkingDirectories</code> を設定すると memory ディレクトリも読み込まれなくなる修正です。</li><li><strong>[確認済]</strong> v2.1.268 の deny ルールの変更を差し戻しました。</li><li>対象は、権限チェッカーが解析できない Bash 行(<code>eval</code>、<code>env -C</code>)に Read/Edit の deny ルールを当てる変更です。</li><li><code>time -p make build</code> のようなコマンドは、deny されずに再び確認を求めるようになります。</li><li>取得のたびに要約の版数が揺れました(1回目は 2.1.269、原文引用付きの2回目は 2.1.273)。原文を引用した方を採用しています。</li><li><strong>[棄却:版数]</strong> auto mode で skill 内の <code>!</code> シェルコマンドが通常の権限ルールに従う件は、Claude の言う 2.1.273 ではなく 2.1.271 です。</li></ul>
+<p><strong>B-9. v2.1.274:hooks で動かすセッション(<code>/goal</code> など)が「Prompt is too long」で止まる不具合の修正、起動の高速化</strong></p>
+<ul><li><strong>[要検証]</strong> Claude だけが挙げた項目です。今回の取得では 2.1.274 に該当する行を確認できませんでした。</li><li>似た修正が 2.1.269 にあることは確認しました。2.1.274 に該当行がないと確認したわけではありません。</li></ul>
+<hr>
+<h2>C. Cowork / Claude Design / Projects</h2>
+<p><strong>C-1. Cowork とチャットを1つの「Claude」に統合(09-16)</strong></p>
+<ul><li><strong>[確認済]</strong> codex が一次情報の URL を示していて、取得して確認できました。Claude は「一次情報を確認できず」としていましたが、これは解消です。</li><li>展開は Pro / Max が今後数週間で、Team / Free はその後です。Enterprise には 30 日以上前に通知されます。</li><li>Claude Docs / Claude Slides は「有料プランでベータ」として同日に公開されました。Claude Design は会話の中から使えるようになりました。</li><li>Claude が指摘していた「全有料プランでベータ」と「Pro / Max 先行」の食い違いは、それぞれ Docs / Slides の提供範囲と、統合の展開順を指していて、両方とも一次情報と整合します。</li><li>出典: https://claude.com/blog/cowork-is-now-claude</li></ul>
+<p><strong>C-2. Projects の刷新:フォルダから会話へ(09-17)</strong></p>
+<ul><li><strong>[確認済]</strong> codex だけが挙げた項目で、一次情報を確認できました。</li><li>ユーザーがゴールを伝えると、コーディネーターが複数のスレッドに作業を割り振り、並行して進めます。対象は Claude Code 向けのベータです。</li><li>最初は一部の Pro / Max ユーザーのクラウドセッションだけで、ローカル実行は後から提供されます。</li><li>codex の「複数 repo」「スマホからの進捗確認」という部分は、今回の取得範囲では確認できませんでした。</li><li>出典: https://claude.com/blog/projects-redesigned</li></ul>
+<p><strong>C-3. Claude Design の更新</strong></p>
+<ul><li><strong>[棄却:日付]</strong> codex はこれを「2026-09 の更新」としていましたが、元のブログ記事は <strong>2026-06-17</strong> 付けです。内容(会話・Claude Code・Artifacts タブで使える、<code>/design-sync</code>)は本物です。</li><li><strong>[確認済]</strong> Claude の「この1週間に Design 単体の新機能は見当たらず、直近の大きな更新は 06-17」という見立ては整合しています。</li><li>9 月の変化として確認できたのは、C-1 の統合で会話から使えるようになったことだけです。</li><li>出典: https://claude.com/blog/claude-design-stays-on-brand-for-daily-work</li></ul>
+<p><strong>C-4. Claude Desktop / Cowork の changelog</strong></p>
+<ul><li><strong>[確認済]</strong> Claude だけが挙げた項目で、一次情報を確認できました。</li><li>v2.2553.13(09-21):Opus 5.5 と AGENTS.md に対応。</li><li>v2.2553.0(09-17):フォーク型やバックグラウンドのセッションで rewind するとファイルが壊れる不具合を修正。Windows-on-ARM で再起動できない不具合も修正。</li><li>09-14:Windows で Cowork がファイルにアクセスできない問題は、KB5129195 で解消。対象は Win11 24H2 / 25H2 です。</li><li>出典: https://claude.com/docs/cowork/changelog</li></ul>
+<hr>
+<h2>D. API とプラットフォーム</h2>
+<p><strong>D-1. Inline tools(beta、<code>inline-tools-2026-09-15</code>、09-22)</strong></p>
+<ul><li><strong>[確認済]</strong> mid-conversation system message の中でツールを定義できます。prompt cache を失わずにツールを追加・変更できます。</li><li>出典: platform release notes</li></ul>
+<p><strong>D-2. Compaction on demand(<code>compact-2026-09-04</code>、09-14)</strong></p>
+<p><strong>D-3. Compliance API の local session エンドポイントが Claude in Chrome に対応(09-18)</strong></p>
+<ul><li><strong>[確認済]</strong> codex だけが挙げた項目で、一次情報を確認できました。Enterprise 向けのベータで、<code>claude_in_chrome</code> として区別されます。</li></ul>
+<p><strong>D-4. Life Sciences Verification Program(09-17)</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致しています。</li><li>Claude.ai と Claude Code では、当初は事前に選ばれた既定の grant だけが適用されます。API 認証の Claude Code は例外です。</li><li>出典: https://www.anthropic.com/news/life-sciences-verification-program</li></ul>
+<p><strong>D-5. Accenture との embedded evaluation での提携(09-18)</strong></p>
+<ul><li><strong>[確認済]</strong> anthropic.com/news の一覧に載っていることは確認しました。本文は読んでいません。</li></ul>
+<p><strong>D-6. Salesforce in Claude(09-15、skill 37 個)</strong></p>
+<ul><li><strong>[確認済]</strong> 両系統が一致しています。期間外すれすれの参考情報です。</li></ul>
+<hr>
+<h2>E. 運用の知見</h2>
+<p><strong>E-1. 公式ブログ「What a task costs on Opus 5.5」(09-22)</strong></p>
+<ul><li><strong>[確認済]</strong> codex だけが挙げた項目で、一次情報を確認できました。内容は次のとおりです。</li><li>普段は <code>medium</code> で始め、行き詰まったら <code>high</code> に上げる。</li><li><code>high</code> でも同じ問題に2回つまずいたら Fable 5.1 に切り替える。</li><li>検索やログ読みのサブエージェントは Sonnet / Haiku、コード編集は Opus 5.5 に任せる。</li><li><code>/clear</code> と <code>/compact</code> を区切りごとに使い、<code>/claude-api prompt-audit</code> で冗長な指示を点検する。</li></ul>
+<p><strong>E-2. claude.dev「Getting the most out of Opus 5.5」(09-22、Addy Osmani 著)</strong></p>
+<ul><li><strong>[要検証]</strong> ページは存在します。内容は「最初のメッセージでタスク全体と完了条件を伝える」「『よく考えて』は外す」「止まる条件を明記する」などです。</li><li>claude.dev が Anthropic の公式ドメインかどうかは、要約用モデルの判断しかなく、確定できていません。</li></ul>
+<p><strong>E-3. CodeRabbit によるレビューのベンチマーク</strong></p>
+<ul><li><strong>[確認済:二次情報として]</strong> 記事の中身は確認しました。</li><li>難しい 13 件では、Opus 5.5 Max が 10 件を検出しました。ベースラインは 5 件で、率にすると 38.5% から 76.9% です。</li><li>トークン消費は、Standard で +40〜49%、Max で +57〜60% でした。</li><li>ベンチマークの中身そのものは、独立して検証できていません。</li></ul>
+<p><strong>E-4. Reddit の Tips(<code>CLAUDE_CODE_FORK_SUBAGENT=0</code> など)、Opus 5.5 の初日の体感、hooks / skills / subagents の使い分け</strong></p>
+<ul><li><strong>[要検証]</strong> どれも片方の系統だけが挙げた二次情報です。</li></ul>
+<p><strong>E-5. Qiita の symlink 運用、AI Nexus の使い分けの原則、「claude-wafer-eap」の噂、HN のスレッド</strong></p>
+<ul><li><strong>[要検証]</strong> Claude だけが挙げた二次情報です。</li><li>噂は元の記事の時点で未確認でした。HN のスレッドは本文を確認していません。</li></ul>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>Opus 5.5 への移行前に、自分のスクリプトを点検する</strong></li></ol>
+<ul><li>Claude Code 2.1.280 から、Opus の既定モデルは Opus 5.5 です。</li><li>API を直接呼ぶ部分で、次の指定が残っていると 400 エラーになります:</li><li><code>thinking: disabled</code></li><li><code>budget_tokens</code></li><li><code>tool_choice: any/tool</code></li><li>effort を省略していると、<code>high</code> から <code>medium</code> に下がって品質が変わる可能性があります。</li><li>対処として、<code>claude-opus-5-5</code> を指定している箇所を grep で洗い出し、effort を明示してください。</li></ul>
+<ol><li><strong>2.1.280 のキャッシュ修正を E-1 の <code>/usage</code> で測る</strong></li></ol>
+<ul><li>修正のうち2件は、前回知見の prompt cache 前提(フォーク型サブエージェント、モデル切り替え)に直接関わります。</li><li>公式が示す手順(<code>/usage</code> と prompt-audit)で、アップデート前後の cache share を比較する価値があります。</li><li>Opus 5.5 から Fable 5.1 への切り替えでは、API 上は推論内容が引き継がれることも一次情報で確認しています。</li></ul>
+<ol><li><strong><code>syncClaudeAiSkills</code> / <code>syncClaudeAiPlugins</code>(2.1.275)の影響を確認する</strong></li></ol>
+<ul><li>claude.ai 側で有効にしている skills / plugins がターミナルにも同期されるようになりました。</li><li>これにより、headless の cron 実行で読み込まれるスキルが増え、実行結果の再現性やスキル一覧のコンテキスト予算に影響するおそれがあります。</li><li>自動化の環境で <code>false</code> にすべきか、実際に試して判断してください。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a> / <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform release notes</a></li><li><a href="https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5" rel="noopener">What's new in Opus 5.5</a></li><li><a href="https://www.anthropic.com/claude-opus-5-5" rel="noopener">Introducing Claude Opus 5.5</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic News</a></li><li><a href="https://www.anthropic.com/news/life-sciences-verification-program" rel="noopener">Life Sciences Verification Program</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Help Center release notes</a></li><li><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener">Cowork is now Claude</a></li><li><a href="https://claude.com/blog/projects-redesigned" rel="noopener">Projects redesigned</a></li><li><a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5" rel="noopener">What a task costs on Opus 5.5</a></li><li><a href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" rel="noopener">Claude Design stays on brand</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork changelog</a></li><li><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/" rel="noopener">claude.dev: Getting the most out of Opus 5.5</a></li><li><a href="https://www.nbcnews.com/tech/tech-news/anthropic-says-model-claude-helping-build-next-version-rcna598494" rel="noopener">NBC News</a></li><li><a href="https://www.coderabbit.ai/blog/opus-5-5-model-review" rel="noopener">CodeRabbit</a></li><li><a href="https://www.anthropic.com/research" rel="noopener">Anthropic Research</a> / <a href="https://claude.com/blog" rel="noopener">Claude Blog</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

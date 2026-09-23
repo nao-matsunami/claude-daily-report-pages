@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-24 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-24</div>
+  <div><span class="lab lab-ok">確認済 21</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-24</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude / Anthropic 直近の動き 審判まとめ（2026-09-17〜09-24）</h1>
+<p><strong>前提:</strong> 入力は ChatGPT(codex) と Claude の2系統だけです。「複数AIが一致」は最大でも2系統の一致にすぎません。そのため、主要な項目は一次情報（anthropic.com / claude.com / code.claude.com / platform.claude.com）で確認しました。2つのAIが同じ二次記事を引いている場合は、独立した裏付けとは数えていません。</p>
+<hr>
+<h2>1. モデル・API</h2>
+<h3>Claude Opus 5.5 リリース（09-22）</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、一次情報とも合っています。モデルIDは <code>claude-opus-5-5</code>、価格は $4/$20（入力/出力、1Mトークンあたり）、cache read は $0.20 です。「典型的なワークロードでコスト40%減」「出力30%以上高速」「Pro/Max/Team と席課金 Enterprise の5時間上限の引き上げ」も公式に書かれています。Claude が挙げたベンチ4種（Terminal-Bench 4.0 66.4% など）も公式ページの数値と一致しました。<br>出典: https://www.anthropic.com/claude-opus-5-5</p>
+<h3>Fast mode の提供範囲</h3>
+<p><strong>[確認済]</strong>（両AIの記述は食い違って見えますが、実際には矛盾していません）</p>
+<ul><li>codex の「Claude Code / Platform で利用可」は、anthropic.com の記述「Claude Code and Claude Platform、最大2.5倍、$8/$40」と一致します。</li><li>Claude の「Claude API のみ（research preview）」は、platform docs の記述「Bedrock / Claude Platform on AWS / Google Cloud / Foundry では不可」と一致します。</li><li>両者は別の面を言っているだけです。なお 2.1.281 では、Claude Code on the web のモデルメニューに Fast mode の切り替えも追加されています。</li></ul>
+<p>出典: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5</p>
+<h3>Opus 5.5 の破壊的変更4点と挙動差（Claude のみ）</h3>
+<p><strong>[確認済]</strong> 一次ドキュメントで全項目を確認しました。</p>
+<ul><li>破壊的変更: thinking を無効化できない、<code>tool_choice</code> の any/tool が400になる、thinking block がモデルに紐づく、API/Google Cloud で <code>computer_20251124</code> が使えない。</li><li>挙動差: 既定 effort が medium になった、ツール呼び出しの間のテキストが thinking block で返る。</li><li>価格: 5分 cache write $5、1時間 cache write $8、Batch は半額。</li></ul>
+<p>一点補足します。「Opus 5.5 → Fable/Mythos 5.1 への切り替えでは、API 上なら推論が引き継がれる」という例外があり、Claude の要約はこれを省いています。<br>出典: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5</p>
+<h3>API の新しい beta 機能: <code>inline-tools-2026-09-15</code> / <code>compact-2026-09-04</code>（Claude のみ）</h3>
+<p><strong>[確認済]</strong>（日付を一部訂正）</p>
+<ul><li>inline-tools は 09-22 で正しいです。</li><li><code>compact-2026-09-04</code> のリリースノート日付は <strong>09-14</strong> で、Claude が書いた 09-22 は誤りです。</li></ul>
+<p>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>Compliance API で Claude in Chrome の transcript を取得（09-18、Claude のみ）</h3>
+<p><strong>[確認済]</strong> Enterprise 向けの beta で、surface 名は <code>claude_in_chrome</code> です。<br>出典: 同上</p>
+<hr>
+<h2>2. Claude Code（重視）</h2>
+<h3>v2.1.277（09-18）AGENTS.md 対応</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、changelog 原文でも 2.1.277 の項に載っています。CLAUDE.md が無い場合に AGENTS.md を読みます。切り替えは <code>/config</code> → Project instructions で、Bedrock/Vertex/Foundry はまだ未対応です。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.277 サブエージェント出力のヘッダ付け・インデント / <code>__SYSTEM_PROMPT_DYNAMIC_BOUNDARY__</code>（Claude のみ）</h3>
+<p><strong>[確認済]</strong> 原文と一致しました。</p>
+<h3>v2.1.278（09-19）auto mode の classifier がサーバー側既定に</h3>
+<p><strong>[確認済]</strong> 両AIが一致しています。<code>/status</code> に「Auto mode server」行が追加されました。codex の日付「09-18頃」は誤りで、正しくは 09-19 です。</p>
+<ul><li><strong>補足（どちらのAIも拾っていない点）:</strong> 2.1.281 で次の2つが変わりました。</li><li><code>CLAUDE_CODE_AUTO_MODE_SERVER</code> が、Anthropic API への直接接続にも適用されるようになった。</li><li>サーバー側で審査している場合、read-only や sandbox 内の shell コマンドも審査待ちになり、フラグが立てばブロックされるようになった。</li></ul>
+<p>既存の知見は v2.1.278 時点の適用範囲で確定させたものなので、古くなっている可能性があります。</p>
+<h3>v2.1.280（09-22）Opus 5.5 が既定 Opus に / effort の per-model 化 / <code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code> / hook telemetry</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも合っています。</p>
+<ul><li><strong>帰属の訂正（Claude 側）:</strong></li><li>スキルごとのトークン見積もり表示と <code>/plan</code> は <strong>[VSCode] の項目</strong>です。ターミナル CLI の変更ではありません。</li><li>「compaction 後に memory の age note が変わる」修正は <strong>2.1.275</strong> のものです。2.1.280 ではありません。</li><li>fork サブエージェントの再開時と、ホストアプリからのモデル切り替え時のキャッシュミス修正は、2.1.280 で正しいです。</li><li><strong>補足（どちらのAIも拾っていない点）:</strong> 同じ版で「Pro / Team Standard の既定モデルを Sonnet から Opus に変更」しています。</li></ul>
+<h3>v2.1.281（09-23）</h3>
+<p><strong>[確認済]</strong>（Claude のみが列挙していた項目）次の5点を原文で確認しました。</p>
+<ul><li><code>"attribution": false</code>（古い版はこの設定ファイルごと読み飛ばすという注意書き付き）</li><li><code>/insights</code> での auto mode 推定</li><li><code>mcp_tool</code> hook が MCP の接続待ち中にスキップされていた問題の修正</li><li><code>/context</code> 合計値の修正</li><li>大きな CLAUDE.md の起動時警告が、複数の instruction ファイルと @-import の合計で判定されるようになった変更</li></ul>
+<h3>v2.1.274〜2.1.276 / v2.1.273</h3>
+<p><strong>[確認済]</strong> 次を原文で確認しました。</p>
+<ul><li><code>CLAUDE_CODE_MCP_STARTUP_WAIT_MS</code>（2.1.274）</li><li>メモリ警告（2.1.274）</li><li>send-now キー ctrl+enter（2.1.275）。2.1.281 で「ターンを中断する」から「実行中のツールをバックグラウンドへ移す」に変わっています。</li><li>advisor ターンが約2倍で数えられていた問題の修正（2.1.273）</li></ul>
+<p>2.1.276 で gateway 経由の400（<code>advisor_20260301</code>）が修正されたことも確認できました。ただし「その退行が 2.1.275 で入った」という帰属は、原文では<strong>一次確認できていません</strong>。</p>
+<h3>hooks reference の拡張（codex のみ）</h3>
+<p><strong>[確認済]</strong> <code>SubagentStart/Stop</code>、<code>PreCompact/PostCompact</code>、<code>PreModelSwitch</code> は公式リファレンスに載っています。「terminal / IDE / Desktop / cloud で同じイベントが発火する」という記述も確認しました。</p>
+<ul><li>note 記事の「<code>SubagentHandback</code>」は、hooks reference 上では<strong>一次確認できませんでした</strong>。これは「存在しない」と確認したという意味ではありません。</li><li>なお 2.1.280 に「subagent hand-back messages」という表現はありますが、hook イベントとしてではありません。</li></ul>
+<p>出典: https://code.claude.com/docs/en/hooks</p>
+<h3>拡張機能の使い分けガイド: CLAUDE.md は200行未満、hooks はコンテキスト消費ゼロなど（codex のみ）</h3>
+<p><strong>[確認済]</strong> features-overview に明記されています。<br>出典: https://code.claude.com/docs/en/features-overview</p>
+<h3><code>CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL</code> / <code>subagentPromptCacheTtl</code>（codex のみ）</h3>
+<p><strong>[確認済]</strong>（ただし確認の仕方に留保あり）</p>
+<ul><li>公式の prompt-caching ページを検索結果の抜粋で確認した範囲では、次のとおりです。</li><li>値は <code>5m</code>/<code>1h</code> で、v2.1.242 以降。</li><li>環境変数が設定より優先される。</li><li>対象は、サブエージェント、workflow、fork、compaction など、メイン会話以外のリクエスト。</li><li>env-vars ページは取得時に途中で切れたため、そちらでは確認できていません。</li><li>この機能は今週の新機能ではありません。</li><li>Reddit の「cache write 約75%減」は個人の計測値で、<strong>[要検証]</strong> です。</li></ul>
+<p>出典: https://code.claude.com/docs/en/prompt-caching</p>
+<h3>公式コストガイド「What a task costs on Opus 5.5」（09-22、Claude のみ）</h3>
+<p><strong>[確認済]</strong> 実在します（著者は Addy Osmani）。CLAUDE.md 200行、<code>/clear</code>・<code>/compact</code>、effort を段階的に上げる使い方、検索系サブエージェントは Sonnet/Haiku、という推奨を確認しました。<br>出典: https://claude.com/blog/what-a-task-costs-on-opus-5-5</p>
+<hr>
+<h2>3. Cowork / デスクトップ（重視）</h2>
+<h3>Chat と Cowork の統合（09-16）</h3>
+<p><strong>[確認済]</strong> 両AIの記述が整合し、公式ブログで確認できました。</p>
+<ul><li>chat・Cowork・Artifacts を1画面にまとめ、依頼内容に応じて自動で振り分けます。</li><li>Pro/Max へ数週間かけて展開し、Team/Free はその後です。Enterprise には30日以上前に通知されます。</li><li>codex は開始日を「未確認」としていましたが、公式ブログで <strong>09-16</strong> と確定しました。</li></ul>
+<p>出典: https://claude.com/blog/cowork-is-now-claude</p>
+<h3>デスクトップ v2.2553.0（09-17）/ v2.2553.13（09-21）/ v2.7032.0（09-22）（Claude のみ）</h3>
+<p><strong>[確認済]</strong>（細部を訂正）</p>
+<ul><li>確認できた内容:</li><li>Opus 5.5 と AGENTS.md への対応は v2.2553.13。</li><li>Customize 画面の全面リニューアルは v2.2553.0。</li><li>管理設定キー <code>allowedPluginMcpServers</code> と <code>builtinBrowserEnabled</code> などが追加。</li><li>訂正:</li><li><code>CLAUDE_PLUGIN_ROOT</code> が空になる問題の修正は、「Cowork 修正」ではなく <strong>Chat/Code 修正</strong>の欄にあります。</li><li>スキル関連の修正の実際の内容は「明示的な Skill tool 参照が無いとスキルのツールが読み込まれない」問題の修正です。Claude の要約「Skill tool 無しで読み込まれる問題」は意味が逆になっています。</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>Opus 5.5 公式ページで、早期利用者が Chat / Cowork / Claude Code を横断してテストしたとの言及（codex のみ）</h3>
+<p><strong>[要検証]</strong> 今回取得した公式ページの要約では、Cowork への言及を<strong>確認できませんでした</strong>。ページ全文を目視で確認するまで、否定も肯定もしません。</p>
+<h3>Windows 9月累積更新で Cowork のコマンド実行が壊れた件（KB5129195、Claude のみ）</h3>
+<p><strong>[要検証]</strong> 二次情報と GitHub issue によるもので、今回は一次確認していません。期間外の情報です。</p>
+<h3>Salesforce プラグイン beta（09-15、Claude のみ）</h3>
+<p><strong>[要検証]</strong> support のリリースノートは今回取得しておらず、<strong>一次確認できていません</strong>。期間外です。</p>
+<hr>
+<h2>4. Claude Design（重視）</h2>
+<h3>Design 単独の新発表はなし</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、anthropic.com/news の一覧にも Design 単独の記事はありません。</p>
+<h3>「Design が会話の中で使える（beta）」</h3>
+<p><strong>[確認済]</strong>（範囲は限定）09-16 の公式ブログに「Claude Design now works inside your conversations」「in beta on paid plans」とあり、従来の単体版もそのまま使えます。Claude が「未確認」としていた記述は、ここで一次確認できました。ただし「<strong>Claude Code を含む</strong>」あらゆる会話で使える、という部分は<strong>一次確認できていません</strong>。</p>
+<h3>Reddit の Opus 5.5 × Design 体験談（codex のみ）</h3>
+<p><strong>[要検証]</strong> 個人の体験談です。</p>
+<hr>
+<h2>5. その他の公式発表</h2>
+<h3>Life Sciences Verification Program（09-17）/ Accenture との embedded evaluation 提携（09-18）（Claude のみ）</h3>
+<p><strong>[確認済]</strong> anthropic.com/news に同名の記事があります。</p>
+<h3>Claude が CRISPR 様の反復配列を持つ新しい酵素系を発見（09-23）</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、newsroom に記事があります。codex の「Claude Science と Claude Code を並列で使った」という詳細は、今回<strong>一次確認していません</strong>。</p>
+<hr>
+<h2>6. コミュニティ・二次情報（すべて単一出典）</h2>
+<h3>Qiita @suwa_nobu: AGENTS.md は初回セッションで読まれない</h3>
+<p><strong>[要検証]</strong> 両AIが引いていますが、同じ1記事なので独立した裏付けにはなりません。筆者自身も、検証したセッション数が少ないと明記しています。</p>
+<h3>同記事: <code>CLAUDE.local.md</code> があると AGENTS.md が読まれない / <code>claude-md-and-agents-md</code> 設定（Claude のみ）</h3>
+<h3>Qiita @Takuya__: Opus 5.5 medium で 40秒 / $0.23 など</h3>
+<p><strong>[要検証]</strong> 個人ベンチです。</p>
+<h3>Qiita @aicoding-guide: v2.1.268 の deny rule 変更を v2.1.273 で差し戻し</h3>
+<p><strong>[要検証]</strong> 今回確認した 2.1.273 の要約には該当する項目がなく、未確認です。</p>
+<h3>HN / Reddit / note での AGENTS.md・hooks・subagent・rule ファイル削減（70k→2k）などの議論</h3>
+<p><strong>[要検証]</strong> いずれも codex のみが挙げたもので、傾向を知る参考情報です。</p>
+<p><strong>[棄却]</strong> に当たる項目はありません。明確な誤りは日付や版数の帰属ミスで、上の各項目の中で訂正しています。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>2.1.281 での auto mode の変更（<code>CLAUDE_CODE_AUTO_MODE_SERVER</code> の直接API適用 + サーバー側での read-only shell 審査）</strong></li><li><strong>Opus 5.5 の既定化に伴う effort とモデルの再固定（2.1.280）</strong></li></ol>
+<ul><li>次の3つが同時に起きています。</li><li>既定 Opus が Opus 5.5 に変わった。</li><li>per-model 化より前に保存した effort が新モデルには効かず、既定の medium から始まる。</li><li>Pro/Team Standard の既定モデルが Opus になった。</li><li>その結果、定期実行ジョブの品質とコストが気付かないうちに変わる可能性があります。<code>ANTHROPIC_MODEL</code> と effort を明示しているかを点検する価値があります。</li></ul>
+<ol><li><strong><code>CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL=1h</code> の効果測定</strong></li></ol>
+<p>長いサブエージェント処理で cache write が減るという主張は、個人の計測しかありません。1h の cache write は $8 と高いため、<code>/usage</code> などで before/after を実測してから採用するかを決めるべきです。</p>
+<p>Sources:</p>
+<ul><li><a href="https://www.anthropic.com/claude-opus-5-5" rel="noopener">Claude Opus 5.5 (anthropic.com)</a></li><li><a href="https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5" rel="noopener">What's new in Claude Opus 5.5</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform release notes</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/hooks" rel="noopener">Claude Code hooks reference</a></li><li><a href="https://code.claude.com/docs/en/features-overview" rel="noopener">Extend Claude Code (features-overview)</a></li><li><a href="https://code.claude.com/docs/en/prompt-caching" rel="noopener">How Claude Code uses prompt caching</a></li><li><a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5" rel="noopener">What a task costs on Opus 5.5</a></li><li><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener">Claude Cowork and chat are now one Claude</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Claude Desktop / Cowork changelog</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic News</a></li><li><a href="https://techcrunch.com/2026/09/16/anthropic-merges-claude-chat-and-cowork-in-one-interface/" rel="noopener">TechCrunch: chat と Cowork の統合</a></li><li><a href="https://github.com/Edmonds-Commerce-Limited/claude-code-hooks-daemon/issues/50" rel="noopener">GitHub issue: subagentPromptCacheTtl 75% 減の報告</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

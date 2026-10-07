@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-07 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-07</div>
+  <div><span class="lab lab-ok">確認済 14</span><span class="lab lab-warn">要検証 4</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-07</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/2 系統</strong> — codex(EXIT_1)<br>突き合わせできたのは 1 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-10-07.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。</blockquote>
+<blockquote>⚠️ <strong>今日は codex の収集が失敗したため、Claude 1系統だけを元にしています。突き合わせができないので、確度はふだんより低めです。</strong> 以下で [確認済] にしたのは、私が一次情報を直接見て確かめられた項目だけです。どこで確かめたかは各項目に書いています。</blockquote>
+<hr>
+<h2>Claude Code</h2>
+<h3>2.1.287（10/1）: Claude Mods と組み込みの mod「You should know」</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>Mods は、プラグインに入れた JS/TS のイベントハンドラを Claude Code と同じプロセスの中で動かす仕組みです。ツール呼び出し・プロンプト・UI の描画に介入できます。同じ版で agents view の <code>n:&lt;text&gt;</code> フィルタと、<code>/config</code> の UI 改善も入っています。</li><li>二次情報（substack）が挙げていた3点は、すべて一次情報と合っていました。</li><li>有効化は <code>/plugin enable cc-plugin-you-should-know@builtin</code> で、初期状態はオフ。</li><li>動くのは「first-party sessions with telemetry on」のときだけ。</li><li><code>/diff</code> は組み込みの mod（<code>cc-plugin-diff</code>）として実装されている。</li><li>確認経路：changelog の 2.1.287 の項と、Mods overview の「Mods built into Claude Code」の表。</li><li>運用上の注意も公式に書かれています。</li><li><strong><code>disableAllHooks</code>・<code>--bare</code>・<code>--safe-mode</code> では組み込みの mod は止まりません。</strong></li><li><strong>mod は <code>ask</code> ルールや PreToolUse hook が止めた呼び出しも承認できます。</strong></li><li>出典：<a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a> / <a href="https://code.claude.com/docs/en/plugins/mods/overview" rel="noopener">Mods overview</a></li></ul>
+<h3>2.1.288（10/2）: <code>/code-review --max-findings</code> など</h3>
+<p><strong>[確認済]（一部訂正あり）</strong></p>
+<ul><li>次の5点は changelog の原文で確認しました。</li><li><code>--max-findings &lt;n&gt;|all</code>（一度指定すると、<code>--max-findings default</code> を渡すまで同じ設定が使われ続ける）</li><li>Ctrl+C で消したプロンプトを ↑ で復元</li><li>MCP が追加の OAuth スコープを求めたときの再認証</li><li>クラウドセッションに組み込みの <code>gh api</code></li><li>「Prompt is too long」になって自動コンパクションされない問題の修正</li><li><strong>訂正：</strong> 収集にあった「再開したセッションで履歴が消える問題の修正」は、2.1.288 には見当たりませんでした。近い内容の修正（<code>--resume</code> / <code>--continue</code> でターンが失われる問題）は <strong>2.1.286</strong> にあります。</li><li>出典：<a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></li></ul>
+<h3>2.1.289（10/3）: 権限まわりの修正</h3>
+<p><strong>[確認済]（版の帰属を一部訂正）</strong></p>
+<ul><li>次の2点は原文で確認しました。</li><li>管理された端末で、ユーザーが入れた mod の承認に対して deny / ask ルールが効かない問題の修正</li><li>IDE 経由やシンボリックリンク経由のファイルに <code>Read</code> deny ルールが効かない問題の修正</li><li><strong>訂正：</strong> 収集では「MCP ツール名が128文字を超えるとすべてのリクエストが失敗する問題」の修正を 2.1.289 に入れていましたが、changelog では <strong>2.1.292</strong> の項にあります。</li><li>出典：<a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></li></ul>
+<h3>2.1.290（10/5）: <code>tool.check</code> の <code>agentId</code> など</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>tool.check</code> イベントの <code>agentId</code>、<code>claude attach</code> / <code>claude logs</code> での名前の部分一致、<code>/claude-api managed-agents-onboard</code> を changelog の原文で確認しました。</li><li>出典：<a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></li></ul>
+<h3>2.1.291（10/6）: 回帰の修正</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>2.1.290 で入った回帰（クラウドセッションで権限プロンプトへの回答が失われる）と、2.1.288 で入った回帰（終了時に最後のメッセージが失われる）の修正です。changelog の原文で確認しました。</li></ul>
+<h3>2.1.292（10/6）: Agent ツールの <code>effort</code> など</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>次の項目を changelog の原文で確認しました。</li><li>Agent ツールの <code>effort</code> パラメータ</li><li><code>CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS</code></li><li><code>claude plugin install --marketplace</code></li><li>mod の <code>$.model.complete</code> での <code>cache: true</code></li><li>セキュリティ修正：UNC パスからの読み取りが PreToolUse の承認や auto mode で権限プロンプトを素通りしていた問題</li><li>修正：<code>permissionMode: auto</code> を指定したサブエージェントが、auto mode を使えない状況でも auto mode に入っていた問題</li><li>出典：<a href="https://code.claude.com/docs/en/changelog" rel="noopener">changelog</a></li></ul>
+<h3>2.1.285（9/29）/ 2.1.286（9/30）の振り分け</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>収集では「どちらの版か確定できない」となっていましたが、changelog の原文で確定しました。</li><li><strong>2.1.285：</strong> <code>claude --desktop</code>、<code>claude plugin configure</code>、<code>allowedProviders</code>、<code>CLAUDE_CODE_DISABLE_WEB_FETCH</code></li><li><strong>2.1.286：</strong> 権限プロンプトの「2 of 5」表示、VS Code の Bookmarks</li></ul>
+<h3>AGENTS.md がテレメトリをオフにすると読まれなかった件</h3>
+<p><strong>[確認済]（版を訂正）</strong></p>
+<ul><li>AGENTS.md への対応は、組み込みの mod <code>cc-plugin-agents-md</code> として実装されています（Mods overview で確認）。</li><li>修正は、収集にあった 2.1.281 ではなく <strong>2.1.282（9/24）</strong> です。changelog の原文は「Changed AGENTS.md support to also work on … sessions with telemetry disabled」です。</li></ul>
+<p>-</p>
+<h2>Cowork</h2>
+<h3>10/6: Pro / Max で、新しい Cowork タスクがクラウドで実行されるようになった</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>次の4点は support.claude.com の原文で確認しました。</li><li>「Only on your computer」の設定は廃止。</li><li>10/6 より前に始めたタスクは、ローカルのまま最後まで続けられる。</li><li>既存のスケジュールタスクはローカルのまま動く。</li><li>新しく作るスケジュールタスクはクラウドで動く。</li><li>二次情報の「クラウドで動くタスクはローカルの利用量トラッカーで追跡されない」（codeburn PR）は <strong>[要検証]</strong> です。一次情報では確認できませんでした。</li><li>出典：<a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile" rel="noopener">support.claude.com</a></li></ul>
+<h2>Claude Design</h2>
+<h3>9/16「Claude 本体への統合」</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>この主張は二次情報（magicpatterns）だけで、一次情報では確認できませんでした。</li><li>検索で見つかったのは 6/17 の「デスクトップアプリのサイドバーから使えるようになった」という更新でした。9/16 の発表があったかどうかは確認できていません。誤りだと判定したわけではありません。</li><li>今週（9/30〜10/7）の公式発表も見つかりませんでした。</li></ul>
+<h2>Anthropic（企業・モデル）</h2>
+<h3>9/28: Claude Sonnet 5.5</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>収集では個別記事が 404 とされていましたが、<a href="https://www.anthropic.com/claude-sonnet-5-5" rel="noopener">anthropic.com/claude-sonnet-5-5</a> は今回の取得で開けました。</li><li>そこで確認できた内容：</li><li>価格は $2 / $10 per MTok（キャッシュ読み取り $0.20、書き込み $2.50）</li><li>「30%+ 速い・最大 30% 安い」</li><li>Terminal-Bench 4.0 については「70.6%（Sonnet 5 は 10.3%）」と取れましたが、比較値が不自然です。取得時の要約が間違えた可能性があるので、<strong>この数値だけは [要検証]</strong> とします。</li></ul>
+<h3>10/2: Claude Frontier Academy</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>公式 Newsroom の一覧に「Anthropic invests $100 million to train 10,000 engineers」として載っています（/news/claude-frontier-academy）。</li><li>「2027年末まで」という期限は、個別記事を読んでいないため確認できていません。</li></ul>
+<h3>Claude for Startups（Team 1年無料・API クレジット $1K）</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><a href="https://claude.com/programs/startups" rel="noopener">claude.com/programs/startups</a> で次を確認しました。</li><li>Team 1年分（最大5席）</li><li>API クレジット $1K</li><li>対象は「設立5年以内」または「2年以内に資金調達」</li><li>10/6 に開始したという日付は、TechCrunch（二次）にしかありません。</li></ul>
+<h3>10/14 に上場前の投資家説明会を予定（Bloomberg 報道）</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>関係者を情報源とする報道で、一次情報は確認できませんでした。</li></ul>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong><code>CLAUDE_CODE_DISABLE_WEB_FETCH</code>（2.1.285）</strong></li></ol>
+<ul><li>試すこと：WebFetch を使わないジョブにこの環境変数を設定し、<code>claude -p</code> 下でツールが本当に消えるかを確かめる価値があります。</li></ul>
+<ol><li><strong>Agent ツールの <code>effort</code> パラメータ（2.1.292）</strong></li></ol>
+<ul><li>確かめること：効果を測った数値はまだありません。2.1.292 では <code>permissionMode: auto</code> のサブエージェントの修正も入っているので、サブエージェントの定義とあわせて確認するのがよいと思います。</li></ul>
+<ol><li><strong>Mods の権限への影響の棚卸し</strong></li></ol>
+<ul><li>確かめること：<code>claude plugin validate</code> と <code>/plugin</code> の Installed で、headless 環境に読み込まれている mod を確認する価値があります。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/plugins/mods/overview" rel="noopener">Mods overview</a></li><li><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile" rel="noopener">support.claude.com – Cowork</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic Newsroom</a></li><li><a href="https://www.anthropic.com/claude-sonnet-5-5" rel="noopener">Claude Sonnet 5.5</a></li><li><a href="https://claude.com/programs/startups" rel="noopener">Claude for Startups</a></li><li><a href="https://www.gigazine.net/gsc_news/en/20260618-claude-design-claude-code" rel="noopener">GIGAZINE (Claude Design 6/18)</a></li><li><a href="https://guptadeepak.com/anthropic-claude-for-startups-the-complete-guide-to-credits-tiers-and-eligibility-2026/" rel="noopener">guptadeepak.com（Startups 検索結果）</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-02 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-02</div>
+  <div><span class="lab lab-ok">確認済 16</span><span class="lab lab-warn">要検証 5</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-02</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/2 系統</strong> — codex(EXIT_1)<br>突き合わせできたのは 1 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-10-02.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。</blockquote>
+<blockquote>⚠️ <strong>今日は codex の収集が失敗した（EXIT_1）ため、Claude 1系統だけで作っています。いつもより確度は低めです。</strong> [確認済] は、私が今日 WebFetch / WebSearch で公式ページを直接読めた項目だけです。</blockquote>
+<hr>
+<h2>1. モデル・API</h2>
+<h3>Claude Sonnet 5.5 リリース（2026-09-28）</h3>
+<p><strong>[確認済]</strong> モデルIDは <code>claude-sonnet-5-5</code>。料金は100万トークンあたり入力 $2、出力 $10、キャッシュ読み取り $0.20、キャッシュ書き込み $2.50。ベンチマーク（Terminal-Bench 4.0 が 70.6%、CursorBench 4.0 が 55.5%、GDPval-AA が 1844）、リスクの高い依頼を Sonnet 5 に回すサイバー安全策、推論抽出を防ぐ分類器も、製品ページの記述と一致しました。（確認経路: 製品ページと Release Notes を直接取得）<br>出典: https://www.anthropic.com/claude-sonnet-5-5</p>
+<h3>Sonnet 5.5 の破壊的変更</h3>
+<p><strong>[確認済]</strong> 以下の4点はすべて Release Notes（09-28）に記載がありました。</p>
+<ul><li>thinking を無効にするときは <code>{"type":"between_tools"}</code> を送る（effort が high 以下のとき）</li><li><code>tool_choice</code> の <code>any</code> / <code>tool</code> は 400 エラーになる</li><li>thinking ブロックはモデル・会話・アカウントに紐づく</li><li>Claude API / Google Cloud では <code>computer_20251124</code> を受け付けない</li></ul>
+<p>収集が載せていなかった変更も1つありました。advisor tool が Opus 4.8 / 4.7 / Sonnet 5 を advisor として受け付けなくなっています。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>Sonnet 4.5（<code>claude-sonnet-4-5-20250929</code>）の非推奨化（09-30）</h3>
+<p><strong>[確認済]</strong> 2026-11-30 に提供終了。Release Notes で確認しました。model-deprecations のページそのものは読んでいません。<br>出典: 同上</p>
+<h3>refusal 課金の再開と Compliance API の変更（09-24）</h3>
+<p><strong>[確認済]</strong> 出力前の拒否でも、<code>stop_details.category</code> が <code>bio</code> / <code>frontier_llm</code> / <code>reasoning_extraction</code> なら課金されます。Activity Feed の <code>filename</code> / <code>title</code> は常に空になります。「過去分にも遡って適用」という部分は、取得した要約からは確認できませんでした。<br>出典: 同上</p>
+<h3>Opus 5.5 と Inline Tools beta（09-22、期間の直前）</h3>
+<p><strong>[確認済]</strong> Opus 5.5 は $4 / $20、1M コンテキストが標準、出力上限 128k、adaptive thinking は常時オン。Inline Tools は、会話途中の system メッセージでツールを定義する機能で、ベータヘッダは <code>inline-tools-2026-09-15</code> です。ただし収集にあった「キャッシュが無効にならない」は、Release Notes の要約からは<strong>一次確認できませんでした</strong>。</p>
+<hr>
+<h2>2. Claude Code</h2>
+<h3>2.1.287（10-01）Claude Mods</h3>
+<p><strong>[確認済]</strong> changelog、管理者向けドキュメント、claude.com の公式ブログ（10-01）で確認しました。</p>
+<ul><li>mod はデフォルトでオン（v2.1.287 以降）。サンドボックス化はされません。</li><li>組み込み mod「You should know」は <code>/plugin enable cc-plugin-you-should-know@builtin</code> で有効にします。changelog には「first-party でテレメトリがオンのセッション」という条件が付いています。</li><li>管理者向けドキュメントには、運用上大事な点が書かれています。</li><li><strong>auto mode では、mod が承認した呼び出しは分類器のチェックを通らずに実行される</strong></li><li><code>ask</code> ルールや、managed 以外の PreToolUse hook は mod が上書きできる</li><li><code>CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=0</code> は v2.1.287 以降無視される</li><li>止めたい場合は managed settings で <code>allowManagedModsOnly</code> を使う</li></ul>
+<p>claude.dev については、公式ブログが「our guide」として claude.dev の記事にリンクしていました。Anthropic が運営している可能性は高いですが、ドメインの所有者は直接確認していません。<br>出典:</p>
+<ul><li>https://code.claude.com/docs/en/changelog</li><li>https://code.claude.com/docs/en/plugins/mods/admin</li><li>https://claude.com/blog/claude-code-mods</li></ul>
+<h3>2.1.287 のその他の変更</h3>
+<p><strong>[確認済]</strong> 文中のスキル名を認識するようになりました（<code>disable-model-invocation</code> のスキルも対象）。<code>/memory</code> のオン・オフは左右の矢印キーで切り替えられます。</p>
+<h3>Bedrock / Vertex で Opus 4.7 以降が 1M 標準に（版数を訂正）</h3>
+<p><strong>[要検証→版数を訂正]</strong> 収集では <strong>2.1.284</strong> としていましたが、changelog の原文では <strong>2.1.287</strong> の項目でした。対象は Bedrock / Vertex / Foundry / Claude apps gateway で、Opus 4.7 以降と Fable です。無効にするには <code>CLAUDE_CODE_DISABLE_1M_CONTEXT=1</code>。内容は一次確認できています。間違っていたのは版数だけです。</p>
+<h3>2.1.285（09-29）</h3>
+<p><strong>[確認済]</strong> <code>claude --desktop</code>、<code>claude plugin configure &lt;plugin&gt;</code>（<code>--values-stdin</code> 付き）、managed setting の <code>allowedProviders</code> が追加されました。</p>
+<h3>2.1.284（09-28）</h3>
+<p><strong>[確認済]</strong> Sonnet 5.5 がデフォルトの Sonnet になりました（1M）。<code>/effort</code> の Ultracode は独立したトグルになり、xhigh が強制されなくなりました。</p>
+<h3>MCP <code>alwaysLoad: false</code>（版数を訂正）</h3>
+<p><strong>[要検証→版数を訂正]</strong> 収集では 2.1.284 としていましたが、changelog では <strong>2.1.283</strong> の項目でした。ツールを tool search の後ろに回す、という内容は一致しています。</p>
+<h3>2.1.283（09-25）<code>/doctor prompt-audit</code></h3>
+<p><strong>[確認済]</strong> 別名は <code>/checkup prompt-audit</code>。CLAUDE.md・skills・agents・commands から、古いモデル向けの書き方を探します。compaction スピナーのトークン数表示と、初回応答レイテンシの改善も確認しました。なお、Zenn 記事が書いている呼び出し方は <code>/claude-api prompt-audit</code> で、changelog の表記とは違います。</p>
+<hr>
+<h2>3. Cowork / Claude Design / プラットフォーム</h2>
+<h3>2026-10-06 から Pro/Max の Cowork タスクがクラウド実行に</h3>
+<p><strong>[確認済]</strong> support 記事に「Only on your computer」の廃止と、ローカルファイルを使うスケジュールタスクもクラウドに移ることが明記されていました。収集にはなかった補足が2点あります。ローカルファイルを使うタスクは、デスクトップアプリを開いておく必要があります。また、すでにローカルで始めたタスクはローカルのまま残ります。<br>出典: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</p>
+<h3>プラグイン提出ポータルの開設（09-25）</h3>
+<p><strong>[確認済]</strong> 自動検証と安全スキャン、審査状況の追跡、公開後の分析、MCP 2.0、Enterprise Managed Auth、Claude と Claude Code で共通のプラグイン探索（今後数週間で展開）。いずれもブログ本文で確認しました。<br>出典: https://claude.com/blog/build-plugins-for-claude</p>
+<h3>Claude for Government の一般提供開始（09-30）</h3>
+<p><strong>[確認済]</strong> FedRAMP High 認可の環境で提供されます。公式ブログを直接取得して確認しました。<br>出典: https://claude.com/blog/claude-for-government-is-now-generally-available</p>
+<h3>Claude Design（Chat と Cowork の統合、09-16、期間外）</h3>
+<p><strong>[確認済]</strong> 公式ブログで、Claude Design が会話の中に統合されたことと、Docs / Slides の開始を確認しました。収集にあった「Claude Code の中でも使える」という部分は、要約からは<strong>一次確認できませんでした</strong>。期間中に Claude Design 単独の更新が無かったかどうかは、確認していません。<br>出典: https://claude.com/blog/cowork-is-now-claude</p>
+<h3>09-29 のエラー率上昇</h3>
+<p><strong>[要検証]</strong> 出典は TechRadar のみです。status.claude.com は確認していません。</p>
+<hr>
+<h2>4. 運用の知見</h2>
+<h3>Opus 5.5 と長いセッションのキャッシュ運用（claude.com、09-24）</h3>
+<p><strong>[確認済（一部）]</strong> 次の点は公式ブログで確認できました。</p>
+<ul><li>モデルはセッションの最初に決める</li><li>API の長いセッションでは 1 時間キャッシュを使う</li><li>Claude Code でキャッシュに当たらない入力が 50% 以上減った</li></ul>
+<p>一方、「compact は席を外す前に」という部分は、取得した要約には<strong>ありませんでした</strong>。存在しないと確認できたわけではなく、確認できなかったという意味です。</p>
+<h3>claude.dev「Getting the most out of Opus 5.5」</h3>
+<p><strong>[要検証]</strong> 本文は読んでいません。</p>
+<h3>Zenn 2本（prompt-audit の実践報告）と X のポスト（約70件の改善点）</h3>
+<p><strong>[要検証]</strong> 個人の報告で、検証していません。<code>modelSettings</code> のキーが一致せず medium のつもりが xhigh で動いていた、という事例は自分の環境で確かめる価値があります。</p>
+<h3>Steering Claude Code（6月の公式記事）</h3>
+<p><strong>[要検証]</strong> 今日は取得していません。</p>
+<h3>HN / Reddit の反応</h3>
+<p><strong>[要検証]</strong> どちらも孫引きで、スレッドそのものは見ていません。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>Claude Mods の auto mode バイパスと、headless 運用への影響</strong></li></ol>
+<ul><li>mod はデフォルトでオンです。mod が承認した呼び出しは auto mode の分類器を通りません。</li><li>以前使えた <code>CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=0</code> は、もう無視されます。</li></ul>
+<ol><li><strong>Cowork の 10/6 クラウド移行</strong></li></ol>
+<ul><li>あと4日です。ローカルファイルを使うスケジュールタスクがあるなら、デスクトップアプリを開いておく前提になるか、事前に確かめておく必要があります。</li></ul>
+<ol><li><strong>Sonnet 5.5 の破壊的変更を棚卸しし、<code>/doctor prompt-audit</code> を実際に試す</strong></li></ol>
+<ul><li>あわせて <code>/doctor prompt-audit</code> を実機で動かし、Zenn が報告した <code>modelSettings</code> キーのずれが起きるか確かめる価値があります。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://www.anthropic.com/claude-sonnet-5-5" rel="noopener">Claude Sonnet 5.5</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform Release Notes</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/plugins/mods/admin" rel="noopener">Manage mods</a></li><li><a href="https://claude.com/blog/claude-code-mods" rel="noopener">Customize Claude Code with mods</a></li><li><a href="https://claude.dev/blog/getting-started-with-claude-code-mods/" rel="noopener">claude.dev: Getting started with mods</a></li><li><a href="https://claude.com/blog/build-plugins-for-claude" rel="noopener">Build plugins for Claude</a></li><li><a href="https://claude.com/blog/claude-for-government-is-now-generally-available" rel="noopener">Claude for Government GA</a></li><li><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener">Cowork is now Claude</a></li><li><a href="https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context" rel="noopener">Opus 5.5 built for coding sessions</a></li><li><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile" rel="noopener">Cowork support article</a></li><li><a href="https://cthcommunity.com/en/news/claude-dev-launch/" rel="noopener">cthcommunity: claude.dev launch</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

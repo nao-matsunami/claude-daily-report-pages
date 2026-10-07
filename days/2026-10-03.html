@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-03 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-03</div>
+  <div><span class="lab lab-ok">確認済 21</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-03</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/2 系統</strong> — codex(EXIT_1)<br>突き合わせできたのは 1 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-10-03.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。</blockquote>
+<blockquote>⚠️ <strong>今日は codex の収集が失敗(EXIT_1)したため、突き合わせられたのは Claude の1系統だけです。通常より確度は低めです。</strong> 以下で [確認済] としたものは、すべて私が今回 WebFetch で一次情報の原文を直接確認したもので、確認経路を各項目に書いています。</blockquote>
+<hr>
+<h2>1. モデル</h2>
+<h3>Claude Sonnet 5.5 リリース(2026-09-28)</h3>
+<p><strong>[確認済]</strong> 料金は $2/$10 per MTok、キャッシュ読み取り $0.20、書き込み $2.50。「30%以上速い」「ほとんどの作業で最大30%安い」とあり、AWS・Google Cloud・Azure で使えます。thinking をオフで使っている場合は、移行前に <code>between_tools</code> 設定へ切り替える必要があります。いずれも anthropic.com の製品ページ原文で確認しました。補足として、収集では「ツール呼び出しが少なくシェル実行は半分」と書かれていましたが、原文では<strong>ある1社の早期テスターの報告</strong>(「ツール呼び出しが3分の1減り、シェル実行がおよそ半分」)です。公式全体の数字ではありません。<br>出典: https://www.anthropic.com/claude-sonnet-5-5</p>
+<h3>Claude Code の既定 Sonnet が Sonnet 5.5 に(v2.1.284)</h3>
+<p><strong>[確認済]</strong> 「now default Sonnet on Anthropic API」、コンテキスト1M。changelog 原文で確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>Opus 5.5 の長時間セッション向けブログ(2026-09-24)</h3>
+<p><strong>[確認済]</strong> 一般的なトークン課金の使い方で Opus 5 より約40%安く、キャッシュ読み取り単価は60%下がりました。Claude Code でキャッシュミスする入力は50%以上減ったとのことです。推奨は3点で、①モデルはセッションの最初に決める ②離席する<strong>前に</strong> compact する ③API で長いセッションを回すなら1時間キャッシュを使う、です。claude.com blog 原文で確認しました。<br>出典: https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context</p>
+<hr>
+<h2>2. Claude Code(changelog v2.1.283〜2.1.288。版数と日付はすべて原文で確認)</h2>
+<h3>Claude Mods(v2.1.287 / 2026-10-01)</h3>
+<p><strong>[確認済]</strong> プラグインとして配布される TypeScript の関数で、Claude Code の動作を変えられます。<strong>サンドボックスはなく</strong>、Claude Code と同じ権限で動きます。Team/Enterprise では <code>sec-default</code> mod が最初に読み込まれます。<code>/diff</code> はすでに mod になっています。blog 原文と changelog で確認しました。<br>出典: https://claude.com/blog/claude-code-mods</p>
+<h3>組み込み mod「You should know」</h3>
+<p><strong>[確認済]</strong> 収集側は二次情報扱い(⚠️)でしたが、changelog 2.1.287 の原文に「enable with <code>/plugin enable cc-plugin-you-should-know@builtin</code>」とあることを確認しました。なお blog 本文にはこの mod の記載がありません。</p>
+<h3>PreToolUse / PermissionRequest フックが飛ばされる問題の修正(v2.1.287、v2.1.288)</h3>
+<p><strong>[確認済]</strong> 2.1.287 で、マッチングの失敗や JSON シリアライズのエラーが起きたときにフックが飛ばされる問題が直りました。2.1.288 でもシリアライズ失敗時の同様の修正が入っています。どちらも、フックを飛ばす代わりに<strong>ツール呼び出しをブロックする</strong>動作(fail-closed)に変わりました。changelog 原文で確認しました。</p>
+<h3>v2.1.288(2026-10-02)</h3>
+<p><strong>[確認済]</strong> 次の4点を changelog 原文で確認しました。</p>
+<ul><li>パス指定の <code>.claude/rules</code> や入れ子の CLAUDE.md が、Write/Edit でその範囲のファイルを作成・変更したときにも読み込まれるようになりました(これまでは Read のときだけ)。</li><li>サブエージェントがルールや CLAUDE.md を読み込んだとき、<code>InstructionsLoaded</code> フックに <code>agent_id</code> / <code>agent_type</code> が渡るようになりました。</li><li><code>CLAUDE_CODE_DISABLE_STRUCTURED_OUTPUTS</code> が追加されました。</li><li>収集にはありませんでしたが、<code>/code-review --max-findings</code> の追加と、危険な <code>rm</code> の安全策が外れる問題の修正も入っています。</li></ul>
+<h3>v2.1.287 のその他</h3>
+<p><strong>[確認済]</strong> <code>/advisor</code> で Sonnet 5.5 が Opus 4.7/4.8 の advisor になれるようになり、OpenTelemetry の <code>user_prompt</code> イベントに <code>prompt_text</code> が追加されました。changelog 原文で確認しました。</p>
+<h3><code>verify</code> という名前の skill がコミット直前に自動実行される(v2.1.286 / 2026-09-30)</h3>
+<p><strong>[確認済]</strong>(changelog 原文で確認)ドキュメントだけ・テストだけのコミットは対象外です。同じ版で、並列ツール呼び出しの後に <code>--resume</code> / <code>--continue</code> でターンが失われる問題も直りました。</p>
+<h3>v2.1.285(2026-09-29)</h3>
+<p><strong>[確認済]</strong> <code>CLAUDE_CODE_DISABLE_WEB_FETCH</code>、<code>claude --desktop</code>、<code>claude plugin configure</code>、管理設定 <code>allowedProviders</code> が追加されました。changelog 原文で確認しました。</p>
+<h3>v2.1.284(2026-09-28)</h3>
+<p><strong>[確認済]</strong> 次の点を changelog 原文で確認しました。</p>
+<ul><li>「Prompt is too long」が compact 後も残る問題の修正。compact してもまだ上限を超える場合に、もう一度 compact するようになりました。2.1.274 の hooks セッションの修正とは別の修正です。</li><li><code>/mcp reconnect all</code> と <code>/rate-limit-options</code> の追加。</li><li><code>/effort ultracode [on|off]</code> の追加。xhigh 固定ではなくなりました。</li></ul>
+<h3>既定で auto mode から始まるように(v2.1.284)</h3>
+<p><strong>[確認済]</strong> 権限モードを設定していない場合、対話ターミナル・デスクトップアプリ・VS Code のセッションは auto mode で始まります(設定キーは <code>permissions.defaultMode</code>)。changelog 原文で確認しました。</p>
+<h3><code>/doctor prompt-audit</code>(別名 <code>/checkup prompt-audit</code>)と <code>/context</code> の MCP instructions 計上(v2.1.283 / 2026-09-25)</h3>
+<p><strong>[確認済]</strong> changelog 原文で確認しました。同じ版で、管理設定 <code>availableModelsMatch</code> と <code>deniedModels</code> も追加されています。</p>
+<hr>
+<h2>3. Cowork / Claude アプリ</h2>
+<h3>Pro/Max の新しい Cowork タスクが 2026-10-06 からクラウド実行に</h3>
+<p><strong>[確認済]</strong> 次の点を support 記事の原文で確認しました。</p>
+<ul><li>「Only on your computer」の選択肢は削除されます。</li><li>スケジュールタスクも、ローカルファイルを使うものを含めてクラウドに移ります。</li><li>ローカルファイルを使うタスクには、デスクトップアプリが開いている必要があります。</li><li>すでに手元で始めたタスクはそのまま続けられます。</li></ul>
+<p>予告がいつ出たのかは、<strong>確認できていません</strong>。<br>出典: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</p>
+<h3>Claude for Government の一般提供開始(2026-09-30)</h3>
+<p><strong>[確認済]</strong> FedRAMP High の環境で提供され、Claude Code CLI も同じ環境でアーリーアクセスが始まっています。claude.com blog 原文で確認しました。<br>出典: https://claude.com/blog/claude-for-government-is-now-generally-available</p>
+<hr>
+<h2>4. Claude Design</h2>
+<h3>この1週間の新発表</h3>
+<p><strong>[要検証]</strong>(収集側の結論は「見つからない」)claude.com/blog の 9/20〜10/3 の一覧を見た範囲では、Design 関連の投稿はありませんでした。ただし、一覧を見ただけで、<strong>発表が無いことを確認したわけではありません</strong>。</p>
+<h3>9/16 の統合に伴うデザインシステム移行の失敗報告</h3>
+<p><strong>[要検証]</strong> magicpatterns(二次情報)だけが根拠で、一次情報では確認できていません。</p>
+<hr>
+<h2>5. 公式ニュース</h2>
+<h3>Claude Frontier Academy(2026-10-02)</h3>
+<p><strong>[確認済]</strong> $100M を投じ、2027年末までにエンジニア1万人を育成する計画です。anthropic.com/news 原文で確認しました。<br>出典: https://www.anthropic.com/news/claude-frontier-academy</p>
+<h3>Barclays が Claude の利用を拡大(2026-10-01)</h3>
+<p><strong>[確認済]</strong> anthropic.com/news 原文で確認しました。<br>出典: https://www.anthropic.com/news/barclays-scales-claude</p>
+<h3>NVIDIA との協業(2026-09-28)</h3>
+<p><strong>[確認済]</strong> claude.com/blog の一覧に、投稿「Giving companies more control over their AI agents, with NVIDIA」があることを確認しました。本文は読んでいません。</p>
+<h3>プラグインのディレクトリ投稿ポータル開設(2026-09-25)</h3>
+<p><strong>[要検証]</strong> 一覧で確認できたのは、9/25 付の投稿「Build plugins for Claude」があることだけです。「投稿ポータルの開設」という中身は確認できていません。</p>
+<h3>IPO の報道(11月中旬に上場との観測)</h3>
+<p><strong>[要検証]</strong> 報道ベースで、一次情報はありません。</p>
+<hr>
+<h2>6. コミュニティ(すべて二次情報)</h2>
+<ul><li><strong>prompt-audit が検出するパターン(note)</strong>: <strong>[要検証]</strong> 機能があること自体は確認済みです。ただ、記事にある「コスト約14.6%減・精度約5.3%向上」という Anthropic のテスト結果は、<strong>一次情報で確認できていません</strong>。</li><li><strong>Sonnet 5.5 と Opus 5.5 の比較(Qiita / dahatake)</strong>: <strong>[要検証]</strong> 個人による計測で、Claude Code ではなく Copilot CLI で測ったものです。</li><li><strong>「最大30%安い」の再現検証(Qiita / suwa_nobu)</strong>: <strong>[要検証]</strong> 個人による計測で、記事の日付も確認できていません。</li><li><strong>effort による差が大きい(Zenn / uhyo)</strong>: <strong>[要検証]</strong> 個人によるベンチマークです。</li><li><strong>Hacker News の反応</strong>: <strong>[要検証]</strong> 個人の体感です。</li><li><strong>skill の frontmatter(<code>context: fork</code> / <code>paths</code> / <code>disallowed-tools</code>)</strong>: <strong>[確認済]</strong></li></ul>
+<h3>棄却</h3>
+<p><strong>[棄却]</strong> 該当なし。今日は矛盾を突き合わせられる相手の系統がありません。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong><code>verify</code> skill の自動実行(2.1.286)が自動化に影響しないか確かめる。</strong> 当リポジトリやユーザー設定に <code>verify</code> という名前の skill があると、コミット直前に勝手に実行されるようになります。cron の headless 実行のコミット経路にも効くのかは、changelog だけでは分かりません。既存知見(cc-verify-codereview-autorun-stopped)とも食い違う可能性があり、実機で確認する価値が最も高い項目です。</li><li><strong>2.1.288 に上げて、パス指定の rules とフックの fail-closed 化を確認する。</strong> これまでは、Write/Edit でファイルを作っただけだとパス指定の rules が読み込まれていませんでした。また PreToolUse フックのガードが、マッチ失敗やシリアライズ失敗のときに飛ばされていました。直った結果、今まで通っていた呼び出しがブロックされるようになる可能性があるので、フックでガードしている構成は実機で確認してください。</li><li><strong>auto mode 既定化(2.1.284)と、10/6 の Cowork クラウド移行への備え。</strong> auto mode のほうは、既存知見(8/14 発効の既定化)と対象範囲がどう重なるかを決着させる必要があります。Cowork のほうは期日が決まった変更で、ローカルファイルを使うスケジュールタスクが10/6以降、デスクトップアプリが開いていないと動かなくなります。</li></ol>
+<p>Sources:</p>
+<ul><li>https://code.claude.com/docs/en/changelog</li><li>https://www.anthropic.com/claude-sonnet-5-5</li><li>https://claude.com/blog/claude-code-mods</li><li>https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context</li><li>https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</li><li>https://claude.com/blog/claude-for-government-is-now-generally-available</li><li>https://claude.com/blog</li><li>https://www.anthropic.com/news/claude-frontier-academy</li><li>https://www.anthropic.com/news/barclays-scales-claude</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

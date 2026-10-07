@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-06 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-06</div>
+  <div><span class="lab lab-ok">確認済 17</span><span class="lab lab-warn">要検証 6</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-06</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/2 系統</strong> — codex(EXIT_1)<br>突き合わせできたのは 1 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-10-06.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。</blockquote>
+<p><strong>⚠ 今日の収集は 1/2 系統だけです(codex が EXIT_1 で欠落)。突き合わせができないため、確度は通常より低くなります。</strong> [確認済] は、私が WebFetch / WebSearch で一次情報を直接確認できた項目だけに付けています。確認経路はそれぞれの要約に書きました。</p>
+<p>補足: 一次確認はすべて WebFetch の要約モデルを通した結果です。原文の逐語確認ではありません。</p>
+<hr>
+<h2>1. Claude Code</h2>
+<h3>Claude Mods 追加(v2.1.287 / 2026-10-01)</h3>
+<p><strong>[確認済]</strong> changelog の 2.1.287 と公式ブログで確認しました。Mods はプラグインに同梱する TypeScript 関数で、プロンプト書き換え・UI 追加・組み込み機能の置き換えができます。<strong>サンドボックスなし</strong>で動くため、ブログは「信頼できるソースからのみ入れる」よう明記しています。Team / Enterprise では、<code>sec-default</code> が最初に読み込まれ、ユーザー mod が権限拒否を上書きできないようにします。収集側の「初出は 2.1.287」は changelog と一致しました。<br>出典: https://code.claude.com/docs/en/changelog / https://claude.com/blog/claude-code-mods</p>
+<h3>Mods の制約「Node 未対応・10秒タイムアウト」(Qiita 記事の主張)</h3>
+<p><strong>[要検証]</strong> 公式ブログの本文には記述がありませんでした。一次確認ができなかっただけで、誤りと判定したわけではありません。<br>出典: https://qiita.com/faruryo/items/c075c8c3d664c38f2384</p>
+<h3>組み込み mod「You should know」</h3>
+<p><strong>[確認済(一部)]</strong> 追加されたことは changelog の 2.1.287 で確認しました。有効化コマンド <code>/plugin enable cc-plugin-you-should-know@builtin</code>(既定はオフ)と「first-party セッション・テレメトリ有効時のみ」という条件は、Addy Osmani 氏の X 投稿と二次ガイドで一致していますが、公式ドキュメントの本文では未確認です。Mods 公式ブログには記載がありません。<br>出典: changelog / https://x.com/addyosmani/status/2106288676796055820</p>
+<h3>v2.1.289(10-03)サブエージェント・チーム関連</h3>
+<p><strong>[確認済]</strong> changelog で以下を確認しました。</p>
+<ul><li>teammates 向けの <code>agent.spawn</code> 追加</li><li>プラグインの hook イベントをまたいだエージェント ID の統一</li><li><code>$.agent.list</code> に idle / waiting の状態を追加</li><li>名前指定で起動したプラグイン定義エージェントが、自分の prompt / tools / disallowedTools / effort で動くよう修正</li></ul>
+<h3>CLAUDE.md・rules の読み込み修正</h3>
+<p><strong>[確認済(内容)/ 版数は収集側と食い違い]</strong> 内容は changelog で確認しました。ただし収集側の版数帰属は、以下の4件で changelog と合いません。</p>
+<table><thead><tr><th>修正</th><th>収集側</th><th>changelog</th></tr></thead><tbody><tr><td>パスでスコープした <code>.claude/rules</code>・ネストした CLAUDE.md が Write / Edit 時にも読み込まれる</td><td>2.1.289</td><td><strong>2.1.285</strong>(09-29)</td></tr><tr><td>フォルダの CLAUDE.md が再開後・コンパクション後に二重添付される不具合</td><td>2.1.288</td><td><strong>2.1.287</strong>(10-01)</td></tr><tr><td>worktree 分離サブエージェントの CLAUDE.md 二重読み込み</td><td>2.1.287</td><td><strong>2.1.285</strong></td></tr><tr><td><code>/context</code> が MCP instructions を数えていなかった不具合</td><td>2.1.284 / 288 で未確定</td><td><strong>2.1.283</strong>(09-25、期間外)</td></tr></tbody></table>
+<h3>hooks 関連の修正</h3>
+<p><strong>[確認済]</strong> changelog で確認しました。版数は収集側と一致しています。</p>
+<ul><li>PreToolUse / PermissionRequest hook のマッチングに失敗したとき、または入力を JSON 化できないときに、スキップせず<strong>ブロック</strong>するようになりました(2.1.288)。安全側(fail-closed)に倒れる変更です。</li><li>Elicitation hook の <code>{"decision":"block"}</code> が反映されるようになりました(2.1.284)。</li><li>スクリプトファイルが無い <code>asyncRewake</code> hook が繰り返し Claude を起こす不具合が修正されました(2.1.287)。</li></ul>
+<h3>サブエージェント・権限まわり</h3>
+<p><strong>[確認済(内容)/ Explore の版数のみ食い違い]</strong></p>
+<ul><li>fork サブエージェントが親の権限モード(plan / dontAsk)を引き継ぎ、plan モードを抜けられなくなりました(2.1.285、収集側と一致)。</li><li>background / teammate のトランスクリプト表示中に打った <code>/compact</code> <code>/clear</code> <code>/rewind</code> で、対象を確認するダイアログが出るようになりました(2.1.286、一致)。</li><li>Explore サブエージェントが未知のモデル ID のときに Opus に切り替わる不具合の修正は、収集側の 2.1.284 ではなく changelog では <strong>2.1.285</strong> でした。</li></ul>
+<h3>メッセージ途中の <code>/skill名</code> 認識</h3>
+<p><strong>[確認済]</strong> changelog の 2.1.285 で確認しました。<code>disable-model-invocation</code> のスキルも対象です。</p>
+<h3><code>/doctor prompt-audit</code> で古い設定と実態のずれを検出する(Qiita)</h3>
+<p><strong>[確認済(存在のみ)]</strong> 既存の知見で扱い済みです。「有効だ」という評価は二次記事の意見です。</p>
+<hr>
+<h2>2. Cowork・デスクトップアプリ</h2>
+<h3>Pro / Max で新しい Cowork タスクがクラウド実行に(2026-10-06 発効)</h3>
+<p><strong>[確認済]</strong> サポート記事で確認しました。Settings &gt; General の「Only on your computer」は削除されます。すでにローカルで始めたタスクは完了まで続けられ、Claude Code へ移るためのトランスクリプトのダウンロードボタンが表示されます。<br>出典: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</p>
+<h3>デスクトップ v2.19675.0(10-01)</h3>
+<p><strong>[確認済]</strong> Cowork changelog で以下を確認しました。</p>
+<ul><li>Cowork の定期タスクが、組織で許可されていれば既定で「Automatically approve」になりました。</li><li>Code タブの Files ペインで、行にコメントを付けられるようになりました。</li><li>3P 向けに、Opus 4.7+ / Sonnet 5+ / Fable 5+ は、ゲートウェイやカスタム base URL 経由の場合、既定のコンテキストが <strong>1M</strong> になりました(従来は 200K)。</li><li>macOS 13 以前ではコンピュータ操作が削除されました。</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>デスクトップ v2.19675.1(10-05)</h3>
+<p><strong>[確認済]</strong> <code>.zip</code> / <code>.skill</code> でアップロードしたスキルが <code>SKILL.md</code> しか残らない不具合が修正されたことを確認しました。</p>
+<h3>Cowork の通常チャットへの統合(09-16、期間外)</h3>
+<p><strong>[確認済]</strong> support のリリースノートで確認しました。</p>
+<hr>
+<h2>3. Claude Design</h2>
+<h3>Design / Slides / Docs が会話内アーティファクトに(09-16、全プランに展開)</h3>
+<p><strong>[確認済]</strong> support のリリースノートで確認しました。Enterprise では管理者設定で有効化します。直近1週間では Design 単体の新しい発表を見つけられなかった点も、リリースノート(10-01〜10-06 は該当エントリなし)と整合しています。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<hr>
+<h2>4. モデル</h2>
+<h3>Claude Sonnet 5.5 リリース(2026-09-28)</h3>
+<p><strong>[確認済]</strong> 公式ページで以下を確認しました。</p>
+<ul><li>モデル ID は <code>claude-sonnet-5-5</code> です。</li><li>料金(100万トークンあたり)は入力 $2、出力 $10、キャッシュ読み取り $0.20、キャッシュ書き込み $2.50 です。</li><li>AWS / Google Cloud / Azure で使えます。</li><li>ベンチマークは5項目とも収集側の数値と一致しました。</li><li>effort の既定値は Platform で High、Claude Code とアプリで Medium です。</li></ul>
+<p>出典: https://www.anthropic.com/claude-sonnet-5-5</p>
+<h3><code>/claude-api migrate this project to claude-sonnet-5-5</code></h3>
+<p><strong>[確認済]</strong> migration guide の冒頭 Tip で確認しました。モデル ID の置き換え、破壊的なパラメータ変更、effort の調整を行い、手動確認用のチェックリストを出します。編集の前に対象範囲の確認を求めます。<br>出典: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide</p>
+<h3><code>between_tools</code> の制約(xhigh / max で400、会話途中の effort 変更で400、Sonnet 5 の effort 設定を流用せず評価し直す)</h3>
+<p><strong>[要検証]</strong> 公式ページで確認できたのは「thinking オフから移るときは <code>between_tools</code> を使う」という点だけです。ページが大きすぎて取得が途切れ、400 エラーの条件は本文で確認できませんでした。一次確認ができなかっただけで、否定されたわけではありません。</p>
+<h3>Sonnet 5 の Terminal-Bench 10.3%</h3>
+<p><strong>[要検証]</strong> 収集側は「公式ページで確認できず」としていました。一方、私の取得では要約に「vs. Sonnet 5: 10.3%」と出ました。2つの確認結果が食い違っており、要約モデルの出力でもあるため、原文で目視確認するまで確定しません。</p>
+<h3>Sonnet 5.5 の出力が 30% 以上高速 / fast mode が無い(Zenn 系記事)</h3>
+<p><strong>[確認済(速度のみ)/ fast mode は要検証]</strong> 「30%+ faster」は公式ページの記載として確認しました。「fast mode が無い」は一次確認できていません。</p>
+<hr>
+<h2>5. 会社・その他</h2>
+<h3>Claude Frontier Academy(2026-10-02)</h3>
+<p><strong>[確認済]</strong> 公式ニュースで確認しました。1億ドルを投じ、2027年末までに Frontier Deployed Engineer を1万人育成する計画です。最初のコホートは Accenture、Bain、Capgemini、CBA、Deloitte、McKinsey、Morgan Stanley、Novo Nordisk です。<br>出典: https://www.anthropic.com/news/claude-frontier-academy</p>
+<h3>Barclays が Claude の導入を拡大(2026-10-01)</h3>
+<p><strong>[確認済]</strong> 公式ニュースで確認しました。2026年末までに開発者の50%が Claude Code を使うことを見込んでいます。<br>出典: https://www.anthropic.com/news/barclays-scales-claude</p>
+<h3>Claude for Government が一般提供開始(2026-09-30、FedRAMP High)</h3>
+<p><strong>[確認済]</strong> 公式ブログ本文で確認しました。収集側の「未確認」を、私の一次確認で格上げしています。7月のパブリックベータから GA になり、Claude Code CLI は同じ環境で early access です。<br>出典: https://claude.com/blog/claude-for-government-is-now-generally-available</p>
+<h3>09-29 の大規模障害</h3>
+<p><strong>[要検証]</strong> 二次報道のみで、status.claude.com などの一次情報は今回確認していません。</p>
+<h3>11月中旬 IPO・最大2兆ドルという報道</h3>
+<p><strong>[要検証]</strong> 報道ベースです。一次情報は確認していません。</p>
+<hr>
+<h2>6. 実践知・Tips</h2>
+<h3>公式ブログ「Steering Claude Code」(06-18、期間外)</h3>
+<p><strong>[確認済]</strong> 本文で以下を確認しました。</p>
+<ul><li>CLAUDE.md は200行未満に保つ。</li><li>一部の場所だけに関係するルールは <code>paths:</code> でスコープした rules に移す。</li><li>スキルは起動時に name / description だけが読み込まれる。</li><li>確実に実行させたい処理は hooks にする。</li><li>サブエージェントからメインに戻るのは最終メッセージだけ。</li></ul>
+<p>今週の rules / CLAUDE.md 読み込み修正(2.1.285 / 2.1.287)で、この設計がより効くようになっています。</p>
+<h3>コミュニティの Mods 事例(Qiita の touch-map、rundatarun の48時間所感、awesome-claude-code-mods)</h3>
+<p><strong>[要検証]</strong> いずれも二次情報で、本文は今回確認していません。数値(126.6ms → 19.0ms など)も未確認です。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>Claude Mods と <code>sec-default</code>(v2.1.287)</strong></li></ol>
+<p>サンドボックスなしで動くため、このリポジトリの hooks や deny ルールをすり抜ける経路になりえます。次の2点を検証する価値が高いです。</p>
+<ul><li>個人プランでは <code>sec-default</code> が読み込まれないので、mod が permissions の deny を上書きできるのか。</li><li>headless の cron 実行で mod が読み込まれるのか。</li></ul>
+<ol><li><strong>PreToolUse / PermissionRequest hook のマッチング失敗がブロックに変わった件(v2.1.288)</strong></li><li><strong>Cowork の定期タスクの自動承認が既定に(v2.19675.0)、Pro / Max の Cowork がクラウド実行に(10-06)</strong></li></ol>
+<p>Claude が作る定期タスクが、組織で許可されていれば承認なしで動くようになります。ローカル実行を前提にした使い方は、今日から新規タスクでは選べません。既存の Cowork 運用の前提を見直す必要があります。</p>
+<p>Sources:</p>
+<ul><li>https://code.claude.com/docs/en/changelog</li><li>https://claude.com/blog/claude-code-mods</li><li>https://x.com/addyosmani/status/2106288676796055820</li><li>https://www.anthropic.com/claude-sonnet-5-5</li><li>https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide</li><li>https://claude.com/docs/cowork/changelog</li><li>https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</li><li>https://support.claude.com/en/articles/12138966-release-notes</li><li>https://www.anthropic.com/news/claude-frontier-academy</li><li>https://www.anthropic.com/news/barclays-scales-claude</li><li>https://claude.com/blog/claude-for-government-is-now-generally-available</li><li>https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

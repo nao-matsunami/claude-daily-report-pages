@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-01 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-01</div>
+  <div><span class="lab lab-ok">確認済 26</span><span class="lab lab-warn">要検証 5</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-01</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/2 系統</strong> — codex(EXIT_1)<br>突き合わせできたのは 1 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-10-01.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。</blockquote>
+<blockquote>⚠️ 本日は codex が EXIT_1 で失敗したため、Claude の出力1系統だけで判定しています。2系統の突き合わせはできていません。[確認済] は、私が一次情報(公式 changelog、release notes、公式ブログ、公式ドキュメント)を WebFetch で直接確認できたものに限っています。</blockquote>
+<hr>
+<h2>1. Claude Code(CLI / VS Code)</h2>
+<p><strong>v2.1.283(9/25)<code>/doctor prompt-audit</code>(別名 <code>/checkup prompt-audit</code>)を追加</strong><br>[確認済] CLAUDE.md、skills、agents、commands に残っている「古いモデル向けの書き方」を監査するコマンドです。公式 changelog の原文で確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<p><strong>v2.1.283 <code>/context</code> が MCP server instructions を集計するよう修正</strong><br>[確認済] MCP の instructions が独立した行として表示され、合計にも数えられるようになりました。changelog 原文で確認しました。<br>出典: 同上</p>
+<p><strong>v2.1.283 レイテンシ改善と起動改善</strong><br>[確認済] 初回応答と初回リクエストのレイテンシが改善されました。巨大セッションの resume も速くなっています。<br>また、<code>claude -p</code> と Remote が対話 UI を読み込まなくなりました。この変更は changelog 上 <strong>2.1.283</strong> に入っています。収集では 2.1.285 とされていましたが、これは版数の誤りです。resume の高速化は 2.1.283 と 2.1.285 の両方に項目があります。<br>出典: 同上</p>
+<p><strong>バックグラウンドエージェント画面での <code>/compact</code>・<code>/clear</code>・<code>/rewind</code> の誤作用を修正(確認ダイアログを追加)</strong><br>[確認済] 修正の中身は changelog 原文と一致しました。ただし収録されている版は <strong>2.1.286</strong> です。収集では 2.1.283 とされていましたが、版数が誤っています。<br>出典: 同上</p>
+<p><strong>v2.1.284(9/28)権限モード未設定なら auto mode で起動</strong><br>[確認済] changelog の原文は「interactive terminal and VS Code sessions … on every plan and provider; <code>permissions.defaultMode</code> still overrides it」です。対象は<strong>対話セッション</strong>に限られています。<br>関連する知見が2つあります。既知の「2026-08-14 発効」の既定化に比べて、今回は対象が「全プラン・全プロバイダー」に広がった可能性があります。今日見られたのは知見のタイトルだけなので、対象範囲が食い違うかどうかは判断できていません。<br>出典: 同上</p>
+<p><strong>v2.1.284 Sonnet 5.5 を追加し、API の既定 Sonnet に</strong><br>[確認済] changelog に「1M context, $2/$10 per Mtok with $0.20/Mtok cache reads」と記載があります。<br>出典: 同上</p>
+<p><strong>v2.1.284 Ultracode が <code>/effort</code> 内の独立トグルに</strong><br>[確認済] xhigh を強制しなくなり、どの effort でも有効なままにできます。<br>出典: 同上</p>
+<p><strong>v2.1.284 hooks の修正2件</strong><br>[確認済] Elicitation / ElicitationResult hook の <code>{"decision":"block"}</code> が無視されていた問題が修正されました。現在は exit 2 と同じように扱われます。<br>また、PreToolUse などのブロッキングイベントで、<code>mcp_tool</code> hook が MCP の接続を待つようになりました(待機の上限は MCP connect timeout)。<br>出典: 同上</p>
+<p><strong>v2.1.285(9/29)新しい設定とコマンド</strong><br>[確認済] 次の4つが追加されました。いずれも changelog 原文で確認しています。</p>
+<ul><li><code>CLAUDE_CODE_DISABLE_WEB_FETCH</code></li><li><code>claude --desktop</code></li><li><code>claude plugin configure &lt;plugin&gt;</code>(<code>--values-stdin</code> 対応)</li><li>managed setting の <code>allowedProviders</code></li></ul>
+<p>出典: 同上</p>
+<p><strong>v2.1.285 サブエージェント関連の修正</strong><br>[確認済] fork サブエージェントが、親の plan / dontAsk モードを引き継ぐようになりました(plan を抜けることもできません)。auto mode のサブエージェントは、報告を返した時点で終了します。<br>出典: 同上</p>
+<p><strong>v2.1.286(9/30)<code>verify</code> という名前の skill をコミット直前に実行するよう指示</strong><br>[確認済] docs のみ、tests のみのコミットは対象外です。changelog 原文で確認しました。<br>出典: 同上</p>
+<p><strong>v2.1.286 VS Code にブックマークパネルを追加</strong><br>[確認済] changelog 原文で確認しました。<br>出典: 同上</p>
+<p><strong>Task 系ツールと Workflow サブエージェントの修正</strong><br>[確認済] ただし収録されている版は <strong>2.1.283 と 2.1.285</strong> です。収集では 2.1.286 とされていましたが、版数が誤っています。2.1.286 にはこの種の項目は見当たりませんでした。<br>出典: 同上</p>
+<h2>2. モデルと API</h2>
+<p><strong>9/28 Claude Sonnet 5.5 リリース(<code>claude-sonnet-5-5</code>)</strong><br>[確認済] 次の内容を release notes とモデルページで確認しました。</p>
+<ul><li>1M コンテキスト、最大出力 128k</li><li>料金は $2 / $10</li><li>Sonnet 5 より 30% 以上速く、タスクあたり最大 30% 安い</li><li>ベンチマークは Terminal-Bench 4.0 が 70.6%、OSWorld 2.1 が 80.1%、GDPval-AA v2.1 が 1844</li></ul>
+<p>Sonnet 5 からの破壊的変更は5点です。thinking の <code>between_tools</code> と <code>tool_choice</code> の any/tool が 400 になる点に加え、thinking blocks がモデルと会話に紐づくこと、<code>computer_20251124</code> が使えなくなること、advisor の制限があります。<br>出典: https://www.anthropic.com/claude-sonnet-5-5 、https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>9/22 Claude Opus 5.5 リリース</strong><br>[確認済] 次の内容を release notes で確認しました。</p>
+<ul><li>料金は $4 / $20(Opus 5 は $5 / $25)</li><li>thinking は常に有効(disabled / enabled を指定すると 400)</li><li>API で fast mode が使える(research preview)</li><li><code>inline-tools-2026-09-15</code> beta により、会話途中の system メッセージの中でツールを定義できる</li></ul>
+<p>一方、次の2点は release notes では確認できていません。</p>
+<ul><li>「Fable 5.1 と同等、Opus 5 より 40% 安い」</li><li>「キャッシュを壊さずにツールを追加できる」</li></ul>
+<p>出典: release notes(同上)</p>
+<p><strong>9/23 Cache diagnostics が GA</strong><br>[確認済] <code>cache-diagnosis-2026-04-07</code> ヘッダーは不要になりました。<code>diagnostics</code> を含めるとオプトインになります。なお、レスポンスには常に <code>diagnostics</code> フィールドが付くようになり、オプトインしていない場合は null です。<br>出典: 同上</p>
+<p><strong>9/24 拒否(refusal)の課金を再開</strong><br>[確認済] 出力が始まる前の拒否のうち、<code>stop_details.category</code> が bio、frontier_llm、reasoning_extraction のものが対象です。同じ日に Compliance API の変更もありました(Activity Feed でファイル名などが空になります)。<br>出典: 同上</p>
+<p><strong>9/30 Sonnet 4.5 の非推奨化を告知</strong><br>[確認済] <code>claude-sonnet-4-5-20250929</code> は 2026-11-30 に提供終了です。移行先として Sonnet 5.5 が推奨されています。<br>出典: 同上</p>
+<h2>3. Cowork / Claude アプリ / Claude Design</h2>
+<p><strong>10/6 から Pro/Max の新規 Cowork タスクはクラウドで実行</strong><br>[確認済] support 記事の原文で次の点を確認しました。</p>
+<ul><li>「Only on your computer」の設定は削除される</li><li>すでにローカルで始めたタスクはローカルに残る</li><li>定期タスクもクラウドに移る</li><li>ローカルファイルを使うタスクは、デスクトップアプリを開いておく必要がある</li></ul>
+<p>出典: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</p>
+<p><strong>9/16 Claude Design / Slides / Docs を会話内で使えるように</strong><br>[確認済] 3つとも有料プランでのベータ提供です。今後数週間で、まず Pro と Max に展開されます。公式ブログで確認しました。<br>Claude Design 単体の新機能は今週見つかっていません。これは「見つからなかった」という意味で、存在しないと確認したわけではありません。<br>出典: https://claude.com/blog/cowork-is-now-claude</p>
+<p><strong>9/25 プラグイン開発者ポータル</strong><br>[確認済] ディレクトリへの申請、審査状況と安全スキャン結果の確認、公開後の利用分析ができます。公式ブログで確認しました。<br>出典: https://claude.com/blog/build-plugins-for-claude</p>
+<p><strong>9/24 Claude Tag がチャンネル内で個人コネクタに対応</strong><br>[確認済] Slack のチャンネルで、各自の個人コネクタを使えるようになりました。Review / Auto の2モードがあります。Team プランから展開されます。<br>出典: https://claude.com/blog/claude-tag-now-supports-personal-connectors-in-channels</p>
+<p><strong>9/23 Claude Marketplace 開始(2,000 以上、committed spend の一部で支払い可能)</strong><br>[要検証] WebSearch で見つかったのは二次情報(gHacks、runtimewire など)だけでした。Anthropic 公式の発表ページは<strong>一次確認できていません</strong>。存在しないと確認したわけではありません。<br>出典: https://www.ghacks.net/2026/09/27/anthropic-launches-claude-marketplace-with-more-than-2000-connectors-and-plugins/</p>
+<p><strong>9/29 障害(Claude.ai / Code / Cowork)</strong><br>[要検証] 出典は TechRadar だけで、status.claude.com は確認していません。<br>出典: https://www.techradar.com/news/live/claude-down-september-29-2026</p>
+<h2>4. 運用知見</h2>
+<p><strong>prompt-audit による改善の数値(追加で −9% のコスト、正答率 約 +2pt)</strong><br>[確認済] 公式ブログで確認しました。9/8 公開、9/22 更新です。数字だけでなく、アンチパターン(verify twice、maximally thorough、scratchpad、手順の強制など)も一致しました。ブログでは全部で6種が挙げられています。<br>出典: https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform</p>
+<p><strong>Sonnet 5.5 の公式プロンプティングガイド</strong><br>[確認済] 収集の要約はすべて原文と一致しました。</p>
+<ul><li>エージェント型コーディングは medium から始める</li><li>max effort で「reviewer sub-agent を起動しない」と指示すると、セッションコストが約 1/3 減り、品質は変わらない</li><li>low effort では確認を飛ばすことがある</li><li>effort をリクエスト単位で変えるとキャッシュが無効になる。メッセージ単位の変更(beta)ならキャッシュを保てる</li></ul>
+<p>出典: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5</p>
+<p><strong>Addy Osmani「Getting the most out of Opus 5.5」(claude.dev)</strong><br>[要検証] 取得したページの要約モデルは「公式 Anthropic ブログ」と答えましたが、フッターや運営者の表記は直接確かめていません。そのため、claude.dev が公式ドメインかどうかは<strong>一次確認できていません</strong>。<br>内容は収集の要約とおおむね一致しました(停止ルールを CLAUDE.md に書く、進捗をファイルで管理する)。2本目の「What a task costs」は取得していません。<br>出典: https://claude.dev/blog/getting-the-most-out-of-opus-5-5/</p>
+<p><strong>Qiita の実践記事2本、HN のスレッド(「システムプロンプトは約2万トークン」)</strong><br>[要検証] どれも取得していない二次情報です。<br>出典: https://qiita.com/y-hirakaw/items/7dafd42becc9ba47e164 、https://news.ycombinator.com/item?id=49874728</p>
+<p><strong>6/18 の公式記事「steering Claude Code」(CLAUDE.md は200行以内 など)</strong><br>[要検証] 今日は取得していません。今週の新情報でもありません。<br>出典: https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more</p>
+<p><strong>棄却した項目:</strong> 事項そのものが誤りだったものはありません。ただし版数の帰属が3件ずれていました(<code>-p</code>/Remote の UI 非読込、<code>/compact</code> 系の修正、Task/Workflow の修正)。上で正しい版に直してあります。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong><code>CLAUDE_CODE_DISABLE_WEB_FETCH</code>(v2.1.285)</strong></li></ol>
+<ol><li><strong>v2.1.284 の auto mode 既定化と、v2.1.286 の <code>verify</code> skill 自動実行</strong></li></ol>
+<p>どちらも既存の知見(auto-mode-default-impact-on-cron-scripts / cc-verify-codereview-autorun-stopped)の前提に関わります。</p>
+<ul><li>auto mode の方は、原文では「対話セッション」に限られています。headless cron に影響するかどうかは、既存の知見と照らし合わせて確かめる必要があります。</li><li><code>verify</code> の方は、リポジトリに同じ名前の skill があるかを棚卸しする必要があります。あると、コミット前に意図せず実行されます。</li></ul>
+<ol><li><strong>Sonnet 4.5 の提供終了(2026-11-30)と Sonnet 5.5 の破壊的変更</strong></li></ol>
+<p>Opus 4.1 のときと同じ手順で、<code>claude-sonnet-4-5-20250929</code> の直書きと、Sonnet 5 前提の <code>thinking: disabled</code> や <code>tool_choice: any/tool</code> を洗い出すべきです。期日が決まっていて、確実に壊れるためです。</p>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform release notes</a></li><li><a href="https://www.anthropic.com/claude-sonnet-5-5" rel="noopener">Claude Sonnet 5.5</a></li><li><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5" rel="noopener">Prompting Claude Sonnet 5.5</a></li><li><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile" rel="noopener">Use Claude Cowork on web, desktop, and mobile</a></li><li><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener">Cowork is now Claude</a></li><li><a href="https://claude.com/blog/build-plugins-for-claude" rel="noopener">Build plugins for Claude</a></li><li><a href="https://claude.com/blog/claude-tag-now-supports-personal-connectors-in-channels" rel="noopener">Claude Tag personal connectors</a></li><li><a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform" rel="noopener">Reducing cost and improving performance</a></li><li><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/" rel="noopener">Getting the most out of Opus 5.5</a></li><li><a href="https://www.ghacks.net/2026/09/27/anthropic-launches-claude-marketplace-with-more-than-2000-connectors-and-plugins/" rel="noopener">gHacks: Claude Marketplace</a></li><li><a href="https://runtimewire.com/article/anthropic-claude-marketplace-software-connectors-consultants" rel="noopener">runtimewire: Claude Marketplace</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

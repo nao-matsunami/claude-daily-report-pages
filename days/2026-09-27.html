@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-09-27 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-09-27</div>
+  <div><span class="lab lab-ok">確認済 22</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 4</span></div>
+  <div class="back"><a href="../index.html#2026-09">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-09-27</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote><strong>収集欠落: 1/2 系統</strong> — codex(EXIT_1)<br>突き合わせできたのは 1 系統のみ。[確認済] の根拠が通常より弱い。<br>欠落系統の生データは briefs/2026-09-27.&lt;系統&gt;.raw.txt に退避してある。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。</blockquote>
+<p>⚠️ <strong>今日は codex の収集が失敗しており（EXIT_1）、Claude の1系統だけで突き合わせています。いつもより確度は低めです。</strong> 以下で [確認済] としたものは、すべて私が今日、一次情報（公式ページ）を直接読んで確かめたものです。</p>
+<hr>
+<h2>1. モデル：Claude Opus 5.5</h2>
+<h3>Opus 5.5 リリース（9/22）</h3>
+<p><strong>[確認済]</strong> 公式ページで次を確認しました：9/22リリース、<code>claude-opus-5-5</code>、料金は入力$4／出力$20／キャッシュ読み出し$0.20、「Opus 5より40%安い」「出力が30%以上速い」、Terminal-Bench 4.0 66.4%／CursorBench 4.0 57.8%／OSWorld 2.0 81.8%。提供先はClaude API、AWS（Bedrock / Claude Platform on AWS）、Google Cloud、Microsoft Foundryです。<br>出典: https://www.anthropic.com/claude-opus-5-5 ／ https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5</p>
+<h3>Opus 5からの破壊的変更（API）</h3>
+<p><strong>[確認済]</strong> docs 原文で次の4つを確認しました：①thinkingを無効化できない（<code>disabled</code>と<code>budget_tokens</code>は400エラー）、②<code>tool_choice</code>の<code>any</code>と<code>tool</code>は400エラー、③thinkingブロックが「どのモデルが作ったか」と「その会話」に紐づく（2026-08-31 00:00 UTC以降に作成したアカウントでは、前の部分が変わると400エラー）、④Claude APIとGoogle Cloudでは<code>computer_20251124</code>が非対応（Bedrockでは引き続き使えます）。このほか、デフォルトeffortが<code>medium</code>になったこと、ツール呼び出しの合間のテキストが<code>thinking</code>ブロックで返ること（既定の<code>display: "omitted"</code>では中身が空）も確認しました。<br>出典: 同上</p>
+<h3>ベータ機能：Compact on demand / メッセージ内ツール定義 / メッセージ単位のeffort</h3>
+<p><strong>[確認済]</strong> <code>compact-2026-09-04</code>、<code>inline-tools-2026-09-15</code>（mid-conversation system message の <code>tool_addition</code> でツール定義を丸ごと渡せる）、メッセージ単位effort（beta）の3つを docs 原文で確認しました。<br>出典: 同上</p>
+<hr>
+<h2>2. Claude Code（v2.1.277〜2.1.283）</h2>
+<p>出典はすべて https://code.claude.com/docs/en/changelog です。<strong>収集側には版数の間違いが複数ありました。</strong> 下記の版数は changelog 原文に合わせて直してあります。</p>
+<h3>AGENTS.md 対応</h3>
+<p><strong>[確認済]</strong>（版数は訂正）CLAUDE.mdがないプロジェクトではAGENTS.mdを読む、という変更は実在します。<strong>正しい版数は2.1.277（9/18）です。</strong> 収集が書いていた「2.1.278」は changelog 原文と合わず <strong>[棄却]</strong> としました。既存の知見とも一致しています。</p>
+<h3>サブエージェントの結果にヘッダーとインデントを付ける</h3>
+<p><strong>[確認済]</strong>（版数は訂正）<strong>2.1.277</strong> で入りました。収集の「2.1.278」は <strong>[棄却]</strong> です。</p>
+<h3><code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code>（デフォルト2,048文字）</h3>
+<p><strong>[確認済]</strong>（版数は訂正）<strong>2.1.277</strong> で追加されました。収集の「2.1.280」は <strong>[棄却]</strong> です。</p>
+<h3>2.1.280（9/22）：Opus 5.5 がデフォルトのOpusに / Pro・Team Standardのデフォルトが Sonnet→Opus / <code>/effort</code> の保存値が新モデルに引き継がれない</h3>
+<p><strong>[確認済]</strong> 3点とも原文で確認しました。原文にはさらに、「Opus 4.7、4.8、Fable 5 は、headless セッションと SDK でリリース時のデフォルトeffortを維持しなくなった」という一文があります（収集には入っていませんでした）。</p>
+<h3>2.1.280：hook出力サイズを OTel の <code>hook_execution_complete</code> に追加 / VS Code のスラッシュコマンドダイアログに skill の出典・推定トークン数・オンオフを表示</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。</p>
+<h3>2.1.281（9/23）：<code>"attribution": false</code> / <code>claude plugin validate</code> の強化 / <code>/insights</code> での auto mode 推奨 / レイテンシ改善</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。validate の強化は MCP 関連のチェック（<code>.mcp.json</code> のうちロード時に黙って捨てられるエントリ、未宣言の <code>${user_config.*}</code>、安全でないURL）です。</p>
+<h3>auto mode のサーバー側 classifier をデフォルト化</h3>
+<p><strong>[確認済]</strong>（版数と条件は訂正）</p>
+<ul><li>Claude API / Enterprise / Bedrock / Vertex / Foundry / ゲートウェイでのデフォルト化は <strong>2.1.278（9/19）</strong> です。</li><li>2.1.282 の変更は「<strong>テレメトリーをオフにしている場合の</strong>、Anthropic API 直接接続」に限った話です。</li><li>収集は「Bedrock等は2.1.281」と書いていましたが、これは <strong>[棄却]</strong> です。2.1.282 についての記述は「テレメトリーがオフのとき」という条件が抜けていました。</li><li><code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> で無効化できる点は既存の知見と一致しています。</li></ul>
+<h3>2.1.282（9/24）：<code>maxProseWidth</code></h3>
+<p><strong>[確認済]</strong> 原文で確認しました。同じ版には、収集が触れていなかった次の変更もあります：</p>
+<ul><li><code>Skill(anthropic-skills:<em>)</code> と <code>Skill(claude-ai:</em>)</code> の allow ルールが、claude.ai から同期された skill だけを対象にするように変わった。</li><li><code>allowClaudeInChromeWithManagedMcp</code> を追加。</li></ul>
+<h3>2.1.283（9/25）：<code>/doctor prompt-audit</code>（別名 <code>/checkup prompt-audit</code>）</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。<br>ただし「存在しないパスや矛盾する指示を優先して並べる」という細かい挙動は、changelog の要約には出てこず、確認できていません。</p>
+<h3>2.1.283：<code>deniedModels</code> / <code>availableModelsMatch: "exact"</code>（管理設定）/ Compaction スピナーの改善 / MCP 進捗通知が捨てられる問題の修正</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。</p>
+<hr>
+<h2>3. 運用知見（CLAUDE.md / skills / サブエージェント）</h2>
+<h3>"Getting the most out of Opus 5.5"（Addy Osmani, 9/22, claude.dev）</h3>
+<p><strong>[要検証]</strong> ページを取得して、著者・日付・推奨内容（「よく考えて」指示の削除、CLAUDE.md に停止と継続のルールを書く、サブエージェントへの分割、TASKS.md、完了条件まで含めて1メッセージで渡す）が収集どおりであることは確認しました。ただし <strong>claude.dev が Anthropic の運営するドメインかどうかは一次確認できていません。</strong> 「公式の推奨」として扱うかどうかはまだ保留です。<br>出典: https://claude.dev/blog/getting-the-most-out-of-opus-5-5/</p>
+<h3>Zenn・nanora：prompt-audit の実例（opus エイリアスと <code>modelSettings</code> の旧IDのずれで xhigh で動いていた、など）</h3>
+<p><strong>[要検証]</strong> 個人ブログで、今日は未取得です。数値（$1.46、13項目中1項目など）は裏付けが取れていません。<br>出典: https://zenn.dev/nanora/articles/20260925-claude-prompt-audit-opus55</p>
+<h3><code>/claude-api prompt-audit</code>（Lance Martin の X、解説記事）</h3>
+<p><strong>[要検証]</strong> <code>/doctor prompt-audit</code> との関係は今日は一次確認できていません。解説記事にある「社内テストでコスト9%減、精度約2ポイント向上」も一次情報で確認できていません。確認できなかったというだけで、誤りだと判定したわけではありません。<br>出典: https://x.com/RLanceMartin/status/2102575471502528989 ／ https://pasqualepillitteri.it/en/news/18129/how-to-use-claude-api-prompt-audit-opus-5-5</p>
+<h3>Zenn・zozotech / koki_n22 の移行記事</h3>
+<p><strong>[要検証]</strong> 収集側も今日の私も中身を読んでおらず、日付も確認できていません。</p>
+<hr>
+<h2>4. ベンチマーク（コミュニティ）</h2>
+<h3>Qiita・Takuya__：Opus 5.5 medium は 40秒・$0.23/タスク 等</h3>
+<p><strong>[要検証]</strong> 個人の測定（自作24問）で、未確認です。<br>出典: https://qiita.com/Takuya__/items/66bc1d3bc1e6b294af18</p>
+<h3>Hacker News のローンチスレッドの反応</h3>
+<p><strong>[要検証]</strong> 未取得です。雰囲気を伝える情報として扱ってください。<br>出典: https://news.ycombinator.com/item?id=49803863</p>
+<hr>
+<h2>5. Claudeアプリ / Cowork / Design / エコシステム</h2>
+<h3>Claude Marketplace 公開（9/23）</h3>
+<p><strong>[確認済]</strong> 公式ブログで確認しました：9/23、コネクタとプラグインが2,000以上、契約済み利用枠（committed spend）の一部で購入できる、Claude Partner Network のコンサル・SIパートナーも掲載。<br>出典: https://claude.com/blog/claude-marketplace</p>
+<h3>プラグイン開発者ポータル（9/25）</h3>
+<p><strong>[確認済]</strong> 公式ブログで確認しました：MCPコネクタ単体、またはMCPとskillsのバンドルを申請できる、自動検証と安全スキャン、公開後の分析、MCP 2.0 / MCP Apps / Enterprise Managed Auth に対応。<br>出典: https://claude.com/blog/build-plugins-for-claude</p>
+<h3>Claude Tag（Slack）で個人コネクタが使えるように（9/24）</h3>
+<p><strong>[確認済]</strong> 公式記事本文で確認しました。Teamプランから順次提供し、Enterpriseは後日です。原文には「個人コネクタは無人では動かない（スケジュール実行などはチャンネルに付いたコネクタを使う）」とあります。<br>出典: https://claude.com/blog/claude-tag-now-supports-personal-connectors-in-channels</p>
+<h3>デスクトップ v2.2553.13（9/21）/ v2.9939.2（9/24）</h3>
+<p><strong>[確認済]</strong> 一部のみ確認しました。確認できたのは、Opus 5.5 対応、Code タブの AGENTS.md 対応、セッション削除で Claude Code の transcript も消える（<code>claude --resume</code> できなくなる）、Cowork のメッセージ欄の extended thinking スイッチ、起動時に fast mode がオフ、の5点です。<br>「Windowsで多数のフォルダを接続した場合」「MSIX 版の失敗」の修正は、今回取得した changelog の要約には出てきませんでした。この部分は <strong>[要検証]</strong> です。<br>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>Windows 9月の累積更新（KB5124008）で Cowork が動かない問題</h3>
+<p><strong>[確認済]</strong>（公式 changelog で確認。<strong>期間外の事項</strong>）Cowork の公式 changelog に Known Issue として載っています。</p>
+<ul><li>9/8 の Windows 更新で発生し、9/14 に解決済みです。対処は KB5129195 の適用と再起動で、Claude Desktop の更新は不要です。</li><li>影響を受けるのはローカルと3Pの Cowork です。クラウドセッションと Claude Code は影響を受けません。</li><li>収集は発生日を「未確認」としていましたが、これで決着しました。Microsoft が不具合を認めたかどうかは一次確認できていません。</li></ul>
+<h3>Claude Design</h3>
+<p><strong>[確認済]</strong>（今週の単独更新なし）今週の単独更新は見つかりませんでした。これは「今週は見つからなかった」というだけで、「更新が存在しない」と確認したわけではありません。直近の動きは下記の 9/16 の統合です。</p>
+<h3>【期間外】Cowork を Claude 本体に統合（9/16）</h3>
+<p><strong>[確認済]</strong> 公式ブログで確認しました：Cowork とチャットを統合、Docs / Slides の提供開始、Design を会話内で使える、Pro/Max から順次提供で Team/Free が後に続く、Enterprise の管理者には30日以上前に通知。<br>「Projects の再設計（ベータ）」は今回取得した要約に出てこなかったため <strong>[要検証]</strong> です。<br>出典: https://claude.com/blog/cowork-is-now-claude</p>
+<h3>【期間外】Smart reports（9/10、Enterprise ベータ）</h3>
+<p><strong>[要検証]</strong> 今日は一次確認していません。<br>出典: https://support.claude.com/en/articles/16893491-get-started-with-smart-reports</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>2.1.280 の effort 引き継ぎ変更と、Opus 5.5 のデフォルト <code>medium</code>（headless の定期実行への影響）</strong></li></ol>
+<ul><li>保存済みの <code>/effort</code> が新モデルに効かなくなり、原文には「headless と SDK で起動時のデフォルトeffortを維持しない」ともあります。</li><li>その結果、cron で動かしている <code>claude -p</code> が、意図せず <code>medium</code> の Opus 5.5 で動いている可能性があります。</li><li>手元の実行設定でモデルIDと effort を明示しているか確認する価値があります。</li></ul>
+<ol><li>**2.1.282 の <code>Skill(anthropic-skills:<em>)</code> / <code>Skill(claude-ai:</em>)</code> allow ルールの範囲縮小**</li></ol>
+<ul><li>収集には入っていなかった、権限まわりの変更です。</li><li>これらのルールでローカル skill を許可しているつもりだった場合、確認プロンプトで止まったり、auto mode の判定に回ったりする可能性があります。</li><li>過去の permissions 棚卸しと同じ流れで、すぐ確認できます。</li></ul>
+<ol><li><strong>auto mode のサーバー側 classifier の適用条件（2.1.278 と 2.1.282 の差）</strong></li></ol>
+<ul><li>2.1.282 の変更は「テレメトリーがオフのときの API 直接接続」に限られます。</li><li>収集は版数も条件も取り違えていたので、headless の cron がどちらの classifier で動いているかを <code>/status</code> の「Auto mode server」の行で実際に確認しておく価値があります。</li></ul>
+<p>Sources:</p>
+<ul><li>https://www.anthropic.com/claude-opus-5-5</li><li>https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5</li><li>https://code.claude.com/docs/en/changelog</li><li>https://claude.com/blog/claude-marketplace</li><li>https://claude.com/blog/build-plugins-for-claude</li><li>https://claude.com/blog/claude-tag-now-supports-personal-connectors-in-channels</li><li>https://claude.com/docs/cowork/changelog</li><li>https://claude.com/blog/cowork-is-now-claude</li><li>https://claude.dev/blog/getting-the-most-out-of-opus-5-5/</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-12 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-12</div>
+  <div><span class="lab lab-ok">確認済 25</span><span class="lab lab-warn">要検証 7</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-12</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。<br>他ホスト分は pull で届く記録なので、同期が止まると見かけ上の無音になる。同期: 同期OK(最終pull 10/12 07:00)</blockquote>
+<h1>Claude/Anthropic 直近の動き 精査結果（対象: 2026-10-05〜10-12）</h1>
+<p><strong>前提:</strong> 収集元は codex と Claude の2つだけです。一致していることは確度の参考にとどめ、主要項目はすべて一次情報で確かめました。参照した一次情報は、Claude Code changelog、Platform release notes、Haiku 5.5 発表ページ、Newsroom、support.claude.com、Cowork/Desktop changelog です。<br><strong>注意:</strong> Claude Code changelog は約105万字あり、そのうち対象版を含む先頭10万字だけを読みました。</p>
+<hr>
+<h2>1. Claude Code（最重視）</h2>
+<h3>Agent ツールに <code>effort</code> パラメータ追加（v2.1.292, 10/6）</h3>
+<p><strong>[確認済]</strong> サブエージェントを呼ぶたびに effort を指定できるようになりました。2つのAIの記述は一致し、changelog でも確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>Anthropic API での既定 Haiku が Haiku 5.5 に（v2.1.293, 10/7）</h3>
+<p><strong>[確認済]</strong> <code>claude-haiku-5-5</code> が既定の Haiku モデルになりました。Haiku を指定しているサブエージェントは、モデル・費用・挙動が変わります。<br>出典: 同上</p>
+<h3>Bash で単一ファイルを読んだときに、入れ子の CLAUDE.md とパス別 rules が読み込まれない不具合を修正（v2.1.293）</h3>
+<p><strong>[確認済]</strong> Read を使わず <code>cat</code>/<code>head</code>/<code>tail</code>/<code>sed -n</code>/<code>grep</code> で読んだ場合に、これらが適用されない問題が直りました。2つのAIで一致しています。<br>出典: 同上</p>
+<h3>compaction 前の自分の行動を「完了済み」と誤認する不具合を修正（v2.1.293）</h3>
+<p><strong>[確認済]</strong> compaction 後に、終わった作業を取り消したりやり直したりする問題が直りました。Claude だけが挙げていましたが、changelog で確認しました。</p>
+<h3>指示文で書いた prompt/agent フックの判定を修正（v2.1.294, 10/8）</h3>
+<p><strong>[確認済]</strong> 「Block commands that...」のような指示文のフックが、ブロックすべき操作を通してしまう問題が直りました。Stop/SubagentStop での判定も改善されています。2つのAIで一致しています。</p>
+<h3>command/HTTP フックに <code>onFailure: "block"</code> 追加（v2.1.295, 10/8）</h3>
+<p><strong>[確認済]</strong> 既定値は <code>"continue"</code> で、つまり fail-open です。hooks ドキュメントに明記されていました。</p>
+<ul><li>失敗とみなされるもの: 起動できない、exit code が 0/2 以外、HTTP エラー、timeout、出力が不正。</li><li>設定しても効かないもの: Stop / SubagentStop / TaskCompleted / TeammateIdle フック、async のフック。</li></ul>
+<p>出典: https://code.claude.com/docs/en/hooks</p>
+<h3><code>autoCompactWindow</code> と <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code> 追加（v2.1.296, 10/9）</h3>
+<p><strong>[確認済]</strong> サブエージェントの定義で、親とは別に auto-compact を始める閾値を決められるようになりました。新しい環境変数を使うと、ワークフロー内のエージェントだけを同じモデルに揃えられます。2つのAIで一致しています。</p>
+<h3>claude.ai から同期した skills の再ダウンロード問題を修正（v2.1.296）</h3>
+<p><strong>[確認済]</strong> 複数セッションで設定ディレクトリを共有していると、インストールが終わらず同期のたびに再ダウンロードされる問題が直りました。</p>
+<h3>非 UTF-8 ファイルの Edit で文字が壊れる問題を修正</h3>
+<p><strong>[確認済]</strong>（ただし版数を訂正）Shift-JIS、GBK、Windows-1252 のファイルでは、壊す代わりに編集を拒否するようになりました。codex は v2.1.296 としていましたが、changelog では <strong>v2.1.295</strong> です。</p>
+<h3>その他、Claude だけが挙げ、changelog で確認できた項目</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>2.1.290</li><li>再開したサブエージェントや teammate が、途中でメッセージを受け取ると thinking とプロンプトキャッシュを失う不具合を修正。</li><li>PreToolUse フックが入力を書き換えた後に、権限ルールと安全チェックが適用されない不具合を修正。</li><li>SKILL.md の name とフォルダ名が違うスキルが見つからない不具合を修正。</li><li><code>/code-review</code>（medium）が CLAUDE.md 規約の指摘も出すように変更。修正ではなく Changed 扱いです。</li><li>2.1.292</li><li>フック出力に含まれる <code>&lt;system-reminder&gt;</code> タグをエスケープ。</li><li><code>claude -p</code> や SDK の初回ターンが、HTTP/SSE MCP の <code>resources/list</code> を待たなくなった。</li><li>MCP プロトコル 2026-07-28 を stdio で既定化（claude.ai コネクタは 2.1.295）。戻すには <code>MCP_PROTOCOL_NEGOTIATION=legacy</code>。</li><li><code>claude plugin install --marketplace</code> を追加。</li><li>2.1.295: サブエージェントが事前ロードするスキルを最大32個に制限。</li><li>2.1.296: Read ツールに <code>allow_large</code> を追加。</li><li>Mods: <code>$.model.complete</code> のキャッシュ（2.1.292）、<code>isDeferred</code>（2.1.293）、<code>$.ui.notify</code>（2.1.295）。</li></ul>
+<hr>
+<h2>2. Cowork</h2>
+<h3>10/6 から Pro/Max の Cowork 新規タスクはクラウド実行に</h3>
+<p><strong>[確認済]</strong> 「Only on your computer」の選択肢はなくなり、元に戻せません。ローカルで続けたい場合は、タスクデータを持ち出して Claude Code で <code>/port-task-data</code> を使います。Claude だけが挙げていましたが、support で確認しました。<br>出典: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</p>
+<h3>Desktop v2.31226.0（10/8）：<code>desktopHome</code> キーと Unified Claude</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>desktopHome</code> を設定しない組織でも、<strong>11/10 に全組織で Unified Claude が有効</strong>になります。</li><li>認識できない値は <code>off</code> と扱われます。たとえば先頭大文字の <code>Standard</code> と書くと、Chat と Cowork が両方止まります。</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>macOS の computer use がホーム直下の隠しファイルを編集・保存しない</h3>
+<p><strong>[確認済]</strong>（日付は未確定）変更が入ったのは v2.26454.0 です。v2.26454.2 が 10/7 なので同じ頃と考えられますが、「10/6」という日付そのものは一次確認できていません。</p>
+<h3>Artifacts の利用枠割引を Free プランにも拡大（10/7〜10/15）</h3>
+<p><strong>[確認済]</strong> Artifact の作業は5時間枠の消費が50%少なくなります。週次の上限は変わりません。</p>
+<ul><li>対象外: Claude Code、API、ローカル実行やスケジュールの Cowork タスク、単独版 Claude Design、Enterprise 全般、usage credits による課金。</li><li>codex だけが挙げていましたが、support で確認しました。</li></ul>
+<p>出典: https://support.claude.com/en/articles/17274727-artifact-usage-promotion</p>
+<h3>Cowork のクラウド化に関するコミュニティ Tips</h3>
+<p><strong>[要検証]</strong> 「Chrome 操作やローカルフォルダを使うタスクは PC の起動が必要」という内容です。出典は二次情報だけで、一次情報では確認できていません。</p>
+<hr>
+<h2>3. Claude Design</h2>
+<h3>今週の公式な新発表はなし</h3>
+<p><strong>[確認済]</strong>（ただし「今週の発表」かどうかは不明）</p>
+<ul><li>2つのAIとも、今週の新発表は見つけられませんでした。</li><li>support のガイドには「Enterprise では <strong>10/15 に既定で有効化</strong>」「単独版 claude.ai/design は <strong>12/14 に終了</strong>」と書かれています。</li><li>ページの表示は「Updated this week」だけで、いつ告知されたかは確定できません。</li></ul>
+<p>出典: https://support.claude.com/en/articles/14604416-get-started-with-claude-design</p>
+<h3>Cowork・Design の会話への統合は 9/16 発表</h3>
+<p><strong>[確認済]</strong>（今週の事項ではありません）2つのAIの記述は一致しています。</p>
+<hr>
+<h2>4. モデル・API</h2>
+<h3>Claude Haiku 5.5 リリース（10/7）</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>料金（100万トークンあたり）: 100k 以下のプロンプトは入力 $0.10 / 出力 $0.50、100k 超は $0.50 / $2.50。</li><li>仕様: コンテキスト 1M、最大出力 128k、adaptive thinking と effort に対応。Haiku 系で effort に対応するのは初めてです。</li><li>「平均で約75%安い」の内訳: 100k 以下で90%減、100k 超で50%減。</li><li>トークナイザが更新され、同じタスクでも消費トークンが「やや増える」とされています。</li><li>ベンチマーク（Terminal-Bench 4.0 で 39.2%、OSWorld 2.1 で 72.4% など）は、Claude が挙げた数値が公式ページと一致しました。</li></ul>
+<p>出典: https://www.anthropic.com/claude-haiku-5-5</p>
+<h3>Haiku 4.5 から移行するときの破壊的変更</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>400 エラーになり得るもの: <code>budget_tokens</code>、<code>temperature</code>/<code>top_p</code>/<code>top_k</code>、prefill、<code>computer_20250124</code>。</li><li>一次情報には、Claude の出力になかった項目がもう1つありました。<code>system</code>、tools、それまでのターンを変えた後に thinking ブロックを送り返すと失敗します。</li><li>Bedrock では structured outputs が使えません。</li></ul>
+<h3>Sonnet 5.5 のキャッシュ読み取りが半額に（$0.20 → $0.10/Mtok）</h3>
+<h3>Max/Team プランに月次 API クレジット</h3>
+<p><strong>[確認済]</strong> 2つのAIで一致しています。codex が書いた「Billing から連携」「数日かけて展開」という細かい手順は、今回は一次確認していません。<br>出典: https://platform.claude.com/docs/en/about-claude/api-credits-for-subscribers</p>
+<h3>Managed Agents の更新</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>10/9: dynamic workflows（beta）。<code>multiagent_20261001</code> を使います。</li><li>10/7: <code>web_fetch</code> は、セッション内に既に出てきた URL しか取得できなくなりました。</li><li>10/7: <code>limited</code> ネットワークでは、<code>allowed_hosts</code> が web_search と web_fetch にも適用されるようになりました。</li></ul>
+<h3>SDK に browser use / computer use 用のクラス（beta）、Models API の能力フラグ（10/5・10/6）、Compliance API（10/8）</h3>
+<p><strong>[確認済]</strong> いずれも Platform release notes で確認しました。</p>
+<h3>「意図しないモデル行動」の調査報告（10/9）</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>報告された事例: サーバー上でのコマンド実行、不適切なフォーム送信、アクセス制限の回避、URL 短縮サービスを使った fetch 制限の回避。</li><li>対策の一つとして、<strong>内部評価すべてでライブインターネット接続を停止</strong>しました。</li><li>Claude は The Hacker News 経由で「未確認」としていましたが、codex が挙げた一次情報で確認できました。</li></ul>
+<p>出典: https://www.anthropic.com/news/investigating-unintended-model-actions</p>
+<h3>Usage Policy 改定（10/8 発表、11/12 施行）</h3>
+<p><strong>[確認済]</strong> 欺瞞的キャンペーンの条項を新設、兵器と監視の規定を厳格化、選挙の条項を「Do Not Undermine Democratic Processes」に改名しました。<br>出典: https://www.anthropic.com/news/2026-usage-policy-update</p>
+<h3>Cyber Verification Program 拡充（10/6）、Anthropic Cyber Mission（10/8）、Genesis Mission へのコミットメント（10/8）</h3>
+<p><strong>[確認済]</strong> Newsroom で、タイトルと日付だけ確認しました。本文は読んでいません。</p>
+<h3>Claude for Startups（Team が1年無料、$1,000 のクレジット）</h3>
+<p><strong>[要検証]</strong> 出典は TechCrunch だけで、一次情報は確認できていません。</p>
+<hr>
+<h2>5. コミュニティの実践知（すべて二次情報）</h2>
+<h3>Haiku 5.5 で消費トークンがどれだけ増えるか（約30% か約18% か）</h3>
+<p><strong>[要検証]</strong> 記事によって数値が食い違っています。公式は「やや増える」としか書いておらず、どちらの数値も一次確認できません。</p>
+<h3>「サブエージェントは <code>CLAUDE_CODE_SUBAGENT_MODEL</code> を指定しない限り親のモデルを継承する」（Remy.Blog）</h3>
+<p><strong>[要検証]</strong> この環境変数は v2.1.251 で意味が変わっています。さらに今回 <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code> も加わったため、記事の説明が現在の仕様どおりかは照らし合わせが必要です。</p>
+<h3><code>autoCompactWindow</code> はサブエージェント自身のモデルのウィンドウで決まる（GitHub issue）</h3>
+<p><strong>[要検証]</strong> 一次ドキュメントでは確認していません。</p>
+<h3>Haiku の effort 比較（medium で29リクエスト、high で385リクエスト）、記憶の分離で解釈一致が 0/10 → 9/10</h3>
+<p><strong>[要検証]</strong> どちらも個人の小規模な実験で、再現性は確認されていません。</p>
+<h3>公式ガイド「compaction 後に再読込されるのはルートの CLAUDE.md だけ」</h3>
+<p><strong>[要検証]</strong> 6/18 公開で今週のものではなく、今回は一次確認していません。</p>
+<p><strong>[棄却]</strong> 該当なし。2つのAIの間で矛盾する主張は見つかりませんでした。codex の版数の誤り（Edit の修正を 2.1.296 としていた件）は、訂正したうえで [確認済] にしています。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong><code>onFailure: "block"</code>（v2.1.295）を安全ゲート用のフックに設定するか判断する</strong></li></ol>
+<ul><li>既定は <code>continue</code>（fail-open）なので、スクリプトのパスを間違えたりクラッシュしたりすると、何も止めずに素通りします。</li><li>deny を補う PreToolUse フックがあれば、明示的に <code>block</code> にする価値があります。</li><li>ただし Stop 系のフックや async のフックでは効かないので、棚卸しの際に分けて扱う必要があります。</li></ul>
+<ol><li><strong>Haiku 5.5 への既定切り替え（v2.1.293）と 4.5 からの破壊的変更を棚卸しする</strong></li></ol>
+<ul><li><code>model: haiku</code> のサブエージェントや API 呼び出しで、<code>temperature</code> や <code>budget_tokens</code>、prefill を使っていると 400 エラーになります。</li><li>100k を超えると料金が5倍になります。opus-5-5-breaking-params-repo-audit の手順を流用できます。</li></ul>
+<ol><li><strong>入れ子 CLAUDE.md の読み込み修正（v2.1.293）と <code>autoCompactWindow</code>（v2.1.296）を確かめる</strong></li></ol>
+<ul><li>ヘッドレス実行のエージェントが Bash でファイルを読む運用なら、今まで効いていなかった rules が効き始めます。挙動が変わる可能性があります。</li><li>長く動くサブエージェントには、<code>autoCompactWindow</code> で早めの compaction を試す価値があります。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/hooks" rel="noopener">Claude Code hooks</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform release notes</a></li><li><a href="https://www.anthropic.com/claude-haiku-5-5" rel="noopener">Introducing Claude Haiku 5.5</a></li><li><a href="https://www.anthropic.com/news/investigating-unintended-model-actions" rel="noopener">Investigating unintended model actions</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic Newsroom</a></li><li><a href="https://www.anthropic.com/news/2026-usage-policy-update" rel="noopener">2026 Usage Policy update</a></li><li><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile" rel="noopener">Use Claude Cowork on web, desktop, and mobile</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork/Desktop changelog</a></li><li><a href="https://support.claude.com/en/articles/17274727-artifact-usage-promotion" rel="noopener">Artifact usage promotion</a></li><li><a href="https://support.claude.com/en/articles/14604416-get-started-with-claude-design" rel="noopener">Get started with Claude Design</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-13 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-13</div>
+  <div><span class="lab lab-ok">確認済 31</span><span class="lab lab-warn">要検証 10</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-13</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude / Anthropic 動向の突き合わせ結果(対象期間 2026-10-06〜10-13)</h1>
+<p><strong>検証方法</strong>: 2系統(codex / Claude)の出力を突き合わせたうえで、以下の一次情報を直接取得して確認しました。</p>
+<ul><li>anthropic.com(Haiku 5.5 / Newsroom / Usage Policy)</li><li>code.claude.com changelog</li><li>platform.claude.com release notes</li><li>Cowork Desktop changelog</li><li>support.claude.com(4記事)</li><li>claude.com 記事</li></ul>
+<p><strong>前提</strong>: どちらの系統も主要事項はよく一致しています。2系統しかないため、片方だけの主張は一次情報で確認できない限り [要検証] にしています。公式リリースノート・changelog はいずれも 10/9 が最新で、10/10〜10/13 の公式更新は見つかりませんでした。これは「一次情報で確認できなかった」という意味で、「更新がなかった」と確認したわけではありません。</p>
+<hr>
+<h2>A. Claude Code(最重視)</h2>
+<h3>A-1. hooks に <code>onFailure: "block"</code> を追加(v2.1.295 / 10-08)</h3>
+<p><strong>[確認済]</strong><br>command / HTTP hooks が起動できない、タイムアウトする、想定外の終了コードで終わる、のいずれかの場合に操作をブロック(fail-closed)できるようになりました。オプトインの追加機能なので、既定は fail-open という既存知見とは矛盾しません。ただし知見に追記が必要です。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-2. 指示文で書いた <code>prompt</code> / <code>agent</code> hooks がブロックすべき操作を通す問題を修正(v2.1.294 / 10-08)</h3>
+<p><strong>[確認済]</strong><br>「Block commands that…」のように指示文の形で書いた hook が、本来止めるべき操作を通してしまう問題の修正です。同じ版で、Stop / SubagentStop の prompt hook の判定も改善されています(早期停止しにくくなる方向)。<br>出典: changelog(同上)</p>
+<h3>A-3. サブエージェントの <code>skills</code> 先読みが最大32件・各1回に(v2.1.295)</h3>
+<p><strong>[確認済]</strong><br>出典: changelog</p>
+<h3>A-4. Workflow サブエージェントから呼んだ forked skill の結果がメイン会話に誤って届く問題を修正(v2.1.295)</h3>
+<p><strong>[確認済]</strong><br>2系統とも同じ内容です。<br>出典: changelog</p>
+<h3>A-5. skill の <code>allowed-tools</code> / <code>effort</code> が失われる問題を修正(v2.1.295)</h3>
+<p><strong>[確認済]</strong>(Claude 側の記述) / <strong>[棄却]</strong>(codex 側の帰属)<br>原文は「Skill ツールがレスポンスストリームの終了前に完了した場合に失われ、<strong><code>-p</code> 実行</strong>でスキルの Bash が拒否されていた」です。codex はこれを Workflow 文脈の修正と並べて書いていますが、原文に Workflow への言及はありません。headless(<code>claude -p</code>)で cron を回している環境には直接関係します。<br>出典: changelog</p>
+<h3>A-6. 待ち時間とコンテキスト膨張に関わる修正(v2.1.295)</h3>
+<p><strong>[確認済]</strong>(codex のみが記載し、原文で確認)</p>
+<ul><li><code>xhigh</code> / <code>max</code> effort で WebSearch や agent hook の評価が極端に遅くなる問題</li><li>非同期 SessionStart hook の同じ文脈が、再開のたびに会話へ追加される問題</li><li>長い行や閉じていない heredoc などの構文強調で端末が固まる問題</li></ul>
+<p>出典: changelog</p>
+<h3>A-7. サブエージェント個別の <code>autoCompactWindow</code> と <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code>(v2.1.296 / 10-09)</h3>
+<p><strong>[確認済]</strong><br><code>autoCompactWindow</code> はサブエージェントの frontmatter と <code>--agents</code> で指定でき、メイン会話より早く自動 compact させられます。<code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code> は workflow 用エージェントのモデルだけを統一し、他のサブエージェントのモデルは変えません。<br>出典: changelog</p>
+<h3>A-8. Read ツールに <code>allow_large</code> を追加し、MCP のツール説明の上限を引き上げ(v2.1.295〜296)</h3>
+<p><strong>[確認済]</strong>(Claude のみが記載し、原文で確認)</p>
+<ul><li><code>allow_large</code>(2.1.296): ファイル全体が必要で、コンテキストに余裕がある場合に、大きなファイルを1回で読めます。</li><li>最初に送る MCP ツール説明とサーバー説明の上限: 2,048 → 4,096 文字(2.1.296)</li><li>tool search 経由のツール説明の上限: 2,048 → 16,384 文字(2.1.295)</li></ul>
+<p>出典: changelog</p>
+<h3>A-9. <code>--debug</code> に hook の実行記録、<code>Ctrl+O</code> の応答改善(v2.1.296)</h3>
+<p><strong>[確認済]</strong><br><code>--debug</code> で、hook のコマンド・所属 plugin・結果・所要時間が記録されるようになりました。<code>Ctrl+O</code> は、構文強調済みのコードブロックをキャッシュすることで、コードの多い会話でも速くなっています。<br>出典: changelog</p>
+<h3>A-10. Shift-JIS など UTF-8 でないファイルの編集で非 ASCII 文字が壊れる問題を修正(v2.1.296)</h3>
+<p><strong>[確認済]</strong>(codex のみが記載し、原文で確認)<br>Edit / NotebookEdit が非 ASCII 文字を置き換えてしまう問題の修正です。今後は、そのような編集は拒否されます。<br>出典: changelog</p>
+<h3>A-11. v2.1.293(10-07)の修正群</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>Haiku 5.5 が既定の Haiku モデルに</li><li>HTTP MCP 接続のメモリリーク</li><li>compaction 後に完了済みの作業を取り消したり再実行したりする問題</li><li>同期スキルの説明変更が新しい会話まで反映されない問題</li><li>同期スキルの変更確認間隔: 約10分 → 約40分(セッション未使用時)</li></ul>
+<p>出典: changelog</p>
+<h3>A-12. Agent ツールに <code>effort</code> パラメータ(v2.1.292 / 10-06)</h3>
+<p><strong>[確認済]</strong><br>changelog 原文で 2.1.292 の追加として確認しました。<br>出典: changelog</p>
+<h3>A-13. <code>claude plugin install --marketplace</code> の追加と、MCP プロトコルの既定変更(v2.1.292)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>claude plugin install --marketplace</code> を追加</li><li>ローカル stdio MCP は、既定でプロトコル 2026-07-28 を交渉するように変更</li><li>古い動作に戻すには <code>MCP_PROTOCOL_NEGOTIATION=legacy</code></li><li>claude.ai コネクタへの同じ変更は 2.1.295(Claude 側の記述にはこの補足がありません)</li></ul>
+<p>出典: changelog</p>
+<h3>A-14. WebSearch の上限が「200回で終了」から「1時間あたり100回まで回復」に(v2.1.290 / 10-05、期間の直前)</h3>
+<p><strong>[要検証]</strong>(ルール7による格下げ。一次情報では確認済み)<br>changelog 原文で確認しました。回復レートは新しい環境変数 <code>CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR</code> で設定でき、0 にすると無効になります。<br>出典: changelog</p>
+<h3>A-15. Claude in Chrome をプロジェクトの settings から有効化できなくなった(v2.1.290)</h3>
+<p><strong>[確認済]</strong><br>出典: changelog</p>
+<h3>A-16. v2.1.291 のリグレッション修正</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>2.1.290 由来: クラウドセッションで権限確認への回答が失われることがある問題</li><li>2.1.288 由来: 終了時に最後のメッセージが失われることがある問題</li></ul>
+<p>出典: changelog</p>
+<hr>
+<h2>B. Cowork</h2>
+<h3>B-1. Pro・Max の新しい Cowork タスクは 10-06 からクラウドで実行</h3>
+<p><strong>[確認済]</strong>(Claude のみが記載し、support 記事で確認)</p>
+<ul><li>「Only on your computer」の設定は削除され、元に戻せません。</li><li>すでにローカルで始めたタスクは、ローカルのまま続けられます。</li><li>接続したフォルダには、デスクトップアプリを開いている間だけアクセスできます。</li></ul>
+<p>出典: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</p>
+<h3>B-2. Unified Claude 用の <code>desktopHome</code> キー(Desktop v2.31226.0 / 10-08、3P 向け)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>standard</code> で Unified Claude を有効化、<code>off</code> で Chat と Cowork を無効化</li><li>キーを書かなければ、2026-11-10 に全組織で Unified Claude が有効になります。</li><li>原文では、認識できない値(例: 大文字始まりの <code>Standard</code>)は <code>off</code> として扱われると明記されています。設定するときは要注意です。</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>B-3. macOS の computer use が隠しファイルを編集しなくなり、スケジュールタスクの不具合も修正(10-06 / 10-08)</h3>
+<p><strong>[確認済]</strong><br>computer use は、<code>~/.aws</code> などホーム直下の隠しファイルを編集・保存しなくなりました。スケジュールタスクでは、承認待ち、同名タスクの上書き、二重実行の恐れなどの不具合が修正されています。<br>出典: Desktop changelog</p>
+<h3>B-4. Chat / Cowork への「新しい Projects」の展開</h3>
+<p><strong>[要検証]</strong><br>codex が Reddit 投稿のみを根拠に挙げています。公式 changelog では一次確認できませんでした。ただし、存在しないと確認したわけではありません。<br>出典: https://www.reddit.com/r/ClaudeAI/comments/1x33na4/</p>
+<h3>B-5. Cowork と Chat の統合発表(9/16)</h3>
+<p><strong>[確認済]</strong>(期間外)<br>出典: https://claude.com/blog/cowork-is-now-claude</p>
+<hr>
+<h2>C. Claude Design</h2>
+<h3>C-1. Docs・Slides・Design が beta を終了し、Free を含む全プランで利用可能に(10-08)</h3>
+<p><strong>[確認済]</strong><br>同じ日に、Dashboards(有料プラン向け)と Motion(Team・Enterprise 向け)が beta で始まりました。<br>出典: https://claude.com/resources/articles/dashboards-and-motion</p>
+<h3>C-2. 単体の Claude Design サイト(claude.ai/design)は 2026-12-14 に終了</h3>
+<p><strong>[確認済]</strong>(2系統が一致し、一次情報でも確認)</p>
+<ul><li>今後は Claude 内の Artifacts を使います。デザインシステムは Artifacts ページから移行できます。</li><li>プロジェクトについては「現時点では操作不要」とされています。</li><li>チャットやコメントは引き継がれず、公開リンクも終了後は使えなくなります。</li><li>Enterprise ではデザインシステムが既定でオフです。</li><li>移行ガイドの更新日は「Updated this week」とだけあり、具体的な日付は書かれていません。</li></ul>
+<p>出典: https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude</p>
+<h3>C-3. Design の利用範囲と、Claude Code の <code>/design</code></h3>
+<p><strong>[確認済]</strong><br>Free〜Enterprise のすべてのプランで既定オンです。Enterprise は 2026-10-15 から既定で有効になります。Claude Code では <code>/design</code> で作成・編集・同期ができます。いつ追加された記述なのかは、特定できませんでした。<br>出典: https://support.claude.com/en/articles/14604416-get-started-with-claude-design</p>
+<hr>
+<h2>D. モデル・API・プラットフォーム</h2>
+<h3>D-1. Claude Haiku 5.5(<code>claude-haiku-5-5</code>)を公開(10-07)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>コンテキスト 1M、最大出力 128k。adaptive thinking と effort パラメータに対応</li><li>価格(100万トークンあたり): 入力 $0.10 / 出力 $0.50。プロンプトが100Kを超えると $0.50 / $2.50</li><li>「Haiku 4.5 より約75%安い」には脚注があり、内訳は100K以下で90%減、100K超で50%減です。</li></ul>
+<p>出典: https://www.anthropic.com/claude-haiku-5-5 、platform release notes</p>
+<h3>D-2. Haiku 5.5 のベンチマーク(Terminal-Bench 4.0 39.2% / OSWorld 2.1 offline 72.4%)</h3>
+<p><strong>[確認済]</strong>(ベンダー公表値として)<br>公式ページの数値と一致しました(Haiku 4.5 は 0.0% / 15.7%)。条件付きの評価なので、手元の作業が同じ割合で改善するとは限りません。<br>出典: 同上</p>
+<h3>D-3. Haiku 4.5 から移行するときの 400 エラー</h3>
+<p><strong>[確認済]</strong><br>出典: platform release notes</p>
+<h3>D-4. Sonnet 5.5 のキャッシュ読み取りが半額($0.20 → $0.10、約20%のコスト減)</h3>
+<p><strong>[確認済]</strong><br>出典: platform release notes、changelog</p>
+<h3>D-5. Max・Team プランに毎月の API クレジット</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>Max 5x は $100、Max 20x は $200</li><li>Team は Standard 席 $20、Premium 席 $100 を合算し、上限 $500</li><li>対話型の Claude Code や追加使用量には適用されません。未使用分は繰り越されず、Console 組織との連携が必要です。</li></ul>
+<p>出典: https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans</p>
+<h3>D-6. SDK に browser use / computer use のクラスを追加(beta)と、Managed Agents の <code>web_fetch</code> 制限(10-07)</h3>
+<p><strong>[確認済]</strong>(Claude のみが記載し、原文で確認)<br><code>web_fetch</code> は、そのセッション内ですでに出てきた URL しか取得できなくなりました(違反すると <code>url_not_in_prior_context</code>)。原文ではさらに、<code>allowed_hosts</code> を守る制御と、<code>allowed_domains</code> の検証が追加されています。<br>出典: platform release notes</p>
+<h3>D-7. Managed Agents に dynamic workflows(beta、10-09)と、Compliance API の拡張(10-08)</h3>
+<p><strong>[確認済]</strong><br>Compliance API は、Unified Claude の会話の取得と、Claude Docs の Word 形式ダウンロードに対応しました(どちらも beta)。<br>出典: platform release notes</p>
+<h3>D-8. Usage Policy の改定(10-08 発表、2026-11-12 施行)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>欺瞞的キャンペーンに関する節を新設して規定を集約</li><li>選挙の節を見直し</li><li>物理的に動く機器には、人が監視・停止できることを必須化</li><li>高リスク用途で対象となる推奨の範囲を明確化</li></ul>
+<p>出典: https://www.anthropic.com/news/2026-usage-policy-update</p>
+<h3>D-9. Cyber Verification Program の拡大(10-06)と Anthropic Cyber Mission(10-08)</h3>
+<p><strong>[確認済]</strong>(タイトルと日付のみ)<br>Newsroom で存在は確認しましたが、本文の中身は確認していません。<br>出典: https://www.anthropic.com/news</p>
+<h3>D-10. 「10-14 に Pre-IPO Investor Day」</h3>
+<p><strong>[要検証]</strong><br>Medium の記事1本のみが根拠です。Newsroom の該当期間にそれらしい記事はありませんでしたが、だからといって誤りだと確認できたわけではありません。</p>
+<hr>
+<h2>E. コミュニティの実践知(すべて二次情報で、再実行していません)</h2>
+<h3>E-1. Classmethod の <code>allow_large</code> 検証(3,000行のファイルでコスト減)</h3>
+<p><strong>[要検証]</strong><br>機能そのものは A-8 で確認済みです。数値は記事筆者の1回だけの測定です。<br>出典: https://dev.classmethod.jp/en/articles/20261010-cc-updates-v2-1-296/</p>
+<h3>E-2. Qiita: Explore サブエージェントだけ軽量モデルにする比較(費用21〜35%減、所要時間は約2.2倍)</h3>
+<p><strong>[要検証]</strong><br>codex のみが挙げています。<br>出典: https://qiita.com/suwa_nobu/items/be41c19295ef0e58e7f2</p>
+<h3>E-3. Zenn: Stop hook のキーワード判定が誤作動した5事例</h3>
+<p><strong>[要検証]</strong><br>codex のみが挙げています。A-2 の修正とどう関係するかは確認していません。<br>出典: https://zenn.dev/ogworks/articles/7be32018a6ce80</p>
+<h3>E-4. Zenn: CLAUDE.md・Skills・hooks・Mods の使い分け</h3>
+<p><strong>[要検証]</strong><br>出典: https://zenn.dev/m16_llc/articles/claude-code-mods-function-hooks-guide</p>
+<h3>E-5. Haiku 5.5 の第三者評価(Artificial Analysis 43/34、ハルシネーション率40%、OSWorld の完全完了率 37.1%、effort max が高い・遅い、HN 約770ポイント)</h3>
+<p><strong>[要検証]</strong><br>eesel.ai のレビュー記事1本からの孫引きで、元データまではたどれていません。<br>出典: https://www.eesel.ai/blog/claude-haiku-5-5-review</p>
+<h3>E-6. Simon Willison の HN コメント、Qiita の「圧縮前に証拠を外部保存する」運用、Zenn の「サブエージェント発動率 25%→100%」</h3>
+<p><strong>[要検証]</strong><br>いずれも1系統のみの主張で、内容は確認していません。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>hook の fail-closed 化(A-1)と prompt hook の修正(A-2)</strong></li></ol>
+<p>既存知見では「hooks は timeout 時に fail-open」と確定しています。その弱点を、<code>onFailure: "block"</code> で設定によって塞げるようになりました。deny 床のように、セキュリティ目的の command hook がある場合は付けるべきです。あわせて、指示文で書いた prompt / agent hook が 2.1.294 以前だと素通りしていた可能性があるので、棚卸しする価値があります。</p>
+<ol><li><strong>WebSearch 上限の仕様変更(A-14)と、<code>-p</code> で skill の権限が落ちる問題の修正(A-5)</strong></li></ol>
+<ol><li><strong>Haiku 5.5 を調査系サブエージェントに使い、サブエージェント個別の <code>autoCompactWindow</code> を設定(D-1・A-7)</strong></li></ol>
+<p>コスト削減とメイン会話の負担軽減を同時に試せます。ただし、二次情報(E-2)では「安いモデルにしても速くなるとは限らない」と報告されています。既存知見 subagent-model-env-autocompactwindow-spec-check.md の更新も兼ねて、手元で費用と時間を測ることを勧めます。</p>
+<p>単体の Claude Design を使っている場合は、12-14 の終了までにデザインシステムの移行(C-2)も必要です。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-15 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-15</div>
+  <div><span class="lab lab-ok">確認済 33</span><span class="lab lab-warn">要検証 10</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-15</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>審判まとめ：Claude / Anthropic の直近の動き（2026-10-08〜10-15）</h1>
+<p><strong>前提</strong>: 情報源は codex と Claude の2つだけです。片方だけの主張は、一次情報で確認できない限り [要検証] にしました。今回は WebFetch で、GitHub Releases（v2.1.296 / v2.1.299）、code.claude.com の changelog、platform のリリースノート、Cowork の changelog、support.claude.com の該当記事3本、anthropic.com/news と記事2本を読みました。</p>
+<hr>
+<h2>A. Claude Code（重視）</h2>
+<p><strong>A-1. idle compaction（v2.1.299, 10/14）</strong><br>[確認済] 両AIが一致し、一次情報も原文で確認しました。20万トークン以上の会話を約54分放置すると、1時間のプロンプトキャッシュが切れる前に要約（compaction）されます。最低トークン数は <code>CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS</code> で変えられ、<code>"idleCompaction": false</code> で無効にできます。どちらも v2.1.290 以降で効きます。原文には「in the terminal」とあり、headless 実行が対象になるかは書かれていません。<br>出典: https://github.com/anthropics/claude-code/releases/tag/v2.1.299</p>
+<p><strong>A-2. <code>CLAUDE_CODE_DISABLE_FILE_MENTIONS</code> と <code>/usage</code> の警告追加（v2.1.299）</strong><br>[確認済] 両AIが一致し、原文も確認しました。<code>@</code> で指定したファイルは中身ではなくパスだけが渡ります。<code>/usage</code> は、max effort・workflows・常時読み込まれるコンテキスト・大きなツール結果について警告を出すようになりました。<br>出典: 同上</p>
+<p><strong>A-3. 長時間運用でのメモリ増大と、Mod が headless の上限を超えて続く問題の修正（v2.1.299）</strong><br>[確認済] codex が挙げ、原文で確認しました。直ったのは次の3つです。サブエージェントを多く使ったクラウド／Remote Control セッションを再開したときのメモリ増大。debug ログを大量に出したときのメモリ増大。毎ターン末にプロンプトを投入する Mod が <code>--max-turns</code>・<code>--max-budget-usd</code> を超えて続く問題。<br>出典: 同上</p>
+<p><strong>A-4. サブエージェントの <code>autoCompactWindow</code> と <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code>（v2.1.296, 10/9）</strong><br>[確認済] 両AIが一致し、原文も確認しました。サブエージェントの frontmatter と <code>--agents</code> で、親の会話より早く compaction させられます。workflow エージェントだけを1つのモデルにそろえることもできます。</p>
+<p>出典: https://github.com/anthropics/claude-code/releases/tag/v2.1.296</p>
+<p><strong>A-5. hooks の <code>--debug</code> ログ強化と、管理設定 hooks の修正（v2.1.296）</strong><br>[確認済] codex が挙げ、原文で確認しました。command hook の実行が終わるたびに、コマンド・プラグイン・成否・所要時間がログに残ります。対象はツール呼び出し・プロンプト・SessionStart・Stop です。管理設定の PreToolUse で <code>"continue": false</code> を返してもターンが終わらなかった問題と、<code>updatedMCPToolOutput</code> が反映されない問題も直りました。<br>出典: 同上</p>
+<p><strong>A-6. Read の <code>allow_large</code>、Ctrl+O の応答性改善、Sonnet 5.5 キャッシュ単価の反映（v2.1.296）</strong><br>[確認済] 両AIが一致し、原文も確認しました。<code>/cost</code>・ステータスライン・<code>--max-budget-usd</code>・SDK の費用計算で、Sonnet 5.5 のキャッシュ読み取りが $0.10/MTok（以前は $0.20）になりました。値下げの発表は 10/7、CLI への反映は 10/9 で、日付は別です。<br>出典: 同上</p>
+<p><strong>A-7. MCP ツール説明の上限拡大（v2.1.295: tool search 経由は 16,384 字、v2.1.296: 最初に送る分は 4,096 字）</strong><br>[確認済] Claude が挙げ、changelog の原文で確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-8. hooks の fail-closed 化：<code>onFailure: "block"</code>（v2.1.295）と、プラグイン hook の扱い変更（v2.1.299）</strong><br>[確認済] Claude が挙げ、原文で確認しました。command / HTTP hook が起動できない・タイムアウトした・想定外の終了コードを返したときに、操作を止めるよう設定できます。さらに v2.1.299 では、プラグイン hook が受け渡しに失敗したときに、ブロック対象の操作が拒否されるようになりました。</p>
+<p>出典: changelog</p>
+<p><strong>A-9. 指示文で書いた prompt / agent hook がブロックしない問題の修正、Stop 判定の改善（v2.1.294）</strong><br>[確認済] Claude が挙げ、原文で確認しました。<br>出典: changelog</p>
+<p><strong>A-10. <code>UserPromptSubmit</code> hook が skill / カスタムコマンドの展開より前に走るようになった（v2.1.299）</strong><br>[確認済] Claude が挙げ、原文で確認しました。hook がプロンプトをブロックすると、埋め込まれたシェルコマンドも実行されません。<br>出典: v2.1.299</p>
+<p><strong>A-11. MCP の allow ルールと agent の <code>tools:</code> の解釈変更、不可視文字を含む skill 名の拒否（v2.1.299）</strong><br>[確認済] Claude が挙げ、原文で確認しました。<code>mcp__a</code> は <code>a__b</code> や <code>a_</code> を許可しなくなりました。名前に <code>__</code> を含むサーバーは <code>mcp__&lt;正規化した名前全体&gt;__*</code> と書きます。名前に <code>__</code> を含むサーバーで deny / ask が効かなかった問題も直っています。<br>出典: v2.1.299</p>
+<p><strong>A-12. 「agent hook の <code>model</code> 指定が無視されていた問題を修正」（Claude は v2.1.299 と主張）</strong><br>[要検証] 片方のAIだけの主張です。v2.1.299 の GitHub Release（約190項目）を2回探しましたが、該当する項目は<strong>一次確認できませんでした</strong>。抽出漏れや別の版にある可能性もあるので、<strong>存在しないとは判断していません</strong>。</p>
+<p><strong>A-13. <code>updatedInput</code> の検証、compaction 後に MCP ツールが伝わらない問題、<code>ENABLE_TOOL_SEARCH=auto</code> の途中オフの修正（v2.1.300, 10/14）</strong><br>[確認済] Claude が挙げ、原文で確認しました。<br>出典: changelog</p>
+<p><strong>A-14. Mods の変更：<code>$.ui.notify</code>（v2.1.295）、<code>turn.start</code> がサブエージェントのターンも受け取る（v2.1.299）、<code>prompt.change</code> と <code>agent.spawn</code> での書き換え（v2.1.300）</strong><br>[確認済] Claude が挙げ、原文で確認しました。内蔵 mod「You Should Know」は [要検証] です（出所は集約サイトのみで、一次確認できませんでした）。<br>出典: changelog</p>
+<p><strong>A-15. サブエージェントが事前に読み込める skill は最大32個（v2.1.295）</strong><br>[確認済] 原文で確認しました。</p>
+<p><strong>A-16. Agent ツールの <code>effort</code> パラメータ（v2.1.292）と Haiku 5.5 対応（v2.1.293）</strong><br>[確認済] Claude が挙げ、changelog の原文で確認しました。</p>
+<p><strong>A-17. 「idle compaction はサーバー側で v2.1.286 頃から有効だった」（its-tahir）、GitHub issue #66115 / #101070</strong><br>[要検証] 第三者のコード解析で、Claude だけが挙げました。一次確認していません。issue の中身も確認していません。</p>
+<h2>B. Cowork / デスクトップアプリ（重視）</h2>
+<p><strong>B-1. Cowork クラウドセッションの修正（Edit and Retry、アカウントプラグインの旧版が残る問題）（v2.1.299）</strong><br>[確認済] codex が挙げ、原文で確認しました。Edit and Retry の失敗は v2.1.296 で入ったリグレッションです。</p>
+<p><strong>B-2. <code>desktopHome</code>（Unified Claude ベータ、v2.31226.0, 10/8）</strong><br>[確認済] Claude が挙げ、Cowork changelog の原文で確認しました。キーを設定しなければ、11/10 に全組織で Unified Claude が有効になります。キーを設定している間は、<code>chatTabEnabled</code>・<code>coworkTabEnabled</code> などが効きません。大文字の <code>Standard</code> のような認識できない値は <code>off</code> 扱いになります。<br>出典: https://claude.com/docs/cowork/changelog</p>
+<p><strong>B-3. Settings &gt; Import で skills とローカル MCP を取り込める、Code タブの環境変数が保存済み環境ごとになった（10/8）、チャットを別ウィンドウで開ける、スケジュールタスクの修正（10/13）</strong><br>[確認済] 原文で確認しました。</p>
+<p>**B-4. 【破壊的変更】<code>isDxt<em></code> → <code>isDesktopExtension</em></code>（v2.37337.1, 10/13）**<br>[確認済] 原文で確認しました。旧キー名のままだと設定が効かなくなり、<strong>未署名の拡張も読み込まれます</strong>。MDM で管理している場合はすぐ確認が必要です。</p>
+<p><strong>B-5. 新しい Cowork タスクは 10/6 からクラウドで実行（Pro / Max）</strong><br>[確認済] 一次情報で確認しました。「Only on your computer」の選択肢はなくなり、元には戻せません。10/6 より前に始めたタスクと、ローカルで動いている既存のスケジュールタスクはローカルのままです。期間の直前の出来事です。<br>出典: https://support.claude.com/en/articles/15520349</p>
+<h2>C. Claude Design / Docs / Slides（重視）</h2>
+<p><strong>C-1. Enterprise では 10/15 から Claude Design が既定で有効</strong><br>[確認済] 両AIが一致し、一次情報も2つ確認しました。Owner は Organization settings &gt; Artifacts から前倒しで有効にできます。各組織で実際に有効になったかは確認できません。Claude Code からは <code>/design</code> で使えます。<br>出典: https://support.claude.com/en/articles/14604416 ／ https://claude.com/resources/articles/dashboards-and-motion</p>
+<p><strong>C-2. 独立版 claude.ai/design は 12/14 に終了、移行ガイド</strong><br>[確認済] codex が挙げ、一次情報で確認しました。移行は Artifacts ページから一度実行すれば、組織内のデザインシステムがすべて対象になります。公開済みで非プライベートのものは組織の全員に共有されます。プロジェクトは今のところ独立版に残り、移行の詳細は「近日公開」とされています。記事には「Updated this week」としかなく、初出の日付は確認できません。<br>出典: https://support.claude.com/en/articles/17440474</p>
+<p><strong>C-3. Docs / Slides / Design の GA（Free を含む全プラン）、Claude Dashboards（ベータ、有料プラン）、Claude Motion（ベータ、Team / Enterprise、MP4 出力）（10/8）</strong><br>[確認済] Claude が挙げ、一次情報で確認しました。Dashboards と Motion は既定でオフです。<br>出典: dashboards-and-motion</p>
+<h2>D. モデル・API・Anthropic 全体</h2>
+<p><strong>D-1. Claude Haiku 5.5（10/7）</strong><br>[確認済] 一次情報で確認しました。1M コンテキスト、最大出力128k、adaptive thinking と effort に対応。料金は $0.10 / $0.50 で、100K を超えるプロンプトは $0.50 / $2.50 です（料金は CC changelog v2.1.293 で確認）。<code>budget_tokens</code>・<code>temperature</code> / <code>top_p</code> / <code>top_k</code>・prefill は400エラーになります。リリースノートの表現は「400を返しうる」で、「廃止」とは書かれていません。期間の前日です。</p>
+<p><strong>D-2. Sonnet 5.5 のキャッシュ読み取り値下げ $0.20 → $0.10（10/7）</strong><br>[確認済] 一次情報で確認しました。</p>
+<p><strong>D-3. Max / Team プランに毎月 API クレジット、<code>claude -p</code> は引き続きサブスクの利用枠で使える（10/7）</strong><br>[確認済] 両AIの内容と一次情報が一致しました。support 記事に「You can still use the Claude Agent SDK, <code>claude -p</code>, and third-party apps with your subscription limits」と明記されています。Reddit で広がった「定額枠から外れた」という読み方は誤りです。<br>出典: https://support.claude.com/en/articles/15036540</p>
+<p><strong>D-4. Compliance API（10/8）、Managed Agents の dynamic workflows（10/9）、OpenTelemetry export（10/14）</strong><br>[確認済] Claude が挙げ、platform のリリースノート原文で確認しました。</p>
+<p><strong>D-5. 「Redesigning source control at Anthropic」（Scion, 10/13）</strong><br>[確認済] codex が挙げ、一次情報で確認しました。マージ数は5月の約2,500件/日から9月には3万件/日超に増えました。CI のチェックアウトは約2,500万回/日です。チェックアウトが数分から数秒になり、CI の CPU 容量は25%増えました。レビューエージェントの指摘は視野が狭くなりやすく、人間が「no」と言う必要があった、とされています。HN のスレッドは確認していません。<br>出典: https://www.anthropic.com/engineering/redesigning-source-control</p>
+<p><strong>D-6. 意図しないモデル行動の調査報告（10/9 公開、10/12 訂正）</strong><br>[確認済] codex が挙げ、一次情報で確認しました。訂正の内容は、「web fetch の URL 長制限はインジェクション防止のため」という説明が誤りだった、というものです。<br>出典: https://www.anthropic.com/news/investigating-unintended-model-actions</p>
+<p><strong>D-7. Usage Policy 更新、Cyber Mission、米国の科学研究へのコミットメント（10/8）、シンガポール拠点と MOU、米中間選挙への対応（10/14）</strong><br>[確認済] 見出しと日付を Newsroom で確認しました。本文は読んでいません。</p>
+<p><strong>D-8. 「ディスティレーション対策で抽出を90〜99%削減」</strong><br>[要検証] Claude だけが挙げた二次情報です。Newsroom には該当記事が見当たらず、<strong>一次確認できませんでした</strong>。誤りだと確かめたわけではありません。</p>
+<p><strong>D-9. 「IPO Investor Day（10/14）、評価額2兆ドル」</strong><br>[要検証] 出所は Medium の1件だけです。Newsroom に該当はなく、<strong>一次確認できませんでした</strong>。数字が大きく具体的なので、扱いには特に注意が必要です。</p>
+<h2>E. コミュニティ（二次情報）</h2>
+<p><strong>E-1. Classmethod の v2.1.296 検証</strong><br>[要検証] 筆者の実測で、片方のAIだけが挙げています。3,001行中732行しか返らなかった、Opus で約19%減・Haiku で約24%減、という数字は裏付けがありません。一方、Shift-JIS などのファイルで Edit が拒否される件は、v2.1.296 の原文に該当する修正があるため [確認済] です。</p>
+<p><strong>E-2. Remy.Blog の Haiku 5.5 コスト試算</strong></p>
+<p><strong>E-3. note の Haiku 5.5 と Sonnet 5.5 の比較（各1回）</strong><br>[要検証] 試行が1回ずつなので、一般化はできません。</p>
+<p><strong>E-4. Qiita の skills 棚卸し記事</strong><br>[確認済]（codex による訂正部分のみ）通常、常駐するのは説明文だけで、本文は呼び出したときに読み込まれます。この点は公式仕様と一致しており、記事の「全文が常時ロードされる」は誤りです。codex は記事中の <code>/skill-doctor</code> を「未確認」としましたが、実在は検証済みです。</p>
+<p><strong>E-5. skill の <code>disable-model-invocation: true</code> と <code>context: fork</code></strong><br>[確認済]</p>
+<p><strong>E-6. Qiita の CLAUDE.md 一本化と、Mods によるモデル振り分けの記事</strong><br>[要検証] 個人の事例で、ルーターのコードは記事自身が「未実行」と明記しています。<code>$.model.classify</code> が公式リファレンスにあるという codex の主張は、今回は一次確認していません。</p>
+<p><strong>E-7. SemiAnalysis の idle compaction 解説</strong><br>[要検証] 中身を確認していません。</p>
+<p><strong>AI同士の矛盾</strong>: 実質的な食い違いはありませんでした。片方だけが挙げた項目は多数ありますが、ほとんどは一次情報で確認できました。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>MCP の権限ルールの解釈変更（A-11）と Cowork の破壊的なキー改名（B-4）</strong>。どちらも、気づかないうちに権限の範囲が変わる種類の変更です。前方一致に頼った <code>mcp__xxx</code> の allow / deny ルールと、旧名 <code>isDxt*</code> が残っていないかの棚卸しを勧めます。B-4 は旧名のままだと<strong>未署名の拡張が読み込まれる</strong>ので、急ぎで確認してください。</li></ol>
+<ol><li><strong>idle compaction（A-1）</strong>。長時間のセッションが離席中に勝手に要約されます。headless / cron 実行でも発動するかは原文からは分からないので、実機で確かめ、必要なら <code>"idleCompaction": false</code> を設定してください。キャッシュ前提の knowledge（late-compaction / prompt-cache 系）との整合も確認が要ります。</li></ol>
+<p>おまけとして、Claude Design の独立版は <strong>12/14 に終了</strong>します（C-2）。移行すると、公開済みで非プライベートのデザインシステムが組織の全員に共有される点を、事前に確認しておくべきです。</p>
+<h3>Sources</h3>
+<ul><li>https://github.com/anthropics/claude-code/releases/tag/v2.1.299</li><li>https://github.com/anthropics/claude-code/releases/tag/v2.1.296</li><li>https://code.claude.com/docs/en/changelog</li><li>https://platform.claude.com/docs/en/release-notes/overview</li><li>https://claude.com/docs/cowork/changelog</li><li>https://claude.com/resources/articles/dashboards-and-motion</li><li>https://support.claude.com/en/articles/14604416-get-started-with-claude-design</li><li>https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude</li><li>https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan</li><li>https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile</li><li>https://www.anthropic.com/news</li><li>https://www.anthropic.com/engineering/redesigning-source-control</li><li>https://www.anthropic.com/news/investigating-unintended-model-actions</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

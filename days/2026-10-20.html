@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-20 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-20</div>
+  <div><span class="lab lab-ok">確認済 30</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-20</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。<br>他ホスト分は pull で届く記録なので、同期が止まると見かけ上の無音になる。同期: 同期OK(最終pull 10/20 07:00)</blockquote>
+<h1>Claude/Anthropic 直近の動き 審判レポート(対象: 2026-10-13〜10-20)</h1>
+<p><strong>検証方法:</strong> 主要な項目は、以下の一次情報を WebFetch で直接読んで照合しました。</p>
+<ul><li>code.claude.com changelog(v2.1.299〜304 の部分)</li><li>claude.com の Code Review GA 記事と Cowork changelog</li><li>platform.claude.com のリリースノート</li><li>support.claude.com の Design ヘルプと移行ガイド</li><li>anthropic.com/news の各記事</li><li>claude.dev のブログ</li></ul>
+<p>コミュニティ記事(note / Zenn / Qiita / Reddit / DEV)と報道記事は今回開いていません。そのため、どちらか一方の AI だけが挙げたものは [要検証] にしています。</p>
+<hr>
+<h2>1. Claude Code(最重視)</h2>
+<h3>Code Review の一般提供(GA)</h3>
+<p><strong>[確認済]</strong> 2026-10-15 に GA になりました。対象は Team / Enterprise で、管理者がリポジトリごとに Quick / Standard(既定)/ Deep を選べます。「約3倍速い(約20分 → 6〜10分)」は Anthropic 自身の数字で、第三者の計測ではありません。</p>
+<ul><li>codex が示した <code>claude.com/resources/articles/...</code> という URL は今回開いていません。中身を確認したのは下の blog URL です。</li><li>出典: https://claude.com/blog/code-review-is-now-generally-available</li></ul>
+<h3>Idle compaction(v2.1.299)と /config のトグル(v2.1.302)</h3>
+<p><strong>[確認済]</strong> ターミナルで20万トークン以上の会話を約54分放置すると、1時間のキャッシュが切れる前に自動で圧縮します。</p>
+<ul><li>圧縮を始める下限は <code>CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS</code> で変えられます。</li><li>止めるには settings.json に <code>"idleCompaction": false</code> を書きます。v2.1.302 で <code>/config</code> にもオン/オフの行が加わりました。</li><li>2つの AI の記述は一致しています。</li></ul>
+<h3>fork サブエージェントの既定有効化と、Desktop/VS Code でのバックグラウンド実行(v2.1.302)</h3>
+<p><strong>[確認済]</strong> fork サブエージェントが <code>claude -p</code>、Agent SDK、Desktop、VS Code でも既定で有効になりました。無効にするには <code>CLAUDE_CODE_FORK_SUBAGENT=0</code> を設定します。</p>
+<ul><li>Desktop と VS Code では、メイン会話から起動したサブエージェントが常にバックグラウンドで動きます。</li></ul>
+<p>-</p>
+<h3>prompt/agent hooks の同時実行は1イベントあたり最大12件(v2.1.302)</h3>
+<p><strong>[確認済]</strong> 2つの AI が一致しており、changelog の原文「At most 12 of one event run at a time」とも合っています。</p>
+<h3>MCP の allow ルールがサーバー名の完全一致になった(v2.1.299)</h3>
+<p><strong>[確認済]</strong> <code>mcp__a</code> と書いても、<code>a__b</code> や <code>a_</code> という名前のサーバーには効かなくなりました。<code>mcp__&lt;server&gt;__*</code> の形で書く必要があります。</p>
+<h3><code>UserPromptSubmit</code> hook が skill / コマンドの展開より前に動く(v2.1.299)</h3>
+<p><strong>[確認済]</strong> Claude の出力だけが挙げていましたが、changelog で確認できました。この hook でブロックすると、skill やコマンドに埋め込まれたシェルコマンドも実行されません。</p>
+<h3>hook が返す <code>updatedInput</code> の検証(v2.1.300)</h3>
+<p><strong>[確認済]</strong> PreToolUse / PermissionRequest hook が返す入力を、Claude 自身の入力と同じように検証するようになりました。未知のキーは捨てられ、ツールが受け付けない入力なら呼び出しは拒否されます(changelog で確認)。</p>
+<h3>Write ツールが UTF-8 以外のファイルへの書き込みを拒否する(v2.1.299)</h3>
+<p><strong>[確認済]</strong>(ただし範囲は Claude の書き方より狭い) changelog での扱いはバグ修正です。以前は Windows-1252 / Shift-JIS / GBK / UTF-16BE のファイルを黙って UTF-8 に変換していましたが、今は書き込みを拒否します。「UTF-8 以外をすべて拒否する」とは書かれていません。</p>
+<h3>OTel の <code>cache_creation_5m_tokens</code> / <code>cache_creation_1h_tokens</code>(v2.1.300)</h3>
+<p><strong>[確認済]</strong> 2つの AI が一致しており、changelog でも確認できました。OpenTelemetry の <code>api_request</code> イベントで、キャッシュ書き込みがキャッシュの寿命(5分/1時間)ごとに分かれました。</p>
+<h3>v2.1.300 の修正(SessionEnd hooks と自動ツール検索)</h3>
+<p><strong>[確認済]</strong>(codex の書き方は広すぎる) どちらの修正も実在します。</p>
+<ul><li>SessionEnd hooks の修正は、正確には「バックグラウンドのコマンドが動いている間に終了すると、ときどき実行されない」問題の修正です。終了時に常に動かなかったわけではありません。</li><li><code>ENABLE_TOOL_SEARCH=auto</code> が会話の途中で切れる問題も修正されています。</li></ul>
+<h3>v2.1.301 の skills / コマンド / hooks の負荷修正</h3>
+<p><strong>[確認済]</strong> codex だけが挙げていましたが、changelog で確認できました。</p>
+<ul><li>引数名が多い・長い場合の数秒の停止(先頭64個、各64文字までしか埋めないようになった)</li><li>プレースホルダー展開による大量のメモリ消費</li><li><code>/rewind</code> の後に skills がモデルに提示されなくなる問題</li><li>ゲートウェイの応答が別のモデル名を返す環境で、圧縮が繰り返される問題</li></ul>
+<h3>v2.1.302 の起動・キャッシュ・課金まわりの修正</h3>
+<p><strong>[確認済]</strong> 次の4点を changelog で確認しました。</p>
+<ul><li>プラグインが多いときの起動の高速化(特に Windows)</li><li>ToolSearch で読み直したとき、または圧縮後に、セッション途中で追加したツールがキャッシュミスを起こす問題の修正</li><li>利用クレジットで課金された回答の後に、プロンプト提案を出さないようにした修正</li><li>クラウドセッションを再開すると費用・使用量の表示がゼロに戻る問題の修正</li></ul>
+<h3>v2.1.303</h3>
+<p><strong>[確認済]</strong> 内容は「Bug fixes and reliability improvements」だけで、個別の変更は書かれていません。</p>
+<h3>v2.1.304 の追加・変更</h3>
+<p><strong>[確認済]</strong> 以下を changelog で確認しました。</p>
+<ul><li>圧縮した後に skill 一覧を送り直すようになり、<code>/reload-skills</code> は新規・変更分だけを送るようになりました。</li><li>Pro/Max で、放置した会話を再開すると5時間枠をかなり使う場合に警告が出ます。</li><li>1つのソースの skill が登録できる hook は、1セッションあたり1,024件まで、matcher は16,384文字までになりました。</li><li><code>/auto-mode-setup</code> が追加されました。</li><li>Opus 5.5 の <code>/fast</code> から「research preview」の表記が外れました。</li></ul>
+<p>「圧縮サマリーにツール名が残る(Ctrl+O で表示)」は今回の照合範囲外で、確認していません。</p>
+<h3>auto mode 関連の環境変数</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>CLAUDE_CODE_AUTO_MODE_MODEL</code>(v2.1.302): changelog によると、クライアント側の分類器のモデルだけを変えます。サーバー側の auto mode のモデルは変わりません。</li><li><code>CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS</code>(v2.1.301): 無人実行中に使用量上限に達し、リセットまで遠すぎる場合は待たずに終了します。</li></ul>
+<p>vim モードの <code>%</code> モーションは今回照合していません。</p>
+<h3>その他の v2.1.299 の項目(Claude の出力だけが挙げたもの)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>CLAUDE_CODE_DISABLE_FILE_MENTIONS</code>: <code>@</code> でファイルを指定すると、中身ではなくパスだけを渡します。</li><li>ファイル名やフォルダ名に不可視文字・方向制御文字・<code>&lt;</code> <code>&gt;</code> を含む skill は提示されなくなりました。changelog の言い方は「読み込まれない」ではなく「提示されない(no longer offered)」です。</li><li>Mods の <code>tool.check</code> に <code>decider: "person"</code>(v2.1.304)、<code>prompt.change</code> hook(v2.1.300)が追加されました。</li></ul>
+<h3>PermissionRequest hook でシェルやサブエージェントを承認できなくなった/<code>setMode</code> の無視</h3>
+<p><strong>[確認済]</strong>(ただし「Cowork のクラウドセッションに限る」という範囲は確認できていない) changelog の記載は2つの版に分かれています。</p>
+<ul><li>v2.1.299: PermissionRequest hook でシェルコマンドやサブエージェントを承認できなくなりました。</li><li>v2.1.300: hook の allow に含まれる <code>setMode</code> は無視されるようになりました。</li></ul>
+<p>Claude の出力は「Cowork のクラウドセッション限定」と書いていますが、今回読んだ範囲ではその条件を確認できていません。</p>
+<h3><code>/usage</code> の警告追加(v2.1.299)と「v2.1.299 のバグ修正は131件」</h3>
+<p><strong>[要検証]</strong> どちらも Claude の出力だけが挙げていて、今回は照合していません。</p>
+<hr>
+<h2>2. Cowork / デスクトップアプリ</h2>
+<h3>v2.42304.0(2026-10-15)</h3>
+<p><strong>[確認済]</strong> 次の点を Cowork changelog で確認しました。</p>
+<ul><li>Code タブにセッションレール(Context カードなど)、保存できる環境、入れ子セッション、plan ボックスが加わりました。いずれもサードパーティ展開版にはまだ入っていません。</li><li>アプリが行う git 操作では、リポジトリの Git hooks が動かなくなりました。</li><li>破壊的変更(サードパーティ向け): Git for Windows がない Windows で、<code>shell</code>、<code>args</code>、<code>onFailure</code> のどれも設定していない PreToolUse hook が失敗すると、ツール呼び出しがブロックされるようになりました。同じ趣旨の修正が Claude Code 側にも v2.1.299 で入っています。</li></ul>
+<h3>v2.37337.1(2026-10-13)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>チャットを別ウィンドウで開けるようになりました。</li><li>アーティファクトの図表がオフラインでも表示されます。これは新機能ではなく修正です。</li><li><code>isDxtEnabled</code> など旧来の管理設定キー3つが認識されなくなりました。旧キーしか書いていない MDM プロファイルやポリシーは読まれず、端末が管理外になります。新しいキー名に切り替える必要があります。</li></ul>
+<h3>Compliance API で Cowork の Global instructions を取得できるようになった(10/15)</h3>
+<p><strong>[確認済]</strong> codex だけが挙げていましたが、Platform のリリースノートで確認できました。Enterprise 向けのベータで、エンドポイントは <code>GET /v1/compliance/organizations/{org_uuid}/user_preferences</code> です。</p>
+<h3>10/6 から Pro/Max の新しい Cowork タスクはクラウド実行が標準(期間外)</h3>
+<p><strong>[要検証]</strong> Claude の出力だけが挙げていて、今回は一次情報を確認していません。</p>
+<hr>
+<h2>3. Claude Design</h2>
+<h3>単体版(claude.ai/design)は 2026-12-14 に終了</h3>
+<p><strong>[確認済]</strong> 2つの AI が一致しており、ヘルプと移行ガイドでも確認できました。</p>
+<ul><li><strong>移行できるもの:</strong> デザインシステム。Artifacts ページのバナーから、組織全体のものをまとめて移行できます。</li><li><strong>今はまだ移行できないもの:</strong> プロジェクト。単体版が終了するまでは単体版で使い続けられ、移行方法は後日案内されます。これで、Claude の出力が「二次情報の間で食い違っている」としていた点は決着しました。</li><li><strong>引き継がれないもの:</strong> チャットと、プロジェクトやデザインシステムへのコメント。終了後に削除され、公開リンクも使えなくなります。</li><li>v2.1.302 で <code>/design-sync</code> と <code>/design-login</code> に終了の告知が出るようになったことも changelog で確認しました。</li><li>終了が最初に告知された日付は、今回は確認できていません。</li><li>出典: https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude</li></ul>
+<h3>Enterprise で Claude Design が既定オン(10/15)</h3>
+<p><strong>[確認済]</strong> ヘルプに「On Enterprise plans, it turns on by default on October 15, 2026」とあります。</p>
+<ul><li>出典: https://support.claude.com/en/articles/14604416-get-started-with-claude-design</li></ul>
+<h3>「Slides / Docs も既定オン、HIPAA 組織は除外」</h3>
+<p><strong>[要検証]</strong> 出典は Unite.AI(二次情報)だけです。Design のヘルプには HIPAA の記述がありませんでした。ただしこれは「今回は確認できなかった」という意味で、「その記述が誤り」と確かめたわけではありません。</p>
+<h3>10/8 に Design が GA、Dashboards / Motion がベータ公開(期間外)</h3>
+<p><strong>[要検証]</strong> 2つの AI の主張は合っていますが、どちらも二次情報が根拠で、一次情報は今回確認していません。</p>
+<hr>
+<h2>4. API / Platform</h2>
+<h3>OpenTelemetry export のベータ公開(10/14)</h3>
+<p><strong>[確認済]</strong> Messages API と Managed Agents のトレースを、自分の監視基盤に送れるようになりました。codex だけが挙げていましたが、リリースノートで確認しました。</p>
+<h3>Opus 5.5 の Fast mode が research preview を終了、Microsoft Foundry にも対応(10/15)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>アクセス申請も <code>fast-mode-2026-02-01</code> ヘッダーも不要になりました。</li><li>Opus 5 と Opus 4.8 の Fast mode は引き続き preview なので、これらには今もヘッダーが必要です。</li><li>この内容は、Claude Code v2.1.304 で <code>/fast</code> の表記が外れたことと合っています。</li></ul>
+<hr>
+<h2>5. Anthropic 全体</h2>
+<h3>Public Benefit Fund(10/18)</h3>
+<p><strong>[確認済]</strong>(ただし Claude の書き方の一部を訂正) 記事タイトルは「Investing in the public benefit」です。</p>
+<ul><li>株式の5%を拠出し、株主の承認が必要です。ロビー活動や政治献金には使わないとしています。</li><li><strong>訂正:</strong> Claude は「最大2%を追加」と書いていますが、原文は「価値が50%上がるごとに、取締役会の判断で2%を追加」で、上限は書かれていません。</li><li>TechCrunch の報道記事は今回開いていません。</li></ul>
+<h3>独立評価機関に関する更新(10/15)</h3>
+<p><strong>[確認済]</strong> METR の社員6人に、社員とほぼ同じアクセス権を与えています。METR はリスク評価を公開でき、Anthropic は公開を拒否できません(特定の種類の情報の伏せ字を求めることはできます)。SecureBio、Accenture とも評価で連携しています。</p>
+<h3>シンガポール拠点の開設と政府との MOU、米中間選挙への備え(どちらも 10/14)</h3>
+<p><strong>[確認済]</strong> 2つの AI が一致しており、Newsroom でも確認できました。</p>
+<h3>Haiku 5.5(10/7)と Cyber Mission(10/8)(期間外)</h3>
+<p><strong>[確認済]</strong> 日付は一次情報と合っています。</p>
+<hr>
+<h2>6. 実践記事・コミュニティ</h2>
+<h3>claude.dev「Solving code review at Anthropic」</h3>
+<p><strong>[確認済]</strong>(日付を訂正) 公開日は <strong>10/15</strong> で、codex の「10/16」は誤りです。次の内容はすべて原文にあります。</p>
+<ul><li>短い CLAUDE.md と、実行できる検証手順</li><li>フォーマットと lint は hooks に任せる</li><li>バグ探し・差分の簡素化・E2E の確認は skills に任せる</li><li>新しいコンテキストのサブエージェントにレビューさせる</li><li><code>REVIEW.md</code> を置く</li><li>数回レビューした後は、新しい差分だけを見直す</li></ul>
+<h3>「CLAUDE.md は200行未満が目安」</h3>
+<p><strong>[確認済]</strong>(2つの AI が別々の公式ソースから同じことを述べている。ただし一次情報は今回開いていない) 「<code>@import</code> 先も起動時に読み込まれるので、分けるだけではコンテキストは減らない」(codex)と、「Steering Claude Code」ガイドの公開日 6/18(Claude)は、それぞれ片方だけの主張で <strong>[要検証]</strong> です。</p>
+<h3>二次情報の記事(どちらか一方の AI だけが挙げたもの)</h3>
+<p><strong>[要検証]</strong> どれも今回開いていません。</p>
+<ul><li>note: CLAUDE.md を 50,702字から 7,016字に縮小した記事</li><li>Zenn: pytest の出力を短くする実測記事</li><li>Zenn: Windows の cp932 で hooks が動かない問題</li><li>Zenn(カンリー): OpenTelemetry と BigQuery でコストを可視化</li><li>Qiita: <code>grill-with-forms</code></li><li>Reddit: セッション履歴を使って設定を週次で見直す運用</li><li>Zenn: Desktop 更新後の不具合報告の整理</li><li>DEV: 2.1.293〜302 で有効にすべき設定。ただし、ここで勧めている <code>"onFailure": "block"</code> というキー自体は Cowork changelog に出てくるので、実在します。</li><li>note: idle compaction の解説。「<code>idleCompaction: true</code> にしてもサーバー側で制御される」という部分は確認できていません。</li><li>Classmethod の v2.1.299 解説</li></ul>
+<h3>報道: CyberXero 事案(10/12)、OpenCode の API キー盗難(10/19)</h3>
+<p><strong>[要検証]</strong> Claude の出力だけが挙げていて、今回は開いていません。</p>
+<h3>未確認として挙げられていたもの</h3>
+<ul><li><strong>Tech Insider の「plugin の公式化」記事と、Investor Day(10/14)の噂:</strong> <strong>[要検証]</strong> 一次情報は見つかっていません。</li><li><strong>「10/19 にサーバー側の auto mode が登場」:</strong> <strong>[棄却]</strong>(「10/19 に初めて登場した」という時期の主張に限る) サーバー側の auto mode は v2.1.278 の時点ですでに存在していたことを確認済みです。v2.1.302 の changelog も、サーバー側の auto mode を既にあるものとして扱っています。ただし、10/19 に何か別の変更があった可能性までは否定できていません。</li></ul>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>hooks の挙動が一斉に変わった点を棚卸しする</strong></li></ol>
+<ul><li>対象は、v2.1.299 の <code>UserPromptSubmit</code> の実行順の変更、v2.1.300 の <code>updatedInput</code> の検証、Windows で shell 指定のない PreToolUse hook が失敗時にブロックするようになった点(Claude Code v2.1.299 / Cowork 3P)です。</li><li>既存の hook の棚卸しの前提が変わります。未知のキーを返している hook は、今は黙ってキーを落とされます。</li><li><strong>理由:</strong> 気づかないうちに挙動が変わるので、事故が起きやすいからです。</li></ul>
+<ol><li><strong>Write ツールが Shift-JIS などへの書き込みを拒否するようになった点(v2.1.299)</strong></li></ol>
+<ul><li>日本語環境では、既存の Shift-JIS や Windows-1252 のファイルを自動化で上書きしていると、そこで失敗するようになります。</li><li>対象ファイルを grep などで洗い出しておく価値があります。</li></ul>
+<ol><li><strong>Claude Design 単体版の終了(12/14)に向けた移行計画</strong></li></ol>
+<ul><li>今すぐ移行できるのはデザインシステムだけです。プロジェクトの移行方法はまだ発表されていません。</li><li>チャットとコメントは終了後に削除されるので、必要なものは書き出しておく必要があります。</li><li><strong>理由:</strong> 期限が決まっていて、失ったものを取り戻せないからです。</li></ul>
+<hr>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://claude.com/blog/code-review-is-now-generally-available" rel="noopener">Code Review is now generally available</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Developer Platform release notes</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork changelog</a></li><li><a href="https://support.claude.com/en/articles/14604416-get-started-with-claude-design" rel="noopener">Get started with Claude Design</a></li><li><a href="https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude" rel="noopener">Migrate from standalone Claude Design</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic Newsroom</a></li><li><a href="https://www.anthropic.com/news/public-benefit-fund" rel="noopener">Investing in the public benefit</a></li><li><a href="https://www.anthropic.com/news/an-update-on-independent-evaluators" rel="noopener">An update on independent evaluators</a></li><li><a href="https://claude.dev/blog/solving-code-review-at-anthropic/" rel="noopener">Solving code review at Anthropic</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

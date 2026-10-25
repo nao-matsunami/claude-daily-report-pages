@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-26 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-26</div>
+  <div><span class="lab lab-ok">確認済 23</span><span class="lab lab-warn">要検証 10</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-26</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude / Anthropic 直近の動き：審判まとめ（対象 2026-10-19〜10-26）</h1>
+<p><strong>照合の前提</strong></p>
+<ul><li>収集元は codex と Claude の2系統だけです。</li><li>一次情報として次の6ページを WebFetch で直接読みました：Claude Code changelog、platform リリースノート、Duet、Unified Enterprise、Agent Skills の寄贈発表、「fold subagents」記事、Claude Security。</li><li>日付は2系統で1日ずれる項目があります。codex は日本時間、changelog は米国の日付で書かれているためで、矛盾ではありません。以下は changelog の日付に揃えています。</li><li>changelog は全体の約1割（先頭10万字）しか読めていません。読んだ範囲に無かった項目は「一次確認できず」と書き、「存在しない」とは書いていません。</li></ul>
+<hr>
+<h2>A. Claude Code（最重視）</h2>
+<h3>A-1. 2.1.304：Pro/Max で、休眠中の会話を再開するときに利用枠の警告</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋changelog 原文）</p>
+<ul><li>休んでいた会話を再開すると5時間枠をかなり消費する場合に、警告が出るようになりました。「そのまま再開」か「新しい会話から前の会話を参照」を選べます。</li><li>警告が出る数値のしきい値は、changelog に書かれていません。</li><li>Zenn の個人検証（約42万トークンの会話でも警告が出なかった）は、codex だけが挙げた二次情報で <strong>[要検証]</strong> です。</li><li>出典: https://code.claude.com/docs/en/changelog</li></ul>
+<h3>A-2. 2.1.304：<code>CLAUDE_CODE_AUTO_COMPACT_WINDOW=200k</code> が実際は100Kとして扱われていた不具合の修正</h3>
+<p><strong>[確認済]</strong>（Claude 単独の主張だが changelog 原文と一致）</p>
+<ul><li><code>k</code>/<code>M</code> の接尾辞が使えるようになり、範囲外や無視される値には警告が出ます。</li><li>この環境変数を使っている環境は、これまで意図しない窓サイズで動いていた可能性があります。</li></ul>
+<h3>A-3. 2.1.304：コンパクション後にスキル一覧を再送／<code>/reload-skills</code> は差分だけ送る</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>changelog 原文と一致しました。</li></ul>
+<h3>A-4. 2.1.304：スキル hooks の上限（ソースごと、1セッションあたり 1,024 フック／matcher 16,384 文字）</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>Claude 単独の主張ですが、changelog 原文と一致しました。</li></ul>
+<h3>A-5. 2.1.304/305：無人の Cowork 予約クラウドセッションで、サブエージェントごとに5分待つ問題の修正</h3>
+<p><strong>[確認済]</strong>（codex 単独の主張だが原文と一致）</p>
+<ul><li>WebFetch の URL 承認を誰も出せないときに、サブエージェントごとに5分待っていました。2.1.304 で修正され、2.1.305 で残りのケースも修正されています。</li><li>2.1.305 では、Workflow を再開したときに完了済みの <code>pipeline</code>／<code>parallel</code> エージェントを再実行してしまう問題も直りました。</li></ul>
+<h3>A-6. 2.1.305：<code>/usage</code> の警告形式の変更、<code>/effort</code>・<code>/autocompact</code> の適用不具合、その他の修正</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li><code>/usage</code> の警告は「原因を示す1行の修正案」の形になり、<code>f</code> キーで修正を適用できます。</li><li><code>/effort</code> と <code>/autocompact</code> は、モデル名が <code>modelOverrides</code> と大文字小文字や <code>[1m]</code> タグだけ違う場合に効いていませんでした。</li><li>クラウドセッションやチームメイトで、圧縮時に古いメッセージを要約から外したことが Claude に伝わっていませんでした。</li><li>PDF・画像の多いターンで出ていた「Autocompact is thrashing」の一部と、フォールバック後に違うモデル名を答える問題も直りました。</li></ul>
+<h3>A-7. 2.1.306/307：OpenTelemetry イベント <code>claude_code.safety_event</code> の追加、<code>/claude-api api-version</code> の追加</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li><code>safety_event</code> は、権限ルール・auto mode・安全チェック・hook・sandbox がツール呼び出しを止めた、確認を求めた、差し戻した、のたびに記録されます。</li><li>2.1.306 では、MCP ツールが多いと API エラーが「prompt is too long」にすり替わる問題が直りました。</li><li>2.1.307 では、同時に起動した fork サブエージェントに「どれが自分の担当か」が伝わるようになりました。</li></ul>
+<h3>A-8. 2.1.309：巨大なネスト CLAUDE.md でコンパクションが繰り返される問題の修正</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li>サイズ上限を超えたネスト CLAUDE.md は、先頭部分だけ読み込まれるようになりました。</li></ul>
+<h3>A-9. 2.1.309：<code>--add-dir</code> で追加したフォルダの同名スキルを <code>&lt;folder&gt;:&lt;name&gt;</code> で呼べるように</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li>codex が併記した「<code>/verify</code>・<code>/code-review</code> がネストパッケージのスキルを見つけない問題の修正」は、私が読んだ範囲には見当たりませんでした。<strong>一次確認できず</strong>です。</li></ul>
+<h3>A-10. 2.1.309/310：Windows / PowerShell の hooks がブロックしない・fail-open する問題の修正</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li>2.1.309：PowerShell の hook が exit code 2 でもブロックしない問題と、<code>"shell": "powershell"</code> の hook が Git for Windows のない環境で fail-open する問題を修正。</li><li>2.1.310：Git Bash がなく、hook のコマンドが引用符付き文字列だけのときに、ツール呼び出しが通ってしまう問題を修正。</li></ul>
+<h3>A-11. 2.1.309：<code>claude ultrareview</code> にワークスペースの信頼が必要に、<code>/claude-api</code> が <code>multiagent_20261001</code> ベースに</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>スクリプトからは <code>--trust-workspace</code> か <code>CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1</code> で回避できます。</li><li>同じ版で、分割ペインのチームメイトがリーダーの <code>--tools</code> やツール拒否ルールを引き継がない問題と、VS Code での問題待ち時間（0.75秒に短縮）も原文どおりでした。</li></ul>
+<h3>A-12. 2.1.310：圧縮・メモリ・Monitor ツールの改善</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>base64 や SVG を含む会話で、「Prompt is too long」の後の圧縮が残しすぎる問題を修正（2系統が一致＋原文）。</li><li><code>-p</code>／Agent SDK で巨大なトランスクリプトを圧縮するときのメモリ使用を改善（2系統が一致＋原文）。</li><li>Bedrock / Vertex / Foundry で Monitor ツールが使えるように。Claude は「二次情報のみ・未確認」としていましたが、<strong>changelog 原文で確認できました</strong>。</li></ul>
+<h3>A-13. Idle compaction と fork サブエージェントの既定 ON（vibecoding.cz W42、二次）</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>既存の knowledge と整合しています。</li></ul>
+<h3>A-14. Mods の実践解説（Qiita、10/24、二次）</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>Mods の権限面は検証済みです。</li><li>一方、記事にある <code>claude plugin validate</code>／<code>claude plugin test</code> の挙動や「サンドボックスなしで動く」という記述は、今回は一次確認できていません。</li></ul>
+<h3>A-15. CLAUDE.md・skills・hooks の現行仕様（codex の補足）</h3>
+<p><strong>[確認済]</strong>（ただし今週の新規事項ではありません）</p>
+<ul><li><code>disable-model-invocation</code> と <code>context: fork</code> は検証済みです。</li><li>「CLAUDE.md は200行未満」「<code>.claude/rules/</code> に分ける」は今回再取得していません。これは<strong>一次確認できず</strong>です。</li><li>creeta の「CLAUDE.md は約80%しか守られない」は根拠不明で <strong>[要検証]</strong> です。</li></ul>
+<hr>
+<h2>B. 運用知見（Anthropic 公式記事）</h2>
+<h3>B-1. 「When to fold subagents into your main agent loop」（10/22）</h3>
+<p><strong>[確認済]</strong>（Claude 単独の主張だが一次原文と一致）</p>
+<ul><li>原文で確認できた主張：</li><li>単一ループにしたら約2倍速くなった（顧客1社の事例）</li><li>Claude Code のシステムプロンプトを80%以上削った</li><li>ツール定義が30〜50個を超えると選択精度が落ちやすい</li><li>評価は golden example 10個から始めてよい</li><li>移行キット <code>anthropics/single-agent-loop-kit</code> を公開</li><li>記事が挙げたスキル：<code>/claude-api build-eval</code>／<code>prompt-audit</code>／<code>hillclimb</code>／<code>cost-optimize</code>、<code>/skill-creator</code>、<code>/skill-doctor</code></li><li>「回帰が2回中1回しか出なかった」というエピソードは、今回の取得では確認できず、<strong>一次確認できず</strong>です。</li><li>出典: https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop</li></ul>
+<hr>
+<h2>C. Cowork / Claude アプリ</h2>
+<h3>C-1. Enterprise で Chat と Cowork を統合し一般提供（10/23）</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋一次原文）</p>
+<ul><li>管理者向けに次の設定が加わりました：</li><li>Sonnet/Haiku に限定する「Efficient mode」</li><li>ロール別のモデル利用権限</li><li>組織・グループ・メンバー単位の支出上限</li><li>グループで共有する月次予算</li><li>クラウドセッションは隔離 VM で動き、Enterprise では外向き通信が既定でオフです。</li><li>Claude Code のゼロデータ保持、HIPAA 構成、顧客管理の暗号鍵を使う組織は、今の構成のままです。</li><li>出典: https://claude.com/resources/articles/unified-claude-enterprise</li></ul>
+<h3>C-2. Claude Duet のリサーチプレビュー（10/21）</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋一次原文）</p>
+<ul><li>米国の Pro/Max 向けに、ウェイトリスト制で始まりました。iOS / Android の単体アプリと claude.ai で使えます。</li><li>利用枠は通常の Claude と共有で、バックグラウンドのチェックも枠に数えられます。</li><li>送信・支払い・署名・削除の前には承認を求めます。</li><li>安全性についての記事（10/23）は今回取得しておらず、<strong>一次確認できず</strong>です。</li><li>出典: https://claude.com/resources/articles/claude-duet</li></ul>
+<h3>C-3. Claude Security：リポジトリの継続スキャンと修正の追跡（10/21、Enterprise 向け公開ベータ）</h3>
+<p><strong>[確認済]</strong>（Claude 単独の主張だが一次原文と一致）</p>
+<ul><li>原文によると、API・webhook・MCP コネクタ（Claude.ai / Claude Code 向け）が追加され、2か月間は月 $25,000 分の無料クレジットが付きます。</li><li>出典: https://claude.com/resources/articles/claude-security-now-scans-continuously-and-tracks-fixes</li></ul>
+<h3>C-4. Pro/Max の Cowork が10/6からクラウド実行既定（期間外）</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>Claude が support ページを挙げていますが、今回は取得しておらず<strong>一次確認できず</strong>です。</li></ul>
+<hr>
+<h2>D. Claude Design</h2>
+<h3>D-1. 単体版の終了（2026-12-14）と移行手順</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>終了日は2系統で一致し、既存の knowledge とも合っています。</li><li>「会話・コメントは移行できない」という codex の記述は、今回は support ページを取得しておらず<strong>一次確認できず</strong>です。</li></ul>
+<h3>D-2. 今週の新しい公式発表</h3>
+<ul><li>2系統とも「見つからなかった」と答えています。これは検索で拾えなかったという意味で、発表が無いことの確認ではありません。</li></ul>
+<h3>D-3. Enterprise で既定 ON になったのは10/15、無料プランでの可否</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>どちらも Claude 単独の主張で、一次確認できていません。</li></ul>
+<hr>
+<h2>E. API / プラットフォーム</h2>
+<h3>E-1. API version <code>2026-10-21</code>、SDK／CLI のメジャー更新、MIT から Apache 2.0 へ（10/21）</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋リリースノート原文）</p>
+<ul><li>新しい SDK は Python 2.0.0 / TS 1.0.0 / Go 2.0.0 / <code>ant</code> CLI 2.0.0 などで、<code>2026-10-21</code> を既定で送ります。</li><li>同じ日に、user profiles に <code>enforcement_status</code>／<code>enforcement_actions</code> の項目が加わりました。</li></ul>
+<h3>E-2. Anthropic が運用する Claude API を Google Cloud 経由で提供（10/22）</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li>Google Cloud IAM で認証し、Marketplace で課金します。Opus 5.5 の Fast mode も使えます。</li></ul>
+<h3>E-3. 10/20 の Enterprise・組織向け更新</h3>
+<p><strong>[確認済]</strong>（2系統が一致＋原文）</p>
+<ul><li>Inference hooks が正式提供になりました。</li><li>user profiles を開始しました。</li><li>Organization webhooks がベータ（<code>webhooks-2026-10-07</code>）で加わりました。</li><li>組織単位で web fetch を停止したり、ドメインを制限したりできるようになりました。Managed Agents の web_fetch / web_search もこの組織設定に従います。</li><li>Claude Tag API のベータ（Enterprise 向け）は Claude 単独の主張ですが、原文で確認できました。</li></ul>
+<hr>
+<h2>F. Anthropic 全体・報道</h2>
+<h3>F-1. Agent Skills の標準を Agentic AI Foundation に寄贈（10/22）</h3>
+<p><strong>[確認済]</strong>（Claude 単独の主張だが一次原文と一致）</p>
+<ul><li>リードメンテナは David Soria Parra と Mahesh Murag です。</li><li>ロードマップ案は、バージョン付きリリース・正式な提案プロセス・セキュリティガイドです。</li></ul>
+<h3>F-2. Christopher Stubbs の LTBT 参加／ライフサイエンス分野のゲスト研究者公募</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>Claude 単独の主張で、今回は一次確認していません。</li></ul>
+<h3>F-3. Google TPU を最大100万基使う契約</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>二次情報（DEV）だけです。Claude も公式の news 一覧で確認できなかったと書いています。</li></ul>
+<h3>F-4. LiteLLM の汚染リリース（Claude Code 経由のトークン漏洩とされる）／Node.js 脆弱性のまとめ</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>どちらも二次報道だけで、漏洩経路は確認できていません。</li></ul>
+<h3>F-5. Reddit の「圧縮・スキル一覧の重複」報告、Qiita の「ログで測る」記事</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>codex 単独の主張です。個人の観測で、再現できるかは確認されていません。</li><li>A-3（コンパクション後のスキル一覧再送）と関係があるかもしれませんが、因果は確認できません。</li></ul>
+<h3>F-6. Code Review の一般提供（10/15、期間外）</h3>
+<p><strong>[要検証]</strong></p>
+<ul><li>Claude 単独の主張で、今回は一次確認していません。</li></ul>
+<p><strong>[棄却]：該当なし。</strong> 2系統のあいだで、はっきり矛盾する主張はありませんでした。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>2.1.304 の <code>CLAUDE_CODE_AUTO_COMPACT_WINDOW</code> 修正と、2.1.309 のネスト CLAUDE.md 修正（A-2・A-8）</strong></li></ol>
+<ul><li>環境変数に <code>200k</code> のような値を入れていた環境は、これまで黙って100Kとして動いていました。更新すると圧縮のタイミングが変わります。</li><li>cron や headless の設定で、この変数とサブディレクトリの CLAUDE.md のサイズを棚卸しする価値があります。</li><li><code>subagent-model-env-autocompactwindow-spec-check</code> の前提にも関わります。</li></ul>
+<ol><li><strong><code>claude_code.safety_event</code> OpenTelemetry イベント（A-7）</strong></li></ol>
+<ul><li>無人実行で、何がツール呼び出しを止めたのか（auto mode・hook・sandbox・権限ルール）を後から追えるようになります。</li><li>ListAgents の強制違反のように原因が未解明の件の切り分けに使えるか、試す価値があります。</li></ul>
+<ol><li><strong>「fold subagents」記事と <code>single-agent-loop-kit</code>（B-1）</strong></li></ol>
+<ul><li>公式が「golden example 10個から始めてよい」としているので、小さな eval で効果を測れます。</li><li>あわせて A-5（無人の Cowork で WebFetch 承認を5分待つ問題の修正）も、WebFetch まわりの既知の問題を見直すきっかけになります。</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

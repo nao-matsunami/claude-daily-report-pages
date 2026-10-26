@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-27 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-27</div>
+  <div><span class="lab lab-ok">確認済 25</span><span class="lab lab-warn">要検証 3</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-27</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h2>判定サマリー（収集期間 2026-10-20〜10-27）</h2>
+<p>公式ページで直接確認した一次情報は次のとおりです。</p>
+<ul><li>Claude Code changelog</li><li>Desktop/Cowork changelog</li><li>Platform release notes</li><li>Anthropic Newsroom</li><li>Duet・Unified Enterprise・Fold subagents・Nonprofits の各記事</li><li>Claude Design 移行ヘルプ</li><li>AAIF 寄贈記事</li><li>arXiv</li></ul>
+<p>次のものは一次確認できていません。Reddit、Qiita、note の本文、claudefa.st、buildthisnow、Help Center の Duet 項、scheduled-tasks ドキュメント、S-1 の本文、移行ガイドの本文（取得結果が大きすぎて読めませんでした）。</p>
+<hr>
+<h2>1. Claude Code（最重視）</h2>
+<h3>v2.1.306 MCP ツールが多いセッションで「prompt is too long」への置換と不要な compaction を修正</h3>
+<p><strong>[確認済]</strong>（ChatGPT(codex) のみ言及、changelog 原文と一致）<br>MCP ツールを多数持つセッションで、本来の API エラーが「prompt is too long」に置き換わり、不要な compaction が走る問題の修正です。10/21 リリース。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.307 <code>claude_code.safety_event</code>（OpenTelemetry）の追加</h3>
+<p><strong>[確認済]</strong>（両AIが一致、原文と一致）<br>ツール呼び出しを止めた・確認を求めた・差し戻したものが、権限ルール / auto mode / 安全チェック / フック / サンドボックスのどれだったかを、イベントとして記録できます。<br>出典: 同上</p>
+<h3>v2.1.307 fork サブエージェントの取り違え軽減・PDF/画像の autocompact thrashing・クラウドの <code>/autocompact</code> 巻き戻り・Recently denied 修正</h3>
+<p><strong>[確認済]</strong>（両AIが一致、原文と一致）<br>4つとも原文どおりです。</p>
+<ul><li>同時に起動した fork が、それぞれ自分の起動分を知らされるようになった</li><li>大量の PDF ページや画像を読むターンで起きる「Autocompact is thrashing」の一部を修正</li><li>クラウドセッション再起動後に <code>/autocompact</code> が既定値へ戻る問題を修正</li><li><code>/permissions</code> &gt; Recently denied に拒否されたコマンドが表示されない問題を修正</li></ul>
+<p>出典: 同上</p>
+<h3>v2.1.307 <code>/claude-api api-version</code> の追加</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>changelog 原文に「Added <code>/claude-api api-version</code> to move Claude API code to API version <code>2026-10-21</code>」とあります。Platform のリリースノートには記載がなく、出典は Claude Code の changelog です。</p>
+<h3>v2.1.309 巨大なネスト CLAUDE.md は先頭だけ読み込む / <code>--add-dir</code> 配下の skill を <code>&lt;folder&gt;:&lt;name&gt;</code> で選択可能に</h3>
+<p><strong>[確認済]</strong>（ChatGPT(codex) のみ言及、原文と一致）<br>サイズ上限を超えたネスト CLAUDE.md は先頭部分だけが読み込まれる仕様になりました。補足すると、ChatGPT(codex) の「ネストしたパッケージ固有の skill が見つからない問題」は、原文では <code>/verify</code>・<code>/code-review</code> がシェル経由で変更されたファイルについてネストしたパッケージの skill を見つけられない、という限定的な修正です。<br>出典: 同上</p>
+<h3>v2.1.309 <code>sed -i</code> が <code>/rewind</code> の復元対象外に / <code>claude ultrareview</code> にワークスペーストラストが必要に</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及、原文と一致）<br>スクリプトから使う場合は <code>--trust-workspace</code> を渡すか、<code>CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1</code> で回避します。</p>
+<h3>v2.1.309 サンドボックス・権限判定の抜け道修正と、PowerShell フックの exit 2</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>62件のバグ修正のうち約12件がサンドボックスまたは権限判定に関するものです。例は次のとおりです。</p>
+<ul><li>macOS の <code>denyWrite</code> を symlink 経由で回避できた</li><li>複合コマンドで <code>cd</code> の後の <code>git</code> に確認が出なかった</li></ul>
+<p>PowerShell フックが exit 2 で止められない問題もここで修正されています。</p>
+<h3>分割ペインのチームメイトがリーダーの tool deny / <code>--tools</code> を継承しない問題の修正</h3>
+<p><strong>[確認済]</strong>（内容は確認済、版数のみ訂正）<br>ChatGPT(codex) は v2.1.310 の修正として挙げていましたが、原文では <strong>v2.1.309</strong> に載っています。</p>
+<h3>v2.1.310 Monitor の Bedrock / Vertex / Foundry 対応・<code>-p</code> / Agent SDK の compaction メモリ改善・base64/SVG 再超過の修正・Windows で Git Bash がない環境のフック素通し修正・Enterprise カスタムロール</h3>
+<p><strong>[確認済]</strong>（両AIが一致、原文と一致）<br>ChatGPT(codex) の補足「公式ドキュメントでは、Monitor は定期プロンプトの再実行よりトークン効率がよい場合がある」は、scheduled-tasks ドキュメントを読んでいないため<strong>一次確認できていません</strong>。</p>
+<h3>v2.1.311 CLAUDE.md の長いリスト項目によるフリーズ・compaction 直後の古い CLAUDE.md/MEMORY.md・空要約時の再要求・200K 超で「1M 課金が必要」で止まる問題・SubagentStop の重複発火・後から接続した MCP をサブエージェントが使えない問題・ultrathink=xhigh・起動高速化・<code>/usage</code> のキャッシュミス表示</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及、全項目が原文と一致、10/26）<br>ultrathink は対話ターミナルで、Anthropic API 経由の Opus 5.5 / Sonnet 5.5 / Haiku 5.5 / Fable 5.1 に限り xhigh で動きます。</p>
+<h3>v2.1.304 / 2.1.305 の各項目</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及、原文と一致）</p>
+<ul><li>v2.1.304:</li><li><code>/auto-mode-setup</code> の追加</li><li>skill フック数の上限（1ソースあたり 1,024件・マッチャー 16,384文字）</li><li><code>CLAUDE_CODE_AUTO_COMPACT_WINDOW=200k</code> が 100K として扱われていた問題の修正</li><li><code>/loop</code> の 1h ちょうどの再開がキャッシュ切れ直後に発火していた問題の修正</li><li>アイドル会話を再開すると5時間枠を大きく使う場合の警告</li><li>多数のサブエージェントを同時に動かすときのスループット改善</li><li>compaction 後のスキル一覧再送</li><li>v2.1.305: <code>/usage</code> の警告が1行の修正案になり、<code>f</code> で適用できる</li></ul>
+<h3>MCP Tasks（CLI v2.1.304 以上で利用可能とする note 記事）</h3>
+<p><strong>[要検証]</strong>（Claude のみ言及、二次情報のみ）<br>changelog の 2.1.304〜2.1.311 に MCP Tasks の記載は<strong>見当たりませんでした</strong>。ただし、これは「この範囲では一次確認できなかった」という意味で、機能が存在しないことを確認したわけではありません。<br>出典: https://note.com/unikoukokun/n/ne4a4a2bbdaaf</p>
+<h2>2. Cowork / Desktop</h2>
+<h3>Enterprise 向けに Chat と Cowork を統合して GA、Efficient mode も追加（10/23）</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及、記事原文と一致）</p>
+<ul><li>Pro / Max は9月に統合済み</li><li>Efficient mode は Sonnet / Haiku に限定する管理者設定</li><li>ロール別のモデル権限、組織・グループ・メンバー単位の支出上限、プール型のグループ予算</li><li>クラウドセッションはセッションごとに隔離された VM で動き、Enterprise では外向き通信が既定オフ</li><li>ZDR / HIPAA / CMK の組織は現行構成のまま据え置き</li></ul>
+<p>出典: https://claude.com/resources/articles/unified-claude-enterprise</p>
+<h3>Cowork クラウドの WebFetch が 4xx / robots.txt を通常の結果として扱うように（v2.1.307）</h3>
+<p><strong>[確認済]</strong>（ChatGPT(codex) のみ言及、原文と一致）</p>
+<h3>Desktop v3.1623.0（10/20）：Hand off to Claude Code・SSH の破壊的変更・サブエージェントの常時バックグラウンド化</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及、原文と一致）</p>
+<ul><li>「Hand off to Claude Code」は Cowork 節にあり、デザイン名の下のメニューから開きます。</li><li>「サブエージェントが常にバックグラウンドで動く」は 3P 節の <strong>Code タブセッション</strong>の変更です。CLI 側（v2.1.302）の変更とは別物です。</li><li>SSH 関連では <code>sshHostAllowlist</code> が踏み台ホストにも適用されるなど、(breaking) 指定の変更が多数あります。</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>Desktop v3.6556.1（10/22）：予約タスクでプラグイン/スキルが見つからない問題の修正・<code>/schedule</code> のメニュー削除・Usage でのキャッシュトークン表示</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及）<br>次の2点を補足します。</p>
+<ul><li>「Settings &gt; Usage にキャッシュ済みトークン数を表示」は <strong>3P 節の項目</strong>です。Claude の出力ではこの限定が抜けていました。</li><li>同じ版の「要承認 MCP ツールは予約タスクで飛ばす」変更は検証済みです。</li></ul>
+<h2>3. Claude Design</h2>
+<h3>単体版 claude.ai/design が 2026-12-14 に終了し、Artifacts へ移行</h3>
+<p><strong>[確認済]</strong>（両AIが一致）</p>
+<ul><li>終了後は読み取り専用で、新規作成はできなくなります。</li><li>チャットとコメントは移行されず、終了後しばらくして削除されます。</li><li>ZDR 組織は移行できないため、事前のダウンロードが必要です。</li><li>公開リンクは終了時に無効になります。</li><li>掲載日はページ上「Updated this week」としか表示されず、正確な日付は一次確認できませんでした。</li></ul>
+<p>出典: https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</p>
+<h2>4. Anthropic 全体・アプリ</h2>
+<h3>Claude Duet（リサーチプレビュー、10/21）</h3>
+<p><strong>[確認済]</strong>（両AIが一致、記事原文と一致）</p>
+<ul><li>米国の Pro / Max ユーザーからウェイトリスト制で提供</li><li>独立したアプリで、iOS / Android / claude.ai から使える</li><li>VM 上で動くため、端末を閉じても作業が続く</li><li>送信・支払い・署名・削除の前に承認を求める</li><li>10/23 に安全性の解説が追加された</li></ul>
+<p>ChatGPT(codex) は「Cowork 関連の動き」としていましたが、記事本文に Cowork との関係は書かれていません。日本から使えないという話は note の二次情報で<strong>要検証</strong>です。ただし公式の「米国から開始」とは矛盾しません。<br>出典: https://claude.com/resources/articles/claude-duet</p>
+<h3>Agent Skills を Agentic AI Foundation（Linux Foundation 傘下）に寄贈（10/22）</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>寄贈対象は名称・ロゴ・GitHub org・agentskills.io です。数字は記事原文と一致しました（70以上のプラットフォーム、公開スキル約100万、インストール約2.8億）。仕様の具体的な変更は書かれていません。<br>出典: https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation</p>
+<h3>SEC に S-1 を提出（10/26）</h3>
+<p><strong>[確認済]</strong>（タイトルのみ、Claude のみ言及）<br>Newsroom の一覧に「Anthropic files S-1 with the SEC for proposed initial public offering」があることを確認しました。本文は未確認です。</p>
+<h3>Claude for Nonprofits の拡充（10/26）</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及）<br>非営利団体向けプラグインは Team / Enterprise の非営利団体に「no additional cost」で自動インストールされます。それ以外のプランでは無償になりません。</p>
+<h2>5. API / Platform</h2>
+<h3>API version <code>2026-10-21</code>、SDK のメジャー更新、ライセンスの Apache 2.0 化（10/21）</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>SDK は Python 2.0.0、TS 1.0.0、C# 13.0.0、Go 2.0.0、Java 3.0.0、PHP 1.0.0、Ruby 2.0.0、<code>ant</code> CLI 2.0.0 です。SDK には API バージョンとは別の破壊的変更もあります。sampling パラメータを送ると 400 になる件は検証済みです。</p>
+<h3>Claude Models on Google Cloud（Anthropic managed）の提供開始と Opus 5.5 Fast mode（10/22）</h3>
+<p><strong>[確認済]</strong>（両AIが一致、原文と一致）</p>
+<h3>10/20 の各項目：Inference hooks の GA（Enterprise）・User profiles・組織 webhooks（beta）・Claude Tag API（beta）・管理者による web fetch 無効化</h3>
+<p><strong>[確認済]</strong>（Claude のみ言及、原文と一致）</p>
+<h2>6. 実践知・二次情報</h2>
+<h3>公式記事「When to fold subagents into your main agent loop」（10/22、Diane Sarkis）</h3>
+<p><strong>[確認済]</strong>（両AIが一致）</p>
+<ul><li>上位モデル向けシステムプロンプトを80%以上削減</li><li>ツール定義が30〜50個を超えると選択精度が落ちやすい</li><li>ある顧客では単一ループで約2倍速</li><li>ゴールデン例は10件から始めればよい</li><li>サブエージェントは1つずつ統合する</li></ul>
+<p>いずれも原文と一致しました。</p>
+<h3>Steering Claude Code（2026-06-18 公開、今週の記事ではない）</h3>
+<p><strong>[要検証]</strong>（Claude のみ言及、未取得）<br>「CLAUDE.md は200行以内」などの記述は、今回本文を読んでいないため一次確認できていません。</p>
+<h3>MemoryTax 論文（arXiv:2610.29823、10/21）</h3>
+<p><strong>[確認済]</strong>（ChatGPT(codex) のみ言及、arXiv で確認）<br>単著（Zedong Peng）で、比較対象に Claude Code を含みます。会話データは1件（LoCoMo）、各条件1回の小規模研究という点は原文と一致しました。一般化はできません。</p>
+<h3>Reddit 2件（CLAUDE.md の陳腐化、短い CLAUDE.md + hooks）、Qiita 3件（SendMessage での継続、Haiku 確信度、v2.1.303〜310 まとめ）、note（Recently denied の誤報告）、claudefa.st / buildthisnow（Opus 5.5 の effort 既定 medium）</h3>
+<p><strong>[要検証]</strong>（いずれも片方の AI だけが挙げた二次情報で、本文は未確認）</p>
+<ul><li>Haiku 確信度記事の数字（80〜84%、66.3%）は個人の検証で、掲載日と測定日の前後関係にも不整合が指摘されています。</li><li>「effort の既定は medium で、以前の high は引き継がれない」は一次確認できていません。</li></ul>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>v2.1.307 の <code>claude_code.safety_event</code>（OTel）</strong></li></ol>
+<p>cron で動かしている <code>claude -p</code> や auto mode の運用で、どの層（ルール / auto mode / フック / サンドボックス）が止めたのかをログから集計できるようになりました。auto mode が過剰にブロックしていないか、フックが fail-open していないかを定量的に見られる初めての手段です。既存の知見（auto-mode-default-impact-on-cron-scripts、hooks-timeout-fail-open-primary-check）の実測による裏付けに使えます。</p>
+<ol><li><strong>v2.1.309 / v2.1.311 の CLAUDE.md 関連変更と SubagentStop 修正</strong></li></ol>
+<ul><li>サイズ上限を超えたネスト CLAUDE.md は先頭しか読まれない仕様になりました。</li><li>長いリスト項目があるとフリーズする問題が修正されました。</li><li>SubagentStop フックが約1分に2回発火していた問題が、終了時1回に修正されました。</li></ul>
+<p>CLAUDE.md の後半に置いた規則が無視されていないか確認する価値があります。SubagentStop を使うフックは、これまで重複発火を前提にしていなかったかも確認したほうがよいです。棚卸しは小さく済み、効果は直接出ます。</p>
+<ol><li><strong>v2.1.307 の <code>/claude-api api-version</code> と SDK メジャー更新（API 2026-10-21）</strong></li></ol>
+<p>400 になる件は検証済みです。ただし SDK 側には API バージョンとは独立した破壊的変更とライセンス変更があり、こちらはまだ棚卸ししていません。SDK を固定せずに使っているスクリプトがあれば、次に更新したときに壊れる可能性があります。<code>/claude-api api-version</code> が何を書き換えるかを試す価値があります。</p>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Claude Desktop/Cowork changelog</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform release notes</a></li><li><a href="https://platform.claude.com/docs/en/api/migration-2026-10-21" rel="noopener">Migrating to API version 2026-10-21</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic Newsroom</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation" rel="noopener">Donating Agent Skills to AAIF</a></li><li><a href="https://claude.com/resources/articles/claude-duet" rel="noopener">Claude Duet</a></li><li><a href="https://claude.com/resources/articles/unified-claude-enterprise" rel="noopener">Unified Claude Enterprise</a></li><li><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop" rel="noopener">Fold subagents into main loop</a></li><li><a href="https://claude.com/resources/articles/expanding-claude-for-nonprofits" rel="noopener">Expanding Claude for Nonprofits</a></li><li><a href="https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude" rel="noopener">Move from standalone Claude Design</a></li><li><a href="https://arxiv.org/abs/2610.29823" rel="noopener">arXiv:2610.29823 MemoryTax</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

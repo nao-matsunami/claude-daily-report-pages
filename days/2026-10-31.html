@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-10-31 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-10-31</div>
+  <div><span class="lab lab-ok">確認済 29</span><span class="lab lab-warn">要検証 8</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-10">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-10-31</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<p>ここまでで Claude Code changelog、Cowork changelog、Anthropic News、Claude Blog、サポートのリリースノート、権限・環境変数のドキュメント、Cursor の告知を一次確認しました。以下が判定結果です。</p>
+<h1>審判まとめ:Claude/Anthropic の直近の動き(2026-10-24〜31)</h1>
+<p><strong>前提</strong></p>
+<ul><li>入力は codex と Claude の2系統だけです。片方だけが挙げた項目は、一次情報で裏が取れた場合だけ [確認済] にしています。</li><li>「一次確認できず」は「存在しない」という意味ではありません。どちらなのかを項目ごとに書き分けています。</li></ul>
+<hr>
+<h2>A. Claude Code(最重要)</h2>
+<h3>A-1. v2.1.314(10/30)<code>permissions.blockWritesOutsideWorkingDirectories</code> 追加</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、changelog 原文でも確認しました。どの権限モードでも、Write / Edit / NotebookEdit で作業ディレクトリ外のパスへの書き込みを拒否します。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-2. v2.1.314 アイドル時圧縮を VS Code / Desktop の Code タブにも拡大</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文でも確認しました。20万トークン以上の会話がアイドル状態になると要約され、キャッシュが切れていれば次のメッセージでその要約が使われます。</p>
+<ul><li>Claude は「テレメトリ無効や Bedrock/Vertex/Foundry/ゲートウェイでも動く」とも書いていますが、今回取得した原文の範囲では見つかっていません。誤りと確定したわけではなく、<strong>一次確認できていない</strong>という状態です。</li><li><strong>知見との食い違いの可能性:</strong> env-vars ドキュメントでは <code>CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS</code> が「v2.1.290 以降で必要」となっています。知見のタイトルは「2.1.299」です。導入版数の扱いを見直す価値があります。どちらが正しいかは未確定です。</li></ul>
+<h3>A-3. v2.1.314 hooks 関連</h3>
+<ul><li><strong>PreCompact の出力を各フック1万文字で切り詰め</strong> <strong>[確認済]</strong>(両AIが一致し、原文でも確認)</li><li>**<code>Monitor(tail *)</code> のように Bash と同じ形式の <code>if</code> 条件で Monitor ツールにマッチ<strong> </strong>[確認済]**(Claude だけが挙げましたが、原文で確認)</li><li><strong>Cowork クラウドセッションの auto モードでは、hook による MCP 呼び出しの allow が「回答なし」扱いになる</strong> <strong>[確認済]</strong>(Claude だけが挙げましたが、原文で確認)。最終判断は分類器か権限プロンプトになります。</li></ul>
+<h3>A-4. v2.1.314 その他</h3>
+<p><strong>[確認済]</strong> いずれも原文で確認しました。</p>
+<ul><li><code>claude -p</code> が起動に失敗したとき、出力なし・終了コード0で終わっていた問題を修正(エラーを表示して終了コード1になる)</li><li>サブエージェントを多用する headless / SDK のターンでメモリ使用量を改善</li><li>MCP ツールが1万以上あるセッションで <code>/context</code> を高速化</li><li><code>/design-sync</code> のアップロード確認画面に、対象のフォルダ・プロジェクト・ファイルを表示</li></ul>
+<p>codex の「破損した会話ログからの <code>--resume</code> を改善」は、<strong>一次確認できていません</strong>(取得範囲外)。</p>
+<h3>A-5. v2.1.313 は欠番</h3>
+<p><strong>[確認済]</strong> changelog は 2.1.312 の次が 2.1.314 で、2.1.313 の項目はありません。A-6 で扱う改ざん版の版数と一致します。</p>
+<h3>A-6. 【セキュリティ】Cursor のマーケットプレイスで改ざん版 Claude Code 拡張 v2.1.313 を配布</h3>
+<p><strong>[確認済](一次情報は Cursor の公式告知。Anthropic 側の一次声明は未確認)</strong> Claude だけが挙げた項目です。</p>
+<ul><li>10/29 の 2:27〜13:35 PT に、Anthropic がビルドしていない v2.1.313 が配布されていました。影響は最大約5,000ユーザーです。</li><li>中身は SSH 鍵 <code>svc-telemetry</code> を追加し、134.209.82.225:8099 へ通信するバックドアです。アンインストールしても常駐スクリプトが残る可能性があります。Cursor は macOS / Windows 向けの駆除スクリプトを提供しています。</li><li><strong>Open VSX にも出回ったかは報道で食い違っており、未決着です。</strong></li><li>「Anthropic が自社システムの侵害を否定」は The Register 経由の情報で、Anthropic 自身の一次ソースでは確認できていません。</li></ul>
+<p>出典: <a href="https://cursor.com/blog/claude-code-extension-security-notice" rel="noopener">Cursor 公式告知</a> / <a href="https://www.ox.security/blog/malicious-claude-code-extension-cursor-ssh-backdoor/" rel="noopener">OX Security</a> / <a href="https://www.stepsecurity.io/blog/claude-code-extension-trojanized" rel="noopener">StepSecurity</a> / <a href="https://www.theregister.com/cyber-crime/2026/10/30/anthropic-that-claude-code-extension-compromise-couldnt-be-us/5306682" rel="noopener">The Register</a> / <a href="https://thehackernews.com/2026/10/official-claude-code-vs-code-extension.html" rel="noopener">The Hacker News</a></p>
+<h3>A-7. v2.1.312(10/27)</h3>
+<ul><li><strong>大きな CLAUDE.md・rules・<code>@</code> 参照ファイルを冒頭だけ見て上書きする問題を修正</strong> <strong>[確認済]</strong>(両AIが一致し、原文でも確認)。Write が全体の読み込みか部分編集を求めるようになりました。</li><li><strong>Bash で <code>cd</code> した後、ディレクトリ別スキルや <code>paths:</code> 指定のスキルが見つからない問題を修正</strong> <strong>[確認済]</strong>(両AIが一致し、原文でも確認)</li><li><strong>サブエージェントの <code>autoCompactWindow</code> で窓を小さくできるようになった(大きくはできない)</strong> <strong>[確認済]</strong></li><li><strong>prompt / agent hook の同時実行数を上限24(サブエージェント込み)+タイムアウト超過の待機分12に制限。1秒未満の timeout は1秒扱い</strong> <strong>[確認済]</strong>(Claude だけが挙げましたが、原文で確認)</li><li><strong>「session limit」の表示を「5-hour limit」に変更</strong> <strong>[確認済]</strong>(原文で確認)</li><li><strong>Bedrock 等で、認識できないモデル名には短いシステムプロンプトを使う</strong> <strong>[要検証]</strong>(Claude だけが挙げており、今回の取得範囲では一次確認できていません)</li></ul>
+<h3>A-8. v2.1.311(10/26)</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。</p>
+<ul><li>自動圧縮の直後に、古い CLAUDE.md / MEMORY.md が見えてしまう問題を修正</li><li><code>SubagentStop</code> が約1分に2回発火していた問題を修正</li><li>クラウドやバックグラウンドのセッションを再起動すると、完了済みの <code>/code-review</code> などが二重実行される問題を修正</li><li><code>ultrathink</code> で Opus 5.5 / Sonnet 5.5 / Haiku 5.5 / Fable 5.1 がそのターンを xhigh effort で実行するように変更</li><li><code>DISABLE_COMPACT</code> は圧縮をオフにする方向にしか効かなくなった</li><li>Cowork クラウドセッションで、<code>agent</code> を指定していると再起動後にコネクタやツールが失われる問題を修正。codex はこれを Cowork の項目として分類していますが、実際は CC 2.1.311 の記載です。</li></ul>
+<p>次の2件は両AIが一致していますが、今回の原文抜粋には含まれていません。2系統一致の基準で <strong>[確認済]</strong> としています。</p>
+<ul><li>CLAUDE.md の極端に長いリスト項目で固まる問題の修正</li><li>後から接続した MCP ツールをサブエージェントが使えない問題の修正</li></ul>
+<p>Claude の「圧縮時に要約がなければもう一度要求する」は <strong>[要検証]</strong> です(一次確認できていません)。</p>
+<h3>A-9. 環境変数 <code>CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS</code></h3>
+<p><strong>[確認済](公式ドキュメントで確認)</strong> Claude は「公式ドキュメント上の記載は未確認」としていましたが、<strong>記載はありました</strong>。</p>
+<ul><li>env-vars と permission-modes の両ページに載っており、v2.1.311 以降が必要です。</li><li>効く範囲は The Register の「<code>rm</code> 全般」より狭いです。<strong><code>bypassPermissions</code> モードで、Bash / Monitor による critical path への <code>rm</code> / <code>rmdir</code> の確認を省く</strong>だけです。</li><li>設定ファイルの <code>env</code> ブロックに書いても無視され、起動時の環境変数としてだけ有効です。</li><li>起動時にこの変数の状態を示す行が表示されます(<code>-p</code> では stderr)。</li><li>changelog 2.1.311 の取得範囲には記載がありませんでした。</li></ul>
+<p>出典: https://code.claude.com/docs/en/permission-modes / https://code.claude.com/docs/en/env-vars / <a href="https://www.theregister.com/ai-and-ml/2026/10/27/anthropic-now-lets-claude-users-jump-out-of-plane-without-parachute/5305807" rel="noopener">The Register</a></p>
+<h3>A-10. v2.1.310(10/23):Monitor の Bedrock 等への拡大、<code>-p</code> 圧縮時のメモリ改善</h3>
+<p><strong>[要検証]</strong> Claude だけが挙げた項目で、今回は原文の該当行を確認していません。否定されたわけではありません。</p>
+<hr>
+<h2>B. Cowork / Claude アプリ</h2>
+<h3>B-1. Unified Claude(Chat と Cowork の統合)を Enterprise 向けに一般提供(10/23)</h3>
+<p><strong>[確認済]</strong> Claude だけが挙げましたが、公式記事で確認しました。</p>
+<ul><li>作業はクラウドの隔離 VM で続くため、ノートPCを閉じても止まりません。</li><li>Efficient mode(Sonnet / Haiku のみで動かす)、ロールごとのモデル権限、組織・グループ・メンバー単位の利用上限、グループ共有予算があります。</li></ul>
+<p>出典: https://claude.com/resources/articles/unified-claude-enterprise</p>
+<h3>B-2. Desktop v4.29.0(10/27)</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。</p>
+<ul><li>「Skip all approvals」が、Claude Code 側ではなく組織の Cowork 設定に従うようになりました。</li><li>Auto / Skip all approvals 以外のモードでは、予約タスクの web fetch が、指示文にある URL か検索・それ以前の取得で見つかった URL に限られます。どちらもサードパーティ配備には適用されません。</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>B-3. Desktop v4.4212.0(10/29)</h3>
+<p><strong>[確認済]</strong> 原文で確認しました。</p>
+<ul><li>内蔵ブラウザにサイト単位の「Local network access」設定を追加</li><li>管理者向けに <code>projectsEnabled</code>、<code>sessionStatusLine</code>、<code>skillScanningEnabled</code>(beta)を追加</li><li><strong>破壊的変更:</strong> 2026-11-10 12:00 PT 以降、<code>desktopHome</code> が未設定だと <code>standard</code> 扱いになり、<code>coworkTabEnabled: false</code> でも Cowork がオンの状態で Unified Claude が開きます。</li></ul>
+<h3>B-4. Claude Duet のリサーチプレビュー(10/21、Pro / Max 向け)</h3>
+<p><strong>[確認済]</strong> Claude だけが挙げましたが、サポートのリリースノートで確認しました。</p>
+<hr>
+<h2>C. Claude Design</h2>
+<h3>C-1. 単体版 Claude Design の終了(2026-12-14)</h3>
+<p><strong>[確認済]</strong>。「プロジェクト等は移行できない」という Medium 記事の主張は <strong>[要検証]</strong> です。</p>
+<h3>C-2. 期間内の Design 関連の変更は <code>/design-sync</code> の確認画面改善(A-4)だけ</h3>
+<p><strong>[確認済]</strong> 両AIが一致しています。サポートのリリースノートにも、期間内の Design 関連の項目はありませんでした。</p>
+<hr>
+<h2>D. Anthropic 全体・業種向け</h2>
+<h3>D-1. S-1 の提出(10/26)</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、一次情報でも確認しました。報道にあるティッカー「ANT」や上期売上163億ドルは <strong>[要検証]</strong> です(二次情報のみ)。<br>出典: https://www.anthropic.com/news/s1-sec</p>
+<h3>D-2. Claude だけが挙げたが一次情報で確認できたもの</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>GSA との提携拡大(10/27)</li><li>創薬に関する研究報告(10/27)</li><li>AI for Science の財団・研究機関への拡大(10/28)</li></ul>
+<p>出典: https://www.anthropic.com/news</p>
+<h3>D-3. Agent Skills を Agentic AI Foundation に寄贈(10/22)</h3>
+<p><strong>[確認済]</strong> 数値は原文と一致しました(70以上のプラットフォーム、公開スキル100万、インストール約2.8億)。<br>ただし Claude の「今後はバージョン付きリリースと正式な変更提案プロセスで運営されます」は言い過ぎです。原文では、これらは<strong>提案中のロードマップ</strong>です。</p>
+<h3>D-4. 両AIが一致し、Claude Blog で確認できたもの</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>Enterprise の Smart reports・アンケート・グループ共有予算(10/28)</li><li>Financial Advisors 向けの提供(10/27)</li><li>法務向け Artifacts(10/28)</li><li>Nonprofits 向けプラグイン(10/26)</li></ul>
+<p>codex の「非営利団体向けの Team / Enterprise に追加費用なしで自動インストール」という細部は、<strong>一次確認できていません</strong>。</p>
+<hr>
+<h2>E. 運用の知見</h2>
+<ul><li><strong>E-1. 公式記事「サブエージェントをメインループに統合する判断基準」(10/22)</strong> <strong>[確認済]</strong>。Claude が挙げた記事中の数字(ツール定義30〜50個、システムプロンプトの80%削減、約2倍速)は、今日は再確認していません。</li><li><strong>E-2. Google Cloud 向けのコスト・ROI 記事(10/27)</strong> <strong>[確認済]</strong>(記事の存在を確認)。OpenTelemetry を使った内訳などの細部は未確認です。</li><li><strong>E-3. Zenn のアイドル圧縮の実測(272,422 → 13,522 トークン)</strong> <strong>[要検証]</strong> 実測値は1著者の観測だけです。一方、記事に出てくる設定名(<code>idleCompaction: false</code>、<code>CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS</code>)は公式ドキュメントで確認しました(既定値は200000、最小は100000)。</li><li><strong>E-4. Qiita の v2.1.310 / v2.1.311 比較検証</strong> <strong>[要検証]</strong> codex だけが挙げた個人の検証で、追試はありません。ただし、修正の内容自体は A-8 と整合しています。</li><li><strong>E-5. Reddit・Zenn の Skills 整理や CLAUDE.md 設計の体験談</strong> <strong>[要検証]</strong> 1系統だけの情報で、効果の数値もありません。</li></ul>
+<p><strong>[棄却]:</strong> 該当なし。2系統の主張が真っ向から矛盾した項目はありませんでした。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>改ざん版拡張 v2.1.313 の痕跡確認(A-6)</strong></li></ol>
+<ul><li>10/29 に Cursor で Claude Code 拡張を入れたり更新したりした端末がないか確認する価値があります。</li><li>確認ポイントは、<code>authorized_keys</code> に <code>svc-telemetry</code> の鍵がないか、134.209.82.225:8099 への通信がないかです。</li><li>アンインストールや更新だけでは常駐の仕組みが残るので、該当した場合は Cursor の駆除手順が必要です。被害がもっとも重く、すぐ確認できます。</li></ul>
+<ol><li><strong><code>claude -p</code> の終了コード修正(A-4)と cron 監視の見直し</strong></li></ol>
+<ul><li>これまで起動に失敗しても終了コード0・出力なしで終わっていたため、cron で失敗を見逃していた可能性があります。</li></ul>
+<ol><li><strong><code>blockWritesOutsideWorkingDirectories</code>(A-1)と <code>EVEN_MORE_DANGEROUSLY</code>(A-9)を deny 床と突き合わせる</strong></li></ol>
+<ul><li>後者はシェルの profile や cron の環境で誤って設定されていないか確認すべきです。起動時に表示される状態行で確かめられます。</li></ul>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://code.claude.com/docs/en/permission-modes" rel="noopener">Permission modes</a></li><li><a href="https://code.claude.com/docs/en/env-vars" rel="noopener">Env vars</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork changelog</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic News</a></li><li><a href="https://www.anthropic.com/news/s1-sec" rel="noopener">S-1</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation" rel="noopener">Agent Skills donation</a></li><li><a href="https://claude.com/blog" rel="noopener">Claude Blog</a></li><li><a href="https://claude.com/resources/articles/unified-claude-enterprise" rel="noopener">Unified Claude Enterprise</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude release notes</a></li><li><a href="https://cursor.com/blog/claude-code-extension-security-notice" rel="noopener">Cursor security notice</a></li><li><a href="https://www.ox.security/blog/malicious-claude-code-extension-cursor-ssh-backdoor/" rel="noopener">OX Security</a></li><li><a href="https://www.stepsecurity.io/blog/claude-code-extension-trojanized" rel="noopener">StepSecurity</a></li><li><a href="https://www.unite.ai/cursor-discloses-ssh-backdoor-attempt-in-malicious-claude-code-extension/" rel="noopener">Unite.AI</a></li><li><a href="https://www.rescana.com/post/claude-code-extension-2-1-313-cursor-marketplace-trojanized-ssh-backdoor" rel="noopener">Rescana</a></li><li><a href="https://cellcog.ai/blog/claude-code-extension-backdoor/" rel="noopener">CellCog</a></li><li><a href="https://www.theregister.com/ai-and-ml/2026/10/27/anthropic-now-lets-claude-users-jump-out-of-plane-without-parachute/5305807" rel="noopener">The Register (rm env var)</a></li><li><a href="https://www.theregister.com/cyber-crime/2026/10/30/anthropic-that-claude-code-extension-compromise-couldnt-be-us/5306682" rel="noopener">The Register (拡張改ざん)</a></li><li><a href="https://thehackernews.com/2026/10/official-claude-code-vs-code-extension.html" rel="noopener">The Hacker News</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

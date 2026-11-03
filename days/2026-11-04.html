@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-04 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-04</div>
+  <div><span class="lab lab-ok">確認済 27</span><span class="lab lab-warn">要検証 8</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-04</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude/Anthropic 直近の動き 精査結果（対象期間 2026-10-27〜11-04、精査日 2026-11-04）</h1>
+<p><strong>確認したこと:</strong> 次の公式ページを読みました。code.claude.com の changelog（最新版から 2.1.312 までの範囲）、platform.claude.com のリリースノート（10/20〜11/4）、support.claude.com の該当記事3本とリリースノート、anthropic.com/news、claude.com の記事4本です。<br><strong>前提:</strong> 情報源は codex と Claude の2系統だけです。片方だけの主張は、一次情報で裏が取れた場合に限り [確認済] にしました。</p>
+<hr>
+<h2>A. Claude Code（重点）</h2>
+<h3>A-1. v2.1.317（11/3）Agent SDK フックに <code>onFailure: "block"</code> を追加</h3>
+<p><strong>[確認済]</strong>（両AIが一致し、changelog 原文でも確認）<br>フックのコールバック自体が失敗したとき、操作を通さずに止められるようになりました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-2. v2.1.317 Read ツールの「前回から変更なし」表示を廃止</h3>
+<p><strong>[確認済]</strong>（Claude のみ。changelog 原文で確認）<br>変更のないファイルを読み直しても中身が返るようになりました。トークン消費がどれだけ増えるかは確認できていません。<br>出典: 同上</p>
+<h3>A-3. v2.1.317 別モデルで動くサブエージェントの effort が変更</h3>
+<p><strong>[確認済]</strong>（Claude のみ。原文で確認）<br>メイン会話と別モデルのサブエージェントやチームメイトは、セッションの effort を使わなくなりました。代わりにそのモデルで保存された effort（なければ既定値）を使います。<br>出典: 同上</p>
+<h3>A-4. v2.1.317 その他の修正</h3>
+<p><strong>[確認済]</strong>（原文で確認）</p>
+<ul><li>headless でコマンド登録型プラグインが多いと、メモリ使用が増えて起動が遅くなる問題を修正</li><li>claude.ai から同期した skills が消えたり、10分ごとに再ダウンロードされたりする問題を修正</li><li>Desktop の Code タブなど、先に起動しておいたセッションでプロジェクトの <code>effortLevel</code> が無視される問題を修正</li><li><code>/schedule</code> の結果から、次回実行時刻とリンクが抜ける問題を修正</li><li>実行中のバックグラウンドエージェントへの SendMessage が早く届くように変更</li><li>再開したセッションで、既知のファイル変更を再通知する問題を修正</li></ul>
+<p>前の4件は codex、後の2件は Claude が拾ったものです。<br>出典: 同上</p>
+<h3>A-5. v2.1.316（10/31）<code>CLAUDE_CODE_SUBAGENT_EFFORT</code> を追加</h3>
+<p><strong>[確認済]</strong>（Claude のみ。原文で確認）<br>どこでも effort が指定されていないとき、サブエージェントが使う effort をこの変数で決められます。これまではセッションの effort を引き継いでいました。A-3 と同じく、agent-effort-param-subagent-fit.md の前提に関わります。<br>出典: 同上</p>
+<h3>A-6. v2.1.316 <code>CLAUDE_CODE_DISABLE_ULTRATHINK</code> を追加、PowerShell フックの終了コード2を修正</h3>
+<p><strong>[確認済]</strong>（両AIが一致し、原文で確認）<br>PowerShell フックの修正には条件があります。対象は、コマンドが型キャスト・<code>param</code>・<code>using</code>・属性で始まる場合だけです。<br>出典: 同上</p>
+<h3>A-7. v2.1.316 サブエージェントのモデル継承と <code>register_repo_root</code> の修正、<code>/model</code> の警告追加</h3>
+<p><strong>[確認済]</strong>（両AIが一致し、原文で確認）</p>
+<ul><li>親サブエージェントのモデルを継承した子が、起こされたときにメインモデルへ戻る問題を修正</li><li>SDK の <code>register_repo_root</code> で、作業ディレクトリ外の CLAUDE.md が読まれない問題を修正（<code>CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1</code> を使う場合）</li><li><code>/model &lt;id&gt;</code> で未知のモデルを指定したとき、auto-compact が 200K ウィンドウを前提にすることを警告するように修正</li></ul>
+<p>出典: 同上</p>
+<h3>A-8. v2.1.314（10/30）アイドル時コンパクションの対象拡大</h3>
+<p><strong>[確認済]</strong><br>VS Code とデスクトップの Code タブでも動くようになりました。Bedrock / Vertex / Foundry / LLM ゲートウェイでも、1時間のプロンプトキャッシュを有効にしていれば動きます。さらに原文には、テレメトリを切った契約者でも動くと書かれています。<br>出典: 同上</p>
+<h3>A-9. v2.1.314 <code>permissions.blockWritesOutsideWorkingDirectories</code> を追加</h3>
+<p><strong>[確認済]</strong><br>どの権限モードでも、Write / Edit / NotebookEdit で作業ディレクトリ外へ書き込めなくなります。<br>出典: 同上</p>
+<h3>A-10. v2.1.314 メモリ・速度・コンパクション関連の修正</h3>
+<p><strong>[確認済]</strong>（両AIが一致し、原文で確認）</p>
+<ul><li>headless や SDK で多数のサブエージェントを回す長いターンでも、親が各ツール結果をターン終了まで保持しなくなった</li><li>破損した会話ログからの <code>--resume</code> が速くなり、メモリ使用も減った</li><li>MCP ツールが1万個以上ある環境で <code>/context</code> が速くなった</li><li>画像の多い Bedrock セッションで「400 Input is too long」が出る問題を修正</li><li>PreCompact フックの出力を 10,000 文字で切るように変更</li><li>フックの <code>if</code> 条件（例: <code>Monitor(tail *)</code>）が、Monitor のシェルコマンドにもマッチするように変更</li><li>巨大な CLAUDE.md が変わったセッションで、自動コンパクション後に「Prompt is too long」が出る問題を修正</li><li>非常に長い会話で、以前の要約が消える問題を修正</li></ul>
+<p>最後の項目について、Claude は v2.1.317 の修正としていましたが、<strong>原文では v2.1.314 の修正です</strong>。「Prompt is too long」の修正は、既存知見 changelog-2-1-274 とは別の版の別の修正です。<br>出典: 同上</p>
+<h3>A-11. v2.1.312（10/27）</h3>
+<p><strong>[確認済]</strong>（Claude のみ。原文で確認）</p>
+<ul><li>巨大な CLAUDE.md や rules ファイルを、冒頭だけ見て Write で上書きしてしまう問題を修正</li><li>プロンプト型とエージェント型のフックは、同時に最大24個まで実行（タイムアウト超過で待っているものは別枠で最大12個、1秒未満の timeout は1秒扱い）</li><li>サブエージェントの <code>autoCompactWindow</code> で、ウィンドウを小さくできるように変更（大きくはできない）。</li></ul>
+<p>出典: 同上</p>
+<h3>A-12. <code>/restart</code>（エイリアス <code>/update</code>）、1プロンプトでスキルを最大6個まで読み込み、<code>/usage</code> に「Prompt cache (main)」行を追加</h3>
+<p><strong>[要検証]</strong>（Claude が二次情報経由で拾ったもの）<br>出典の vibecoding.cz W44 には、3件とも記載がありました。ただし版番号は書かれていません（記事の対象範囲は 2.1.311〜2.1.316）。<br>changelog の 2.1.312〜2.1.317 では見つけられませんでした。2.1.311 は見ていません。<br><strong>一次確認できなかっただけで、存在しないとは判断していません。</strong> なお、Claude はこの <code>/restart</code> を v2.1.312 に入れていましたが、出典記事にもその根拠はありません。<br>出典: https://www.vibecoding.cz/en/claude-code-weekly-2026-w44/</p>
+<hr>
+<h2>B. Cowork / Claude Design（重点）</h2>
+<h3>B-1. Haiku 4.5 をモデル選択から削除（10/29）</h3>
+<p><strong>[確認済]</strong>（codex のみ。support 記事で確認）<br>Free / Pro / Max のチャット、Cowork、Claude Design（Desktop とモバイルを含む）で選べなくなり、Haiku 5.5 に置き換わりました。予告は 10/15 です。Claude Code、Team / Enterprise、API では引き続き使えます。<br>出典: https://support.claude.com/en/articles/17444146</p>
+<h3>B-2. 単体版 Claude Design（claude.ai/design）は 12/14 に終了</h3>
+<p><strong>[確認済]</strong><br>終了後は読み取り専用になり、新しいプロジェクトは作れません。Claude 本体への移行と一括ダウンロードは段階的に展開中です。チャットとコメントは移行されません。ページの更新日は「今週」としか書かれておらず、具体的な日付はわかりません。<br>出典: https://support.claude.com/en/articles/17440474</p>
+<h3>B-3. Claude の「この期間に Cowork / Design の公式新着なし」という主張</h3>
+<p><strong>[棄却]</strong>（部分的に誤り）<br>support のリリースノートに限れば、最新は 10/21 の Duet で正しいです。しかし B-1 と B-2 という公式の変更があるので、「新着なし」とは言えません。</p>
+<h3>B-4. Claude Duet の研究プレビュー（10/21）</h3>
+<p><strong>[確認済]</strong><br>support のリリースノートで確認しました。ただし対象期間より前の項目です。</p>
+<h3>B-5. Cowork 関連の残り</h3>
+<p><strong>[要検証]</strong>（Claude のみ）</p>
+<ul><li>10/06 に Pro / Max / Ultra で新しいタスクがクラウド実行になった件: 今回は一次確認していません。</li><li>10/23 に Enterprise 全体へ展開された件: 二次情報だけで、一次確認できていません。</li></ul>
+<h3>B-6. Claude Design の実践記事（BI Inside）、移行解説記事（hostsmith）</h3>
+<p><strong>[要検証]</strong>（codex のみ、二次情報）<br>中身は確認していません。</p>
+<hr>
+<h2>C. Platform / API</h2>
+<h3>C-1. Usage and Cost Analytics API がベータ公開（10/29）</h3>
+<p><strong>[確認済]</strong>（両AIが一致し、原文で確認）<br>ベータヘッダーは <code>analytics-usage-cost-2026-08-24</code> です。既存の Usage and Cost API はレガシー扱いになりましたが、引き続きサポートされます。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>C-2. Opus 4.8 の fast mode を非推奨化（10/30）</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>11/30 に削除され、以降の <code>speed: "fast"</code> リクエストはエラーになります。移行先は Opus 5.5 です。<br>出典: 同上</p>
+<h3>C-3. Sonnet 4.5 が 11/30 に API から退役</h3>
+<p><strong>[確認済]</strong>（ただし日付の帰属は誤り）<br>退役自体は公式です。ただし発表は <strong>9/30</strong> のリリースノートで、Claude が書いた「10/30」ではありません。<br>出典: 同上</p>
+<h3>C-4. Message threads がベータ公開（11/2）</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>ベータヘッダーは <code>message-threads-2026-08-12</code> です。スレッドは最後のリクエストから5分で期限切れになり、最後の利用から1時間以内に削除されます。Claude が挙げた claude.com の解説記事は開いていません。<br>出典: 同上</p>
+<h3>C-5. テキスト透かしの対象モデルを追加（11/3）</h3>
+<p><strong>[確認済]</strong>（両AIが一致）<br>対象は Mythos 5 / Opus 4.7 / Sonnet 4.6 です。Sonnet 4.6 では、サンプリング設定を既定値から変えると透かしが入らない場合があります。<br>出典: 同上</p>
+<h3>C-6. 最大リクエストサイズを 32MB から 128MB に拡大（10/28）</h3>
+<p><strong>[確認済]</strong>（Claude のみ。原文で確認）<br>対象は Messages API と Token Counting API で、ファーストパーティの Claude API に限ります。<br>出典: 同上</p>
+<hr>
+<h2>D. プラン・法人・会社の動き</h2>
+<h3>D-1. Max 20x を Ultra に改称</h3>
+<p><strong>[確認済]</strong>（codex のみ。support 記事で確認）</p>
+<ul><li>既存契約は価格を変えずに自動移行</li><li>認証済みアカウントには5時間制限がない</li><li>週次上限は残る（記事によると Pro の10倍/週、Fable には別枠の上限）</li><li>認証はアカウントや支払履歴から自動で判定され、電話番号の認証とは別</li></ul>
+<p><strong>発表日（10/30）は一次確認できませんでした</strong>。記事には「今週更新」としか書かれていません。<br>出典: https://support.claude.com/en/articles/17728952</p>
+<h3>D-2. Enterprise の Smart reports、アプリ内アンケート、グループ共有予算が GA（10/28）</h3>
+<p><strong>[確認済]</strong>（Claude のみ。原文で確認）<br>HIPAA 構成や顧客管理キーの組織では、使えるかどうかが変わります。<br>出典: https://claude.com/resources/articles/smart-reports-surveys-pooled-budgets</p>
+<h3>D-3. 法務向け artifacts のギャラリー（10/28）</h3>
+<p><strong>[確認済]</strong><br>出典: https://claude.com/resources/articles/introducing-artifacts-for-legal-work</p>
+<h3>D-4. Claude for Financial Advisors</h3>
+<p><strong>[確認済]</strong>（ただし「新発表」ではない）<br>記事の日付は 10/27 ですが、元は 9/14 に公開されたものです。<br>出典: https://claude.com/resources/articles/claude-for-financial-advisors</p>
+<h3>D-5. S-1 提出（10/26）、AI for Science の拡大（10/28）、GSA との提携拡大と創薬の研究記事（10/27）</h3>
+<p><strong>[確認済]</strong><br>出典: https://www.anthropic.com/news</p>
+<h3>D-6. IPO の評価額が引き下げられたという報道</h3>
+<p><strong>[要検証]</strong><br>二次情報だけで、一次確認はできていません。</p>
+<h3>D-7. 非営利団体向けの無料プラグイン</h3>
+<p><strong>[要検証]</strong><br>複数の報道がありますが、日付は <strong>10/26</strong> となっており、Claude の「10/29」と食い違います。anthropic.com/news には該当する記事がなく、一次確認はできていません。<br>出典: https://www.news4jax.com/business/2026/10/26/anthropic-expands-ai-support-for-nonprofits-as-it-files-to-sell-shares-to-the-public/</p>
+<h3>D-8. Google Cloud 上の Claude Code のコスト管理・ROI ガイド</h3>
+<p><strong>[要検証]</strong><br>Claude のみの主張で、今回は開いていません。</p>
+<hr>
+<h2>E. 実践知・Tips（すべて二次情報）</h2>
+<h3>E-1. 公式「Steering Claude Code」の CLAUDE.md 方針</h3>
+<p><strong>[確認済]</strong>（ただし新着ではない）<br>「200行以内」「.claude/rules/」「claudeMdExcludes」「モノレポではサブディレクトリごとの CLAUDE.md」は、すべて原文にありました。ただし記事の日付は <strong>6/18</strong> で、今週の情報ではありません。また原文での rules の説明は「制約や規約」です。Claude の「参考資料」という言い方は少し不正確です。</p>
+<h3>E-2. codex のみが挙げた記事</h3>
+<p><strong>[要検証]</strong><br>Qiita の504回実測（費用134%増）、JSONL の重複計上（2.49倍）、Zenn の Stop フックによる作業日誌チェックなどです。どれも個人の実測で、再現性は確認していません。</p>
+<h3>E-3. Claude のみが挙げた情報</h3>
+<p><strong>[要検証]</strong><br>HN の「サブエージェント7個で予算が溶けた」、Qiita の委譲を確実にする書き方などで、体験談ベースです。yureki_lab の記事は公開日が期間内かどうかも不明です。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>サブエージェントの effort 仕様変更（A-3 と A-5）</strong></li></ol>
+<ol><li><strong>Read ツールの「変更なし」表示の廃止（A-2）</strong></li></ol>
+<p>長時間の cron セッションで同じファイルを何度も読む構成では、入力トークンが増える可能性があります。増え方は確認できていないので、<code>/usage</code> で前後を比べて実測する価値があります。</p>
+<ol><li><strong>11/30 の期限: Opus 4.8 の fast mode 削除、Sonnet 4.5 の退役（C-2 と C-3）</strong></li></ol>
+<p>削除後は自動フォールバックせずエラーになります。opus-4-1-retire-hardcode-scan と同じ要領で、<code>claude-opus-4-8</code> と <code>speed: "fast"</code> の組み合わせや <code>claude-sonnet-4-5</code> がリポジトリに残っていないか、期限前に洗い出すことを勧めます。</p>
+<ul><li>あわせて、PreCompact フックを使っているなら、出力が 10,000 文字以内に収まっているか確認しておくと安全です（A-10）。</li></ul>
+<hr>
+<h3>Sources</h3>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Platform release notes</a></li><li><a href="https://support.claude.com/en/articles/17444146-claude-haiku-4-5-was-removed-from-the-model-selector" rel="noopener">Haiku 4.5 removed from selector</a></li><li><a href="https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan" rel="noopener">What is the Ultra plan</a></li><li><a href="https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude" rel="noopener">Move from standalone Claude Design</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">support release notes</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">anthropic.com/news</a></li><li><a href="https://claude.com/resources/articles/smart-reports-surveys-pooled-budgets" rel="noopener">Smart reports / surveys / pooled budgets</a></li><li><a href="https://claude.com/resources/articles/introducing-artifacts-for-legal-work" rel="noopener">Artifacts for legal work</a></li><li><a href="https://claude.com/resources/articles/claude-for-financial-advisors" rel="noopener">Claude for Financial Advisors</a></li><li><a href="https://claude.com/resources/articles/steering-claude-code-skills-hooks-rules-subagents-and-more" rel="noopener">Steering Claude Code</a></li><li><a href="https://www.vibecoding.cz/en/claude-code-weekly-2026-w44/" rel="noopener">vibecoding.cz W44</a></li><li><a href="https://www.news4jax.com/business/2026/10/26/anthropic-expands-ai-support-for-nonprofits-as-it-files-to-sell-shares-to-the-public/" rel="noopener">news4jax（非営利団体向けプラグイン報道）</a></li><li><a href="https://www.nonprofitpro.com/article/claude-for-nonprofits-launches-with-sector-discounts-data-connectors-and-training" rel="noopener">nonprofitpro</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

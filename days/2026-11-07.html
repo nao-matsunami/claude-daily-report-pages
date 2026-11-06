@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-07 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-07</div>
+  <div><span class="lab lab-ok">確認済 32</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-07</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>審判まとめ:Claude / Anthropic の直近の動き(2026-10-31〜11-07)</h1>
+<p><strong>前提:</strong> 今回の入力は codex と Claude の2つだけです(指示にある Gemini の出力は含まれていません)。2つのAIの答えが一致しても、それだけで[確認済]にはしていません。主要な項目は、以下の公式ページを今回直接取得して照合しました:Claude Code changelog、GitHub Releases(v2.1.317 / v2.1.318)、Platform リリースノート、claude.ai リリースノート、Cowork changelog、Enterprise 発表記事、Unified 管理ガイド、Personal Finance 記事、arXiv 2本。二次記事(classmethod / Qiita / note / Zenn / dev.to / aiweekly など)は取得していません。</p>
+<hr>
+<h2>1. Claude Code</h2>
+<h3>v2.1.319(11/6)MCP タスクを即座にバックグラウンドへ移す ／ <code>CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND</code></h3>
+<p><strong>[確認済]</strong> 両AIが一致し、changelog 原文とも一致しました。待機する方式に戻す環境変数もあります。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.319 <code>permissions.denyInsteadOfPrompting</code></h3>
+<p><strong>[確認済]</strong> Claude だけが挙げた項目ですが、changelog 原文で確認しました。本来なら許可プロンプトで止まる呼び出しを拒否して、ターンを続けます。ターミナル、サブエージェント、teammate で有効です。<br>https://code.claude.com/docs/en/changelog</p>
+<h3>v2.1.319 テレメトリや feature flag がオフのときの auto mode の挙動変更</h3>
+<p><strong>[確認済]</strong>(既存の知見と照らして再確認を推奨)Claude だけが挙げた項目で、changelog 原文で確認しました。LLM ゲートウェイ経由なども含め、サーバーでチェックできない呼び出しは「確認」か「拒否」になり、組み込み分類器へのフォールバックはなくなります。旧動作に戻すには <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> を使います。Bedrock / Vertex / Foundry は変わりません。</p>
+<h3>v2.1.319 ネストした skill の読み込み条件を変更</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。Bash サンドボックスが有効なとき、起動フォルダより下の <code>.claude/skills</code> は、そこで起動するか <code>/cd</code> した場合だけ読み込まれます。</p>
+<h3>v2.1.319 <code>/context</code> と <code>/clear</code> の修正・改善</h3>
+<p><strong>[確認済]</strong> 両AIの主張を合わせると原文と一致します。内容は3点です。</p>
+<ul><li>視覚グリッドが以後のターンにも毎回送られていた問題を修正し、Claude には表だけを渡す。</li><li>表の各リストを上位10行に絞り、オンデマンド読み込みの MCP ツールはサーバーごとに1行にまとめる。</li><li><code>/clear</code> がバックグラウンドエージェントなどの実行中コマンドを終了させていた問題を修正。</li></ul>
+<h3>v2.1.319 その他</h3>
+<p><strong>[確認済]</strong> Claude だけが挙げた項目で、すべて原文にあります。</p>
+<ul><li>PostToolUse フックが、割り込み後に終わったツール呼び出しにも最大10秒の猶予付きで実行される。</li><li><code>/tasks</code> に「Earlier in this session」行が追加された。</li><li>self-paced <code>/loop</code> は、再スケジュールせずにターンが終わればそこで止まる(旧動作は <code>CLAUDE_CODE_LOOP_KEEPALIVE=1</code>)。</li><li><code>/claude-api latency-optimize</code> が追加された(codex も言及)。</li><li><code>CLAUDE_CODE_DISABLE_FEATURE_FLAGS</code> が追加された。</li></ul>
+<h3>v2.1.318(11/4)バックグラウンドのサブエージェントはシェルコマンドを3分で自動的にバックグラウンドへ移す</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。全プロバイダが対象で、理由として「待っている間にプロンプトキャッシュが失効しないように」と明記されています。</p>
+<h3>v2.1.318 mod の <code>$.model.fork</code> に <code>effort</code> オプション</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。セッションの effort に関係なく、ちょっとした別作業を <code>low</code> で回せます。</p>
+<h3>v2.1.318 無人実行まわりの変更</h3>
+<p><strong>[確認済]</strong> Claude だけが挙げた項目で、原文にあります。</p>
+<ul><li><code>claude auth status</code> に <code>loginExpiresAt</code>、<code>claude -p</code> の JSON に <code>credential_expires_at</code>(サインインの有効期限)が出る。</li><li>2.1.288 の修正(古い会話を再開するときに過去の thinking を残す)が取り消された。</li></ul>
+<h3>v2.1.318 バグ修正</h3>
+<p><strong>[確認済]</strong> codex が挙げた2件と Claude が挙げた1件を、GitHub Releases で確認しました。</p>
+<ul><li>利用上限の後に再開すると、完了済みのエージェントを再実行する問題を修正。</li><li>macOS で多数の Bash コマンドを実行するとセッションが止まり、メモリが増える問題を修正。</li><li>読み込み前の MCP ツールを呼ぶと、エラーに入力スキーマが付いて返るように改善。</li></ul>
+<p>https://github.com/anthropics/claude-code/releases/tag/v2.1.318</p>
+<h3>v2.1.317(11/3)別モデルで動くサブエージェント / teammate の effort</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。セッションの effort ではなく、そのモデルに保存された effort(なければ既定値)を使います。</p>
+<h3>v2.1.317 Agent SDK のフックに <code>onFailure: "block"</code></h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。コールバックが失敗したらアクションを止めます。</p>
+<h3>v2.1.317 圧縮・CLAUDE.md・ヘッドレスまわりの修正</h3>
+<p><strong>[確認済]</strong> codex が挙げた項目で、原文と Releases で確認しました。</p>
+<ul><li>巨大な CLAUDE.md が変わったセッションで、自動圧縮後も「Prompt is too long」になる問題を修正。</li><li>長い会話で、以前の要約が失われる問題を修正。</li><li>多数のプラグインがコマンドを登録するヘッドレス実行で、起動が遅くメモリを多く使う問題を修正。</li><li>claude.ai から同期した skill がディスクに書けないとき、消えたり10分ごとに再ダウンロードされたりする問題を修正。</li></ul>
+<h3>v2.1.317 Read ツールの「前回から変更なし」スタブを廃止</h3>
+<p><strong>[確認済]</strong>(仕様部分のみ)原文で確認しました。「トークン消費が増える可能性がある」という部分は Claude 自身の推測で、確認できていません。</p>
+<h3>v2.1.317 メールアドレス送信前の確認など</h3>
+<p><strong>[確認済]</strong>(確認したのはメールアドレスの件のみ)Web やシェルのツールがアカウントのメールアドレスをネットワークに送る前に確認を求める、という項目は原文にあります。SendMessage の高速化と OTel 属性の追加は、今回取得した範囲では確認していません。</p>
+<h3>v2.1.316(10/31)<code>CLAUDE_CODE_SUBAGENT_EFFORT</code> / <code>CLAUDE_CODE_DISABLE_ULTRATHINK</code> / サーバー管理設定の承認プロンプト廃止</h3>
+<p><strong>[確認済]</strong> 原文と一致しました。<code>CLAUDE_CODE_SUBAGENT_EFFORT</code> が受け付ける値は changelog に書かれておらず、「low〜max」という見方は二次情報の推測です。この点は <strong>[要検証]</strong> のままです。</p>
+<h3>Opus 4.8 fast mode の非推奨化(10/30)と削除(11/30)</h3>
+<p><strong>[確認済]</strong> Claude の主張が、Code の changelog と Platform リリースノートの両方と一致しました。削除後は fast mode のリクエストがエラーになり、通常速度へのフォールバックはありません。</p>
+<h3>Qiita「2.1.313 と 2.1.315 は欠番」</h3>
+<p><strong>[要検証]</strong> Claude が二次情報として紹介しただけで、今回は確認していません。</p>
+<hr>
+<h2>2. Cowork / Claude Desktop</h2>
+<h3>Enterprise の Chat / Cowork 統合が 11/16 に既定でオン</h3>
+<p><strong>[確認済]</strong> codex だけが挙げた項目で、管理ガイド原文で確認しました。原文は「off by default in existing organizations and turns on by default on November 16, 2026」です。ZDR、HIPAA 対応構成、CMEK を使う組織では、まだ利用できません。この日程が今週初めて告知されたのかは確認できません(ページの表示は「Updated yesterday」で、具体的な日付はありません)。<br>https://support.claude.com/en/articles/17444462</p>
+<h3>「Security Center 公開の10日後に unified Cowork が既定でオンになる」(datastudios)</h3>
+<p><strong>[棄却]</strong> 公式ガイドは 11/16 と明記しています。Security Center の公開日(11/5)から数えると11日後で、「10日後」とは合いません。また、公式の Enterprise 記事には、Security Center と既定オン化を結びつける記述がありませんでした。</p>
+<h3>Desktop v4.16336.0(11/3)と v4.23118.0(11/5)。同梱の Claude Code はどちらも 2.1.317</h3>
+<p><strong>[確認済]</strong> Claude だけが挙げた項目で、Cowork changelog 原文で確認しました。主な内容は次のとおりです。</p>
+<ul><li>プロジェクトページの Chat / Cowork 切り替えを廃止。</li><li>Code セッションに Monitor ツールを追加。監視中のコマンドに新しい出力が出るたび、誰も入力しなくてもターンが始まる。無効にするには <code>disabledBuiltinTools</code> に <code>Monitor</code> を指定する。</li><li>ワークツリー作成時に <code>post-checkout</code> フックを実行しなくなった。<code>.env</code> などのコピーには <code>.worktreeinclude</code> を使う。</li><li>プロジェクトの MCP サーバーやローカル MCP サーバーが、最初のターンの後に切断される問題を修正。</li><li>プロジェクトに属さない定期 Cowork タスクが、メモリを読めるようになった(保存はしない)。</li><li>プラグイン自身のコネクタへのサインインを追加。</li><li>Terminal / Browser / iOS Simulator のペインに最小化ボタンを追加。</li><li>アプリを新しいデザインに更新。</li><li>引用符で囲んだパスだけの PreToolUse / PermissionRequest フックは、Git for Windows がない PC で呼び出しをブロックするようになった。</li></ul>
+<p>https://claude.com/docs/cowork/changelog</p>
+<h3><code>desktopHome</code> の既定値変更(11/10 12:00 PT、破壊的変更)と <code>coworkTabEnabled</code> などの非推奨化(12/17 までに削除)</h3>
+<p><strong>[確認済]</strong> 原文と一致しました。原文には補足が2点あります。11/17 から警告が表示されること、Cowork タスクになった会話は <code>coworkSessionRetentionDays</code> で消えるため、保持期間は両方の設定が必要なことです。</p>
+<hr>
+<h2>3. Claude Design</h2>
+<h3><code>/design-sync</code> の事前停止と <code>/design revoke</code> の 404 誤表示の修正</h3>
+<p><strong>[確認済]</strong> codex が挙げた項目で、原文と一致しました。<code>/design-sync</code> の改善は 2.1.317、<code>/design revoke</code> の修正は 2.1.318 です。</p>
+<h3>単体版の 12/14 終了予定と、Claude との共通利用枠</h3>
+<p><strong>[確認済]</strong>(既存の知見で決着済み)今週の新規発表ではありません。インラインコメントの回避策がいつ追加されたかは確認できません。</p>
+<h3>「今週、Design 単体の公式発表はない」(Claude)</h3>
+<p><strong>[要検証]</strong> これは「見つからなかった」という報告であって、発表が無いことを確認したものではありません。</p>
+<h3>9/16 に通常の会話へ統合された(Magic Patterns / VentureBeat)</h3>
+<p><strong>[要検証]</strong> 今回確認できたのは、claude.ai リリースノートに 9/16 付で Unified 体験(Chat と Cowork の統合)を Pro / Max に段階展開するエントリがある、というところまでです。Design の統合時期は一次情報で確認できていません。</p>
+<hr>
+<h2>4. API / claude.ai / Enterprise</h2>
+<h3>Message threads ベータ(11/2)</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。</p>
+<ul><li>ヘッダは <code>message-threads-2026-08-12</code>。</li><li>最後のリクエストから5分で期限切れになり、最後の利用から1時間以内に削除される。</li><li>対応先は Claude API、Claude Platform on AWS、Google Cloud(Anthropic 管理)、Microsoft Foundry。</li></ul>
+<h3>Message threads の「TTFT 35%短縮」「料金は変わらない」</h3>
+<p><strong>[要検証]</strong> 公式ノートは「TTFT が下がる」と書くだけで、数値も料金も載っていません。どちらも二次情報だけの主張です。</p>
+<h3>テキスト透かし(11/3)</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。対象は Mythos 5、Opus 4.7、Sonnet 4.6 です。Sonnet 4.6 では、<code>temperature</code>、<code>top_p</code>、<code>top_k</code> を既定値以外にすると透かしが入らない場合があります。</p>
+<h3>Console の IP 許可リスト(上限1,000件)と、Admin API による全端末サインアウト(11/5、どちらもベータ)</h3>
+<p><strong>[確認済]</strong> 原文と一致しました。</p>
+<h3>Enterprise のセキュリティ・管理機能(11/5)</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、発表記事の原文で各機能の状態も確認しました。</p>
+<ul><li>推論フック(Inference hooks):一般提供(GA)。</li><li>Security Center:ベータ。</li><li>一元管理(admin.claude.com):ベータ。</li><li>Cowork VM 内の EDR センサー:ベータ(macOS / Windows)。</li></ul>
+<p>codex の「一部はベータ」も、Claude の「推論フックは GA」も、どちらも正しいことになります。<br>https://claude.com/resources/articles/claude-enterprise-security-updates</p>
+<h3>Personal Finance ベータ(11/5、米国の Pro / Max / Ultra)</h3>
+<p><strong>[確認済]</strong> codex が示した発表記事が実在することを確認しました(11/5 付)。Claude の「独立した発表記事は見つけられなかった」は、探して見つからなかったという報告にすぎず、記事が無いことを示すものではありませんでした(指示8の典型例です)。</p>
+<h3>プロジェクトタグによるコストコード別の支出追跡(11/6、Enterprise、ベータ)</h3>
+<p><strong>[確認済]</strong> 両AIが一致し、原文とも一致しました。</p>
+<h3>参考(範囲外):10/29 Usage and Cost Analytics API ベータ、10/28 リクエスト上限 32MB→128MB</h3>
+<p><strong>[確認済]</strong> 両AIとも触れていませんが、Platform リリースノートに載っていたので付記します。</p>
+<h3>IPO(修正版の登録届出書、ロードショー)と、RSP レポートの公開予定</h3>
+<p><strong>[要検証]</strong> Claude だけが二次報道として挙げた項目で、公式情報は確認していません。</p>
+<h3>「anthropic.com/news に 10/28 より後の記事がない」</h3>
+<p><strong>[要検証]</strong> Claude の観察で、今回は再確認していません。</p>
+<hr>
+<h2>5. 研究・実践知(二次情報・独立研究)</h2>
+<h3>arXiv 2611.02383:エージェント指示ファイルの整合性に関する研究</h3>
+<p><strong>[確認済]</strong>(論文が実在し、数値が要旨と一致することのみ)1,000リポジトリ・3,387ファイルを分析し、人手で確認した386組のうち16.1%で指示が食い違っていました。Anthropic の公式研究ではありません。</p>
+<h3>arXiv 2611.02353:VisCodeBench</h3>
+<p><strong>[確認済]</strong>(論文の実在と内容のみ)Claude Code、Codex、LIDA を可視化タスクで比較しています。要旨によれば、Opus 4.7 を使った Claude Code は、GPT-5 を使った Codex よりチャートの正しさが約5ポイント高く、約20秒速い結果でした。比較は論文中の構成に限ったものです。</p>
+<h3>dev.to「サブエージェント使用を216回指示した実測」</h3>
+<p><strong>[要検証]</strong> Claude だけが挙げた個人の実測で、条件も限られます。ただし「headless 実行では、最初の <code>result</code> イベントに答えが入っていないことが多い(216回中210回)」という観察は、自分の cron スクリプトで確かめる価値があります。</p>
+<h3>その他の記事(Qiita の ultrathink 運用、note の実戦開発術の検証、Zenn の使い分けガイド、HN の「並列は5〜6本が限界」)</h3>
+<p><strong>[要検証]</strong> いずれも片方のAIだけが挙げた二次情報で、今回は取得していません。性能が上がる根拠としては使えません。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>無人実行の止まりを防ぐ設定を cron の <code>claude -p</code> に入れる(2.1.319 / 2.1.318)</strong></li></ol>
+<ul><li><code>permissions.denyInsteadOfPrompting</code> を使えば、許可プロンプトでのハングを拒否に変えてターンを続けられます。</li><li>どちらも一次情報で確認済みで、すぐ試せます。</li></ul>
+<ol><li><strong>auto mode のテレメトリオフ時の挙動変更(2.1.319)と、既存の知見の照合</strong></li></ol>
+<ul><li>テレメトリや feature flag をオフにしている環境、またはゲートウェイ経由の環境では、組み込み分類器へのフォールバックがなくなり、「確認」か「拒否」になります。</li><li>無人実行では、これが止まる原因になる可能性があります。</li></ul>
+<ol><li><strong>Message threads ベータ(API)</strong></li></ol>
+<ul><li>長いエージェントループで、リクエストのサイズと TTFT を減らせます。</li><li>期限は5分で、プロンプトキャッシュの5分 TTL と同じ長さです。既存のキャッシュ前提の知見とどう組み合わさるかは、公式ノートからは読み取れません。</li><li>TTFT の改善幅と料金は公式に載っていないので、自分で測るしかありません。</li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

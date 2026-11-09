@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-10 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-10</div>
+  <div><span class="lab lab-ok">確認済 27</span><span class="lab lab-warn">要検証 6</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-10</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude/Anthropic 直近の動き 審判まとめ(2026-11-10)</h1>
+<p><strong>前提</strong>:収集元は codex と Claude の2つだけです。両方が同じことを書いていても、元にした情報源が同じかもしれないので、それだけでは確認済にしていません。主な項目は、今回 WebFetch で一次ソースを開いて確かめました。開いたのは、Fable 5.2 発表ページ、Claude Code changelog、Cowork changelog、support の release notes、platform の release notes、Enterprise ブログ、Plugins ヘルプ、Unified Claude 管理者ガイド、Design 移行ガイドです。</p>
+<hr>
+<h2>1. モデル</h2>
+<h3>Claude Fable 5.2 / Mythos 5.2 の発表(11/9)</h3>
+<p><strong>[確認済]</strong>(両AIが一致し、一次ソースとも合っています)</p>
+<ul><li>API ID は <code>claude-fable-5-2</code>、料金は $8/$40 です。fast mode は $16/$80 で、最大2.5倍速くなります。1M コンテキスト、最大出力 128k です(128k は platform の release notes に記載があり、発表ページには書かれていません)。</li><li>Mythos 5.2 を使えるのは、検証プログラムに認定された組織だけです。effort は5段階で、アプリと Claude Code の既定は Medium です。出力は最大30%速く、安全機能によるブロックは約55%減ったとされています。</li><li>ベンチマークの数値(FrontierCode 2.0 49.1%、FrontierSWE v2 69.9%、Terminal-Bench-Science 74.6%、OSWorld 2.1 89.3%、AutomationBench 51.4%(Gemini 4 Carbon の 53.9% を下回る))は、Claude の出力が公式の表と一致しました。ただし Anthropic 自身が出した数字で、第三者による追試はありません。</li><li>旧版の Fable 5.1 が $10/$50 だったという記述は、既存の知見と合っています。</li><li>出典:https://www.anthropic.com/claude-fable-and-mythos-5-2 ・ https://platform.claude.com/docs/en/release-notes/overview</li></ul>
+<h3>補足:Fable 5.2 への移行で API が 400 を返すケース(収集外、検証中に判明)</h3>
+<p><strong>[確認済]</strong>(platform release notes 11/9)</p>
+<ul><li>5.2 は、すべてのアカウントで prefix check を強制します。system・tools・以前のメッセージを書き換えたうえで 5.2 の thinking ブロックを送り返すと、400 エラーになります。</li><li>computer use は <code>computer_toolset_20260801</code> だけが使えます。旧 <code>computer_20251124</code> は、Bedrock 以外では 400 になります。</li><li>advisor tool では、実行側を 5.2 にすると、advisor も 5.2 か Mythos 5.2 でないと 400 になります。</li><li>出典:同上</li></ul>
+<h3>Claude Code で Fable 5.2 を使うときの注意(wmedia.es)</h3>
+<p><strong>[要検証]</strong>(Claude だけが主張、二次情報)</p>
+<ul><li>v2.1.321 で <code>fable</code> が 5.2 を指すようになったこと自体は、一次ソースで確認しました。changelog には「保存済みの 5.1 の選択は <code>fable</code> に移る(Pro/Max はすぐ、Team/Enterprise は組織が許可したとき)」とあります。</li><li>一方、「古い版では警告なしに旧価格の 5.1 が動く」「stable と Homebrew は約1週間遅れる」の2点は、wmedia の記述でしか確認できていません。</li><li>Pro プランで Fable を週上限の50%まで使える特典については、発表ページに記載があります。ただし締切が「11/16」という日付は、一次ソースでは確認できませんでした。</li><li>出典:https://wmedia.es/en/tips/claude-code-fable-5-2-faster-for-less</li></ul>
+<h3>Hacker News での反応(Opus 5.5 劣化説)</h3>
+<p><strong>[要検証]</strong>(Claude だけが主張、スレッドは未取得)</p>
+<ul><li>ポイント数やコメント数は確認していません。劣化説そのものも、検証されていない主張です。</li><li>出典:https://news.ycombinator.com/item?id=50429906</li></ul>
+<h3>テキスト透かし(Mythos 5 / Opus 4.7 / Sonnet 4.6、11/3)</h3>
+<p><strong>[確認済]</strong>(Claude の出力では「(未確認)」でしたが、一次ソースで確認できたので格上げします)</p>
+<ul><li>platform の release notes 11/3 に記載があります。Sonnet 4.6 では、temperature などのサンプリング設定を既定以外にすると、透かしが付かない場合があります。</li><li>出典:https://platform.claude.com/docs/en/release-notes/overview</li></ul>
+<h3>補足:Message threads(beta、11/2)</h3>
+<p><strong>[確認済]</strong>(収集期間の外。検証中に見つかりました)</p>
+<ul><li>会話をサーバー側に保持し、新しいメッセージだけを送れるようにするベータ機能です。ヘッダーは <code>message-threads-2026-08-12</code> です。</li><li>出典:同上</li></ul>
+<hr>
+<h2>2. Claude Code(すべて changelog 原文で照合)</h2>
+<h3>v2.1.321(11/9):Fable 5.2 対応と既定モデルの移行</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>claude-fable-5-2</code> が Fable の既定になりました。キャッシュの読み出しは $0.20/Mtok です。5.1 に戻すには <code>/model claude-fable-5-1</code> を使います。</li><li>Claude の出力は「二次情報による」としていましたが、changelog 原文に書かれています。</li></ul>
+<h3>v2.1.321:hooks の修正</h3>
+<p><strong>[確認済]</strong>(両AIが一致)</p>
+<ul><li>PreToolUse の <code>ask</code> が、別の hook の <code>defer</code> が先に終わると失われる問題を修正しました。</li><li>大きな hook 出力が、同じツール呼び出しにある別の hook の出力ファイルを指してしまう問題を修正しました。</li><li><code>mcp_tool</code> hook の応答が 16 MiB を超えると hook が飛ばされていた問題を修正し、そのツール呼び出しは拒否されるようになりました。</li></ul>
+<h3>v2.1.321:skills / commands / agents が消える問題の修正と、読み込み範囲の変更</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>worktree に入った後や、<code>git stash</code> などでフォルダが消えて戻った後に、skills などが消えたままになる問題を修正しました。</li><li><code>~/.claude/plugins</code> の中にある <code>.claude/skills</code> は読み込まれなくなりました。</li></ul>
+<h3>v2.1.321:1,000文字を超える出力の省略、<code>/context</code> 見積もりの修正、圧縮をまたぐ auto mode の報告消失の修正</h3>
+<p><strong>[確認済]</strong>(Claude だけが主張、原文と一致)</p>
+<h3>v2.1.321:MCP OAuth のリダイレクトで秘密情報が別ホストに送られる問題の修正</h3>
+<p><strong>[確認済]</strong>(Claude だけが主張、原文と一致)</p>
+<ul><li>セキュリティ修正です。MCP OAuth を使っているなら、早めに更新してください。</li></ul>
+<h3>v2.1.319(11/6):MCP tasks</h3>
+<p><strong>[確認済]</strong>(両AIが一致)</p>
+<ul><li>MCP サーバーがツール呼び出しを task として実行した場合だけ、すぐにバックグラウンドへ移ります。<code>CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND</code> を設定すると、バックグラウンドに移さず待つようになります。</li><li>Claude の出力にある「長時間かかる呼び出しは自動でバックグラウンドに回る」は、言い過ぎです。codex の「通常の MCP 呼び出しまで非同期になるわけではない」という書き方が正確です。</li></ul>
+<h3>v2.1.319:<code>permissions.denyInsteadOfPrompting</code></h3>
+<p><strong>[確認済]</strong>(両AIが一致)</p>
+<ul><li>許可プロンプトで止まるはずの呼び出しを拒否し、そのままターンを続けます。ターミナルのセッション、サブエージェント、teammates で効きます。</li></ul>
+<h3>v2.1.319:テレメトリ無効や gateway 環境での auto mode の変更</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>サーバーで判定できない呼び出しは、確認を求めるか拒否するかのどちらかになり、組み込み分類器へのフォールバックはなくなりました。元に戻すには <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> を設定します。</li></ul>
+<p>-</p>
+<h3>v2.1.319:自分で間隔を決める <code>/loop</code> の終了条件変更</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>次を予約しないまま終わったら終了するようになりました。以前の動作に戻すには <code>CLAUDE_CODE_LOOP_KEEPALIVE=1</code> です。</li></ul>
+<p>-</p>
+<h3>v2.1.319:その他</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>/claude-api latency-optimize</code> が追加されました。対象は API アプリのコードで、Claude Code 自体を速くするものではないという codex の説明が正確です。</li><li><code>/context</code> の表は各リストの上位10行に絞られ、表示用グリッドを毎ターン送っていた問題も修正されました。</li><li><code>/clear</code> が稼働中のバックグラウンド処理を止めてしまう問題を修正しました。</li><li><code>/tasks</code> に「Earlier in this session」が加わりました。</li><li>PostToolUse hook は、割り込みの後に終わった呼び出しでも最大10秒実行されます。</li><li>Bash sandbox が有効なとき、下の階層の <code>.claude/skills</code> は、そこで起動するか <code>/cd</code> したときだけ読み込まれます。</li></ul>
+<h3>v2.1.318(11/4)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>バックグラウンドのサブエージェントは、シェルコマンドを3分でバックグラウンドへ移すようになりました(全プロバイダー共通)。</li><li>mod の <code>$.model.fork</code> に <code>effort</code> が追加されました。</li><li>次の問題を修正しました:macOS で多数の Bash 実行中にメモリが増えて止まる、idle compaction が要約でない応答で会話を置き換える、<code>--continue</code> で過去の会話を失う(2.1.314 からの退行)、<code>-p</code> や SDK で失敗したカスタムコマンドが何も表示しない。</li><li>サブエージェントの effort が v2.1.317 の変更だという点は、既存の知見と合っています。</li></ul>
+<h3>v2.1.317(11/3)</h3>
+<p><strong>[確認済]</strong>(Claude だけが主張、原文と一致)</p>
+<ul><li>Read ツールの「前回から変更なし」という省略表示を廃止しました。</li><li>大きな CLAUDE.md が変わった後、自動圧縮をすると "Prompt is too long" になる問題を修正しました。</li><li>Agent SDK の hook callback に <code>onFailure: "block"</code> が加わりました。</li><li>補足:v2.1.320 の項目は、取得した範囲の changelog には見当たりませんでした。どちらのAIも言及していません。欠番かどうかは断定できません。</li></ul>
+<hr>
+<h2>3. Cowork / デスクトップ / Enterprise</h2>
+<h3>Cowork v4.16336.0(11/3):desktopHome の既定値変更と旧設定の非推奨化</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>desktopHome</code> を設定していない場合、11/10 正午(PT)以降の起動では <code>standard</code> として扱われます。<code>coworkSessionRetentionDays</code> も設定する必要があります。</li><li><code>coworkTabEnabled</code>、<code>chatTabEnabled</code>、<code>chatAdvancedFileAnalysisEnabled</code> は、12/17 正午(PT)までに削除が必要です。11/17 から警告が出ます。</li></ul>
+<p>-</p>
+<h3>Opus 4.8 fast mode の 11/30 削除</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>削除後は、標準の Opus 4.8 に切り替わらずエラーになります。</li></ul>
+<p>-</p>
+<h3>Cowork v4.23118.1(11/9):plugin(mod)のコードによるツール呼び出しには承認カードを出さない</h3>
+<p><strong>[確認済]</strong>(Claude だけが主張、原文と一致)</p>
+<ul><li>原文では、<code>toolPolicy</code> に登録されていない connector のツールも、承認カードなしで実行されます。<code>ask</code> に設定したツールへの呼び出しは拒否されます。Claude の出力は、この補足を書いていませんでした。</li><li>同じ版で、sandbox が有効なときはサブフォルダの skills を読み込まなくなりました。</li><li>出典:https://claude.com/docs/cowork/changelog</li></ul>
+<h3>Unified Claude の既定化日</h3>
+<ul><li><strong>codex の「既存 Enterprise 組織では 11/16 に既定で有効」:[確認済]</strong></li><li>公式の管理者ガイドに「November 16, 2026」とあります。ページの表示は「Updated this week」だけで、更新日は書かれていません。</li><li><strong>Claude の「11/10 に全組織でオン、旧設定は 11/17 から受け付けない」:[棄却]</strong></li><li>公式ガイドの日付(11/16、Enterprise 向け)と食い違っています。11/10 は desktopHome の既定値変更、11/17 は旧設定の警告が始まる日で、どちらも別の話です。取り違えの可能性が高いです。</li><li>出典:https://support.claude.com/en/articles/17444462</li></ul>
+<h3>Plugins 管理画面の統合</h3>
+<p><strong>[確認済]</strong>(codex だけが主張、原文と一致)</p>
+<ul><li>Free・Pro・Max・Ultra・Team では 11/9 に一般提供になりました。Enterprise では 11/30 から既定で有効です。</li><li>Skills が無効のままだと、11/30 から Cowork と Code タブで plugins が使えなくなります。11/30 に Skills の名前は Plugins に変わります。</li><li>出典:https://support.claude.com/en/articles/17740565</li></ul>
+<h3>Enterprise のセキュリティ強化(11/5)</h3>
+<p><strong>[確認済]</strong>(両AIが一致)</p>
+<ul><li>正式版(GA)は inference hooks(prompt hooks と pre-tool-call hooks)です。</li><li>beta は、security center、Cowork VM 内での EDR、親組織による一元管理、Admin API による強制サインアウト、IP allowlist です。</li><li>IP allowlist は、1組織あたり最大1,000エントリです(platform の release notes)。</li><li>出典:https://claude.com/blog/claude-enterprise-security-updates</li></ul>
+<h3>コストコードによる支出の追跡(beta、11/6)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>出典:https://support.claude.com/en/articles/12138966-release-notes</li></ul>
+<h3>Personal Finance(beta、11/5)</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>米国のみで、Pro・Max・Ultra が対象です。</li><li>読み取り専用で Plaid 経由という点は、9to5Mac の記事にはありますが、公式の release notes には書かれていません。この部分は二次情報としての確認です。</li></ul>
+<hr>
+<h2>4. Claude Design</h2>
+<h3>単体サイト claude.ai/design の閉鎖(12/14)</h3>
+<p><strong>[確認済]</strong>(両AIが一致し、一次ソースとも合っています)</p>
+<ul><li>プロジェクトは artifacts に移せます。移行は有料プランから順に展開中です。</li><li>ZDR の組織は移行できず、HIPAA-ready 構成の組織は今のところ移行できません。</li><li>チャット、コメント、公開リンクは移行されません。</li><li>今週の更新で何が変わったのかは、一次ソースでは確認できませんでした(ページには「Updated this week」とあるだけです)。</li></ul>
+<p>-</p>
+<h3>今週、Design に新機能があったか</h3>
+<p><strong>[確認済]</strong>(両AIとも「確認できない」で一致)</p>
+<ul><li>Fable 5.2 の発表ページにも Design への言及はありませんでした。これは「確認できなかった」という結果で、新機能が無いと確かめたわけではありません。</li></ul>
+<h3><code>/design</code> スキルの解説、「社内の移行期限を 11/30 に」という助言</h3>
+<p><strong>[要検証]</strong>(二次情報で、今回は記事を開いていません)</p>
+<ul><li><code>/design</code> スキルが実在すること自体は既知です。</li></ul>
+<hr>
+<h2>5. 運用 Tips・コミュニティ記事</h2>
+<h3>CLAUDE.md を小さく保つ(<code>@import</code> で分けてもコンテキストは減らない、200行未満が目安)</h3>
+<p><strong>[要検証]</strong>(codex だけが主張。公式の memory ドキュメントは今回開いていません)</p>
+<h3><code>/doctor prompt-audit</code> による監査</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>「/doctor の下にある」という呼び出し方が既存の知見と同じかどうかは、知見側の記述と照らし合わせることをお勧めします。</li></ul>
+<h3>公式ガイド「Steering Claude Code」(hooks はコンテキストをほとんど使わない、拒否時の stderr は残る)</h3>
+<p><strong>[要検証]</strong>(Claude だけが主張。一次の URL ですが、今回は開いていません)</p>
+<h3>Claude の出力にある「速く・安く回すヒント」</h3>
+<ul><li>changelog から推論したもので、事実の項目ではありません。土台にした changelog の記述は正しいです。</li><li>ただし「巨大な CLAUDE.md が負担になる証拠」という部分は、推論の飛躍です。</li></ul>
+<h3>Qiita・Zenn の記事</h3>
+<p><strong>[要検証]</strong>(二次情報で、今回は開いていません。codex が挙げた Qiita の v2.1.317〜319 まとめは、技術的な中身を一次ソースで照合済みです)</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong><code>permissions.denyInsteadOfPrompting</code>(v2.1.319)を cron の <code>claude -p</code> で試す</strong></li></ol>
+<ul><li>無人実行で許可待ちのまま止まる問題を、設定1つで避けられる可能性があります。</li><li>ただし、同じ版で auto mode のサーバー判定が「フォールバックせず確認か拒否」に変わりました。両方が重なると、必要な操作まで黙って拒否されるおそれがあります。</li></ul>
+<ol><li><strong>Fable 5.2 への移行で 400 が出る条件を棚卸しする</strong></li></ol>
+<ul><li>v2.1.321 では、保存済みの 5.1 の選択が自動で <code>fable</code> に移ります。</li><li>API 側では、prefix check の強制、<code>computer_20251124</code> の廃止、advisor の組み合わせ制限によって 400 エラーが新しく起こり得ます。</li><li>モデル ID の決め打ちや thinking ブロックの扱いを repo 全体で検索する価値があります。</li><li>stable チャネルが遅れる件は二次情報だけなので、自分の環境で <code>claude --version</code> を実際に確認してください。</li></ul>
+<ol><li><strong>Cowork v4.23118.1 と CC v2.1.319 の変更(mod の呼び出しは承認なし、sandbox 有効時はサブフォルダの skills を読まない)を確かめる</strong></li></ol>
+<ul><li>権限の床(deny 床)の前提と、skills の読み込み範囲の両方に関わる変更です。</li><li>あわせて、Enterprise では 11/30 に Skills が Plugins に名前を変えます。Team/Enterprise で Skills を無効にしている組織は、11/30 から plugins が止まる点にも注意が必要です。</li></ul>
+<hr>
+<p>Sources:</p>
+<ul><li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" rel="noopener">Introducing Claude Fable 5.2 and Claude Mythos 5.2</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Developer Platform release notes</a></li><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork changelog</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude release notes (support)</a></li><li><a href="https://claude.com/blog/claude-enterprise-security-updates" rel="noopener">Claude Enterprise security updates</a></li><li><a href="https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page" rel="noopener">Manage plugins, skills and connectors from one Plugins page</a></li><li><a href="https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization" rel="noopener">Unified Claude experience for Enterprise</a></li><li><a href="https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude" rel="noopener">Move from standalone Claude Design to Claude</a></li><li><a href="https://wmedia.es/en/tips/claude-code-fable-5-2-faster-for-less" rel="noopener">wmedia.es: Fable 5.2 in Claude Code</a></li><li><a href="https://9to5mac.com/2026/11/05/anthropic-upgrades-claude-with-new-personal-finance-feature/" rel="noopener">9to5Mac: Personal Finance</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

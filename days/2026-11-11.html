@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-11 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-11</div>
+  <div><span class="lab lab-ok">確認済 24</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-11</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。<br>他ホスト分は pull で届く記録なので、同期が止まると見かけ上の無音になる。同期: 同期OK(最終pull 11/11 07:00)</blockquote>
+<h1>Claude/Anthropic 直近の動き 精査結果（2026-11-11）</h1>
+<p><strong>確認方法</strong>：収集元は codex と Claude の2系統だけです。一次情報として次の7ページを今回 WebFetch で取得し、照合しました。</p>
+<ul><li>anthropic.com：Fable 5.2 発表ページ、/news</li><li>platform.claude.com のリリースノート</li><li>code.claude.com の changelog</li><li>claude.com の Cowork changelog</li><li>claude.com の Enterprise セキュリティ記事</li><li>support.claude.com の Unified 管理ガイド</li></ul>
+<p>support のアプリ版リリースノートは取得していません。</p>
+<hr>
+<h2>A. Claude Code</h2>
+<h3>A-1. v2.1.322：Vertex で fast mode に対応</h3>
+<p><strong>[確認済]</strong> global / us / eu リージョンで fast mode が使えるようになりました。Vertex に拒否された場合は標準速度に戻ります。両AIの記述が一致し、changelog 原文でも確認しました。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-2. v2.1.321：Fable 5.2 を追加し、Fable の既定にした</h3>
+<p><strong>[確認済]</strong> <code>claude-fable-5-2</code> が追加され、「既定の Fable モデル」になりました（11/9）。ただし、Claude 側の「このバージョン以上が必要」という最低要件は changelog に書かれておらず、一次確認できませんでした。「Fable の既定」は Fable 系の中での既定という意味です。Claude Code 全体の既定モデルという意味ではありません。<br>出典: 同上</p>
+<h3>A-3. v2.1.321：コンテキスト・サブエージェント・読み込みまわりの修正</h3>
+<p><strong>[確認済]</strong> 原文で確認できた修正は次のとおりです。</p>
+<ul><li>ツール定義のトークン数を多めに見積もる問題</li><li>1,000文字を超えるバックグラウンド通知を先頭と末尾だけにする変更</li><li>大きなファイルを1行ずつ読み続けるとメモリが増える問題</li><li><code>git stash</code> や worktree 移動のあと skills / commands / agents が消えたままになる問題</li><li>fast mode が使えないとき、まず同じモデルの標準速度を試すようになった</li><li>headless で <code>.claude/skills</code> を自動再読込（<code>CLAUDE_CODE_PLUGIN_DIR_WATCH=0</code> で無効化）</li><li><code>claude remote-control --settings &lt;file&gt;</code> の追加</li></ul>
+<p>codex が挙げた「圧縮時にバックグラウンドエージェントの報告が消える／一括投入されすぎる」修正は、取得した要約の中では個別に確認できていません。<br>出典: 同上</p>
+<h3>A-4. v2.1.321：hooks の修正と Cowork cloud の PostToolUse 仕様変更</h3>
+<p><strong>[確認済]</strong> 次の3点を原文で確認しました。</p>
+<ul><li>PreToolUse で、別 hook の <code>defer</code> が先に終わると <code>ask</code> が消える問題を修正</li><li>大きな hook 出力が別 hook の出力ファイルを指す問題を修正</li><li>Cowork cloud では PostToolUse hook で AskUserQuestion の回答や ExitPlanMode の計画を置き換えられなくなった（Claude は元の内容を読みます）</li></ul>
+<p>出典: 同上</p>
+<h3>A-5. v2.1.319（11/6）：<code>denyInsteadOfPrompting</code>・MCP tasks・<code>/context</code>・<code>/tasks</code></h3>
+<p><strong>[確認済]</strong> 次を確認しました。</p>
+<ul><li><code>permissions.denyInsteadOfPrompting</code>：許可待ちになるはずの呼び出しを拒否し、ターンを続ける</li><li>MCP tasks：長いタスクは自動でバックグラウンドに回る（<code>CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND</code> / <code>CLAUDE_CODE_DISABLE_MCP_TASKS=1</code> で制御）</li><li><code>/context</code>：各リストは上位10件だけ。表示用グリッドが後のターンにも送られていた不具合を修正</li><li><code>/tasks</code> に「Earlier in this session」行を追加</li><li><code>/clear</code> でバックグラウンドエージェントが止まる問題を修正</li><li><code>/claude-api latency-optimize</code> を追加</li></ul>
+<p>出典: 同上</p>
+<h3>A-6. v2.1.319：self-paced <code>/loop</code> の終了条件変更と auto mode 拒否時の終了コード 1</h3>
+<p><strong>[確認済]</strong> <code>/loop</code> は、再スケジュールせずにターンが終わると停止するようになりました（<code>CLAUDE_CODE_LOOP_KEEPALIVE=1</code> で旧挙動）。auto mode が安全確認できずに拒否されたとき、<code>claude -p</code> は終了コード 1 を返します。<br>出典: 同上</p>
+<h3>A-7. v2.1.319：sandbox 時の配下 <code>.claude/skills</code> の読み込み</h3>
+<p><strong>[確認済]</strong> Bash sandbox がオンのとき、配下フォルダの skills はそこで起動するか <code>/cd</code> した場合だけ読み込まれます。2.1.321 では <code>~/.claude/plugins</code> 配下でも読み込まれなくなりました。<br>出典: 同上</p>
+<h3>A-8. v2.1.318（11/4）：3分でバックグラウンド化・ログイン期限警告</h3>
+<p><strong>[確認済]</strong> 次を確認しました。</p>
+<ul><li>バックグラウンドのサブエージェントは、3分を超えたシェルコマンドを全プロバイダでバックグラウンドに移す</li><li>読み込み前の MCP ツールを呼ぶと入力スキーマが返る</li><li><code>claude -p</code> のテキスト出力で、ログイン期限の10日前から stderr に警告</li><li><code>claude auth status</code> に <code>loginExpiresAt</code> を追加</li></ul>
+<p>出典: 同上</p>
+<h3>A-9. v2.1.317（11/3）：Read の unchanged スタブ廃止など</h3>
+<p><strong>[確認済]</strong> 次を確認しました。</p>
+<ul><li>変更のないファイルを読み直しても全文が返るようになった（そのぶんコンテキストを消費）</li><li>大きな CLAUDE.md が変わったあと、compaction 直後に「Prompt is too long」になる問題を修正</li><li>Agent SDK の hook callback に <code>onFailure: "block"</code> を追加</li><li>別モデルで動くサブエージェントは、そのモデル用に保存された effort を使う</li></ul>
+<p>出典: 同上</p>
+<h3>A-10. アカウントのメールアドレス送信チェックの変更（2.1.317 → 2.1.321）</h3>
+<p><strong>[確認済]</strong>（一次で見つかった新事実。知見の更新が必要）</p>
+<ul><li>2.1.317：web / shell ツールがメールアドレスを外に送る前に確認を求める</li><li>2.1.321：確認を求めるのをやめ、「メールアドレスを含み、User-Agent を指定する shell コマンド」だけを黙って拒否する方式に絞った</li></ul>
+<p>既存の知見は 2.1.317 時点の「確認を求める」挙動を前提にしています。2.1.321 以降の挙動として見直しが必要です。<br>出典: 同上</p>
+<h3>A-11. 「メールアドレスをモデルに渡すコンテキストから外す予定」（HN の開発者投稿）</h3>
+<p><strong>[要検証]</strong> codex だけの主張です。changelog 2.1.317〜2.1.322 にこの趣旨の記載は見つかりませんでした。これは「一次確認できなかった」という意味で、「予定が存在しない」とは確認していません。<br>出典: https://news.ycombinator.com/item?id=50388176</p>
+<h3>A-12. hooks を含むプラグインの更新が「Verified organizations のみ」として拒否される</h3>
+<p><strong>[要検証]</strong> codex だけの主張です。根拠は Issue での報告で、公式の仕様としては確認できていません。<br>出典: https://github.com/anthropics/claude-plugins-official/issues/7024</p>
+<h3>A-13. 2.1.320 の欠番</h3>
+<p><strong>[参考]</strong> 取得した changelog は 2.1.321 の次が 2.1.319 で、2.1.320 の記載がありません。リリースされなかったのか、記載漏れなのかは確認できていません。</p>
+<hr>
+<h2>B. Cowork / Claude Desktop</h2>
+<h3>B-1. Cowork changelog v5.1231.0（11/10）</h3>
+<p><strong>[確認済]</strong> Claude の主張を一次で確認しました。</p>
+<ul><li>セッションの CLAUDE.md を編集しても、グローバル指示は変わらない</li><li>スケジュールタスクに実行状態を表示（失敗、再試行予定、入力待ちなど）</li><li>3P 管理者向けに <code>organizationAnnouncement</code> を追加</li></ul>
+<p>ほかにも、要約に出てこなかった変更があります。</p>
+<ul><li><code>mcpScheduledTaskApprovalLifetimeDays</code> を追加</li><li><code>inferenceModels</code> は記載したバージョンだけを許可するよう厳密化（<code>claude-opus-5</code> が <code>claude-opus-5-5</code> を含まなくなった）</li><li>デスクトップアプリで追加した MCP サーバーも、Claude Code 管理設定の許可リスト／拒否リストに従う</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>B-2. Code のみの構成で <code>desktopHome</code> が未設定の場合、Unified 化は 12/17 に延期</h3>
+<p><strong>[要検証]</strong>（知見との食い違いがあるため格下げ）</p>
+<ul><li>公式 changelog v5.1231.0 には「v4.4212.0〜4.23118.1 は 11/10 に切り替えるが、このバージョンで <strong>12/17 12:00 PT に延期</strong>」とあります。</li><li>Setup の Chat / Cowork スイッチは予定どおり 11/10 に削除されました。</li><li>v4.23118.0 で <code>coworkTabEnabled</code> などが非推奨になり、12/17 までに削除するよう求められています。</li></ul>
+<p>一次情報が新しい内容を示しているので、知見側が古くなっている可能性が高いです。<br>出典: 同上</p>
+<h3>B-3. Enterprise の Chat / Cowork 統合が既定で有効になる日</h3>
+<p><strong>[確認済]</strong>（codex の主張）</p>
+<ul><li>公式ガイドの記載は <strong>11/16</strong> に既定オンです。</li><li>すでにオン／オフを選んだ組織はその選択が維持されます。</li><li>Cowork がオンである必要はありません。必要なのは Chat と「Cloud code execution and file creation」です。</li></ul>
+<p>出典: https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization</p>
+<h3>B-4. 「11/10 から全組織で既定オン、Cowork を無効にしていた環境でも有効」（SmartScope）</h3>
+<p><strong>[棄却]</strong> 公式ガイドと食い違います。公式は日付が 11/16 で、既存の選択は維持され、Chat などがオフなら自動では何もオンになりません。Desktop の 12/17 延期とも合いません。</p>
+<h3>B-5. Cowork の EDR 対応（beta）</h3>
+<p><strong>[確認済]</strong> 11/5 の公式ブログで確認しました。macOS / Windows のローカル VM で組織の EDR センサーを動かせます。検知モードのみで操作はブロックせず、クラウドセッションは対象外です。Claude は「未確認」としていましたが、一次で裏が取れました。<br>出典: https://claude.com/blog/claude-enterprise-security-updates</p>
+<h3>B-6. Opus 4.8 の fast mode は 11/30 に終了</h3>
+<p><strong>[確認済]</strong> 10/30 から非推奨で、終了後のリクエストは通常の Opus 4.8 に戻らずエラーになります。<br>出典: Cowork changelog</p>
+<hr>
+<h2>C. Claude Design</h2>
+<h3>C-1. 単体版 claude.ai/design は 12/14 に終了（以降は読み取り専用）、Artifacts へ移行</h3>
+<p><strong>[確認済]</strong> 両AIの記述が一致し、既存の知見とも合います。<br>出典: https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</p>
+<h3>C-2. この期間の Design の新機能</h3>
+<p><strong>[参考]</strong> 両AIとも見つけていません。Fable 5.2 の発表ページにも Design への言及はありませんでした（一次で確認）。</p>
+<hr>
+<h2>D. モデル・API・Anthropic 全体</h2>
+<h3>D-1. Claude Fable 5.2 / Mythos 5.2 を発表（11/9）</h3>
+<p><strong>[確認済]</strong> 発表ページとリリースノートで次を確認しました。</p>
+<ul><li>料金は $8 / $40。fast mode は $16 / $80</li><li>コンテキスト 1M、最大出力 128k、adaptive thinking は常時オン</li><li>出力は最大30%高速、fast mode は最大2.5倍（Claude は30%を「未確認」としていましたが、一次で確認）</li><li>Claude アプリと Claude Code では effort の既定値が medium</li><li>Mythos は Cyber / Life Sciences Verification Program の参加組織に限定</li></ul>
+<p>出典: https://www.anthropic.com/claude-fable-and-mythos-5-2</p>
+<h3>D-2. Fable 5.2 の公式ベンチマーク</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li>FrontierCode 2.0：49.1%（Xhigh）。High では 45.3%、Opus 5.5 は 45.5%</li><li>FrontierSWE v2：69.9%（5.1 は 56.3%、Opus 5.5 は 62.3%）</li></ul>
+<p>いずれもメーカー自身の評価です。<br>出典: 同上</p>
+<h3>D-3. eesel.ai の「Claude Code 上で Max 45.65%」や ProgramBench での失敗多発</h3>
+<p><strong>[要検証]</strong> Claude だけが挙げた二次情報で、出典となる一次ソースは確認できていません。公式の High 45.3% とは effort の区分が違うので、矛盾とは言い切れません。</p>
+<h3>D-4. API の破壊的変更（Fable / Mythos 5.2）</h3>
+<p><strong>[確認済]</strong> リリースノートで次を確認しました。</p>
+<ul><li>prefix check を全アカウントに適用（system / tools / 過去メッセージを編集したうえで thinking ブロックを返すと 400）</li><li><code>computer_20251124</code> は Bedrock 以外で 400。<code>computer_toolset_20260801</code> を使う</li><li>30日間のデータ保持が必須</li></ul>
+<p>どちらのAIも挙げていませんが、Advisor tool の制約（executor と advisor の両方が 5.2 系でないと 400）と、thinking ブロックは生成したアカウント（またはリンク済みアカウント）でしか使えない制約もあります。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>D-5. API 管理機能（11/5）</h3>
+<p><strong>[確認済]</strong> Console の IP 許可リスト（beta、組織あたり最大1,000件）、Compliance API の security posture（beta）、Admin API での全体サインアウト（beta）を確認しました。<br>出典: 同上</p>
+<h3>D-6. Enterprise の Security Center（beta）と inference hooks の一般提供（11/5）</h3>
+<p><strong>[確認済]</strong> prompt hooks と pre-tool-call hooks が一般提供になりました。集中管理（admin.claude.com、beta）も含まれます。aiweekly が報じた「Netskope / Palo Alto / Zscaler 対応」は、公式記事にベンダー名がなく<strong>一次確認できませんでした</strong>（存在しないと確認したわけではありません）。<br>出典: https://claude.com/blog/claude-enterprise-security-updates</p>
+<h3>D-7. Personal Finance beta（11/5、米国のみ）と Enterprise のプロジェクトタグ（11/6）</h3>
+<p><strong>[確認済]</strong> 両AIの記述が一致しています。support のリリースノートは今回取得していません。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>D-8. IPO ロードショー開始（11/10）</h3>
+<p><strong>[確認済]</strong> anthropic.com/news で確認しました。10/26 の S-1 提出に続くものです。Claude だけが挙げていましたが、一次で裏が取れました。<br>出典: https://www.anthropic.com/news</p>
+<h3>D-9. Message threads beta（11/2）とテキスト透かし（11/3）</h3>
+<p><strong>[確認済]</strong> 期間の少し前の項目です。threads は最後のリクエストから5分で期限切れになります。透かしの対象は Mythos 5 / Opus 4.7 / Sonnet 4.6 です。<br>出典: Platform リリースノート</p>
+<hr>
+<h2>E. コミュニティ・実践知</h2>
+<h3>E-1. Oikon 氏の Zenn 記事（<code>/btw</code> で圧縮指示を作る、役割名で複数エージェントを管理）</h3>
+<p><strong>[要検証]</strong> 本文を読んだのは codex だけで、Claude ははてブ経由でしか確認できていません。<code>/btw</code> の公式仕様の URL も codex が挙げただけで、今回は取得していません。<br>出典: https://zenn.dev/oikon/articles/claude-code-recipe</p>
+<h3>E-2. <code>loginExpiresAt</code> による認証期限の事前チェック（Zenn）</h3>
+<p><strong>[確認済]</strong> 機能そのものは 2.1.318 で確認しました（A-8）。ただし記事の「通常の <code>-p</code> 出力には期限の兆候が出ない」は、2.1.318 のテキスト出力での stderr 警告と合いません。記事の検証環境（json 出力や旧版など）は確認できていないので、この部分は<strong>[要検証]</strong>です。</p>
+<h3>E-3. wmedia.es：「2.1.321 より古いと <code>/model fable</code> は警告なしに 5.1」「<code>autoUpdatesChannel: "latest"</code> を推奨」</h3>
+<p><strong>[要検証]</strong> 二次情報だけの主張です。2.1.321 で Fable 5.2 が既定になったことは一次で確認でき、主張と整合はします。ただし、旧版の挙動とこの設定キーは一次確認していません。</p>
+<h3>E-4. claude.com の使い分け記事と、sub-agents docs の <code>omitClaudeMd</code></h3>
+<p><strong>[要検証]</strong> Claude だけの主張で、今回は取得していません。</p>
+<h3>E-5. CLAUDE.md の公式指針（200行未満、path-scoped rules、<code>@import</code> ではコンテキストが減らない）</h3>
+<p><strong>[要検証]</strong> codex だけが挙げた既存の運用指針で、今回の新規発表ではありません。docs は取得していません。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong><code>permissions.denyInsteadOfPrompting</code>（v2.1.319）を cron の <code>claude -p</code> で試す</strong></li></ol>
+<p>承認待ちで止まらず拒否してターンを続けるので、無人のブリーフ収集や検証パイプラインに直接効きます。同じ版の「auto mode 拒否時に終了コード 1」と合わせ、終了コードの監視と deny 床の設計を見直す価値があります。</p>
+<ol><li><strong>メールアドレス送信チェックの変更（2.1.321）がパイプラインに与える影響を再検証</strong></li></ol>
+<ol><li><strong><code>desktopHome</code> の延期（11/10 → 12/17）を反映して知見を更新し、設定を棚卸しする</strong></li></ol>
+<ul><li><code>coworkTabEnabled</code> などの非推奨キーの削除期限</li><li><code>sessionRetentionHold</code> が無視されるようになる</li></ul>
+<p>あわせて、Fable 5.2 で effort の既定が medium になった点が、無人で実行している処理の品質に響かないかも確認しておくとよいです。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

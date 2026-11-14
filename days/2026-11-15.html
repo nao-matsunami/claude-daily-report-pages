@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-15 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-15</div>
+  <div><span class="lab lab-ok">確認済 31</span><span class="lab lab-warn">要検証 9</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-15</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<blockquote><strong>パイプラインの無音検知</strong><br><br>判定は state/heartbeat/ の記録(一次情報)による。コミット時刻ではない。<br>他ホスト分は pull で届く記録なので、同期が止まると見かけ上の無音になる。同期: 同期OK(最終pull 11/15 07:00)</blockquote>
+<h1>Claude/Anthropic 直近動向の精査結果(対象期間 2026-11-09〜11-15)</h1>
+<p><strong>前提</strong>:入力は ChatGPT(codex)と Claude の2系統だけです。2系統が一致していても、同じ二次情報を元にしている可能性があります。そのため、一次情報(公式ページ)を実際に開けた項目を [確認済] にしました。<br><strong>今回開いた一次情報</strong>:code.claude.com の changelog と Code Mode docs、anthropic.com の Fable 5.2 発表と News、platform.claude.com のリリースノートと Fable 5.2 プロンプトガイド、claude.com の Cowork changelog と各記事、support.claude.com の4記事。<br><strong>読めた範囲</strong>:長いページは冒頭部分しか読めていません。対象は CLI changelog(全体の約8%)、Cowork changelog(約33%)、API リリースノート(約69%)です。「見つからなかった」は、この読めた範囲で見つからなかったという意味です。</p>
+<hr>
+<h2>A. Claude Code(重点)</h2>
+<p><strong>A-1. v2.1.325(11/13):sandbox 内 Bash が通常の権限確認に変更</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:sandbox 内の Bash も、既定で通常の権限確認を通るようになりました。以前の挙動に戻すには <code>sandbox.autoAllowBashIfSandboxed: true</code> を設定します。2系統とも一致し、changelog 原文でも確認しました。</li><li>出典:https://code.claude.com/docs/en/changelog</li></ul>
+<p><strong>A-2. v2.1.325:Scheduled tasks と <code>/loop</code> が skill 実行前に確認を求める</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:<code>allowed-tools</code> か hooks を宣言した skill は、実行前に確認が入るようになりました。無人で実行するには <code>permissions.allow</code> に <code>Skill(name)</code> を追加します。2系統一致、原文で確認済みです。</li><li>関連知見:loop-keepalive-impact-inventory.md、auto-mode-default-impact-on-cron-scripts.md と影響範囲が重なります。棚卸しは未実施です。</li><li>出典:同上</li></ul>
+<p><strong>A-3. v2.1.325:zstd 展開のセキュリティ修正</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:原文に記載があります。</li><li>出典:同上</li></ul>
+<p><strong>A-4. v2.1.325 のその他(Claude のみの主張)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:「別モデルで動くサブエージェントのモデル処理」「ファイル読み取り・MCP 結果のサイズの扱い」の修正があるという主張です。今回読めた 2.1.325 の項目には見当たらず、一次確認できませんでした。存在しないと確認したわけではありません。</li></ul>
+<p>**A-5. git worktree 操作が sandbox 内で失敗する/<code>Bash(NODE_ENV*)</code> 型の allow ルールが確認を求める**</p>
+<ul><li>確度:[確認済](版数帰属は訂正)</li><li>要約:内容は確認できました。Claude はこの2件を「v2.1.325」としていましたが、CLI changelog では <strong>v2.1.323</strong> の項目です。Desktop では v5.11492.5(11/13)に載っており、取り違えはここから来たと考えられます。</li><li>補足:2.1.323 では「<code>Bash(ls*)</code> のような wildcard 付き allow ルールが、一部のケースで確認を飛ばしていた」不具合も修正されています。bash-wildcard-allow-rule-audit.md(v2.1.246 時点)の前提が変わった可能性があります。</li></ul>
+<p><strong>A-6. v2.1.323(11/12):Code Mode を追加(実験的・オプトイン)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:Claude が JavaScript を書き、その中で複数のツールを呼び出します。有効化は <code>CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1</code> で、プロジェクトの settings に書いても無視されます。</li><li>制約:対話型ターミナルでしか動きません。<code>-p</code>、SDK、VS Code、Desktop、gateway、Bedrock、agent teams は非対応です。</li><li>hooks:<code>PreToolUse</code> の matcher に <code>REPL</code> を指定し、<code>tool_input.code</code> を読めばコードを検査できます。hook が失敗またはタイムアウトすると、<code>onFailure</code> を設定していなくてもツール呼び出しは拒否されます。</li><li>auto mode:分類器が審査するのはコード全体です。実行時に計算される値は見ません。</li><li>定量効果:公式には速度やトークン削減の数値はありません(2系統とも「未確認」としており、一致)。</li><li>出典:https://code.claude.com/docs/en/code-mode</li></ul>
+<p><strong>A-7. v2.1.323:<code>plugin.json</code> の <code>engines["claude-code"]</code>、<code>claude plugin validate</code> の TypeScript hooks 型検査と <code>--strict</code></strong></p>
+<ul><li>確度:[確認済]</li><li>要約:2系統一致、原文で確認済みです。型検査の指摘は warning 扱いで、<code>--strict</code> を付けると失敗になります。</li></ul>
+<p><strong>A-8. v2.1.323:長時間かかる hook で、<code>-p</code> / SDK 実行中に30秒ごとの進捗表示</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:Claude のみが挙げた項目ですが、原文で確認しました。</li></ul>
+<p><strong>A-9. v2.1.323:認識できないモデルIDの既定コンテキストを 200K から 1M に変更</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:2系統一致、原文で確認済みです。<code>CLAUDE_CODE_DISABLE_1M_CONTEXT=1</code> で 200K に戻せます。</li><li>注意:gateway 経由で独自のモデルIDを使っている場合は、前提が変わります。disable-1m-context-config-audit.md(v2.1.223 時点)と gateway-bedrock-billing-config-audit.md は、この変更より前に書かれたものです。</li><li>出典:changelog</li></ul>
+<p><strong>A-10. v2.1.323:<code>CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES</code></strong></p>
+<ul><li>確度:[確認済]</li><li>要約:原文に「available since 2.1.318」と明記されています。今回新しく実装されたのではなく、今回 changelog に記載されたものです。codex の書き方が正確でした。</li></ul>
+<p><strong>A-11. v2.1.323:<code>/security-review</code> が実行前に確認を求める/<code>/compact</code> の連続実行で未回答メッセージが要約で消える問題を修正</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:どちらも原文に記載があります。Claude は <code>/compact</code> の修正を二次情報扱いにしていましたが、一次情報で確認できました。</li></ul>
+<p><strong>A-12. v2.1.322(11/10):Vertex の global / us / eu で fast mode</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:原文で確認しました。Vertex が拒否した場合は標準速度に戻ります。</li></ul>
+<p><strong>A-13. v2.1.321(11/9):Fable 5.2 を追加し Fable の既定に。セキュリティ修正3件</strong></p>
+<ul><li>確度:[確認済]</li><li>修正内容(原文で確認):</li><li>読み取り専用の Bash が sandbox の外で確認なしに実行できた問題</li><li><code>cp</code> / <code>mv</code> でディレクトリに書き込んだファイルに deny ルールが効かなかった問題</li><li>MCP OAuth で、リダイレクト先の別ホストに refresh token が送られた問題</li><li>補足:Claude は「DEV まとめ」を出典にしていましたが、一次情報で確認できました。</li><li>未確認:「保存済みの Fable 5.1 の選択が <code>fable</code> エイリアスに移る」という記述は、今回読めた範囲にはなく、一次確認できていません。</li></ul>
+<p><strong>A-14. v2.1.320 / v2.1.324 は欠番</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:changelog 上でこの2版は表示されていません。</li></ul>
+<p><strong>A-15. v2.1.319(11/6):<code>permissions.denyInsteadOfPrompting</code> を追加</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:確認待ちになるはずのツール呼び出しを、拒否して処理を続ける設定です。原文で確認しました。</li><li>未確認:同じ版の「MCP タスクを即座にバックグラウンド化する」は、今回読めた範囲では一次確認できませんでした。</li></ul>
+<p><strong>A-16. <code>/doctor prompt-audit</code> で CLAUDE.md の古い指示を洗い出す(wmedia.es)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:prompt-audit 自体は検証済みです(prompt-audit-subcommand-reality-check.md)。ただし「<code>/doctor</code> の下から呼ぶ形」が知見と同じかは、知見の本文と照合していません。「所有者の一文はプロジェクトの CLAUDE.md に置く」という部分は、記事を書いた人の意見です。</li><li>出典:https://wmedia.es/en/tips/claude-code-fable-5-2-claude-md-cleanup</li></ul>
+<p><strong>A-17. claudefa.st のベストプラクティス(サブエージェントは親のモデルを引き継ぐ/<code>/goal</code>/<code>ask</code> ルール)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:二次情報で、Claude だけが挙げた項目です。関連知見として subagent-model-env-autocompactwindow-spec-check.md と goal-command-spec-doc-check.md がありますが、記事の主張と照合はしていません。</li></ul>
+<p><strong>A-18. 日本語圏の実践記事(codex のみ)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:今週公開とされる日本語記事4本です。2系統の間で見え方が違います。</li><li>codex が挙げた記事:Zenn「CLAUDE.md を絞り込む」、Zenn「<code>/btw</code> とサブエージェントの使い方」、Qiita「hooks の stderr は <code>--include-hook-events</code> でしか見えない」、Zenn「自動実行 14% / 手動 86%」</li><li>Claude:今週公開の日本語記事は「見つからなかった」としています。これは見つからなかったという意味で、記事が存在しないと示したものではありません。</li><li>今回は記事本文も、引用されている公式仕様も照合していません。</li><li>照合なしで扱えそうなもの:<code>disable-model-invocation</code> の仕様は skills-frontmatter-fields-primary-check.md と skill-listing-1pct-budget-local-inventory.md で確認済みです。</li><li>「<code>claude-md-management</code> プラグイン」(note)は、codex 自身も現行仕様は未確認としています。</li></ul>
+<p><strong>A-19. 短い会話でも compaction が頻発する(Reddit)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:コミュニティの報告のみです。再現条件も公式の仕様変更も確認できていません。</li></ul>
+<hr>
+<h2>B. Cowork / Desktop(重点)</h2>
+<p><strong>B-1. Cowork とチャットの統合体験が Team で一般提供(11/12)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:記事の追記で確認しました。Enterprise ではすでに 10/23 に一般提供済みです。</li><li>出典:https://claude.com/resources/articles/cowork-is-now-claude</li></ul>
+<p><strong>B-2. 「11/16 から Enterprise で chat と Cowork が既定で統合」(Claude のみ、二次情報)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:公式記事には 11/16 という日付はありません。記事にあるのは「変更の30日以上前に管理者へ通知する」という記述だけです。Cowork changelog の読めた範囲にも、該当する項目はありませんでした。一次確認できなかったのであって、この主張が誤りだと確認したわけではありません。</li></ul>
+<p><strong>B-3. v5.1231.0(11/10)</strong></p>
+<ul><li>確度:[確認済]</li><li>内容(Claude のみが挙げた項目。changelog 原文で確認):</li><li>Scheduled tasks のカードに実行状態が表示される</li><li>Cowork でセッションの CLAUDE.md を編集しても、グローバル指示は変わらない</li><li>デスクトップアプリで追加した MCP サーバーにも、managed settings の allow / deny が適用される</li><li><code>inferenceModels</code> が完全一致になる</li><li>出典:https://claude.com/docs/cowork/changelog</li></ul>
+<p><strong>B-4. <code>desktopHome</code> が未設定なら 11/10 12:00 PT 以降 <code>standard</code> 扱い/<code>coworkTabEnabled</code> は 12/17 までに削除</strong></p>
+<ul><li>確度:[確認済](desktophome-default-change-settings-audit.md)</li><li>知見にない新情報:v5.1231.0 で「Code だけが有効な環境では、切り替えを 12/17 まで延期する」という例外が加わりました。知見を更新する必要がないか確認してください。</li></ul>
+<p><strong>B-5. v5.11492.0(11/12)</strong></p>
+<ul><li>確度:[確認済]</li><li>内容:</li><li>Auto mode のサブセッションは、1メッセージあたり最大10、同時に最大5</li><li>制限付きネットワークのタスクでは、GitHub は clone / fetch のみ(push、LFS、SSH は不可)</li><li>Mermaid の描画、ADMX テンプレートの出力</li><li>補足:サブセッションの上限は、Desktop の「ローカル Code セッション」での話です。</li></ul>
+<p><strong>B-6. Opus 4.8 の fast mode が 11/30 に削除</strong></p>
+<ul><li>確度:[確認済](nov30-deprecation-hardcode-scan.md)</li><li>要約:削除後は fast mode のリクエストがエラーになり、標準速度には戻りません。</li></ul>
+<p><strong>B-7. 接続アプリを Claude 内でフル表示・共同操作(11/10、codex のみ)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:Web と Desktop の全プランで、新しい Claude 体験に合わせて順次提供されます。</li><li>出典:https://claude.com/resources/articles/interactive-connectors-full-tool</li></ul>
+<hr>
+<h2>C. Claude Design(重点)</h2>
+<p><strong>C-1. 単独版 <code>claude.ai/design</code> が 12/14 に終了</strong></p>
+<ul><li>確度:[確認済](claude-design-sunset-knowledge-recheck.md)</li><li>要約:終了後は読み取り専用になります。デザインシステムとプロジェクトは Artifact として移行できます。チャットとコメントは移行できず、後日削除されます。公開リンクは終了時に使えなくなります。</li><li>告知日:記事には「Updated this week」とあるだけで、正確な告知日は確認できませんでした。</li><li>2系統の関係:Claude は「ページ本体を開いていない」としていましたが、一次情報で確認できました。</li><li>出典:https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</li></ul>
+<p><strong>C-2. 今週の新発表はなし</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:2系統とも新発表を挙げていません。<code>/design-sync</code> については claude-design-command-name.md を参照してください。</li></ul>
+<hr>
+<h2>D. モデル・API</h2>
+<p><strong>D-1. Fable 5.2 / Mythos 5.2 を発表(11/9、11/11 に改訂)</strong></p>
+<ul><li>確度:[確認済]</li><li>確認できた内容:</li><li>料金は $8 / $40(Fable 5.1 の $10 / $50 から値下げ。fable-5-pricing-primary-source-verify.md と矛盾しません)</li><li>fast mode は $16 / $80 で、最大2.5倍速</li><li>effort の既定値は、Claude アプリと Claude Code では medium、API では high</li><li>ベンチマーク3種の数値は、2系統の主張どおり</li><li>Opus 5.5 を日常のメインモデルとして推奨</li><li>Mythos は Verification Program を通過した組織のみ</li><li>出典:https://www.anthropic.com/news/claude-fable-and-mythos-5-2</li></ul>
+<p><strong>D-2. 1M コンテキスト、最大出力 128k、常時有効の adaptive thinking/prefix check による 400 エラー</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:codex のみが挙げた項目ですが、API リリースノートで確認しました。過去の system・tools・メッセージを変更したうえで後続の thinking block を再送すると、400 エラーになります。独自に履歴を編集するハーネスは影響を受けます。</li><li>関連知見:mid-conversation-system-messages.md</li><li>出典:https://platform.claude.com/docs/en/release-notes/overview</li></ul>
+<p><strong>D-3. Fable のローンチ特典</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:Pro と標準 Team シートでは、週の利用枠の最大50%まで Fable を使えます。期限は <strong>11/16 23:59 PT</strong> です。上位プランには、契約期間に応じて1〜3回のリセットがあります(期限は 2027-03-08)。</li><li>2系統の関係:Claude は期限を「二次情報のみ」としていましたが、公式ヘルプで確定しました。</li><li>出典:https://support.claude.com/en/articles/17506494-claude-fable-5-2-launch-offers</li></ul>
+<p><strong>D-4. Prompting Claude Fable 5.2(公式ガイド)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:Claude が挙げた数値はすべて原文と一致しました。</li><li>所有者の一文:重複コードの統合率が10%未満から約75%に上がり、出力トークンは70〜80%増える。「No drive-by refactors」を併記しても、統合は半数以上の実行で起きる</li><li>「Finishing work」プロンプト:止まるセッションが約半分になり、出力トークンは約30%増える</li><li>ツール説明を工夫すると、サブエージェント数が約半分になる(high effort)</li><li>「考えずに答えて」という指示は medium 以上では効かない</li><li>出典:https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2</li></ul>
+<p><strong>D-5. Managed Agents 全体のセルフホスト(11/12)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:codex のみが挙げた項目ですが、API リリースノートで確認しました。利用には Anthropic の担当窓口への申請が必要です。既存知見 self-hosted-runner-primary-source-check.md は Runner だけを扱ったもので、今回のサービス全体のセルフホストは別の事項です。</li></ul>
+<hr>
+<h2>E. その他プロダクト・企業</h2>
+<p><strong>E-1. Sheets / Whiteboards がベータ、Dashboards が Claude Data として一般提供(11/10)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:全有料プランが対象です。Team では既定で有効です。</li><li>Enterprise での Data 既定有効化日:発表記事は <strong>11/20</strong> と書いています。codex は「記事は 11/19、ヘルプは 11/20 で食い違う」としていましたが、記事に 11/19 という表記は見つかりませんでした。ヘルプ記事は開いていません。</li><li>出典:https://claude.com/resources/articles/sheets-whiteboards-data</li></ul>
+<p><strong>E-2. Claude Meetings が Team / Enterprise でベータ展開開始</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:公式リリースノートの日付は 11/12 です。Claude は Axios をもとに 11/10 としていましたが、11/10 は報道日、11/12 は展開日と考えると、AlternativeTo の「coming later」とも矛盾しません。</li><li>未確認:「Google Meet のみ」と限定する表現は、一次情報では確認できませんでした。</li><li>出典:https://support.claude.com/en/articles/12138966-release-notes</li></ul>
+<p><strong>E-3. IPO のロードショー開始(11/10)</strong></p>
+<ul><li>確度:[確認済]</li><li>要約:anthropic.com に告知があります。</li></ul>
+<p><strong>E-4. IPO の詳細(ティッカー「ANT」、$70〜78、11/18 価格決定、11/19 取引開始)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:RTTNews や CNBC(引用)などの複数の報道で一致していますが、anthropic.com の告知にはこれらの詳細がありません。</li><li>出典:<a href="https://www.rttnews.com/3712632/anthropic-sets-ipo-price-range-at-70-78-per-share-launches-roadshow.aspx" rel="noopener">RTTNews</a>、<a href="https://www.sovereignmagazine.com/article/anthropic-ipo-price-range-roadshow" rel="noopener">Sovereign Magazine</a></li></ul>
+<p><strong>E-5. 11/12〜13 の障害(ログイン失敗、Cowork の性能低下)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:Claude のみが挙げた項目で、Status ページは開いていません。</li></ul>
+<p><strong>E-6. 「Fable 5.2 と Opus 5.5 の差を日常では感じない」という声が多数派(UX Planet)</strong></p>
+<ul><li>確度:[要検証]</li><li>要約:論評記事の主張です。元になったとされる HN / Reddit のスレッド自体は確認していません。</li></ul>
+<p><strong>[棄却]</strong>:2系統の間で事実が真っ向から食い違う項目はありませんでした。版数の誤り(A-5)は、内容が正しいので訂正のみとしました。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>v2.1.325 の承認条件変更(A-1, A-2)の棚卸し</strong></li></ol>
+<ul><li>理由:cron の <code>claude -p</code> や <code>/loop</code> に直接影響します。<code>allowed-tools</code> か hooks を持つ skill を無人で実行している箇所は、確認待ちで止まるおそれがあります。</li><li>やること:<code>Skill(name)</code> の許可を足すか、<code>denyInsteadOfPrompting</code>(2.1.319)を組み合わせるかを決めます。</li><li>合わせて:2.1.323 の wildcard ルール修正(A-5)に照らして、bash-wildcard-allow-rule-audit.md をやり直すのが効率的です。</li></ul>
+<ol><li><strong>Fable 5.2 への移行前の掃除(D-2, D-4)</strong></li></ol>
+<ul><li>理由:公式ガイドが数値付きで、「never ○○」型の古い注意書きや、常設の「委譲せよ」指示を見直すよう勧めています。memory や knowledge、エージェント定義が多いこのパイプラインは、まさに対象です。</li><li>注意:ハーネスが過去のターンを編集すると、prefix check で 400 エラーになります。独自 API 呼び出しがある場合は、履歴の扱いを先に確認してください。</li><li>検討:Claude Code での effort の既定値は medium です。無人実行で high を指定するかどうかも決めておくとよいです。</li></ul>
+<ol><li><strong>Code Mode(A-6)の対話での試用と hooks の挙動確認</strong></li></ol>
+<ul><li>理由:hooks の扱いが通常と違います。Code Mode では、<code>PreToolUse</code> hook が失敗やタイムアウトしたとき、<code>onFailure</code> を設定していなくても呼び出しを拒否します(fail-closed)。既存知見 hooks-timeout-fail-open-primary-check.md の前提とは別の扱いなので、試す価値があります。</li><li>制約:<code>-p</code> では使えないので、自動化には入りません。対話セッションで手元の hooks がタイムアウトしないか確認するところまでです。</li></ul>
+<hr>
+<p>Sources:</p>
+<ul><li>https://code.claude.com/docs/en/changelog</li><li>https://code.claude.com/docs/en/code-mode</li><li>https://www.anthropic.com/news/claude-fable-and-mythos-5-2</li><li>https://www.anthropic.com/news/announcements</li><li>https://platform.claude.com/docs/en/release-notes/overview</li><li>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2</li><li>https://claude.com/docs/cowork/changelog</li><li>https://claude.com/resources/articles/cowork-is-now-claude</li><li>https://claude.com/resources/articles/sheets-whiteboards-data</li><li>https://claude.com/resources/articles/interactive-connectors-full-tool</li><li>https://support.claude.com/en/articles/17506494-claude-fable-5-2-launch-offers</li><li>https://support.claude.com/en/articles/12138966-release-notes</li><li>https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</li><li><a href="https://www.rttnews.com/3712632/anthropic-sets-ipo-price-range-at-70-78-per-share-launches-roadshow.aspx" rel="noopener">RTTNews</a></li><li><a href="https://www.sovereignmagazine.com/article/anthropic-ipo-price-range-roadshow" rel="noopener">Sovereign Magazine</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

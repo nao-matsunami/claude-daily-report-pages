@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-18 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-18</div>
+  <div><span class="lab lab-ok">確認済 24</span><span class="lab lab-warn">要検証 7</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-18</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude/Anthropic 直近の動き 精査結果(対象 2026-11-09〜11-18、確認日 11-18)</h1>
+<p><strong>前提</strong>:収集元は codex と Claude の2系統だけです。片方だけが挙げた項目は、一次情報で裏が取れた場合に限り [確認済] にしています。一次確認には code.claude.com の changelog と Code Mode・hooks の各ページ、anthropic.com の Fable 5.2 記事と News、support.claude.com のリリースノートと Design 移行記事、platform.claude.com のリリースノート、claude.com の Cowork changelog を使いました。</p>
+<hr>
+<h2>A. Claude Code(重視)</h2>
+<p><strong>A-1. Code Mode(実験的・opt-in)/ v2.1.323(11/12)</strong><br>[確認済]<br>Claude が JavaScript を書き、その中で複数のツールをまとめて呼ぶ方式です。</p>
+<ul><li>有効化は <code>CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1</code> です。シェルかユーザー設定に置きます。プロジェクトの settings に書いても無視されます。</li><li>使えるのは端末の対話セッションだけです。<code>-p</code>、Agent SDK、VS Code、Desktop、クラウドセッションでは動きません。gateway・Bedrock・Foundry 経由も対象外です。</li><li>対応モデルは Opus/Sonnet/Haiku 5.5 と Fable 5.2 です。</li><li>HIPAA・ZDR の組織、OpenTelemetry や <code>DISABLE_TELEMETRY</code> を設定している環境では起動しません。</li><li>再開するときも Code Mode をオンにしておく必要があります。</li><li>auto mode の分類器は、ツール呼び出しごとではなくコード単位で審査します。</li><li><code>REPL</code> にマッチする PreToolUse hook を書けば <code>tool_input.code</code> を検査できます。</li><li>コマンドは <code>cd 'app' &amp;&amp; git push</code> のような形で hook に届くことがあります。</li></ul>
+<p>両AIの記述は一致しています。</p>
+<p>https://code.claude.com/docs/en/code-mode ・ https://code.claude.com/docs/en/changelog</p>
+<p><strong>A-2. Code Mode と agent teams の併用 / v2.1.326(11/16)</strong><br>[確認済]<br>agent teams がオンでも Code Mode を使えるようになりました。チームメイトは in-process 表示なら Code Mode で動き、分割ペインでは Code Mode なしで起動します。両AI一致です。<br>同上URL</p>
+<p><strong>A-3. sandbox 内 Bash が通常の許可フローに / v2.1.325(11/13)</strong><br>[確認済]<br>確認なしで実行する従来の挙動に戻すには <code>sandbox.autoAllowBashIfSandboxed: true</code> を設定します。両AI一致です。<br>changelog</p>
+<p><strong>A-4. scheduled tasks・<code>/loop</code> が skill 実行前に確認を求める / v2.1.325</strong><br>[確認済]<br>対象は <code>allowed-tools</code> や hooks を宣言している skill です。無人で回すには <code>permissions.allow</code> に <code>Skill(name)</code> を追加します。両AI一致です。</p>
+<p><strong>A-5. plugin.json の <code>engines["claude-code"]</code> / <code>claude plugin validate</code> の TypeScript hooks 型チェック / v2.1.323</strong><br>[確認済]<br>対応範囲外のプラグインは、インストール・更新・ロードのいずれもされません。型チェックの指摘は警告扱いで、<code>--strict</code> を付けると失敗になります。両AI一致です。</p>
+<p><strong>A-6. 認識できないモデルIDの想定コンテキストが 200K→1M / v2.1.323</strong><br>[確認済]<br>200K に戻すには <code>CLAUDE_CODE_DISABLE_1M_CONTEXT=1</code> を設定します。v2.1.325 からは <code>CLAUDE_CODE_MAX_CONTEXT_TOKENS</code> も <code>claude-</code> で始まる未知IDに効くようになりました。後者は codex だけが挙げていましたが、原文で確認しました。</p>
+<p><strong>A-7. <code>--plugin-dir</code> 配下の <code>.claude/skills</code> が上位ディレクトリから起動したセッションでは読まれない / v2.1.325</strong><br>[確認済]<br>codex だけが挙げた項目ですが、原文で確認しました。対処はプラグインのフォルダで起動することです。</p>
+<p><strong>A-8. v2.1.326 の hooks / skills / サブエージェント関連の変更</strong><br>[確認済]<br>Claude だけが挙げた項目ですが、すべて原文で確認しました。</p>
+<ul><li><code>"decision": "block"</code> が効くケースが増えました。常に block を出力している hook は、これまで通っていた呼び出しを止め始める可能性があります。</li><li>複数の hook が答える場合でも、PreToolUse の <code>updatedInput</code> が保持されやすくなりました。</li><li><code>/update-config</code> のコンテキスト消費が約93,000→約13,000トークンに減りました。<code>/help &lt;command&gt;</code> も追加されています。</li><li>worktree に隔離されたサブエージェントは、共有ブランチを書き換えうる git コマンドを拒否します。</li><li>サブエージェントが20個を超えるときの CPU 負荷が改善されました。</li><li>plan mode の自動 compact が、回答中のモデル(例:<code>opusplan</code> 時の Opus)を使うようになりました。コストが上がる場合があります。</li></ul>
+<p><strong>A-9. v2.1.325 のその他の修正</strong><br>[確認済]</p>
+<ul><li>zstd 圧縮レスポンスの復号に関するセキュリティ修正</li><li>出力上限で途中切れしたサブエージェントに、全体を短くまとめ直した回答を再度求める</li><li><code>opusplan</code>/<code>haiku</code> 設定時にサブエージェントのモデルがずれる不具合の修正</li></ul>
+<p><strong>A-10. v2.1.326 の修正(メモリ不足時の再開履歴消失 / Desktop Code タブで管理者指定のサブエージェントモデルが効かない)</strong><br>[確認済]<br>どちらも原文にありました。codex が併記していた「特定のクラッシュ後に直近ターンが失われる」修正は、今回読んだ範囲では一次確認できませんでした。存在しないと確認したわけではありません。</p>
+<p>**A-11. <code>Bash(NODE_ENV*)</code> のような変数名を含むワイルドカード許可ルールが確認を求めるように / v2.1.323**<br>[確認済]<br>原文は「ワイルドカード付きの Bash allow ルールが、一部のケースで確認をスキップしていた」不具合の修正です。Claude の「マッチしなくなった」という言い方は、「確認を求めるようになった」と読むのが正確です。</p>
+<p><strong>A-12. Cowork クラウドセッション等が <code>sandbox.failIfUnavailable</code> 設定下でも起動 / v2.1.325</strong><br>[確認済]<br>理由は、ホストされたコンテナにコマンド sandbox が無いためです。codex だけが挙げた項目ですが、原文で確認しました。</p>
+<p><strong>A-13. hooks 出力の 10,000 文字上限と、CLAUDE.md / additionalContext の使い分け</strong><br>[確認済]</p>
+<ul><li>上限を超えた出力はファイルに保存され、会話にはパスと先頭最大2,000文字のプレビューだけが入ります。この上限を引き上げる設定はありません。</li><li>変わらない規約は CLAUDE.md、ブランチや CI 結果などの動的な情報は <code>additionalContext</code> に置くのが推奨です。</li><li>途中の hook が出した値は、再開時に再生されるので古くなります。SessionStart の hook は再開時にもう一度走ります。</li></ul>
+<p>以上は公式 hooks 仕様で確認しました。上限がいつ導入されたかは確認できていません。根拠となった Zenn の検証記事は未読です。<br>https://code.claude.com/docs/en/hooks</p>
+<p><strong>A-14. Code Mode の実測・導入記事(wmedia.es / AI Parabellum / i10x)</strong><br>[要検証]<br>いずれも二次情報で、どれも片方のAIだけが挙げたものです。本文は確認していません。</p>
+<ul><li>wmedia.es:入力トークン 150,364→94,659、所要時間 15秒→37秒。著者自身が「ベンチマークではない」と断っている1回の比較です。</li><li>公式ドキュメントは、性能向上の数値を示していません。</li></ul>
+<p><strong>A-15. DEV Community 週次まとめ(v2.1.321 以降への更新推奨、<code>cp</code>/<code>mv</code> の書き込み先に対する deny 見直し)</strong><br>[要検証]<br>二次情報で、本文は確認していません。</p>
+<h2>B. Cowork / Desktop(重視)</h2>
+<p><strong>B-1. Desktop の更新チャンネル選択(Stable / Latest)(11/17)</strong><br>[確認済]<br>両AI一致です。既定は Stable のままで、Latest はおおむね1日1回更新されます。<br>https://support.claude.com/en/articles/12138966-release-notes</p>
+<p><strong>B-2. Cowork changelog の 11/10〜11/17 分</strong><br>[確認済]<br>Claude だけが挙げた項目ですが、すべて原文で確認しました。</p>
+<ul><li>v5.1231.0(11/10):Cowork でセッションの CLAUDE.md を編集しても、グローバル指示は更新されなくなりました。</li><li>v5.11492.0(11/12):Auto mode のローカル Code セッションで、Claude が始めたセッションから追加のセッションを承認なしで起動できるようになりました。上限は1メッセージあたり10個、同時5個です。</li><li>v6.6395.0(11/17):Ghostscript が削除されました。</li><li>v6.6395.0(11/17)(破壊的変更):macOS でマシン単位の構成プロファイルがあると、ユーザー単位のプロファイルは無視されます。</li><li>Claude は「v6.6395.0 に Claude Code 2.1.326 同梱」と書いていましたが、この点は原文で一次確認できていません。</li></ul>
+<p>https://claude.com/docs/cowork/changelog</p>
+<p><strong>B-3. Unified Claude(<code>desktopHome</code>)の切り替え時期</strong><br>[要検証](既知の知見と食い違い)<br>v5.1231.0 の原文には次のように書かれています。</p>
+<ul><li>Setup ウィンドウの Chat / Cowork 個別スイッチは 11/10 に廃止</li><li><strong>Code だけがオンの構成では、Unified Claude の自動有効化を 2026-12-17 まで延期</strong></li></ul>
+<p><strong>B-4. Meetings の Auto-join 一時停止、11/16 の claude.ai / Cowork 障害(status.claude.com)</strong><br>[要検証]<br>Claude だけが挙げた項目で、今回はステータスページを確認していません。</p>
+<h2>C. Claude Design(重視)</h2>
+<p><strong>C-1. 単体版 claude.ai/design は 2026-12-14 に閉鎖</strong><br>[確認済]<br>両AI一致です。プロジェクトは Claude 内の artifact に、デザインシステムは組織分をまとめて移行できます。チャットとコメントは移行されません。記事の表示は「Updated yesterday」だけで、掲載日は確認できません。</p>
+<p>https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</p>
+<p><strong>C-2. 今週の Design 自体の機能追加</strong><br>両AIとも、公式発表を見つけられていません。これは一次確認できなかったという意味で、追加が無かったと確認したわけではありません。</p>
+<h2>D. モデル・API・プラットフォーム</h2>
+<p><strong>D-1. Claude Fable 5.2 / Mythos 5.2(11/9)</strong><br>[確認済]</p>
+<ul><li>料金は $8 / $40 per Mtok です。Fast mode は $16 / $80 で、生成が最大2.5倍速になります。</li><li>Claude Code の既定 effort は Medium です。</li><li>普段使いの推奨は Opus 5.5 です。</li><li>ベンチマークは FrontierSWE v2 69.9%、Terminal-Bench-Science 0.1 74.6%、OSWorld 2.1 89.3% です。</li></ul>
+<p>https://www.anthropic.com/claude-fable-and-mythos-5-2</p>
+<p><strong>D-2. Claude Meetings beta(11/12、Team / Enterprise、Google Meet に参加者として入る)</strong><br>[確認済]<br>両AI一致です。</p>
+<p><strong>D-3. self-hosted Claude Managed Agents(11/12)</strong><br>[確認済]<br>両AIが挙げています。sandbox だけでなく、サービス全体を自社インフラで動かします。利用するには Anthropic のアカウントチームに問い合わせます。Claude は「private beta」と書いていましたが、その表記は一次情報で確認できていません。<br>https://platform.claude.com/docs/en/release-notes/overview</p>
+<p><strong>D-4. 透かし対応(11/16)と Linked billing beta(11/17)</strong><br>[確認済]<br>codex だけが挙げた項目ですが、原文で確認しました。</p>
+<ul><li>透かし:Opus 4.6 / 4.5、Sonnet 4.5、Haiku 4.5 の生成テキストが対象です。<code>temperature</code> などのサンプリング設定を既定値から変えると、付かない場合があります。</li><li>Linked billing:アプリ利用者が自分の Claude 組織で API 利用料を払えるようにする機能です。</li></ul>
+<p><strong>D-5. IPO ロードショー開始(11/10)</strong><br>[確認済](開始の事実のみ)<br>anthropic.com/news に掲載がありました。価格帯 $70〜78、ティッカー ANT、11/19 取引開始見込みという点は、報道だけが根拠で [要検証] です。</p>
+<p><strong>D-6. Claude Whiteboards / Sheets(beta)、Claude Data(旧 Dashboards、GA)(11/10)</strong><br>[確認済](概要のみ)<br>claude.com blog に公式記事があることを検索結果で確認しました。本文は読んでいません。Enterprise では Claude Data が 11/19 に既定オンになると、検索結果の抜粋に出ています。</p>
+<p><strong>D-7. Interactive Connectors(MCP Apps)、Claude for Manufacturing</strong><br>[要検証]<br>根拠は Releasebot だけです。support・platform のリリースノートと News には見当たりませんでした。存在しないと確認したわけではありません。</p>
+<h2>E. セキュリティ</h2>
+<p><strong>E-1. Cursor マーケットプレイスで改ざんされた Claude Code 拡張(2.1.312 / 2.1.313)が配布された件</strong><br>[確認済](事件の存在)/ [要検証](時期)<br>Cursor 公式の告知ページがあることは、検索で確認しました(本文の逐条確認はしていません)。</p>
+<ul><li>検索で見つかった情報では、<strong>公開は 10/29、掲載は約11時間</strong>です。今週の新しい事件ではありません。</li><li>Claude の「11/14 の報道」は、後追いの記事の日付だと考えられます。</li><li>影響は最大約5,000ユーザー、対処は 2.1.314 への更新と認証情報の再発行とされていますが、いずれも報道ベースです。</li></ul>
+<p>https://cursor.com/blog/claude-code-extension-security-notice</p>
+<h2>F. 棄却</h2>
+<p>両AIの主張で、互いに矛盾するものや明らかに誤りと判明したものはありませんでした。食い違いは表現の差(A-11)と日付の差(E-1)にとどまります。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>v2.1.325 の sandbox Bash 確認化と skill 実行前の確認(A-3・A-4)</strong></li></ol>
+<p>無人で回している cron や <code>/loop</code> が、承認待ちで止まる可能性が最も高い変更です。</p>
+<ul><li>既存の unattended-skill-confirm-inventory の棚卸しに、<code>sandbox.autoAllowBashIfSandboxed</code> を使っているかの確認を追加する価値があります。</li><li>実機の <code>claude -p</code> で止まらないかも確かめるとよいです。</li></ul>
+<ol><li><strong>v2.1.326 で <code>"decision": "block"</code> が効くケースが増えた(A-8)</strong></li></ol>
+<p>常に block を返す hook や、条件の甘い hook があると、これまで通っていた呼び出しが止まり始めます。repo の hooks のうち、block を返す経路を洗い出す価値があります。</p>
+<ol><li><strong>desktopHome の 12/17 延期(B-3)</strong></li></ol>
+<p>Code Mode(A-1)も話題性は大きいです。ただし <code>-p</code>、gateway、テレメトリ無効の環境では動かないため、定期実行のパイプラインには直接効きません。試すなら対話セッションでの手動検証になります。</p>
+<p>Sources:</p>
+<ul><li>https://code.claude.com/docs/en/changelog</li><li>https://code.claude.com/docs/en/code-mode</li><li>https://code.claude.com/docs/en/hooks</li><li>https://claude.com/docs/cowork/changelog</li><li>https://support.claude.com/en/articles/12138966-release-notes</li><li>https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</li><li>https://platform.claude.com/docs/en/release-notes/overview</li><li>https://www.anthropic.com/claude-fable-and-mythos-5-2</li><li>https://www.anthropic.com/news</li><li><a href="https://claude.com/blog/sheets-whiteboards-data" rel="noopener">Introducing Claude Whiteboards, Claude Sheets, and Claude Data</a></li><li><a href="https://cursor.com/blog/claude-code-extension-security-notice" rel="noopener">Cursor: claude code extension security notice</a></li><li><a href="https://www.datastudios.org/post/cursor-malicious-claude-code-extension-2-1-313-marketplace-5000-users" rel="noopener">Data Studios(Cursor 件)</a></li><li><a href="https://lapaasvoice.com/malicious-claude-code-extension-hits-5000-cursor-users-installs-ssh-backdoor/" rel="noopener">LapaaS Voice(Cursor 件)</a></li></ul><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

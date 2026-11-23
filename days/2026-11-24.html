@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-24 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-24</div>
+  <div><span class="lab lab-ok">確認済 27</span><span class="lab lab-warn">要検証 6</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-24</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>審判まとめ：Claude/Anthropic の直近の動き(2026-11-16〜11-24)</h1>
+<p><strong>照合方法</strong>:2系統(codex・Claude)を突き合わせたうえで、次の一次情報を今回直接取得して確認しました。code.claude.com changelog、platform.claude.com リリースノート、support.claude.com リリースノート、Cowork changelog、anthropic.com/news、各ヘルプ記事。一致は2系統までしかないため、「両AIが一致」だけでは [確認済] にせず、一次情報と合うことを根拠にしています。</p>
+<hr>
+<h2>A. Claude Code(重点)</h2>
+<h3>A-1. MCP ツール型フックに <code>onFailure: "block"</code>(v2.1.328)</h3>
+<p><strong>[確認済]</strong><br><code>mcp_tool</code> フックにも <code>"onFailure": "block"</code> が加わり、command・HTTP フックと同じ扱いになりました。フック呼び出しが失敗すると、その操作は止まります。両AIとも主張しています。fail-open/closed の既存知見に関わる変更です。<br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-2. Code Mode で、エラーになった PreToolUse フックが拒否しなくなった(v2.1.329)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張。原文で確認)<br>Code Mode 外と同じ挙動にそろえる変更です。PreToolUse フックがエラーになっても、スクリプトのツール呼び出しは拒否されなくなりました。必ず拒否させたいフックには <code>"onFailure": "block"</code> を付ける必要があります。<strong>Code Mode を使っている場合、deny 床の前提が変わります。</strong><br>出典: https://code.claude.com/docs/en/changelog</p>
+<h3>A-3. <code>/tasks</code> に予約タスク・<code>/loop</code>・goal・fork を表示(v2.1.329)</h3>
+<p><strong>[確認済]</strong><br><code>/tasks</code> に、このセッションの予約タスク、<code>/loop</code> の起動予定、goal、fork が表示されるようになりました。<code>x</code> を押すと、確認のうえ止められます。同じ版で、管理設定のフックが読み込めなかったときに Desktop など非対話ホストで警告が出るようになり(codex のみが主張、原文で確認)、macOS で繰り返しサインアウトされる不具合も直りました。<br>出典: 同上</p>
+<h3>A-4. <code>/loop</code>・繰り返し予約タスクの期間を 7日→最大30日に(v2.1.330 / Cowork v6.28899.6)</h3>
+<p><strong>[確認済]</strong><br>期間が延びるのはセッションが動いている間だけです。この版より前に作ったタスクは7日のままです。Cowork 側でも同じ変更があり、<code>scheduledTasksEnabled: false</code> を設定すると、次にセッションを起動したときから全予約タスクが止まります。<br>出典: changelog / https://claude.com/docs/cowork/changelog</p>
+<h3>A-5. <code>model</code> 指定付き skill の適用範囲を変更(v2.1.330)</h3>
+<p><strong>[確認済]</strong><br><code>context: fork</code> 以外の skill では、サブエージェント、fork、compaction、<code>/recap</code> がセッションのモデルで動くようになりました。両AIの主張は一致しています。<br>出典: changelog</p>
+<h3>A-6. 長い会話の compact 直後のフリーズ・WebFetch のフリーズを修正(v2.1.330)</h3>
+<p><strong>[確認済]</strong>(codex の表現の一部に限定条件が抜けています)<br>原文には次の修正があります。</p>
+<ul><li>非常に長い会話を compact した直後に、最大数分固まる問題</li><li>WebFetch がページによって数分固まる問題</li><li>パス限定 rules や Read 拒否ルールのあるプロジェクトで、数百ファイルを読んだ後に長く止まる問題</li></ul>
+<p>ただし3つ目は <strong>Code Mode に限った修正</strong>です。codex は「大量ファイル処理全般」のように書いていますが、そこまでは言えません。<br>出典: changelog</p>
+<h3>A-7. その他の v2.1.330 修正</h3>
+<p><strong>[確認済]</strong></p>
+<ul><li><code>claude -p --continue</code> で、SessionStart フックが設定した環境変数が失われる問題を修正</li><li>あるサブエージェントの終了時に、共有している MCP サーバーまで止まる問題を修正</li><li>HTML コメントを含む CLAUDE.md で、リンク参照定義が消える問題を修正</li><li><code>rm</code> の承認対象を拡大(答える人がいない環境では拒否)</li><li>prompt フックの <code>model</code> に別名(<code>haiku</code> など)を使えるように</li><li>組み込み mod「easel」を追加</li></ul>
+<p><strong><code>-p --continue</code> と <code>rm</code> の変更は、cron 運用に直接関わります。</strong><br>出典: changelog</p>
+<h3>A-8. v2.1.331(11/23)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張。原文で確認)</p>
+<ul><li><code>PermissionDenied</code> フックの <code>retry: true</code> の意味が変わり、ユーザーが求めた呼び出しの場合だけ再実行を促すようになった</li><li>プラグインのマニフェストに <code>optionalDependencies</code> を追加</li><li><strong>11/30以降のリリースで、管理設定 <code>extraKnownMarketplaces</code> のマーケットプレイスが既定で自動更新される</strong>(止めたい場合は <code>"autoUpdate": false</code>)</li></ul>
+<p>出典: changelog</p>
+<h3>A-9. v2.1.328 の auto mode を Bedrock・Vertex 等へ拡大</h3>
+<p><strong>[確認済]</strong>(Claude の要約には限定条件が抜けています)<br>Bedrock、Google Cloud、Foundry、gateway 上の Opus 4.6 / Sonnet 4.6 で auto mode が使えるようになりました。権限モード未設定で auto mode から始まるのは、原文では <strong>「interactive sessions」に限られます</strong>。Claude の要約はこの限定を落としています。同じ版の <code>/code-review</code> と <code>/simplify</code> の分離、自動 compact でのシステムプロンプト再構築も原文と一致します。<br>出典: changelog</p>
+<h3>A-10. v2.1.327(11/17)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張)</p>
+<ul><li><code>/status</code> に、壊れた agent・skill・command ファイルや、絶対にマッチしない matcher を一覧表示</li><li>compact 後に Edit が「File has not been read yet」で失敗する問題を修正。原文ではプロジェクト外の未変更ファイルという限定付きです</li><li>シークレットらしいファイルをコミットしないよう指示を追加</li><li><code>Bash(pnpm dlx *)</code> のような何でも実行できる allow ルールを、auto mode が無視するように</li></ul>
+<p>出典: changelog</p>
+<h3>A-11. サブエージェントの進捗要約を軽量化(v2.1.327 / 328 / 330)</h3>
+<p><strong>[確認済]</strong><br>ターミナルセッションでの進捗要約が、会話全体ではなく短いメモから書かれるようになりました。版ごとに対象が異なります。</p>
+<ul><li>2.1.327:Bedrock・Vertex・Foundry</li><li>2.1.328:Anthropic API(小さく速いモデルで生成)</li><li>2.1.330:gateway</li></ul>
+<p>出典: changelog</p>
+<h3>A-12. Code Mode のコミュニティ実測(トークン37%減など)</h3>
+<p><strong>[要検証]</strong>(Claude のみが主張。すべて二次情報)<br>InfoQ、Qiita、個人の X 投稿などの数値は、一次確認できていません。InfoQ と GitHub issue で <code>-p</code>・SDK への対応状況が食い違っている点も未決着です。Code Mode そのものは既知です。<br>出典: https://www.infoq.com/news/2026/11/claude-code-mode/</p>
+<h3>A-13. <code>.claude/settings.local.json</code> からシークレットが漏れる問題(InfoQ 11/22)</h3>
+<p><strong>[要検証]</strong>(Claude のみが主張)<br>今回は報道記事を直接取得しておらず、ApiiroとGitGuardianの報告も一次確認していません。とはいえ「Yes, don't ask again」で承認したコマンドが settings.local.json に保存される仕組み自体は、手元で確認できます。<br>出典: https://www.infoq.com/news/2026/11/claude-code-leaking-secrets/</p>
+<h2>B. Cowork / Claude アプリ</h2>
+<h3>B-1. Team/Enterprise 向けコンピューター操作(ベータ)(11/20)</h3>
+<p><strong>[確認済]</strong> 組織ごとに順次展開されます。<br>出典: https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>B-2. Claude Mobile の新デザイン(11/20、iOS 26以上が必要)</h3>
+<p><strong>[確認済]</strong><br>出典: 同上</p>
+<h3>B-3. Claude Desktop のリリースチャネル選択(Stable / Latest、11/17)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張)<br>出典: 同上</p>
+<h3>B-4. Cowork changelog:MCP 許可リストの適用拡大と巻き戻し</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張)</p>
+<ul><li>v6.6395.0(11/17):<code>allowedMcpServers</code> / <code>deniedMcpServers</code> を Chat と Cowork にも適用</li><li>v6.28899.2(11/19):元の挙動に戻した。適用するには <code>desktopMcpServersListScope: all</code> が必要</li><li>同じ v6.28899.2 で、<strong>開始前に拒否されたツール呼び出しでは管理設定の PostToolUse フックが動かなくなった</strong>。フックで取っているログから、その分の記録が消えます</li><li>Ghostscript を削除し、<code>.eps</code> / <code>.ps</code> を扱えなくなった</li></ul>
+<p>出典: https://claude.com/docs/cowork/changelog</p>
+<h3>B-5. SSH 接続先には Claude Code 2.1.330 が必要(Cowork v6.28899.6)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張)<br>自前のミラーで Claude Code を配っている場合は、先に 2.1.330 を入れておかないと SSH セッションが始められなくなります。<br>出典: 同上</p>
+<h3>B-6. Enterprise で Chat と Cowork の統合画面が既定でオン(11/16)</h3>
+<p><strong>[確認済]</strong>(Claude の二次情報 → 一次情報で整合)<br>管理者向けヘルプに「turns on by default on November 16, 2026」とあります。管理者が既にオン/オフを設定している場合や、前提機能が無効な場合は除かれます。support のリリースノートには該当する項目が見当たりませんでした。<br>出典: https://support.claude.com/en/articles/17444462</p>
+<h3>B-7. Enterprise で Claude Data が既定で有効(11/20)</h3>
+<p><strong>[確認済]</strong>(codex のみが主張)<br>ヘルプに「On Enterprise plans, it turns on by default on November 20, 2026, unless an owner has already saved a setting」とあります。support のリリースノートには該当する項目が見当たりませんでした。<br>出典: https://support.claude.com/en/articles/17153992</p>
+<h2>C. Claude Design</h2>
+<h3>C-1. 単体版 claude.ai/design は 2026-12-14 に閉鎖</h3>
+<p><strong>[確認済]</strong><br>デザインシステムは組織単位でまとめて移行され、プロジェクトは artifact になります。チャットとコメントは移行されません。プロジェクトを移せるのは所有者だけで、「Move everything」は Owner / Primary Owner だけが実行できます。ガイドの更新日は「Updated this week」としか書かれていません。<br>出典: https://support.claude.com/en/articles/17440474</p>
+<h3>C-2. <code>/design-sync</code> の修正(v2.1.330)</h3>
+<p><strong>[確認済]</strong>(codex のみが主張)<br>Claude Design 側で名前が変わったファイルを、アップロード直後に削除してしまう問題が直りました。参照 Storybook のフォールバックビルドも、プロジェクトにインストールされた Storybook だけを使うよう変わっています。Artifacts のヘルプには「Use /design for Claude Design」とあり、コマンド名については既知です。<br>出典: changelog</p>
+<h3>C-3. 12/14 以降、<code>/design-sync</code> が読み取り専用の旧サイトを参照し続ける</h3>
+<p><strong>[要検証]</strong>(Claude の二次情報のみ)<br>移行ガイドには <code>/design-sync</code> への言及がなく、<strong>この主張は一次確認できていません</strong>。誤りと確認されたわけではありません。<br>出典: https://wmedia.es/en/tips/claude-code-claude-design-shutting-down</p>
+<h3>C-4. 通常の会話・Artifacts への Design 統合の開始日</h3>
+<p><strong>[要検証]</strong><br>Artifacts のヘルプに Design の記述はありますが、いつ始まったかは一次確認できていません。codex 自身も未確認としています。</p>
+<h2>D. Platform / API</h2>
+<h3>D-1. Opus 4.5 の非推奨化を告知(11/23)</h3>
+<p><strong>[確認済]</strong><br>対象は <code>claude-opus-4-5-20251101</code> と <code>claude-opus-4-5</code> で、Claude API での提供終了は 2027-01-22 です。移行先として Opus 5.5 が推奨されています。他の提供基盤の日程は別ページで確認が必要です。<br>出典: https://platform.claude.com/docs/en/release-notes/overview</p>
+<h3>D-2. Enterprise Frontier Safeguards(ベータ)と Webhook 2種(11/23)</h3>
+<p><strong>[確認済]</strong><br>EFS は、対象組織向けのゼロデータ保持です。暗号化された Sealed Safety Data は、顧客自身のクラウドのバケットに保存されます。あわせて Webhook に <code>external_storage.failed</code> / <code>external_storage.recovered</code> が加わりました。<br>出典: 同上</p>
+<h3>D-3. Linked billing(ベータ、11/17)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張)<br>ベータヘッダーは <code>user-profiles-billing-2026-10-01</code> で、リクエストごとに <code>billing_policy</code> で誰が払うかを指定します。<br>出典: 同上</p>
+<h3>D-4. Opus 4.6 / 4.5、Sonnet 4.5、Haiku 4.5 のテキスト透かし(11/16)</h3>
+<p><strong>[確認済]</strong>(Claude のみが主張)<br><code>temperature</code>、<code>top_p</code>、<code>top_k</code> を既定値以外にすると、透かしが入らない場合があります。<br>出典: 同上</p>
+<h2>E. Anthropic 全体</h2>
+<h3>E-1. IPO の価格決定(11/18)と完了(11/20)</h3>
+<p><strong>[確認済]</strong><br>完了の発表本文には、1株 <strong>$83.00</strong>、Class A 株 1,127,000,000 株と書かれています。Claude が「未確認」としていた1株83ドルは、一次情報で確認できました。一方、<strong>ティッカー「ANT」、取引所 Nasdaq、11/19 取引開始は、一次情報の本文に記載がなく確認できません</strong>。誤りと確認されたわけではありません。<br>出典: https://www.anthropic.com/news</p>
+<h3>E-2. Cyber Verification Program の条件を更新(11/18)</h3>
+<p><strong>[確認済]</strong>(codex のみが主張)<br>ページには「Updated November 18, 2026」とあり、Red Team Access / Specialized Access の対象プランと資格条件が更新されています。ニュース一覧の日付は 10/6 の元記事のままです。<br>出典: https://www.anthropic.com/news/cyber-verification-program</p>
+<h3>E-3. 11/9 の Fable 5.2 / Mythos 5.2 発表</h3>
+<p><strong>[要検証]</strong>(Claude の二次情報、期間外)<br>今回は一次確認していません。</p>
+<h2>F. 実践記事(二次、すべて codex のみ)</h2>
+<p><strong>[要検証]</strong></p>
+<ul><li>note「CLAUDE.md・rules・skills を分けて新規セッションで検証する」</li><li>Zenn「hook が実は何も止めていなかった」「builder と QA を分けて hooks で検査する」「hooks のレシピ」</li></ul>
+<p>いずれも筆者の実験報告で、今回は追試していません。stdin JSON だけを入力して hook の判定をテストするという手法は、公式の hook 入出力仕様と矛盾しません。</p>
+<h2>棄却</h2>
+<p>今回は [棄却] に当たる項目はありません。両AIの間で正面から矛盾する主張はなく、一次情報と合わない部分は限定条件の抜け(A-6、A-9)だけでした。</p>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>v2.1.329 の Code Mode で、エラーになった PreToolUse フックが拒否しなくなった件(A-2)</strong></li></ol>
+<ol><li><strong>v2.1.330 の <code>-p --continue</code> での SessionStart 環境変数の修正と、<code>rm</code> 承認の拡大(A-7)</strong></li></ol>
+<p>headless の cron で <code>--continue</code> や <code>rm</code> を使っていれば、挙動が直接変わります。環境変数の受け渡しが実際に直ったかの実機確認と、無人環境で <code>rm</code> が「拒否」になる箇所の洗い出しをおすすめします。</p>
+<ol><li><strong>11/30 以降の <code>extraKnownMarketplaces</code> 既定自動更新(A-8)と、Cowork の PostToolUse 不発火(B-4)</strong></li></ol>
+<p>どちらも気付かないうちに供給元やログの前提が変わる種類の変更です。管理設定でマーケットプレイスを固定しているなら、11/30 より前に <code>"autoUpdate": false</code> を付けるかどうかを決める必要があります。</p>
+<p>Sources:</p>
+<ul><li><a href="https://code.claude.com/docs/en/changelog" rel="noopener">Claude Code changelog</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener">Claude Platform release notes</a></li><li><a href="https://support.claude.com/en/articles/12138966-release-notes" rel="noopener">Claude release notes (support)</a></li><li><a href="https://claude.com/docs/cowork/changelog" rel="noopener">Cowork changelog</a></li><li><a href="https://www.anthropic.com/news" rel="noopener">Anthropic News</a></li><li><a href="https://www.anthropic.com/news/cyber-verification-program" rel="noopener">Cyber Verification Program</a></li><li><a href="https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them" rel="noopener">Artifacts ヘルプ</a></li><li><a href="https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude" rel="noopener">Claude Design 移行ガイド</a></li><li><a href="https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization" rel="noopener">Enterprise 統合体験 管理者ヘルプ</a></li><li><a href="https://claude.com/blog/unified-claude-enterprise" rel="noopener">Claude Cowork and chat come together for Enterprise</a></li></ul>
+<p>後片付け：使ったのはウェブ検索と取得ツールだけで、ローカルのタブ・アプリ・プロセスは開いていません。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>

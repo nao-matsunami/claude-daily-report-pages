@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デイリーブリーフ 2026-11-27 | Claude デイリーアーカイブ</title>
+<style>
+:root{--bg:#12100e;--panel:#1b1815;--panel2:#232019;--ink:#efe9df;--muted:#a99e8c;
+--line:#332e26;--accent:#d9915b;--accent2:#c96442;--ok:#6fae8a;--warn:#d8b062;--no:#c07a72;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lab{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-right:5px;
+vertical-align:middle;font-variant-numeric:tabular-nums}
+.lab-ok{background:#22352b;color:var(--ok)} .lab-warn{background:#352d1a;color:var(--warn)}
+.lab-no{background:#351f1c;color:var(--no)}
+article h1{font-size:26px;margin:.2em 0 .6em;line-height:1.3}
+article h2{font-size:19px;margin:1.6em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+article h3{font-size:15px;margin:1.3em 0 .4em;color:var(--accent)}
+article p{margin:.6em 0}
+article ul{padding-left:1.3em}
+article code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:.9em}
+article{overflow-wrap:anywhere}
+article pre{background:#0d0b09;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;margin:1em 0;font-size:13px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+article th{background:var(--panel2)}
+article blockquote{border-left:3px solid var(--accent);margin:.8em 0;padding:.2em 1em;color:var(--muted)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.badge.pub{color:var(--ok);border-color:#2f4a3c}
+.badge.prv{color:var(--warn);border-color:#4a3f27}
+
+.page{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:10px}
+.dhead .d{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.dhead .back{margin-left:auto;font-size:12px}
+.footer{color:var(--muted);font-size:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:560px){.page{padding:16px 13px 48px}}
+</style></head><body>
+<div class="page">
+<div class="dhead">
+  <div class="d">2026-11-27</div>
+  <div><span class="lab lab-ok">確認済 24</span><span class="lab lab-warn">要検証 4</span><span class="lab lab-no">棄却 1</span></div>
+  <div class="back"><a href="../index.html#2026-11">← 一覧へ戻る</a></div>
+</div>
+<article>
+<!--CONTENT:BEGIN--><h1>デイリーブリーフ 2026-11-27</h1>
+<blockquote>2AI(codex/claude)突き合わせ + Claude審判。確度ラベルを必ず確認すること。</blockquote>
+<blockquote>一時停止中の系統: agy(意図的に無効。障害ではない)</blockquote>
+<h1>Claude/Anthropic 直近の動き：審判まとめ（対象 2026-11-20〜11-27）</h1>
+<p><strong>一次確認の範囲：</strong> code.claude.com/changelog（2.1.328〜332）、Claude Ship・Skills over MCP・EFS の各公式記事、support.claude.com のリリースノートと Design 移行ガイド、claude.com の Cowork changelog、platform.claude.com のリリースノート、anthropic.com/news を WebFetch で読みました。コミュニティ記事（Reddit・DEV・note・Classmethod・X）は一次確認していません。changelog は長大なため、冒頭 10 万字だけを読んでいます。</p>
+<hr>
+<h2>Claude Code（重点）</h2>
+<h3>2.1.332（11-25）MCP サーバー配布の skill に対応、<code>PreSkillShellCommand</code> フック追加</h3>
+<p><strong>[確認済]</strong> 両 AI が一致し、changelog 原文とも合っています。MCP スキル（beta）は <code>/</code> メニューに <code>server:skill</code> 形式で表示されます。<code>PreSkillShellCommand</code> は、skill やコマンドの読み込み時にインラインのシェル実行を拒否できるフックです。2.1.331 以前では、この名前を含む設定ファイルを読むと起動時にダイアログが出ます。<br>出典：https://code.claude.com/docs/en/changelog</p>
+<h3>2.1.332 Mac で computer use が有効な場合、<code>computer-use</code> が予約 skill 名になる</h3>
+<p><strong>[確認済]</strong> codex だけが主張しましたが、原文で確認できました。同じ名前の自作 skill やコマンドは読み込まれなくなり、起動時に改名を促す通知が出ます。<br>出典：同上</p>
+<h3>2.1.332 メモリ・コンテキスト関連の改善</h3>
+<p><strong>[確認済]</strong> codex だけが主張しましたが、原文で確認できました。</p>
+<ul><li>メモリ使用量の改善：長い会話の再開時、ツール数の多い MCP の起動時、<code>claude -p</code> と SDK セッションの開始時。</li><li>computer use は、実際に使うまでコンテキストを消費しにくくなりました。</li><li>EnterWorktree の後や worktree での再開時に、CLAUDE.md と rules が二重に送られる問題が修正されました。</li><li>フックが終わりなく出力し続けたときのフリーズを修正。巨大ログは約 5 万字で切り詰められます。</li><li>自動 compaction の失敗が続いた後に「Prompt is too long」で止まる問題を修正。</li></ul>
+<p>出典：同上</p>
+<h3>2.1.332 Foundry の既定モデルが Sonnet 5.5 に／「Routine」の表記を「cloud scheduled task」に変更</h3>
+<p><strong>[確認済]</strong> Claude だけが主張しましたが、原文で確認できました。<code>/routines</code> は引き続き使えます。</p>
+<h3>2.1.331（11-23）3P 環境のターミナルで Code Mode が使える</h3>
+<p><strong>[確認済]</strong> 両 AI が一致し、原文とも合っています。対象は Bedrock、Google Cloud Agent Platform、Foundry、Claude Platform on AWS です。</p>
+<h3>2.1.331 管理設定 <code>extraKnownMarketplaces</code> が 11-30 以降は既定で自動更新</h3>
+<p><strong>[確認済]</strong> 原文では「11-30 以降のリリースで」既定で自動更新になると書かれています。止めるには <code>"autoUpdate": false</code> を設定します。</p>
+<h3>2.1.331 <code>PermissionDenied</code> の <code>retry: true</code> の意味が変更、<code>claude doctor</code> に API 接続確認を追加</h3>
+<p><strong>[確認済]</strong> Claude だけが主張しましたが、原文で確認できました。</p>
+<h3>2.1.330（11-20）<code>/loop</code> と定期タスクの上限が 30 日に／<code>easel</code> mod／<code>rm</code> の承認範囲拡大／VS Code に <code>/fork</code> <code>/workflows</code>／compact 直後のフリーズ修正</h3>
+<p><strong>[確認済]</strong> 原文で確認できました。補足が2点あります。</p>
+<ul><li>30 日になるのは、この版以降に作ったタスクだけです。既存のタスクは 7 日で終わります。</li><li>誰も応答できない状況では、承認が必要な <code>rm</code> は拒否されます。</li><li>Claude が [二次] として挙げた compact 後のフリーズ修正も、原文にありました。</li></ul>
+<h3>2.1.329（11-19）Code Mode では、エラーを出した PreToolUse フックが呼び出しを止めなくなった</h3>
+<p><strong>[確認済]</strong> 原文で確認できました。必ず止めたいフックには <code>"onFailure": "block"</code> を付けます。<code>/tasks</code> に予約タスク、<code>/loop</code>、goal、fork が出るようになった件も確認済みです。</p>
+<h3>2.1.328（11-19）<code>/code-review</code> が「バグと CLAUDE.md 違反だけ」を報告／<code>mcp_tool</code> フックに <code>onFailure: block</code>／3P で Opus 4.6・Sonnet 4.6 の auto mode</h3>
+<p><strong>[確認済]</strong>原文には「モード未設定の対話セッションは auto mode で始まる」とあります。</p>
+<h3>自動 compaction がシステムプロンプトを組み直すよう修正（Claude は 2.1.328 と記載）</h3>
+<p><strong>[要検証]</strong> 今回読んだ範囲の原文では見つけられませんでした。存在しないと確認できたわけではありません。</p>
+<h3>2.1.332 に「CLI の変更が 150 件」</h3>
+<p><strong>[要検証]</strong> 出典は非公式の X アカウントだけです。取得ツールの目安では各版の項目は 100〜200 件程度でしたが、150 という数字そのものは一次確認できていません。</p>
+<h3>Claude Ship（11-23、beta）</h3>
+<p><strong>[確認済]</strong> 両 AI が一致し、公式記事とも合っています。</p>
+<ul><li>対象：Team / Enterprise、GitHub のリポジトリ。</li><li>構成：Code Review は GA（Quick / Standard / Deep を選択）。PR Steward は beta で、承認とマージはしません。Claude Approvals は beta で、方針ファイルに従って承認し、観察だけのモードもあります。</li><li><code>/ship</code> は順次展開中で、料金はトークン単位です。</li><li>ZDR、HIPAA 構成、CMK を使う組織は対象外です。</li></ul>
+<p>出典：https://claude.com/resources/articles/introducing-claude-ship</p>
+<h3>公式記事「The enterprise guide to securing coding agents」（11-23）</h3>
+<p><strong>[要検証]</strong> Claude だけが挙げており、本人も中身を読んでいません。今回も一次確認していません。</p>
+<h2>MCP / アプリ共通</h2>
+<h3>Skills over MCP（public beta）、Tasks と Elicitation が GA、File Uploads は近日（11-24）</h3>
+<p><strong>[確認済]</strong> 両 AI が一致し、公式記事とも合っています。Skills over MCP は Pro / Max / Ultra で既定オン、Team は管理者が有効化、Enterprise は近日対応です。Tasks と Elicitation は、Team / Enterprise へは順次展開中です。<br>出典：https://claude.com/resources/articles/skills-over-mcp-tasks-and-more</p>
+<h3>Reflect（月次振り返り）が beta 終了、artifact を Mac / Windows アプリとしてインストール（beta）、接続アプリとのファイル送受信（beta）（11-24）</h3>
+<p><strong>[確認済]</strong> 両 AI が一致し、リリースノートとも合っています。Reflect が beta を終えたのは Free / Pro / Max / Ultra です。<br>出典：https://support.claude.com/en/articles/12138966-release-notes</p>
+<h3>モバイルの新デザイン（iOS 26 以降が必要）、Team / Enterprise で computer use が beta（11-20）</h3>
+<p><strong>[確認済]</strong> Claude だけが主張しましたが、リリースノートで確認できました。</p>
+<h2>Cowork / Desktop（重点）</h2>
+<h3>v6.28899.2（11-19）</h3>
+<p><strong>[確認済]</strong> Claude だけが主張しましたが、Cowork changelog の原文で確認できました。</p>
+<ul><li>3P の予約タスクの上限が 100 ターンから 10,000 ターンに。キャッシュ済みトークンは <code>inferenceMaxTokensPerWindow</code> の上限に数えられません。</li><li>管理設定の <code>PostToolUse</code> は、実行前に拒否された呼び出しでは動きません。</li><li>3P の Gateway 経由の auto mode は破壊的変更で、<code>inferenceGatewayAutoModeServerChecks</code> で回避できます。</li><li>保持期間は 3 つとも 3650 日に設定するよう案内されています。</li></ul>
+<h3>v6.28899.6（11-20）／v7.37095.0（11-24）</h3>
+<p><strong>[確認済]</strong> 原文で確認できました。</p>
+<ul><li>macOS / Linux では、アプリが確認できない間は接続フォルダが閉じたままになります。</li><li>macOS のプラグインフックの実行方法が変わりました。公式は「まず 1 台の Mac で試す」よう案内しています。</li><li>ローカル MCP のツール呼び出しは、既定で最大 3 分まで動きます。</li><li>3P では作業途中のメッセージに対応しました。ただし <code>otlpContentCapture</code> の設定によっては送られません。</li></ul>
+<h3>Cowork 関連の集計修正：Enterprise Analytics API の <code>web_search_count</code>（11-23）</h3>
+<p><strong>[確認済]</strong> codex だけが主張しましたが、Platform リリースノートで確認できました。11-17（UTC）以降のデータが対象です。同じ日に connector の集計修正（11-19 以降が対象）も入っています。<br>出典：https://platform.claude.com/docs/en/release-notes/overview</p>
+<h2>Claude Design（重点）</h2>
+<h3>3P 版 Desktop に Design と Slides（beta、既定オフ）、デザインシステム機能</h3>
+<p><strong>[確認済]</strong> Claude だけが主張しましたが、Cowork changelog の v7.37095.0 で確認できました。<code>artifactsEnabled</code> に加えて <code>artifactsDesignEnabled</code> / <code>artifactsSlidesEnabled</code> を有効にします。プラグインは <code>artifactsDesignSystemPlugins</code> で配布できます。</p>
+<h3>単体版 claude.ai/design は 2026-12-14 に終了</h3>
+<p><strong>[確認済]</strong>公式ガイドによると、移せるのは<strong>デザインシステムとプロジェクトの両方</strong>です。プロジェクトは artifact に変換されます。チャットとコメントは移せません。記事の公開日は「1 週間以上前に更新」としか書かれておらず、特定できませんでした。<br>出典：https://support.claude.com/en/articles/17440474-move-from-standalone-claude-design-to-claude</p>
+<h3>[二次・tygartmedia]「空のデザインシステムとスターターテーマ由来のものは移行されない」</h3>
+<p><strong>[確認済]</strong> Claude は未確認扱いにしていましたが、公式ガイドに明記されていました。編集済みでも移行されません。</p>
+<h3>[二次・tygartmedia]「プロジェクトも移らない」</h3>
+<p><strong>[棄却]</strong> 公式ガイドの「各プロジェクトは artifact として移行できる」と矛盾します。Claude 側の「移せるのはデザインシステム」も、この点で不完全です。</p>
+<h2>Anthropic 全体</h2>
+<h3>IPO の価格決定（11-18）と払込完了（11-20、引受会社の追加購入枠を全部行使）</h3>
+<p><strong>[確認済]</strong> anthropic.com/news で確認できました。Claude は数字を扱っていませんでしたが、一次ページには 1 株 $83.00、Class A 株 11.27 億株（追加購入枠の 1.47 億株を含む）と書かれています。ティッカー「ANT」は一次確認できていません。</p>
+<h3>Enterprise Frontier Safeguards（EFS）が public beta（11-23）</h3>
+<p><strong>[確認済]</strong> 両 AI が一致し、公式記事と Platform リリースノートとも合っています。顧客自身の S3 / GCS に暗号化された安全監視用データを置き、ZDR と複数リクエストにまたがる不正検知を両立します。対象は Claude Platform、Claude Platform on AWS、Bedrock、Google Cloud で、Foundry は近日対応です。</p>
+<h3>Fable 5.2 と Mythos 5.2 の発表（11-09、範囲外）</h3>
+<p><strong>[確認済]</strong> anthropic.com/news で確認できました。</p>
+<h3>収集外（検証中に見つけたもの）：Opus 4.5 の廃止予告</h3>
+<p><strong>[確認済]</strong> API での廃止日は 2027-01-22 で、Opus 5.5 への移行が推奨されています（Platform リリースノート 11-23）。</p>
+<h3>11-26 付けの Announcements</h3>
+<p>anthropic.com/news に日付だけが表示され、タイトルを取得できませんでした。内容は確認できていません。</p>
+<h2>コミュニティ・二次情報</h2>
+<p>以下はすべて <strong>[要検証]</strong> です。今回は一次確認していません。誤りと判定したものではありません。</p>
+<ul><li>r/ClaudeAI：skill が選ばれない原因を description で切り分ける方法（codex）</li><li>r/ClaudeAI：Stop hook で完了条件を検証する実装（codex）</li><li>ranthis.com：PreToolUse の終了コード 2 と JSON の deny の比較、Bash 呼び出し単位で効くという実測（codex、v2.1.325、少数の試行）</li><li>MCTS 実験（Reddit / GitHub）：品質はほぼ同じで時間は約 5 倍（codex）</li><li>note：2.1.332 の日本語速報（codex。changelog の翻訳です）</li><li>DEV / RAXXO：MCP スキルは信頼できるサーバーから試す、接続前後に <code>/context</code> で増加量を見る（Claude。後者は読者コメント）</li><li>DEV 週報：3P では <code>permissions.defaultMode</code> を明示する（Claude）。2.1.328 の「モード未設定なら auto で始まる」とは整合しますが、記事そのものは読んでいません。</li><li>Classmethod：2.1.330 の解説（Claude）</li><li>「Steering Claude Code」（2026-06-18、範囲外）の CLAUDE.md 200 行などの指針（Claude）。今回は一次確認していません。</li></ul>
+<hr>
+<h2>今日の注目</h2>
+<ol><li><strong>Code Mode のフックは fail-open になった（2.1.329）。<code>onFailure: "block"</code> を付けるか点検する</strong></li></ol>
+<ol><li><strong>Skills over MCP と <code>PreSkillShellCommand</code>（2.1.332）</strong></li></ol>
+<p>接続中の MCP サーバーが skill を配れるようになりました。Pro / Max / Ultra では既定でオンです。その skill の読み込み時に実行されるインラインシェルを <code>PreSkillShellCommand</code> で止められるかを実機で試し、あわせて <code>/context</code> で接続前後の増加量を測ると良いです。</p>
+<ol><li><strong><code>computer-use</code> の予約名化と管理 MCP リストの挙動戻り</strong></li></ol>
+<p>手元に <code>computer-use</code> という名前の skill やコマンドがあれば、Mac では黙って読み込まれなくなります（起動時に通知は出ます）。確認は簡単です。Desktop の <code>allowedMcpServers</code> が 6.6395.0 より前の挙動に戻った件は、既存の棚卸しの前提と変わった可能性があります。</p>
+<p>後片付け済み：使ったのは WebFetch だけで、タブ・アプリ・プロセスは新規に起動していません。</p><!--CONTENT:END-->
+</article>
+<div class="footer">claude-config archive · 公開ログ</div>
+</div></body></html>
